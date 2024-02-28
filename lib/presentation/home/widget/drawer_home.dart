@@ -17,20 +17,22 @@ Drawer buildDrawer(BuildContext context) {
           height: AppSize.s12.h,
         ),
         InkWell(
-            onTap: (){},
+            onTap: () {},
             child: rowDrawer(title: LocaleKeys.clients.tr(), icon: '')),
-        SizedBox(
+        const SizedBox(
           height: AppSize.s7,
         ),
-    InkWell(
-      onTap: (){},
-       child: rowDrawer(title: LocaleKeys.trafficLines.tr(), icon: ''),),
-        SizedBox(
+        InkWell(
+          onTap: () {},
+          child: rowDrawer(title: LocaleKeys.trafficLines.tr(), icon: ''),
+        ),
+        const SizedBox(
           height: AppSize.s7,
         ),
-    InkWell(
-      onTap: (){},
-      child:rowDrawer(title: LocaleKeys.account.tr(), icon: ''),),
+        InkWell(
+          onTap: () {},
+          child: rowDrawer(title: LocaleKeys.account.tr(), icon: ''),
+        ),
         SizedBox(
           height: MediaQuery.of(context).size.height / 3,
         ),
@@ -67,11 +69,11 @@ Widget rowDrawer({required String title, required String icon}) {
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: Row(
       children: [
-        SizedBox(
+        const SizedBox(
           width: AppSize.s12,
         ),
-        Icon(Icons.person_outline_sharp),
-        SizedBox(
+        const Icon(Icons.person_outline_sharp),
+        const SizedBox(
           width: AppSize.s8,
         ),
         Text(
