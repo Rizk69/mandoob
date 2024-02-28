@@ -20,6 +20,8 @@ class ImageAssets {
   static const String onboard4 = "$imagePath/on_board4.svg";
   static const String arrow = "$imagePath/arrow.svg";
 
+
+
   static const String defaultTeacher = "$imagePath/default_teacher.jpg";
 
 }
@@ -31,17 +33,13 @@ class IconAssets {
   static const String homeFilled = "$imagePath/home_filled.svg";
   static const String homeOutline = "$imagePath/home_outline.svg";
 
-  static const String paymentOutline = "$imagePath/payment_outline.svg";
-  static const String paymentFilled = "$imagePath/payment_filled.svg";
 
-  static const String lecOutline = "$imagePath/lec_outline.svg";
-  static const String lecFilled = "$imagePath/lec_filled.svg";
 
-  static const String testsOutline = "$imagePath/tests_outline.svg";
-  static const String testsFilled = "$imagePath/tests_filled.svg";
-
-  static const String evoOutline = "$imagePath/evo_outline.svg";
-  static const String evoFilled = "$imagePath/evo_filled.svg";
+  static const String dafterIcon = "$imagePath/botomnavg/daftar.svg";
+  static const String bagIcon = "$imagePath/botomnavg/bag.svg";
+  static const String shopfloatIcon = "$imagePath/botomnavg/shopfloat.svg";
+  static const String bencelIcon = "$imagePath/botomnavg/bencel.svg";
+  static const String shopIcon = "$imagePath/botomnavg/shop.svg";
 
 
 }

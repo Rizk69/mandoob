@@ -8,14 +8,11 @@ import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:mandoob/presentation/login/manger/login_cubit.dart';
 import 'package:mandoob/presentation/resources/assets_manager.dart';
 import 'package:mandoob/presentation/resources/color_manager.dart';
+import 'package:mandoob/presentation/resources/routes_manager.dart';
 import 'package:mandoob/presentation/resources/styles_manager.dart';
 import 'package:mandoob/presentation/resources/values_manager.dart';
 import 'package:mandoob/presentation/widget/default_snake_bar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../../home/cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
-import '../../home/presentation/home_Controller.dart';
-
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
 
@@ -72,7 +69,6 @@ class LoginView extends StatelessWidget {
                     ImageAssets.logoSignature,
                     height: AppSize.s32.h,
                     width: AppSize.s180.w,
-                    semanticsLabel: 'Mozakrety',
                   ),
                   SizedBox(height: AppSize.s10.h),
                   TextField(
@@ -121,7 +117,7 @@ class LoginView extends StatelessWidget {
                     children: [
                       Checkbox(
                         side: BorderSide(
-                            color: ColorManager.staticBlue2, width: 2),
+                            color: ColorManager.baseColorLight, width: 2),
                         value: checkValue,
                         onChanged: (newValue) {
                           context
@@ -130,7 +126,7 @@ class LoginView extends StatelessWidget {
                         },
                       ),
                       Text(
-                        'تذكرني',
+                        LocaleKeys.rememberMe.tr(),
                         style: getRegularOpenSansStyle(
                           color: ColorManager.gray,
                           fontSize: AppSize.s18.sp,
@@ -145,7 +141,7 @@ class LoginView extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll<Color>(
-                            ColorManager.staticBlue2),
+                            ColorManager.baseColorLight),
                         shape: MaterialStatePropertyAll<OutlinedBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
@@ -162,12 +158,7 @@ class LoginView extends StatelessWidget {
                                   );
                             }
                           : () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => BlocProvider(
-                                  create: (context) => BottomNavBarCubit(),
-                                  child: HomeController(),
-                                ),
-                              ));
+                              Navigator.pushNamed(context, Routes.homeRoute);
                             },
                       child: Text(
                         LocaleKeys.signIn.tr(),

@@ -7,8 +7,4 @@ import 'package:mandoob/domain/model/register/register_model.dart';
 abstract class Repository {
   Future<Either<Failure, LoginModel>> login(LoginRequest loginRequest);
 
-  Future<Either<Failure, RegisterModel>> register(
-    RegisterRequest registerRequest,
-  );
-
 }

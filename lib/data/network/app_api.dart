@@ -13,8 +13,4 @@ abstract class AppServiceClient {
 
   @POST("api/user/login")
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
-
-
-  @POST("api/APIUsers/Register")
-  Future<RegisterResponse> register(@Body() RegisterRequest registerRequest);
 }

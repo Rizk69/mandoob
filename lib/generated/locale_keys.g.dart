@@ -3,12 +3,10 @@
 abstract class  LocaleKeys {
   static const loading = 'loading';
   static const ok = 'ok';
-  static const mozakrety = 'mozakrety';
   static const becomeReady = 'becomeReady';
   static const retryAgain = 'retryAgain';
   static const noRouteFound = 'noRouteFound';
   static const copyRight = 'copyRight';
-  static const allRight = 'allRight';
   static const startDesc = 'startDesc';
   static const userName = 'userName';
   static const signIn = 'signIn';
@@ -55,15 +53,7 @@ abstract class  LocaleKeys {
   static const userNameError = 'userNameError';
   static const confirmNewPasswordError = 'confirmNewPasswordError';
   static const doYouHaveAccount = 'doYouHaveAccount';
-  static const year = 'year';
-  static const yearError = 'yearError';
   static const back = 'back';
-  static const primary = 'primary';
-  static const secondary = 'secondary';
-  static const preparatory = 'preparatory';
-  static const collegiate = 'collegiate';
-  static const guardianName = 'guardianName';
-  static const guardianNumber = 'guardianNumber';
   static const forgetPassword = 'forgetPassword';
   static const forgetPasswordBody = 'forgetPasswordBody';
   static const enterVerifyCode = 'enterVerifyCode';
@@ -76,17 +66,19 @@ abstract class  LocaleKeys {
   static const logIn = 'logIn';
   static const dontHaveAcc = 'dontHaveAcc';
   static const home = 'home';
-  static const lectures = 'lectures';
-  static const tests = 'tests';
-  static const payment = 'payment';
-  static const evaluation = 'evaluation';
-  static const academicYear = 'academicYear';
   static const ERROR = 'ERROR';
   static const welcome = 'welcome';
   static const myTeachers = 'myTeachers';
   static const viewAll = 'viewAll';
   static const others = 'others';
   static const canVerifyEmailCode = 'canVerifyEmailCode';
-  static const logoTextBody = 'logoTextBody';
+  static const rememberMe = 'rememberMe';
+  static const orders = 'orders';
+  static const invoices = 'invoices';
+  static const covenant = 'covenant';
+  static const cart = 'cart';
+  static const clients = 'clients';
+  static const trafficLines = 'trafficLines';
+  static const account = 'account';
 
 }

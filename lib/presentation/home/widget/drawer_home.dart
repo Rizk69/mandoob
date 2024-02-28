@@ -18,19 +18,19 @@ Drawer buildDrawer(BuildContext context) {
         ),
         InkWell(
             onTap: (){},
-            child: rowDrawer(title: 'العملاء', icon: '')),
+            child: rowDrawer(title: LocaleKeys.clients.tr(), icon: '')),
         SizedBox(
           height: AppSize.s7,
         ),
     InkWell(
       onTap: (){},
-       child: rowDrawer(title: 'خطوط السير', icon: ''),),
+       child: rowDrawer(title: LocaleKeys.trafficLines.tr(), icon: ''),),
         SizedBox(
           height: AppSize.s7,
         ),
     InkWell(
       onTap: (){},
-      child:rowDrawer(title: 'الحساب', icon: ''),),
+      child:rowDrawer(title: LocaleKeys.account.tr(), icon: ''),),
         SizedBox(
           height: MediaQuery.of(context).size.height / 3,
         ),
@@ -39,7 +39,7 @@ Drawer buildDrawer(BuildContext context) {
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStatePropertyAll<Color>(ColorManager.staticBlue2),
+                  MaterialStatePropertyAll<Color>(ColorManager.baseColorLight),
               shape: MaterialStatePropertyAll<OutlinedBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(

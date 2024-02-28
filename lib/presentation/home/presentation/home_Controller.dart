@@ -1,8 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:mandoob/presentation/home/presentation/home_View.dart';
+import 'package:mandoob/presentation/resources/assets_manager.dart';
 import 'package:mandoob/presentation/resources/color_manager.dart';
+import 'package:mandoob/presentation/resources/styles_manager.dart';
 import 'package:mandoob/presentation/resources/values_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -19,16 +23,16 @@ class HomeController extends StatelessWidget {
             case BottomNavBarItem.home:
               return const HomeView();
             case BottomNavBarItem.talabat:
-              return const Center(
-                child: Text('الطلبيات'),
+              return Center(
+                child: Text(LocaleKeys.orders.tr()),
               );
             case BottomNavBarItem.bugs:
-              return const Center(
-                child: Text('السلة'),
+              return Center(
+                child: Text(LocaleKeys.cart.tr()),
               );
             case BottomNavBarItem.fawater:
-              return const Center(
-                child: Text('الفواتير'),
+              return Center(
+                child: Text(LocaleKeys.invoices.tr()),
               );
             default:
               return Container();
@@ -38,15 +42,15 @@ class HomeController extends StatelessWidget {
       floatingActionButton: Container(
         width: AppSize.s80,
         height: AppSize.s80,
-        margin: const EdgeInsets.all(7),
+        margin: EdgeInsets.all(AppMargin.m3.pt),
         child: FloatingActionButton(
-          backgroundColor: Color(0XFF969FEE),
+          backgroundColor: ColorManager.baseColorLight,
           onPressed: () {},
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(AppSize.s50),
           ),
           child: SvgPicture.asset(
-            'assets/images/botomnavg/shopfloat.svg',
+            IconAssets.shopfloatIcon,
             color: Colors.white,
             fit: BoxFit.contain,
             height: AppSize.s30,
@@ -66,8 +70,8 @@ class HomeController extends StatelessWidget {
           children: [
             buttomNavBar(
               context: context,
-              img: 'assets/images/botomnavg/daftar.svg',
-              title: 'الفواتير',
+              img: IconAssets.dafterIcon,
+              title: LocaleKeys.invoices.tr(),
               function: () {
                 context
                     .read<BottomNavBarCubit>()
@@ -76,8 +80,8 @@ class HomeController extends StatelessWidget {
             ),
             buttomNavBar(
               context: context,
-              img: 'assets/images/botomnavg/bag.svg',
-              title: "السلة",
+              img: IconAssets.bagIcon,
+              title: LocaleKeys.cart.tr(),
               function: () {
                 context
                     .read<BottomNavBarCubit>()
@@ -85,12 +89,12 @@ class HomeController extends StatelessWidget {
               },
             ),
             SizedBox(
-              width: AppSize.s15,
+              width: AppSize.s10.w,
             ),
             buttomNavBar(
               context: context,
-              img: 'assets/images/botomnavg/bencel.svg',
-              title: 'الطلبيات',
+              img: IconAssets.bencelIcon,
+              title: LocaleKeys.orders.tr(),
               function: () {
                 context
                     .read<BottomNavBarCubit>()
@@ -99,8 +103,8 @@ class HomeController extends StatelessWidget {
             ),
             buttomNavBar(
               context: context,
-              img: 'assets/images/botomnavg/shop.svg',
-              title: 'العهد',
+              img: IconAssets.shopIcon,
+              title: LocaleKeys.home.tr(),
               function: () {
                 context
                     .read<BottomNavBarCubit>()
@@ -127,9 +131,12 @@ class HomeController extends StatelessWidget {
         children: [
           SvgPicture.asset(img),
           SizedBox(
-            height: AppSize.s5,
+            height: AppSize.s1.h,
           ),
-          Text(title,), // Label for the icon
+          Text(
+            title,
+            style: getSemiBoldInterStyle(color: ColorManager.baseColorLight),
+          ), // Label for the icon
         ],
       ),
     );

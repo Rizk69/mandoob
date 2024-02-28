@@ -9,9 +9,7 @@ import 'package:mandoob/data/network/network_info.dart';
 import 'package:mandoob/data/repository/repository_impl.dart';
 import 'package:mandoob/domain/repository/repository.dart';
 import 'package:mandoob/domain/usecase/login_usecase.dart';
-import 'package:mandoob/domain/usecase/register_usecase.dart';
 import 'package:mandoob/presentation/login/manger/login_cubit.dart';
-import 'package:mandoob/presentation/signup/manger/register/sign_up_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final instance = GetIt.instance;
@@ -55,14 +53,7 @@ initLoginModule() {
   }
 }
 
-initSignUpModule() {
-  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
-    instance
-        .registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
 
-    instance.registerFactory<SignUpCubit>(() => SignUpCubit(instance()));
-  }
-}
 
 
 
@@ -71,5 +62,4 @@ resetModules() {
   instance.reset(dispose: false);
   initAppModule();
   initLoginModule();
-  initSignUpModule();
 }

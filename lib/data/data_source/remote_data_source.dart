@@ -6,10 +6,6 @@ import 'package:mandoob/data/responses/register/register_response.dart';
 
 abstract class RemoteDataSource {
   Future<LoginResponse> login(LoginRequest loginRequest);
-
-  Future<RegisterResponse> register(RegisterRequest registerRequest);
-
-
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -24,10 +20,6 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
 
 
-  @override
-  Future<RegisterResponse> register(RegisterRequest registerRequest) {
-    return _appServiceClient.register(registerRequest);
-  }
 
 
 }
