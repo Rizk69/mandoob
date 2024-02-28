@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://testmozakretyapi.cloudiax.com/';
+    baseUrl ??= 'http://erpmandoob.acwad-it.com/';
   }
 
   final Dio _dio;
@@ -35,36 +35,12 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'api/user/login',
+              'api/delivary/login',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LoginResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<RegisterResponse> register(registerRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(registerRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<RegisterResponse>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'api/APIUsers/Register',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = RegisterResponse.fromJson(_result.data!);
     return value;
   }
 

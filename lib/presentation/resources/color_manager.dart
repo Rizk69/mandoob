@@ -38,6 +38,8 @@ class ColorManager {
   static Color blueAccent = const Color(0xFF33A7D5);
   static Color lightGrey = const Color(0xFFD9D9D9);
   static Color greyLight = const Color(0xFFF3F3F3);
+  static Color orangeLight = const Color(0xFFED893E);
+  static Color greenLight = const Color(0xFF4ADD17);
   static Color greyDark = const Color(0xFFD4D4D4);
   static Color greyLight2 = const Color(0xFFD2D2D2);
   static Color greyDark2 = const Color(0xFF868686);

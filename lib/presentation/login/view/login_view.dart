@@ -13,6 +13,7 @@ import 'package:mandoob/presentation/resources/styles_manager.dart';
 import 'package:mandoob/presentation/resources/values_manager.dart';
 import 'package:mandoob/presentation/widget/default_snake_bar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
 
@@ -151,11 +152,13 @@ class LoginView extends StatelessWidget {
                       ),
                       onPressed: context.read<LoginCubit>().isDataValid
                           ? () {
-                              context.read<LoginCubit>().login(
-                                    context: context,
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  );
+                        Navigator.pushNamed(context, Routes.homeRoute);
+
+                        // context.read<LoginCubit>().login(
+                        //             context: context,
+                        //             email: _emailController.text,
+                        //             password: _passwordController.text,
+                        //           );
                             }
                           : () {
                               Navigator.pushNamed(context, Routes.homeRoute);

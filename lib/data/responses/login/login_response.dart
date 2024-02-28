@@ -4,38 +4,11 @@ part 'login_response.g.dart';
 
 @JsonSerializable()
 class LoginResponse {
-  @JsonKey(name: "returnValue")
-  int? returnValue;
-  @JsonKey(name: "returnString")
-  String? returnString;
-  @JsonKey(name: "yearId")
-  int? yearId;
-  @JsonKey(name: "studentId")
-  int? studentId;
-  @JsonKey(name: "user_id")
-  int? userId;
-  @JsonKey(name: "user_ar_name")
-  String? userArName;
-  @JsonKey(name: "user_picture")
-  String? userPicture;
-  @JsonKey(name: "user_type_id")
-  int? userTypeId;
-  @JsonKey(name: "user_type_ar_name")
-  String? userTypeArName;
-  @JsonKey(name: "authToken")
-  AuthToken? authToken;
+  @JsonKey(name: "data")
+  Data? data;
 
   LoginResponse({
-    this.returnValue,
-    this.returnString,
-    this.yearId,
-    this.studentId,
-    this.userId,
-    this.userArName,
-    this.userPicture,
-    this.userTypeId,
-    this.userTypeArName,
-    this.authToken,
+    this.data,
   });
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) =>
@@ -45,28 +18,69 @@ class LoginResponse {
 }
 
 @JsonSerializable()
-class AuthToken {
-  @JsonKey(name: "EduCompList")
-  List<int>? eduCompList;
-  @JsonKey(name: "token")
-  String? token;
-  @JsonKey(name: "returnValue")
-  int? returnValue;
-  @JsonKey(name: "role_Id")
-  int? roleId;
-  @JsonKey(name: "type_Id")
-  int? typeId;
+class Data {
+  int? id;
+  String? name;
+  @JsonKey(name: "delivaryNo")
+  String? deliveryNo;
+  String? email;
+  String? phone;
+  @JsonKey(name: "api_taken")
+  String? apiTaken;
+  @JsonKey(name: "user_id")
+  int? userId;
+  @JsonKey(name: "created_at")
+  String? createdAt;
+  @JsonKey(name: "updated_at")
+  String? updatedAt;
+  Token? token;
 
-  AuthToken({
-    this.eduCompList,
+  Data({
+    this.id,
+    this.name,
+    this.deliveryNo,
+    this.email,
+    this.phone,
+    this.apiTaken,
+    this.userId,
+    this.createdAt,
+    this.updatedAt,
     this.token,
-    this.returnValue,
-    this.roleId,
-    this.typeId,
   });
 
-  factory AuthToken.fromJson(Map<String, dynamic> json) =>
-      _$AuthTokenFromJson(json);
+  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AuthTokenToJson(this);
+  Map<String, dynamic> toJson() => _$DataToJson(this);
+}
+
+@JsonSerializable()
+class Token {
+  String? name;
+  List<String>? abilities;
+  @JsonKey(name: "expires_at")
+  String? expiresAt;
+  @JsonKey(name: "tokenable_id")
+  int? tokenableId;
+  @JsonKey(name: "tokenable_type")
+  String? tokenableType;
+  @JsonKey(name: "updated_at")
+  String? updatedAt;
+  @JsonKey(name: "created_at")
+  String? createdAt;
+  int? id;
+
+  Token({
+    this.name,
+    this.abilities,
+    this.expiresAt,
+    this.tokenableId,
+    this.tokenableType,
+    this.updatedAt,
+    this.createdAt,
+    this.id,
+  });
+
+  factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TokenToJson(this);
 }

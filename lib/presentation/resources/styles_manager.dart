@@ -54,6 +54,15 @@ TextStyle getBoldInterStyle(
       fontWeight: FontWeightManager.bold,
       fontFamily: FontConstants.interFontFamily);
 }
+TextStyle getBold(
+    {double fontSize = FontSize.s12, required Color color}) {
+  return TextStyle(
+      fontSize: fontSize,
+      color: color,
+
+      fontWeight: FontWeight.bold,
+      );
+}
 
 TextStyle getSemiBoldInterStyle({
   double fontSize = FontSize.s12,
