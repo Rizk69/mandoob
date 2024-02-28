@@ -23,6 +23,7 @@
   "passwordError": "Please enter your password",
   "save": "Save",
   "logout": "Logout",
+
   "SUCCESS": "success",
   "NO_CONTENT": "No content",
   "BAD_REQUEST": "Bad request, Try again later",

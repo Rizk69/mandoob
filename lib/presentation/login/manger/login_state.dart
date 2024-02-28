@@ -14,6 +14,10 @@ class LoginFailureState extends LoginState {
 }
 
 class LoginDataValidState extends LoginState {}
+class CheckValueState extends LoginState {
+  bool checkValue=false;
+  CheckValueState(this.checkValue);
+}
 
 //show And Hide Password
 class ChangeVisibilityPasswordSate extends LoginState {}

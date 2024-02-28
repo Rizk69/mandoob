@@ -13,6 +13,8 @@ import 'package:mandoob/presentation/common/freezed_data_class.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
+  void toggleCheckbox(bool checkValue) => emit(CheckValueState(checkValue));
+
   final LoginUseCase _loginUseCase;
   var loginObject = LoginObject("", "");
 
@@ -83,8 +85,8 @@ class LoginCubit extends Cubit<LoginState> {
 
   void changePasswordIcon() {
     isPassword = !isPassword;
-    suffixIcon = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    suffixIcon =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(ChangeVisibilityPasswordSate());
   }
-
 }

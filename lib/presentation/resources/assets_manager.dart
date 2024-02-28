@@ -3,7 +3,7 @@ const String jsonPath = "assets/json";
 
 class ImageAssets {
   static const String logo = "$imagePath/logo_app.svg";
-  static const String logoSignature = "$imagePath/logo_signature.svg";
+  static const String logoSignature = "$imagePath/loginphoto.svg";
   static const String logoWord = "$imagePath/logo_word.svg";
   static const String failed = "$imagePath/failed.svg";
   static const String doneBackground = "$imagePath/done_background.svg";

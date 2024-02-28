@@ -8,12 +8,13 @@ import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:mandoob/presentation/login/manger/login_cubit.dart';
 import 'package:mandoob/presentation/resources/assets_manager.dart';
 import 'package:mandoob/presentation/resources/color_manager.dart';
-import 'package:mandoob/presentation/resources/routes_manager.dart';
-
 import 'package:mandoob/presentation/resources/styles_manager.dart';
 import 'package:mandoob/presentation/resources/values_manager.dart';
 import 'package:mandoob/presentation/widget/default_snake_bar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../home/cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
+import '../../home/presentation/home_Controller.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
@@ -29,9 +30,9 @@ class LoginView extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Padding(
           padding: EdgeInsets.only(
-            right: AppPadding.p12.w,
-            left: AppPadding.p12.w,
-            top: AppPadding.p10.h,
+            right: AppPadding.p4.w,
+            left: AppPadding.p4.w,
+            top: AppPadding.p5.h,
           ),
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
@@ -44,8 +45,6 @@ class LoginView extends StatelessWidget {
                 ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(snackBar);
-
-                // Navigator.pushReplacementNamed(context, Routes.startRoute);
               }
 
               if (state is LoginFailureState) {
@@ -60,24 +59,20 @@ class LoginView extends StatelessWidget {
               }
             },
             builder: (context, state) {
+              bool checkValue = (state is CheckValueState)
+                  ? (state as CheckValueState).checkValue
+                  : false;
               return ListView(
                 physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
                 children: [
-                  Text(
-                    LocaleKeys.logIn.tr(),
-                    textAlign: TextAlign.center,
-                    style: getBoldOxygenStyle(
-                      color: ColorManager.coolBlue,
-                      fontSize: AppSize.s24.sp,
-                    ),
-                  ),
-                  SizedBox(height: AppSize.s5.h),
+                  SizedBox(height: AppSize.s01.h),
                   SvgPicture.asset(
+                    fit: BoxFit.fitHeight,
                     ImageAssets.logoSignature,
-                    height: AppSize.s16.h,
-                    width: AppSize.s16.w,
-                    semanticsLabel: 'Mozakrety', //Todo
+                    height: AppSize.s32.h,
+                    width: AppSize.s180.w,
+                    semanticsLabel: 'Mozakrety',
                   ),
                   SizedBox(height: AppSize.s10.h),
                   TextField(
@@ -90,6 +85,8 @@ class LoginView extends StatelessWidget {
                       context.read<LoginCubit>().setEmail(email);
                     },
                     decoration: InputDecoration(
+                      prefixIcon:
+                          Icon(Icons.email_outlined, color: ColorManager.grey3),
                       hintText: LocaleKeys.email.tr(),
                       labelText: LocaleKeys.email.tr(),
                     ),
@@ -108,6 +105,7 @@ class LoginView extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: LocaleKeys.password.tr(),
                       labelText: LocaleKeys.password.tr(),
+                      prefixIcon: Icon(Icons.lock, color: ColorManager.grey3),
                       suffixIcon: InkWell(
                         onTap: () =>
                             context.read<LoginCubit>().changePasswordIcon(),
@@ -118,11 +116,43 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: AppSize.s10.h),
-                  SizedBox(
-                    height: AppSize.s8.h,
-                    width: double.infinity,
+                  SizedBox(height: AppSize.s4),
+                  Row(
+                    children: [
+                      Checkbox(
+                        side: BorderSide(
+                            color: ColorManager.staticBlue2, width: 2),
+                        value: checkValue,
+                        onChanged: (newValue) {
+                          context
+                              .read<LoginCubit>()
+                              .toggleCheckbox(newValue ?? false);
+                        },
+                      ),
+                      Text(
+                        'تذكرني',
+                        style: getRegularOpenSansStyle(
+                          color: ColorManager.gray,
+                          fontSize: AppSize.s18.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: AppSize.s4.h),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: AppSize.s36),
+                    height: AppSize.s10.h,
                     child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                            ColorManager.staticBlue2),
+                        shape: MaterialStatePropertyAll<OutlinedBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                AppSize.s40), // Adjust the radius as needed
+                          ),
+                        ),
+                      ),
                       onPressed: context.read<LoginCubit>().isDataValid
                           ? () {
                               context.read<LoginCubit>().login(
@@ -131,57 +161,22 @@ class LoginView extends StatelessWidget {
                                     password: _passwordController.text,
                                   );
                             }
-                          : null,
+                          : () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => BlocProvider(
+                                  create: (context) => BottomNavBarCubit(),
+                                  child: HomeController(),
+                                ),
+                              ));
+                            },
                       child: Text(
                         LocaleKeys.signIn.tr(),
-                        style: getRegularSegoeStyle(
-                          color: ColorManager.whiteTwo,
+                        style: getBoldSegoeStyle(
+                          color: ColorManager.black,
                           fontSize: AppSize.s20.sp,
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: AppSize.s4.h),
-                  InkWell(
-                    onTap: () {
-                    },
-                    child: Text(
-                      LocaleKeys.forgetPassword.tr(),
-                      textAlign: TextAlign.center,
-                      style: getSemiBoldInterStyle(
-                        color: ColorManager.coolBlue,
-                        fontSize: AppSize.s20.sp,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: AppSize.s2.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        LocaleKeys.dontHaveAcc.tr(),
-                        style: getMediumInterStyle(
-                          color: ColorManager.blueGrey,
-                          fontSize: AppSize.s16.sp,
-                        ),
-                      ),
-                      SizedBox(width: AppSize.s2.w),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushReplacementNamed(
-                            Routes.signupRoute,
-                          );
-                        },
-                        child: Text(
-                          LocaleKeys.signUp.tr(),
-                          style: getSemiBoldInterStyle(
-                            color: ColorManager.coolBlue,
-                            fontSize: AppSize.s16.sp,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               );

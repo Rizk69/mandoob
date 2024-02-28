@@ -18,7 +18,6 @@ import '../../../domain/model/on_boarding/on_boarding_model.dart';
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
 
-
   @override
   State<OnBoardingView> createState() => _OnBoardingViewState();
 }
@@ -32,7 +31,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     super.initState();
   }
 
-  _bind(){
+  _bind() {
     _appPreferences.setOnBoardingViewed();
   }
 
@@ -67,7 +66,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             child: Column(
               children: [
                 SizedBox(
-                  height: AppSize.s10.h,
+                  height: AppSize.s13.h,
                   child: Padding(
                     padding: EdgeInsets.only(
                       right: AppPadding.p2.h,
@@ -95,7 +94,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   ),
                 ),
                 SizedBox(
-                  height: AppSize.s82.h,
+                  height: AppSize.s70.h,
                   child: PageView.builder(
                     itemCount: state.numOfSlides,
                     controller: cubit.pageController,
@@ -106,7 +105,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     ),
                   ),
                 ),
-                SizedBox(height: AppSize.s2.h),
+                SizedBox(height: AppSize.s4.h),
                 SmoothPageIndicator(
                   controller: cubit.pageController,
                   count: state.numOfSlides,
@@ -167,7 +166,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                                   onPressed: () => cubit.goPrevious(),
                                   child: Row(
                                     children: [
-                                      Expanded(child: Icon(Icons.arrow_back_ios,color: ColorManager.white,)),
+                                      Expanded(
+                                          child: Icon(
+                                        Icons.arrow_back_ios,
+                                        color: ColorManager.white,
+                                      )),
                                       Expanded(
                                         flex: 3,
                                         child: Text(
@@ -191,7 +194,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                                   backgroundColor: ColorManager.blueAccent,
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
-                                    BorderRadius.circular(AppSize.s1_5.h),
+                                        BorderRadius.circular(AppSize.s1_5.h),
                                   ),
                                 ),
                                 onPressed: () {
@@ -210,7 +213,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                                     Expanded(
                                       flex: 3,
                                       child: Text(
-                                        state.currentIndex == state.numOfSlides - 1
+                                        state.currentIndex ==
+                                                state.numOfSlides - 1
                                             ? LocaleKeys.start.tr()
                                             : LocaleKeys.next.tr(),
                                         style: getBoldOxygenStyle(
@@ -220,8 +224,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
-                                     Expanded(child: Icon(Icons.arrow_forward_ios,color: ColorManager.white,)),
-
+                                    Expanded(
+                                        child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: ColorManager.white,
+                                    )),
                                   ],
                                 ),
                               ),
@@ -247,15 +254,17 @@ class OnBoardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SvgPicture.asset(sliderObject.image),
+        SvgPicture.asset(sliderObject.image, height: AppSize.s50.h),
         Text(
           sliderObject.title,
           style: getRegularSegoeStyle(
             color: ColorManager.black,
             fontSize: AppSize.s20.sp,
           ),
+        ),
+        SizedBox(
+          height: AppSize.s10,
         ),
         Text(
           sliderObject.subTitle,
