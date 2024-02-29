@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mandoob/presentation/el_salah/widget/DropdownMenu.dart';
 import 'package:mandoob/presentation/resources/color_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../resources/styles_manager.dart';
 import '../../resources/values_manager.dart';
 import '../cubit.dart';
 
@@ -17,6 +19,12 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
+    List<String> dropdownItems = [
+      'Option 1',
+      'Option 2',
+      'Option 3',
+    ];
+
     return Stack(
       children: [
         GestureDetector(
@@ -46,7 +54,7 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                   children: [
                     Image.asset('assets/images/product.png',
                         height: AppSize.s13.h),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('شامبو حجم كبير'),
@@ -84,11 +92,65 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                   ],
                 ),
                 if (isExpanded)
-                  const Column(
+                  Column(
                     children: [
-                      SizedBox(
-                        height: 100,
-                      )
+                      Row(
+                        children: [
+                          Text(
+                            'الكمية المطلوبة',
+                            style: getBoldSegoeStyle(
+                                fontSize: 20, color: ColorManager.black)
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: SizedBox(
+                              height: 50, // Adjust the height as needed
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  hintText: '',
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            flex: 2,
+                            child: SizedBox(
+                              height: 50, // Adjust the height as needed
+                              child: DropdownMenuCustom(dropdownMenuEntries: dropdownItems,initText: 'وحدة '),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: AppSize.s20,),
+                      Row(
+                        children: [
+                          Text(
+                           'السعر ',
+                            style: getBoldSegoeStyle(
+                                fontSize: 20, color: ColorManager.black),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: SizedBox(
+                              height: 50, // Adjust the height as needed
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  hintText: '',
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            flex: 2,
+                            child: SizedBox(
+                              height: 50, // Adjust the height as needed
+                              child: DropdownMenuCustom(dropdownMenuEntries: dropdownItems,initText: 'السعر العادي'),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
               ],
