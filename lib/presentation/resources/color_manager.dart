@@ -4,6 +4,7 @@ class ColorManager {
   static Color blue2 = const Color(0xFF269fb3);
   static Color shadowColor = const Color(0XFF969FEE).withAlpha(40);
   static Color backGround = Colors.grey.shade100;
+  static Color greenBorder = const Color(0XFF6CC51D);
   static Color baseColorLight = const Color(0xFF969FEE);
   static Color grey2 = const Color(0xFFCCCCCC);
   static Color darkSkyBlue = const Color(0xFF2aa7d7);

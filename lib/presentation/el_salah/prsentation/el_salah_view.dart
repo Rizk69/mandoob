@@ -9,7 +9,7 @@ import '../../resources/color_manager.dart';
 import '../../resources/routes_manager.dart';
 import '../../resources/styles_manager.dart';
 import '../../resources/values_manager.dart';
-import '../cubit.dart';
+import '../el_salah_cubit.dart';
 import '../widget/card.dart';
 
 class ElSalahView extends StatelessWidget {
@@ -18,8 +18,8 @@ class ElSalahView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => YourCubit(),
-      child: ElSalahViewBody(),
+      create: (context) => ElSalahCubit(),
+      child: const ElSalahViewBody(),
     );
   }
 }
@@ -35,7 +35,7 @@ class ElSalahViewBody extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: BlocBuilder<YourCubit, YourState>(
+          child: BlocBuilder<ElSalahCubit, ElSalahState>(
             builder: (context, state) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,7 +46,7 @@ class ElSalahViewBody extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {
-                          context.read<YourCubit>().openDrawer(context);
+                          context.read<ElSalahCubit>().openDrawer(context);
                         },
                         icon: const Icon(Icons.menu),
                       ),
@@ -74,7 +74,7 @@ class ElSalahViewBody extends StatelessWidget {
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                           EdgeInsets.all(
-                              10.0), // Replace this with your desired padding
+                              10.0),
                         ),
                         backgroundColor: MaterialStatePropertyAll<Color>(
                             ColorManager.baseColorLight),
@@ -85,7 +85,10 @@ class ElSalahViewBody extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.elmulakhas);
+
+                      },
                       child: Text(
                         LocaleKeys.next.tr(),
                         style: getBoldSegoeStyle(

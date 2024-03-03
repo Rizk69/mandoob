@@ -26,11 +26,12 @@ class _DropdownMenuCustomState extends State<DropdownMenuCustom> {
       ),
       child: DropdownButton<String>(
         value: _selectedItem,
+        underline: Container(),
         hint: Text(widget.initText),
         style: const TextStyle(
-          fontSize: 25,
-          color: Colors.black,
-        ),
+            fontSize: 23, color: Colors.black, fontWeight: FontWeight.bold),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        borderRadius: BorderRadius.circular(18),
         onChanged: (String? newValue) {
           setState(() {
             _selectedItem = newValue;

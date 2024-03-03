@@ -13,6 +13,8 @@ class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
   final List<String> titles = ['1', '2', '3'];
   final List<String> titlesName = ['تاجر 1', 'تاجر 2', 'تاجر 3'];
+  FocusNode _focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -58,7 +60,10 @@ class HomeView extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
-                      scribbleEnabled: true,
+                      focusNode: _focusNode,
+                      onTap: () {
+                        _focusNode.requestFocus();
+                      },
                       cursorHeight: 30,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.search),

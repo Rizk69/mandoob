@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class YourCubit extends Cubit<YourState> {
-  YourCubit() : super(YourInitialState());
+class ElSalahCubit extends Cubit<ElSalahState> {
+  ElSalahCubit() : super(YourInitialState());
   int countItems = 0;
 
   void addItem() {
@@ -23,10 +23,10 @@ class YourCubit extends Cubit<YourState> {
   }
 }
 
-abstract class YourState {}
+abstract class ElSalahState {}
 
-class YourInitialState extends YourState {}
+class YourInitialState extends ElSalahState {}
 
-class YourItemAddedState extends YourState {}
+class YourItemAddedState extends ElSalahState {}
 
-class YourItemRemovedState extends YourState {}
+class YourItemRemovedState extends ElSalahState {}

@@ -6,7 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../resources/styles_manager.dart';
 import '../../resources/values_manager.dart';
-import '../cubit.dart';
+import '../el_salah_cubit.dart';
 
 class YourExpandedItem extends StatefulWidget {
   const YourExpandedItem({super.key});
@@ -72,16 +72,16 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                                   isExpanded = true;
                                 }
                               });
-                              context.read<YourCubit>().addItem();
+                              context.read<ElSalahCubit>().addItem();
                             },
                             icon: Icon(
                               Icons.add,
                               color: ColorManager.greenLight,
                             )),
-                        Text('${context.read<YourCubit>().countItems}'),
+                        Text('${context.read<ElSalahCubit>().countItems}'),
                         IconButton(
                             onPressed: () {
-                              context.read<YourCubit>().removeItem();
+                              context.read<ElSalahCubit>().removeItem();
                             },
                             icon: Icon(
                               Icons.remove,
@@ -96,11 +96,9 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            'الكمية المطلوبة',
-                            style: getBoldSegoeStyle(
-                                fontSize: 20, color: ColorManager.black)
-                          ),
+                          Text('الكمية المطلوبة',
+                              style: getBoldSegoeStyle(
+                                  fontSize: 20, color: ColorManager.black)),
                           SizedBox(width: 10),
                           Expanded(
                             child: SizedBox(
@@ -117,16 +115,20 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                             flex: 2,
                             child: SizedBox(
                               height: 50, // Adjust the height as needed
-                              child: DropdownMenuCustom(dropdownMenuEntries: dropdownItems,initText: 'وحدة '),
+                              child: DropdownMenuCustom(
+                                  dropdownMenuEntries: dropdownItems,
+                                  initText: 'وحدة '),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: AppSize.s20,),
+                      SizedBox(
+                        height: AppSize.s20,
+                      ),
                       Row(
                         children: [
                           Text(
-                           'السعر ',
+                            'السعر ',
                             style: getBoldSegoeStyle(
                                 fontSize: 20, color: ColorManager.black),
                           ),
@@ -146,7 +148,9 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                             flex: 2,
                             child: SizedBox(
                               height: 50, // Adjust the height as needed
-                              child: DropdownMenuCustom(dropdownMenuEntries: dropdownItems,initText: 'السعر العادي'),
+                              child: DropdownMenuCustom(
+                                  dropdownMenuEntries: dropdownItems,
+                                  initText: 'السعر العادي'),
                             ),
                           ),
                         ],
