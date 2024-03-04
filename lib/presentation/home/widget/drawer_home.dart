@@ -5,9 +5,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../generated/locale_keys.g.dart';
 import '../../resources/color_manager.dart';
+import '../../resources/routes_manager.dart';
 import '../../resources/styles_manager.dart';
 
 Drawer buildDrawer(BuildContext context) {
+
   return Drawer(
     width: MediaQuery.of(context).size.width / 2.2,
     child: ListView(
@@ -17,13 +19,22 @@ Drawer buildDrawer(BuildContext context) {
           height: AppSize.s12.h,
         ),
         InkWell(
-            onTap: () {},
+            onTap: () {
+
+    // if (currentPage != "home") {
+      Navigator.pushNamed(context, Routes.homeRoute);
+    // }
+
+            },
             child: rowDrawer(title: LocaleKeys.clients.tr(), icon: '')),
         const SizedBox(
           height: AppSize.s7,
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, Routes.trafficLines);
+
+          },
           child: rowDrawer(title: LocaleKeys.trafficLines.tr(), icon: ''),
         ),
         const SizedBox(

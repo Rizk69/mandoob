@@ -1,6 +1,6 @@
 {
-    "name": "acwad_mandoob",
-    "short_name": "acwad_mandoob",
+    "name": "mandoob_flutter",
+    "short_name": "mandoob_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

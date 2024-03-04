@@ -40,6 +40,9 @@ class IconAssets {
   static const String shopfloatIcon = "$imagePath/botomnavg/shopfloat.svg";
   static const String bencelIcon = "$imagePath/botomnavg/bencel.svg";
   static const String shopIcon = "$imagePath/botomnavg/shop.svg";
+  static const String location = "$imagePath/botomnavg/location.svg";
+  static const String iconNext = "$imagePath/botomnavg/iconnext.svg";
+  static const String filterIcons = "$imagePath/botomnavg/filter.svg";
 
 
 }

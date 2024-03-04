@@ -1,5 +1,5 @@
 class Constants {
-  static const String baseUrl = 'https://testmozakretyapi.cloudiax.com/';
+  static const String baseUrl = 'http://erpmandoob.acwad-it.com/';
   static const String empty = '';
   static const int zero = 0;
   static const double zeroD = 0.0;
