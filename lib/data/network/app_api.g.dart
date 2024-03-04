@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://erpmandoob.acwad-it.com/';
+    baseUrl ??= 'https://erpmandoob.acwad-it.com/';
   }
 
   final Dio _dio;
@@ -35,7 +35,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'api/delivary/login',
+              'api/login',
               queryParameters: queryParameters,
               data: _data,
             )

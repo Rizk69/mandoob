@@ -43,6 +43,8 @@ class LoginView extends StatelessWidget {
                 ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(snackBar);
+
+                Navigator.pushNamed(context, Routes.homeRoute);
               }
 
               if (state is LoginFailureState) {
@@ -142,31 +144,27 @@ class LoginView extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll<Color>(
-                            ColorManager.baseColorLight),
+                            context.read<LoginCubit>().isDataValid ?
+                            ColorManager.baseColorLight : ColorManager.grey2),
                         shape: MaterialStatePropertyAll<OutlinedBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                AppSize.s40), // Adjust the radius as needed
+                            borderRadius: BorderRadius.circular(AppSize.s40),
                           ),
                         ),
                       ),
                       onPressed: context.read<LoginCubit>().isDataValid
                           ? () {
-                        Navigator.pushNamed(context, Routes.homeRoute);
-
-                        // context.read<LoginCubit>().login(
-                        //             context: context,
-                        //             email: _emailController.text,
-                        //             password: _passwordController.text,
-                        //           );
+                              context.read<LoginCubit>().login(
+                                    context: context,
+                                    email: _emailController.text,
+                                    password: _passwordController.text,
+                                  );
                             }
-                          : () {
-                              Navigator.pushNamed(context, Routes.homeRoute);
-                            },
+                          : null,
                       child: Text(
                         LocaleKeys.signIn.tr(),
                         style: getBoldSegoeStyle(
-                          color: ColorManager.black,
+                          color: context.read<LoginCubit>().isDataValid ? ColorManager.black:Colors.white,
                           fontSize: AppSize.s20.sp,
                         ),
                       ),

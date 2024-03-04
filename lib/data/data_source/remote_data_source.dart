@@ -1,7 +1,6 @@
 import 'package:mandoob/data/network/app_api.dart';
 import 'package:mandoob/data/network/requests.dart';
 import 'package:mandoob/data/responses/login/login_response.dart';
-import 'package:mandoob/data/responses/register/register_response.dart';
 
 
 abstract class RemoteDataSource {
@@ -17,9 +16,5 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   Future<LoginResponse> login(LoginRequest loginRequest) {
     return _appServiceClient.login(loginRequest);
   }
-
-
-
-
 
 }

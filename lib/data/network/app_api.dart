@@ -10,6 +10,6 @@ part 'app_api.g.dart';
 abstract class AppServiceClient {
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
-  @POST("api/delivary/login")
+  @POST("api/login")
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
 }

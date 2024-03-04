@@ -9,9 +9,13 @@ class LoginRequest {
   @JsonKey(name: "password")
   String? accountPassword;
 
+  @JsonKey(name: "deviceToken")
+  String? deviceToken;
+
   LoginRequest({
     this.email,
     this.accountPassword,
+    this.deviceToken,
   });
 
   factory LoginRequest.fromJson(Map<String, dynamic> json) =>
@@ -20,35 +24,3 @@ class LoginRequest {
   Map<String, dynamic> toJson() => _$LoginRequestToJson(this);
 }
 
-@JsonSerializable()
-class RegisterRequest {
-  @JsonKey(name: "Id")
-  int? id;
-  @JsonKey(name: "userTypeId")
-  int? userTypeId;
-  @JsonKey(name: "ar_name")
-  String? arName;
-  @JsonKey(name: "mobile")
-  String? mobile;
-  @JsonKey(name: "account_email")
-  String? accountEmail;
-  @JsonKey(name: "account_password")
-  String? accountPassword;
-  @JsonKey(name: "confirmPassword")
-  String? confirmPassword;
-
-  RegisterRequest({
-    this.id,
-    this.userTypeId,
-    this.arName,
-    this.mobile,
-    this.accountEmail,
-    this.accountPassword,
-    this.confirmPassword,
-  });
-
-  factory RegisterRequest.fromJson(Map<String, dynamic> json) =>
-      _$RegisterRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RegisterRequestToJson(this);
-}
