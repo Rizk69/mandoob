@@ -1,7 +1,6 @@
 import 'package:mandoob/app/constants.dart';
 import 'package:mandoob/app/extension.dart';
-
-import '../../../domain/model/user/UserModel.dart';
+import 'package:mandoob/domain/model/profile/user_model.dart';
 import '../../responses/profile/user_response.dart';
 
 extension UserResponseMapper on UserResponse? {
@@ -14,9 +13,9 @@ extension UserResponseMapper on UserResponse? {
   }
 }
 
-extension UserDataResponseMapper on UserData? {
-  User toDomain() {
-    return User(
+extension UserDataResponseMapper on UserDataResponse? {
+  UserDataModel toDomain() {
+    return UserDataModel(
 
       name: this?.name?.orEmpty() ?? Constants.empty,
       color: this?.color?.orEmpty() ?? Constants.empty,

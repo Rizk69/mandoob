@@ -8,10 +8,10 @@ import 'package:mandoob/data/network/failure.dart';
 import 'package:mandoob/data/network/network_info.dart';
 import 'package:mandoob/data/network/requests.dart';
 import 'package:mandoob/domain/model/login/login_model.dart';
+import 'package:mandoob/domain/model/profile/user_model.dart';
 import 'package:mandoob/domain/repository/repository.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
-import '../../domain/model/user/UserModel.dart';
 
 class RepositoryImpl extends Repository {
   final RemoteDataSource _remoteDataSource;

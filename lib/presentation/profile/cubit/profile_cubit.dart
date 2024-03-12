@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mandoob/data/responses/profile/user_response.dart';
-import 'package:mandoob/domain/model/user/UserModel.dart';
+import 'package:mandoob/domain/model/profile/user_model.dart';
 import 'package:meta/meta.dart';
 
 import '../../../domain/usecase/get_profle_usecase.dart';
@@ -18,10 +17,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     try {
       emit(ProfileLoadingState());
 
-      final result = await _profileUseCase.execute();
+      final result = await _profileUseCase.execute("");
       result.fold((failure) => emit(ProfileErrorState(failure.message)),
           (user) {
-        print("_________${user.user?.name}");
         userModel = user;
         emit(ProfileLoadedState());
       });

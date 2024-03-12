@@ -2,14 +2,6 @@
 /// message : "تم اظهار الداتا"
 /// user : {"name":"delivary","color":"#969fee","colors":[{"id":1,"color":"#969fee"},{"id":2,"color":"#f8ba80"},{"id":3,"color":"#b86e9f"},{"id":4,"color":"#91c89a"}],"email":"delivary@gmail.com","phone":"011015","balanceTL":0,"balanceUsd":0,"salse_Lera":0,"salse_Doler":0,"commissions_Lera":0,"commissions_Doler":0}
 
-class UserModel {
-  bool status;
-  String message;
-  User? user;
-
-  UserModel({required this.status, required this.message, required this.user});
-}
-
 /// name : "delivary"
 /// color : "#969fee"
 /// colors : [{"id":1,"color":"#969fee"},{"id":2,"color":"#f8ba80"},{"id":3,"color":"#b86e9f"},{"id":4,"color":"#91c89a"}]
@@ -21,8 +13,22 @@ class UserModel {
 /// salse_Doler : 0
 /// commissions_Lera : 0
 /// commissions_Doler : 0
+///
 
-class User {
+/// id : 1
+/// color : "#969fee"
+
+class UserModel {
+  bool status;
+  String message;
+  UserDataModel? user;
+
+  UserModel({required this.status, required this.message, required this.user});
+}
+
+
+
+class UserDataModel {
   String name;
   String color;
   List<ColorsModel>? colors;
@@ -35,7 +41,7 @@ class User {
   num commissionsLera;
   num commissionsDoler;
 
-  User(
+  UserDataModel(
       {required this.name,
       required this.color,
       required this.colors,
@@ -49,8 +55,7 @@ class User {
       required this.commissionsDoler});
 }
 
-/// id : 1
-/// color : "#969fee"
+
 
 class ColorsModel {
   int id;

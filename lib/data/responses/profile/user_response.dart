@@ -11,7 +11,7 @@ class UserResponse {
   String? message;
 
   @JsonKey(name: "user")
-  UserData? userData;
+  UserDataResponse? userData;
 
   UserResponse({this.status, this.message, this.userData});
 
@@ -22,7 +22,7 @@ class UserResponse {
 }
 
 @JsonSerializable()
-class UserData {
+class UserDataResponse {
   @JsonKey(name: "name")
   String? name;
   @JsonKey(name: "color")
@@ -46,7 +46,7 @@ class UserData {
   @JsonKey(name: "commissions_Doler")
   num? commissions_Doler;
 
-  UserData({
+  UserDataResponse({
     this.name,
     this.color,
     this.colors,
@@ -60,7 +60,7 @@ class UserData {
     this.commissions_Doler,
   });
 
-  factory UserData.fromJson(Map<String, dynamic> json) =>
+  factory UserDataResponse.fromJson(Map<String, dynamic> json) =>
       _$UserDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserDataToJson(this);
