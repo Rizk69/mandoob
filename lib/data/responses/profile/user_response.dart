@@ -11,9 +11,9 @@ class UserResponse {
   String? message;
 
   @JsonKey(name: "user")
-  UserDataResponse? userData;
+  UserDataResponse? user;
 
-  UserResponse({this.status, this.message, this.userData});
+  UserResponse({this.status, this.message, this.user});
 
   factory UserResponse.fromJson(Map<String, dynamic> json) =>
       _$UserResponseFromJson(json);

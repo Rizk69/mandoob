@@ -9,16 +9,16 @@ part of 'user_response.dart';
 UserResponse _$UserResponseFromJson(Map<String, dynamic> json) => UserResponse(
       status: json['status'] as bool?,
       message: json['message'] as String?,
-      userData: json['userData'] == null
+      user: json['user'] == null
           ? null
-          : UserDataResponse.fromJson(json['userData'] as Map<String, dynamic>),
+          : UserDataResponse.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserResponseToJson(UserResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
-      'userData': instance.userData,
+      'user': instance.user,
     };
 
 UserDataResponse _$UserDataFromJson(Map<String, dynamic> json) => UserDataResponse(

@@ -6,7 +6,7 @@ import '../../responses/profile/user_response.dart';
 extension UserResponseMapper on UserResponse? {
   UserModel toDomain() {
     return UserModel(
-      user: this?.userData.toDomain(),
+      user: this?.user.toDomain(),
       status: this?.status ?? false,
       message: this?.message?.orEmpty() ?? Constants.empty,
     );
