@@ -19,3 +19,13 @@ extension NonNullInt on int? {
     }
   }
 }
+
+extension NonNullNum on num? {
+  num orZero() {
+    if (this == null) {
+      return Constants.zero;
+    } else {
+      return this!;
+    }
+  }
+}

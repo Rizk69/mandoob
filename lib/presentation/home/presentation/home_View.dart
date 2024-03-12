@@ -220,6 +220,7 @@ class HomeView extends StatelessWidget {
                       height: AppSize.s34,
                     ),
                     StepProgressView(
+
                         width: MediaQuery.of(context).size.width,
                         curStep: 3,
                         color: Colors.black87,

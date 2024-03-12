@@ -12,6 +12,7 @@ import 'package:mandoob/presentation/traffic_lines/presentation/traffic_lines_sc
 import '../../utiles_app/sucss_screen.dart';
 import '../el_eahduh/presentation/el_eahduh_view.dart';
 import '../fawater/presentaion/Fawater_details.dart';
+import '../profile/presentation/profile_view.dart';
 import '../talabat/presentation/new_talab_view.dart';
 
 class Routes {
@@ -25,6 +26,7 @@ class Routes {
   static const String sucssufflySceen = "/sucssufflySceen";
   static const String fawaterTagerDetails = "/fawaterTagerDetails";
   static const String trafficLines = "/trafficLines";
+  static const String profileView = "/profileView";
 }
 
 class RouteGenerator {
@@ -51,6 +53,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => FawaterTagerDetailsView());
         case Routes.trafficLines:
         return MaterialPageRoute(builder: (_) => TrafficLines());
+        case Routes.profileView:
+        return MaterialPageRoute(builder: (_) => ProfileView());
       default:
         return unDefinedRoute();
     }

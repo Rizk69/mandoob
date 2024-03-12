@@ -7,6 +7,8 @@ class ColorManager {
   static Color greenBorder = const Color(0XFF6CC51D);
   static Color baseColorLight = const Color(0xFF969FEE);
   static Color grey2 = const Color(0xFFCCCCCC);
+  static Color desColor = const Color(0xFF7C7A7A);
+  static Color customCardColor = const Color(0xFFF5F5F5);
   static Color darkSkyBlue = const Color(0xFF2aa7d7);
   static Color deepSkyBlue = const Color(0xFF0f81ee);
   static Color darkGrey = const Color(0xFF707070);

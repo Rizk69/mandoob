@@ -36,12 +36,18 @@ class LoginCubit extends Cubit<LoginState> {
     _checkDataValidity();
   }
 
-
   bool isDataValid = false;
 
   void _checkDataValidity() {
     isDataValid = _email.isNotEmpty && _password.isNotEmpty;
     emit(LoginDataValidState());
+  }
+
+  void logout(BuildContext context) {
+    AppPreferences _appPreferences = instance<AppPreferences>();
+    _appPreferences.setUserLoggedIn(false);
+    _appPreferences.logout();
+    emit(LogoutSuccessState());
   }
 
   Future<void> login(

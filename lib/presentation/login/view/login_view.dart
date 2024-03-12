@@ -44,7 +44,7 @@ class LoginView extends StatelessWidget {
                   ..hideCurrentSnackBar()
                   ..showSnackBar(snackBar);
 
-                Navigator.pushNamed(context, Routes.homeRoute);
+                Navigator.pushReplacementNamed(context, Routes.homeRoute);
               }
 
               if (state is LoginFailureState) {

@@ -4,6 +4,8 @@ import 'package:mandoob/data/network/requests.dart';
 import 'package:mandoob/data/responses/login/login_response.dart';
 import 'package:retrofit/http.dart';
 
+import '../responses/profile/user_response.dart';
+
 part 'app_api.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)
@@ -12,4 +14,7 @@ abstract class AppServiceClient {
 
   @POST("api/login")
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
+
+  @GET("api/profile")
+  Future<UserResponse> getProfile();
 }

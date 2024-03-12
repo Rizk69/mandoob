@@ -12,6 +12,9 @@ import 'package:mandoob/domain/usecase/login_usecase.dart';
 import 'package:mandoob/presentation/login/manger/login_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../domain/usecase/get_profle_usecase.dart';
+import '../presentation/profile/cubit/profile_cubit.dart';
+
 final instance = GetIt.instance;
 
 Future<void> initAppModule() async {
@@ -51,9 +54,16 @@ initLoginModule() {
     instance.registerFactory<LoginCubit>(() => LoginCubit(instance()));
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
   }
+
 }
 
+initProfileModule() {
+  if (!GetIt.I.isRegistered<ProfileUseCase>()) {
+    instance.registerFactory<ProfileCubit>(() => ProfileCubit(instance()));
+    instance.registerFactory<ProfileUseCase>(() => ProfileUseCase(instance()));
 
+  }
+}
 
 
 
@@ -62,4 +72,5 @@ resetModules() {
   instance.reset(dispose: false);
   initAppModule();
   initLoginModule();
+  initProfileModule();
 }
