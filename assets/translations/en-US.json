@@ -84,13 +84,10 @@
 
   "balanceTL": "balance TL",
   "balanceUsd": "balance Usd",
-
   "salseLera": "sales Lera",
   "salseDoler": "sales USD" ,
-
   "commissionsLera": "commissions Lera",
   "commissionsDoler": "commissions USD",
-
   "Theme": "Theme"
 
 }

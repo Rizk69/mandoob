@@ -147,7 +147,7 @@ class ProfileView extends StatelessWidget {
                                 RichText(
                                   text: TextSpan(
                                     style: getBoldSegoeStyle(
-                                      fontSize: 25,
+                                      fontSize: AppSize.s20.sp,
                                       color: ColorManager.black,
                                     ),
                                     children: [
