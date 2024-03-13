@@ -158,7 +158,7 @@ class ProfileView extends StatelessWidget {
                                       TextSpan(
                                         text: 'light',
                                         style: getMediumInterStyle(
-                                          fontSize: 15,
+                                          fontSize: AppSize.s20.sp,
                                           color: ColorManager.desColor,
                                         ),
                                       ),
