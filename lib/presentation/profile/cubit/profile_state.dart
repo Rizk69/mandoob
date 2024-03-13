@@ -7,14 +7,13 @@ class ProfileInitial extends ProfileState {}
 
 class ProfileLoadingState extends ProfileState {}
 
-class ProfileLoadedState extends ProfileState {
-  // final UserResponse userResponse;
-  //
-  // ProfileLoadedState({required this.userResponse});
-}
+class ProfileLoadedState extends ProfileState {}
 
 class ProfileErrorState extends ProfileState {
   final String message;
 
   ProfileErrorState(this.message);
 }
+
+
+class changeVisabialtyState extends ProfileState {}

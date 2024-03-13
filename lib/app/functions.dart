@@ -54,3 +54,9 @@ String? nullTranslateString ({String? arString , String? enString }){
   return null;
 
 }
+
+
+int getColorFromHex(String hexColor) {
+  hexColor = hexColor.replaceAll('#', '');
+  return int.parse('FF$hexColor', radix: 16);
+}

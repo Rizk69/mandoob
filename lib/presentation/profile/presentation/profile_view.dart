@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:mandoob/presentation/resources/color_manager.dart';
 import 'package:mandoob/presentation/resources/styles_manager.dart';
@@ -34,7 +35,8 @@ class ProfileView extends StatelessWidget {
               builder: (context, state) {
                 if (state is ProfileLoadingState) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (state is ProfileLoadedState) {
+                } else if (state is ProfileLoadedState ||
+                    state is changeVisabialtyState) {
                   var user = ProfileCubit.get(context).userModel?.user;
                   return SingleChildScrollView(
                     child: Padding(
@@ -53,19 +55,44 @@ class ProfileView extends StatelessWidget {
                                 Navigator.pop(context);
                               }),
                           SizedBox(height: AppSize.s5.h),
-                          Container(
-                            padding: EdgeInsets.all(AppPadding.p45),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: ColorManager.baseColorLight,
-                                border: Border.all(
-                                    color: ColorManager.baseColorLight,
-                                    width: 5,
-                                    strokeAlign: AppSize.s5)),
-                            child: SvgPicture.asset(
-                              'assets/images/edit_icons.svg',
+                          GestureDetector(
+                            onTap: () {
+                              ProfileCubit.get(context).changeRowVisalbilty();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(AppPadding.p45),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: ColorManager.baseColorLight,
+                                  border: Border.all(
+                                      color: ColorManager.baseColorLight,
+                                      width: 5,
+                                      strokeAlign: AppSize.s5)),
+                              child: SvgPicture.asset(
+                                'assets/images/edit_icons.svg',
+                              ),
                             ),
                           ),
+                          if (ProfileCubit.get(context)
+                              .showRow) // إظهار الـ Row فقط إذا كان showRow صحيحًا
+                            SizedBox(height: AppSize.s3.h),
+                          if (ProfileCubit.get(context).showRow)
+                            Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0), // يمكن تعديل البادينج حسب الحاجة
+                                child: Wrap(
+                                  direction: Axis.horizontal, // تأكيد أن التوجيه أفقي
+                                  spacing: AppSize.s8.w, // المسافة بين الدوائر الأفقية
+                                  children: user!.colors!.map((colorModel) {
+                                    int color = getColorFromHex(colorModel.color);
+                                    return CircleAvatar(
+                                      backgroundColor: Color(color),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+
                           SizedBox(height: AppSize.s5.h),
                           Text(
                             user!.name,
@@ -83,8 +110,6 @@ class ProfileView extends StatelessWidget {
                               color: ColorManager.transparent,
                               title: LocaleKeys.password.tr(),
                               des: '#############33'),
-
-
                           customCardProfile(
                               color: ColorManager.grey2,
                               title: LocaleKeys.balanceTL.tr(),
@@ -93,7 +118,6 @@ class ProfileView extends StatelessWidget {
                               color: ColorManager.transparent,
                               title: LocaleKeys.balanceUsd.tr(),
                               des: user.balanceUsd.toString()),
-
                           customCardProfile(
                               color: ColorManager.grey2,
                               title: LocaleKeys.salseLera.tr(),
@@ -102,12 +126,10 @@ class ProfileView extends StatelessWidget {
                               color: ColorManager.transparent,
                               title: LocaleKeys.salseDoler.tr(),
                               des: user.salseDoler.toString()),
-
                           customCardProfile(
                               color: ColorManager.grey2,
                               title: LocaleKeys.commissionsLera.tr(),
                               des: user.commissionsLera.toString()),
-
                           customCardProfile(
                               color: ColorManager.transparent,
                               title: LocaleKeys.commissionsDoler.tr(),
@@ -130,7 +152,8 @@ class ProfileView extends StatelessWidget {
                                     ),
                                     children: [
                                       TextSpan(
-                                        text: '${LocaleKeys.Theme.tr()} \t\t\t\t',
+                                        text:
+                                            '${LocaleKeys.Theme.tr()} \t\t\t\t',
                                       ),
                                       TextSpan(
                                         text: 'light',
