@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:mandoob/presentation/resources/color_manager.dart';
 import 'package:mandoob/presentation/resources/styles_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -75,49 +77,47 @@ class ProfileView extends StatelessWidget {
                           SizedBox(height: AppSize.s5.h),
                           customCardProfile(
                               color: ColorManager.grey2,
-                              title: 'اسم المستخدم',
+                              title: LocaleKeys.email.tr(),
                               des: user.email),
                           customCardProfilePassword(
                               color: ColorManager.transparent,
-                              title: 'كلمة السر',
+                              title: LocaleKeys.password.tr(),
                               des: '#############33'),
+
+
                           customCardProfile(
                               color: ColorManager.grey2,
-                              title: 'كلمة السر',
-                              des: '#############33'),
-                          customCardProfile(
-                              color: ColorManager.transparent,
-                              title: 'الرصيد بالليرة',
+                              title: LocaleKeys.balanceTL.tr(),
                               des: user.balanceTL.toString()),
                           customCardProfile(
-                              color: ColorManager.grey2,
-                              title: 'الرصيد بالدولار',
+                              color: ColorManager.transparent,
+                              title: LocaleKeys.balanceUsd.tr(),
                               des: user.balanceUsd.toString()),
 
                           customCardProfile(
-                              color: ColorManager.transparent,
-                              title: 'اجمالي المبيعات للشهر بالليرة',
+                              color: ColorManager.grey2,
+                              title: LocaleKeys.salseLera.tr(),
                               des: user.salseLera.toString()),
                           customCardProfile(
-                              color: ColorManager.grey2,
-                              title: 'اجمالي الكميات بالدولار',
+                              color: ColorManager.transparent,
+                              title: LocaleKeys.salseDoler.tr(),
                               des: user.salseDoler.toString()),
 
                           customCardProfile(
-                              color: ColorManager.transparent,
-                              title: ' عمولات الشهر بالليرة',
+                              color: ColorManager.grey2,
+                              title: LocaleKeys.commissionsLera.tr(),
                               des: user.commissionsLera.toString()),
 
                           customCardProfile(
-                              color: ColorManager.grey2,
-                              title: 'عمولات الشهر بالدولار',
+                              color: ColorManager.transparent,
+                              title: LocaleKeys.commissionsDoler.tr(),
                               des: user.commissionsDoler.toString()),
                           Container(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 20, horizontal: 10),
                             width: double.infinity,
                             decoration: BoxDecoration(
-                                color: ColorManager.transparent,
+                                color: ColorManager.grey2,
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,7 +130,7 @@ class ProfileView extends StatelessWidget {
                                     ),
                                     children: [
                                       TextSpan(
-                                        text: 'المظهر \t\t\t\t',
+                                        text: '${LocaleKeys.Theme.tr()} \t\t\t\t',
                                       ),
                                       TextSpan(
                                         text: 'light',
