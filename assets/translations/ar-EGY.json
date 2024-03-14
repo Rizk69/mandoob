@@ -79,5 +79,16 @@
 
   "clients": "العملاء",
   "trafficLines": "خطوط السير",
-  "account": "الحساب"
+  "account": "الحساب",
+
+  "balanceTL": "الرصيد بالليرة",
+  "balanceUsd": "الرصيد بالدولار",
+  "salseLera": "اجمالي المبيعات للشهر بالليرة",
+  "salseDoler": "اجمالي المبيعات للشهر بالدولار" ,
+  "commissionsLera": "عمولات الشهر بالليرة",
+  "commissionsDoler": "عمولات الشهر بالدولار",
+  "Theme": "المظهر"
+
+
+
 }

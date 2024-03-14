@@ -53,52 +53,52 @@ class HomeView extends StatelessWidget {
                   )
                 ],
               ),
+              // SizedBox(
+              //   height: AppSize.s20,
+              // ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: TextFormField(
+              //         focusNode: _focusNode,
+              //         onTap: () {
+              //           _focusNode.requestFocus();
+              //         },
+              //         cursorHeight: 30,
+              //         decoration: const InputDecoration(
+              //           prefixIcon: Icon(Icons.search),
+              //           hintText: 'ابحث هنا',
+              //           filled: true,
+              //           fillColor: Colors.white,
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(
+              //       width: AppSize.s20,
+              //     ),
+              //     Padding(
+              //       padding: const EdgeInsets.symmetric(vertical: 18),
+              //       child: Align(
+              //         alignment: Alignment.centerLeft,
+              //         child: Column(
+              //           children: [
+              //             SvgPicture.asset(IconAssets.iconNext,
+              //                 color: ColorManager.black, height: 23),
+              //             Text(
+              //               'صرف منتجات',
+              //               style: getBoldSegoeStyle(
+              //                 color: ColorManager.black,
+              //                 fontSize: AppSize.s20.sp,
+              //               ),
+              //             )
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               SizedBox(
-                height: AppSize.s20,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      focusNode: _focusNode,
-                      onTap: () {
-                        _focusNode.requestFocus();
-                      },
-                      cursorHeight: 30,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.search),
-                        hintText: 'ابحث هنا',
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: AppSize.s20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 18),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        children: [
-                          SvgPicture.asset(IconAssets.iconNext,
-                              color: ColorManager.black, height: 23),
-                          Text(
-                            'صرف منتجات',
-                            style: getBoldSegoeStyle(
-                              color: ColorManager.black,
-                              fontSize: AppSize.s20.sp,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: AppSize.s20,
+                height: AppSize.s5.h,
               ),
               Container(
                 padding: EdgeInsets.symmetric(

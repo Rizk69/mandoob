@@ -13,6 +13,15 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   ProfileCubit(this._profileUseCase) : super(ProfileInitial());
   UserModel? userModel;
+
+  bool showRow = false;
+
+
+  changeRowVisalbilty(){
+    showRow = !showRow;
+    emit(changeVisabialtyState());
+  }
+
   Future<void> getProfile() async {
     try {
       emit(ProfileLoadingState());
