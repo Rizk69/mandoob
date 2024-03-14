@@ -61,9 +61,9 @@ class UserDataResponse {
   });
 
   factory UserDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$UserDataFromJson(json);
+      _$UserDataResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserDataToJson(this);
+  Map<String, dynamic> toJson() => _$UserDataResponseToJson(this);
 }
 
 @JsonSerializable()

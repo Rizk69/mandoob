@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mandoob/data/data_source/remote_data_source.dart';
@@ -53,4 +55,41 @@ class RepositoryImpl extends Repository {
       return Left(ErrorHandler.handle(error).failure);
     }
   }
+
+  @override
+  Future<Either<Failure, UserModel>> getDelivaryLine() async {
+    try {
+      final response = await _remoteDataSource.getDelivaryLine();
+      if (response.status == true) {
+        print(response.status);
+        return Right(response.toDomain());
+      } else {
+        return Left(Failure(
+          ResponseCode.UNAUTHORIZED,
+          LocaleKeys.UNAUTHORIZED.tr(),
+        ));
+      }
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> editColorProfile(ColorProfile colorProfile) async {
+    // try {
+      final response = await _remoteDataSource.editColorProfile(colorProfile);
+    //   if (response) {
+        return Right(response);
+    //   } else {
+    //     return Left(Failure(
+    //       ResponseCode.UNAUTHORIZED,
+    //       LocaleKeys.UNAUTHORIZED.tr(),
+    //     ));
+    //   }
+    // } catch (error) {
+    //
+    //   return Left(ErrorHandler.handle(error).failure);
+    // }
+  }
+
 }

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dartz/dartz.dart';
 import 'package:mandoob/data/network/failure.dart';
 import 'package:mandoob/data/network/requests.dart';
@@ -10,4 +12,6 @@ abstract class Repository {
 
 
   Future<Either<Failure, UserModel>> getProfile();
+  Future<Either<Failure, UserModel>> getDelivaryLine();
+  Future<Either<Failure, void>> editColorProfile(ColorProfile colorProfile);
 }

@@ -27,4 +27,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ProfileErrorState('An error occurred while fetching profile data'));
     }
   }
+
+  void selectColor(String color, int id) {
+    print(id);
+  }
 }

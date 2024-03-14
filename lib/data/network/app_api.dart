@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
 import 'package:mandoob/app/constants.dart';
 import 'package:mandoob/data/network/requests.dart';
@@ -17,4 +19,8 @@ abstract class AppServiceClient {
 
   @GET("api/profile")
   Future<UserResponse> getProfile();
+  @GET("api/delivary_line")
+  Future<UserResponse> getDelivaryLine();
+  @POST("api/edit_color_profile")
+  Future<void> editColorProfile(@Body() ColorProfile colorProfile);
 }

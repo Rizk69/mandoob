@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mandoob/presentation/profile/widget/ColorSelectionPage.dart';
 import 'package:mandoob/presentation/resources/color_manager.dart';
 import 'package:mandoob/presentation/resources/styles_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -73,6 +74,8 @@ class ProfileView extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: AppSize.s5.h),
+                          ColorSelectionPage(colors: user.colors ?? []),
+                          SizedBox(height: AppSize.s5.h),
                           customCardProfile(
                               color: ColorManager.grey2,
                               title: 'اسم المستخدم',
@@ -93,7 +96,6 @@ class ProfileView extends StatelessWidget {
                               color: ColorManager.grey2,
                               title: 'الرصيد بالدولار',
                               des: user.balanceUsd.toString()),
-
                           customCardProfile(
                               color: ColorManager.transparent,
                               title: 'اجمالي المبيعات للشهر بالليرة',
@@ -102,12 +104,10 @@ class ProfileView extends StatelessWidget {
                               color: ColorManager.grey2,
                               title: 'اجمالي الكميات بالدولار',
                               des: user.salseDoler.toString()),
-
                           customCardProfile(
                               color: ColorManager.transparent,
                               title: ' عمولات الشهر بالليرة',
                               des: user.commissionsLera.toString()),
-
                           customCardProfile(
                               color: ColorManager.grey2,
                               title: 'عمولات الشهر بالدولار',
@@ -240,3 +240,69 @@ class ProfileView extends StatelessWidget {
     );
   }
 }
+
+// class ColorSelectionPage extends StatefulWidget {
+//   @override
+//   _ColorSelectionPageState createState() => _ColorSelectionPageState();
+// }
+//
+// class _ColorSelectionPageState extends State<ColorSelectionPage> {
+//   String? selectedColor;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//           children: [
+//             _buildColorButton(Colors.red),
+//             _buildColorButton(Colors.green),
+//             _buildColorButton(Colors.blue),
+//           ],
+//         ),
+//       ],
+//     );
+//   }
+//
+//   Widget _buildColorButton(Color color) {
+//     return GestureDetector(
+//       onTap: () {
+//         setState(() {
+//           selectedColor = color.toString();
+//         });
+//         _sendColorToApi(color);
+//       },
+//       child: Container(
+//         width: 50,
+//         height: 50,
+//         color: color,
+//       ),
+//     );
+//   }
+//
+//   void _sendColorToApi(Color color) {
+//     if (selectedColor != null) {
+//       print('Selected color: $color');
+//     } else {
+//       showDialog(
+//         context: context,
+//         builder: (BuildContext context) {
+//           return AlertDialog(
+//             title: const Text('Error'),
+//             content: const Text('Please select a color first.'),
+//             actions: [
+//               TextButton(
+//                 onPressed: () {
+//                   Navigator.of(context).pop();
+//                 },
+//                 child: const Text('OK'),
+//               ),
+//             ],
+//           );
+//         },
+//       );
+//     }
+//   }
+// }

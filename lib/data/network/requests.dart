@@ -24,3 +24,16 @@ class LoginRequest {
   Map<String, dynamic> toJson() => _$LoginRequestToJson(this);
 }
 
+@JsonSerializable()
+class ColorProfile {
+  @JsonKey(name: "color_id")
+  final String colorId;
+
+  ColorProfile(this.colorId);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'color_id': colorId,
+    };
+  }
+}
