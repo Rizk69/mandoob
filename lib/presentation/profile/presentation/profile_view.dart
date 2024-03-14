@@ -77,14 +77,10 @@ class ProfileView extends StatelessWidget {
                           ColorSelectionPage(colors: user.colors ?? []),
                           SizedBox(height: AppSize.s5.h),
                           customCardProfile(
-                              color: ColorManager.grey2,
+                              color: ColorManager.transparent,
                               title: 'اسم المستخدم',
                               des: user.email),
                           customCardProfilePassword(
-                              color: ColorManager.transparent,
-                              title: 'كلمة السر',
-                              des: '#############33'),
-                          customCardProfile(
                               color: ColorManager.grey2,
                               title: 'كلمة السر',
                               des: '#############33'),
@@ -240,69 +236,3 @@ class ProfileView extends StatelessWidget {
     );
   }
 }
-
-// class ColorSelectionPage extends StatefulWidget {
-//   @override
-//   _ColorSelectionPageState createState() => _ColorSelectionPageState();
-// }
-//
-// class _ColorSelectionPageState extends State<ColorSelectionPage> {
-//   String? selectedColor;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//           children: [
-//             _buildColorButton(Colors.red),
-//             _buildColorButton(Colors.green),
-//             _buildColorButton(Colors.blue),
-//           ],
-//         ),
-//       ],
-//     );
-//   }
-//
-//   Widget _buildColorButton(Color color) {
-//     return GestureDetector(
-//       onTap: () {
-//         setState(() {
-//           selectedColor = color.toString();
-//         });
-//         _sendColorToApi(color);
-//       },
-//       child: Container(
-//         width: 50,
-//         height: 50,
-//         color: color,
-//       ),
-//     );
-//   }
-//
-//   void _sendColorToApi(Color color) {
-//     if (selectedColor != null) {
-//       print('Selected color: $color');
-//     } else {
-//       showDialog(
-//         context: context,
-//         builder: (BuildContext context) {
-//           return AlertDialog(
-//             title: const Text('Error'),
-//             content: const Text('Please select a color first.'),
-//             actions: [
-//               TextButton(
-//                 onPressed: () {
-//                   Navigator.of(context).pop();
-//                 },
-//                 child: const Text('OK'),
-//               ),
-//             ],
-//           );
-//         },
-//       );
-//     }
-//   }
-// }

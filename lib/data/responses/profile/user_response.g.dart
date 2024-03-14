@@ -21,7 +21,8 @@ Map<String, dynamic> _$UserResponseToJson(UserResponse instance) =>
       'user': instance.user,
     };
 
-UserDataResponse _$UserDataFromJson(Map<String, dynamic> json) => UserDataResponse(
+UserDataResponse _$UserDataResponseFromJson(Map<String, dynamic> json) =>
+    UserDataResponse(
       name: json['name'] as String?,
       color: json['color'] as String?,
       colors: (json['colors'] as List<dynamic>?)
@@ -37,7 +38,8 @@ UserDataResponse _$UserDataFromJson(Map<String, dynamic> json) => UserDataRespon
       commissions_Doler: json['commissions_Doler'] as num?,
     );
 
-Map<String, dynamic> _$UserDataToJson(UserDataResponse instance) => <String, dynamic>{
+Map<String, dynamic> _$UserDataResponseToJson(UserDataResponse instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'color': instance.color,
       'colors': instance.colors,

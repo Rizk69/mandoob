@@ -8,6 +8,7 @@ class ProfileInitial extends ProfileState {}
 class ProfileLoadingState extends ProfileState {}
 
 class ProfileLoadedState extends ProfileState {}
+class changeVisabialtyState extends ProfileState {}
 
 class ProfileErrorState extends ProfileState {
   final String message;

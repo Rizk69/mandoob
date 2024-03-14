@@ -18,3 +18,12 @@ Map<String, dynamic> _$LoginRequestToJson(LoginRequest instance) =>
       'password': instance.accountPassword,
       'deviceToken': instance.deviceToken,
     };
+
+ColorProfile _$ColorProfileFromJson(Map<String, dynamic> json) => ColorProfile(
+      json['color_id'] as String,
+    );
+
+Map<String, dynamic> _$ColorProfileToJson(ColorProfile instance) =>
+    <String, dynamic>{
+      'color_id': instance.colorId,
+    };
