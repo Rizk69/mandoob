@@ -117,7 +117,7 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                               height: 50, // Adjust the height as needed
                               child: DropdownMenuCustom(
                                   dropdownMenuEntries: dropdownItems,
-                                  initText: 'وحدة '),
+                                  initText: 'وحدة ', color: Colors.transparent,),
                             ),
                           ),
                         ],
@@ -149,6 +149,7 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                             child: SizedBox(
                               height: 50, // Adjust the height as needed
                               child: DropdownMenuCustom(
+                                color: Colors.transparent,
                                   dropdownMenuEntries: dropdownItems,
                                   initText: 'السعر العادي'),
                             ),

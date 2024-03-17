@@ -21,7 +21,7 @@ class UserResponse {
   Map<String, dynamic> toJson() => _$UserResponseToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UserDataResponse {
   @JsonKey(name: "name")
   String? name;
