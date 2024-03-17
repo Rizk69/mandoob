@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:mandoob/app/app.dart';
 import 'package:mandoob/app/di.dart';
-import 'package:mandoob/data/network/bloc_observer.dart';
-import 'package:mandoob/presentation/resources/language_manager.dart';
+import 'package:mandoob/core/netowork_core/bloc_observer.dart';
+import 'package:mandoob/core/resources/language_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

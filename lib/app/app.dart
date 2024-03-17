@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/app/di.dart';
-import 'package:mandoob/presentation/home/presentation/home_Controller.dart';
-import 'package:mandoob/presentation/resources/routes_manager.dart';
-import 'package:mandoob/presentation/resources/theme_manager.dart';
+import 'package:mandoob/core/resources/routes_manager.dart';
+import 'package:mandoob/core/resources/theme_manager.dart';
+import 'package:mandoob/features/home/cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../presentation/home/cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
 
 //ignore: must_be_immutable
 class MyApp extends StatefulWidget {

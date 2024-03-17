@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mandoob/app/constants.dart';
-import 'package:mandoob/presentation/resources/language_manager.dart';
+import 'package:mandoob/core/resources/language_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String PREFS_KEY_LANG = 'PREFS_KEY_LANG';
