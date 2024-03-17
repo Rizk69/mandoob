@@ -12,6 +12,7 @@ import 'package:mandoob/domain/usecase/login_usecase.dart';
 import 'package:mandoob/presentation/login/manger/login_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../domain/usecase/edit_Color_Profile_usecases.dart';
 import '../domain/usecase/get_profle_usecase.dart';
 import '../presentation/profile/cubit/profile_cubit.dart';
 
@@ -57,13 +58,20 @@ initLoginModule() {
 
 }
 
-initProfileModule() {
+void initProfileModule() {
   if (!GetIt.I.isRegistered<ProfileUseCase>()) {
-    instance.registerFactory<ProfileCubit>(() => ProfileCubit(instance()));
     instance.registerFactory<ProfileUseCase>(() => ProfileUseCase(instance()));
+  }
 
+  if (!GetIt.I.isRegistered<EditColorProfileUseCase>()) {
+    instance.registerFactory<EditColorProfileUseCase>(() => EditColorProfileUseCase(instance()));
+  }
+
+  if (!GetIt.I.isRegistered<ProfileCubit>()) {
+    instance.registerFactory<ProfileCubit>(() => ProfileCubit(instance(), instance()));
   }
 }
+
 
 
 

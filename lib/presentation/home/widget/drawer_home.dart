@@ -42,10 +42,10 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                 ),
                 InkWell(
                     onTap: () {
-                      // if (currentPage != "home") {
+
                       Navigator.pop(context);
-                      Navigator.pushNamed(context, Routes.homeRoute);
-                      // }
+                      Navigator.pushNamed(context, Routes.trader);
+
                     },
                     child: rowDrawer(title: LocaleKeys.clients.tr(), icon: '')),
                 const SizedBox(

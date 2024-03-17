@@ -7,6 +7,7 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../home/widget/drawer_home.dart';
 import '../../home/widget/stepper_view.dart';
+import '../../resources/routes_manager.dart';
 import '../../resources/values_manager.dart';
 import '../widget/time_line_tite.dart';
 
@@ -102,7 +103,18 @@ class TrafficLines extends StatelessWidget {
 
                   ],
                 ),
-              )
+              ),
+              GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, Routes.editTrafficLines);
+
+                },
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child:Text( 'تعديل',style: TextStyle(color: ColorManager.blueAccent,decoration: TextDecoration.underline),),
+                ),
+              ),
+              SizedBox(height: AppSize.s4.h),
           
                      ],
           ),

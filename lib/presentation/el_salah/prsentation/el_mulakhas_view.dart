@@ -48,6 +48,7 @@ class ElMulakhas extends StatelessWidget {
                 ),
                 Expanded(
                   child: DropdownMenuCustom(
+                    color: Colors.transparent,
                     dropdownMenuEntries: ['vd', 'ha', 'mo'],
                     initText: 'اختار التاجر',
                   ),

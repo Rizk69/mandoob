@@ -1,3 +1,5 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,13 +7,14 @@ import 'package:mandoob/presentation/profile/widget/ColorSelectionPage.dart';
 import 'package:mandoob/presentation/resources/color_manager.dart';
 import 'package:mandoob/presentation/resources/styles_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import '../../../app/di.dart';
-import '../../../domain/repository/repository.dart';
-import '../../../domain/usecase/get_profle_usecase.dart';
+
+import '../../../generated/locale_keys.g.dart';
 import '../../../utiles_app/header_screen.dart';
 import '../../home/widget/drawer_home.dart';
+import '../../resources/routes_manager.dart';
 import '../../resources/values_manager.dart';
+import '../../widget/default_snake_bar.dart';
 import '../cubit/profile_cubit.dart';
 
 class ProfileView extends StatelessWidget {
@@ -31,6 +34,20 @@ class ProfileView extends StatelessWidget {
             create: (_) => instance<ProfileCubit>()..getProfile(),
             child: BlocBuilder<ProfileCubit, ProfileState>(
               builder: (context, state) {
+                if (state is EditProfileColorLoadedState) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    final snackBar = defaultSnakeBar(
+                      title: LocaleKeys.SUCCESS.tr(),
+                      message: LocaleKeys.SUCCESS.tr(),
+                      state: ContentType.success,
+                    );
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(snackBar);
+                    Navigator.pushReplacementNamed(context, Routes.homeRoute);
+                  });
+                  return Container();
+                }
                 if (state is ProfileLoadingState) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is ProfileLoadedState) {
