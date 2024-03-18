@@ -5,7 +5,6 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-
 ThemeData getApplicationTheme() {
   return ThemeData(
 
@@ -54,7 +53,7 @@ ThemeData getApplicationTheme() {
           style: ElevatedButton.styleFrom(
               textStyle: getRegularSegoeStyle(
                   color: ColorManager.white, fontSize: FontSize.s16.sp),
-              primary: ColorManager.darkSkyBlue,
+              backgroundColor: ColorManager.darkSkyBlue,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppSize.s3.w)))),
 
@@ -95,8 +94,8 @@ ThemeData getApplicationTheme() {
 
         /// focused border style
         focusedBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: ColorManager.darkSkyBlue, width: AppSize.s05.w),
+            borderSide: BorderSide(
+                color: ColorManager.darkSkyBlue, width: AppSize.s05.w),
             borderRadius: BorderRadius.all(Radius.circular(AppSize.s5.w))),
 
         /// error border style
@@ -107,8 +106,8 @@ ThemeData getApplicationTheme() {
 
         /// error focused border style
         focusedErrorBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: ColorManager.darkSkyBlue, width: AppSize.s05.w),
+            borderSide: BorderSide(
+                color: ColorManager.darkSkyBlue, width: AppSize.s05.w),
             borderRadius: BorderRadius.all(Radius.circular(AppSize.s5.w))),
       ));
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/model/profile/user_model.dart';
-import '../../resources/routes_manager.dart';
 import '../cubit/profile_cubit.dart';
 
 class ColorSelectionPage extends StatelessWidget {

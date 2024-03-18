@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/core/netowork_core/network_info.dart';
+import 'package:mandoob/features/auth/data/data_source/local_auth_data_source.dart';
 import 'package:mandoob/features/trafiic_lines/data/data_source/remote_traffic_line_data_source.dart';
 import 'package:mandoob/features/trafiic_lines/data/network/traffic_line_api.dart';
 import 'package:mandoob/core/netowork_core/dio_factory.dart';
@@ -46,6 +47,10 @@ Future<void> initAppModule() async {
   instance
       .registerLazySingleton<AuthServiceClient>(() => AuthServiceClient(dio));
 
+  // Local data source
+  instance.registerLazySingleton<LocalDataSource>(
+      () => LocalDataSourceImpl());
+
   // remote data source
   instance.registerLazySingleton<RemoteTrafficLineDataSource>(
       () => RemoteTrafficLinesDataSourceImpl(instance()));
@@ -58,7 +63,7 @@ Future<void> initAppModule() async {
       () => RepositoryTrafficLineImpl(instance(), instance()));
 
   instance.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(instance(), instance()));
+      () => AuthRepositoryImpl(instance(), instance(), instance()));
 }
 
 initLoginModule() {

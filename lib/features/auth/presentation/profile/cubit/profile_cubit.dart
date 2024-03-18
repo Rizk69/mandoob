@@ -22,8 +22,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> getProfile() async {
-    try {
-      emit(ProfileLoadingState());
+    try {emit(ProfileLoadingState());
 
       final result = await _profileUseCase.execute("");
       result.fold((failure) => emit(ProfileErrorState(failure.message)),
