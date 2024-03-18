@@ -42,7 +42,7 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                 InkWell(
                     onTap: () {
                       Navigator.pop(context);
-                      // Navigator.pushNamed(context, Routes.trader);
+                      Navigator.pushNamed(context, Routes.trader);
                     },
                     child: rowDrawer(title: LocaleKeys.clients.tr(), icon: '')),
                 const SizedBox(

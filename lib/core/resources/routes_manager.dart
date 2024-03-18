@@ -11,6 +11,8 @@ import 'package:mandoob/features/orders/presentation/el_salah/prsentation/el_mul
 import 'package:mandoob/features/orders/presentation/el_salah/prsentation/el_salah_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/traffic_lines_screen.dart';
+import 'package:mandoob/features/vendor/presentation/new_trader.dart';
+import 'package:mandoob/features/vendor/presentation/trader_view.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
 import '../../features/custody/el_eahduh/presentation/el_eahduh_view.dart';
@@ -28,6 +30,11 @@ class Routes {
   static const String fawaterTagerDetails = "/fawaterTagerDetails";
   static const String trafficLines = "/trafficLines";
   static const String profileView = "/profileView";
+
+
+  static const String trader = "/trader";
+  static const String newTrader = "/newtrader";
+  static const String sucssufflyAddTrader = "/sucssufflyAddTrader";
 }
 
 class RouteGenerator {
@@ -49,13 +56,24 @@ class RouteGenerator {
       case Routes.newTalab:
         return MaterialPageRoute(builder: (_) => NewTalabat());
         case Routes.sucssufflySceen:
-        return MaterialPageRoute(builder: (_) => SucssufflySceen());
+          return MaterialPageRoute(builder: (_) => SucssufflySceen(title: 'تم الصرف بنجاح ', textbutton: 'الفاتورة',));
         case Routes.fawaterTagerDetails:
         return MaterialPageRoute(builder: (_) => FawaterTagerDetailsView());
         case Routes.trafficLines:
         return MaterialPageRoute(builder: (_) => TrafficLines());
         case Routes.profileView:
         return MaterialPageRoute(builder: (_) => ProfileView());
+
+      case Routes.sucssufflyAddTrader:
+        return MaterialPageRoute(builder: (_) => SucssufflySceen(title: 'تم إضافة التاجر محمد', textbutton: 'العودة',));
+
+
+      case Routes.trader:
+        return MaterialPageRoute(builder: (_) => TraderView());
+      case Routes.newTrader:
+        return MaterialPageRoute(builder: (_) => NewTraderView());
+
+
       default:
         return unDefinedRoute();
     }
