@@ -10,13 +10,12 @@ import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawat
 import 'package:mandoob/features/orders/presentation/el_salah/prsentation/el_mulakhas_view.dart';
 import 'package:mandoob/features/orders/presentation/el_salah/prsentation/el_salah_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
+import 'package:mandoob/features/trader/presentation/new_trader.dart';
+import 'package:mandoob/features/trader/presentation/trader_view.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/traffic_lines_screen.dart';
-import 'package:mandoob/features/vendor/presentation/new_trader.dart';
-import 'package:mandoob/features/vendor/presentation/trader_view.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
 import '../../features/custody/el_eahduh/presentation/el_eahduh_view.dart';
-
 
 class Routes {
   static const String loginRoute = "/login";
@@ -30,7 +29,6 @@ class Routes {
   static const String fawaterTagerDetails = "/fawaterTagerDetails";
   static const String trafficLines = "/trafficLines";
   static const String profileView = "/profileView";
-
 
   static const String trader = "/trader";
   static const String newTrader = "/newtrader";
@@ -49,30 +47,39 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => HomeView());
       case Routes.elSalah:
         return MaterialPageRoute(builder: (_) => ElSalahView());
-        case Routes.elmulakhas:
+      case Routes.elmulakhas:
         return MaterialPageRoute(builder: (_) => ElMulakhas());
       case Routes.elHodaa:
         return MaterialPageRoute(builder: (_) => ElEahduh());
       case Routes.newTalab:
         return MaterialPageRoute(builder: (_) => NewTalabat());
-        case Routes.sucssufflySceen:
-          return MaterialPageRoute(builder: (_) => SucssufflySceen(title: 'تم الصرف بنجاح ', textbutton: 'الفاتورة',));
-        case Routes.fawaterTagerDetails:
+      case Routes.sucssufflySceen:
+        return MaterialPageRoute(
+            builder: (_) => SucssufflySceen(
+                  title: 'تم الصرف بنجاح ',
+                  textbutton: 'الفاتورة',
+                ));
+      case Routes.fawaterTagerDetails:
         return MaterialPageRoute(builder: (_) => FawaterTagerDetailsView());
-        case Routes.trafficLines:
+      case Routes.trafficLines:
         return MaterialPageRoute(builder: (_) => TrafficLines());
-        case Routes.profileView:
+      case Routes.profileView:
+        initProfileModule();
         return MaterialPageRoute(builder: (_) => ProfileView());
 
       case Routes.sucssufflyAddTrader:
-        return MaterialPageRoute(builder: (_) => SucssufflySceen(title: 'تم إضافة التاجر محمد', textbutton: 'العودة',));
-
+        return MaterialPageRoute(
+            builder: (_) => SucssufflySceen(
+                  title: 'تم إضافة التاجر محمد',
+                  textbutton: 'العودة',
+                ));
 
       case Routes.trader:
+        initTradeModule();
         return MaterialPageRoute(builder: (_) => TraderView());
       case Routes.newTrader:
+        initTradeModule();
         return MaterialPageRoute(builder: (_) => NewTraderView());
-
 
       default:
         return unDefinedRoute();

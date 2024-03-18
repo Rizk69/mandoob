@@ -4,6 +4,12 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/core/netowork_core/network_info.dart';
 import 'package:mandoob/features/auth/data/data_source/local_auth_data_source.dart';
+import 'package:mandoob/features/trader/data/data_source/remote_trade_data_source.dart';
+import 'package:mandoob/features/trader/data/network/trade_api.dart';
+import 'package:mandoob/features/trader/domain/repository/trade_repository.dart';
+import 'package:mandoob/features/trader/domain/repository/trade_repository_impl.dart';
+import 'package:mandoob/features/trader/domain/usecase/get_trade_usecase.dart';
+import 'package:mandoob/features/trader/presentation/cubit/trade_cubit.dart';
 import 'package:mandoob/features/trafiic_lines/data/data_source/remote_traffic_line_data_source.dart';
 import 'package:mandoob/features/trafiic_lines/data/network/traffic_line_api.dart';
 import 'package:mandoob/core/netowork_core/dio_factory.dart';
@@ -42,14 +48,15 @@ Future<void> initAppModule() async {
 
   Dio dio = await instance<DioFactory>().getDio();
 
-  instance.registerLazySingleton<TrafficLineServiceClient>(() => TrafficLineServiceClient(dio));
-
+  instance.registerLazySingleton<TrafficLineServiceClient>(
+      () => TrafficLineServiceClient(dio));
+  instance
+      .registerLazySingleton<TradeServiceClient>(() => TradeServiceClient(dio));
   instance
       .registerLazySingleton<AuthServiceClient>(() => AuthServiceClient(dio));
 
   // Local data source
-  instance.registerLazySingleton<LocalDataSource>(
-      () => LocalDataSourceImpl());
+  instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
   // remote data source
   instance.registerLazySingleton<RemoteTrafficLineDataSource>(
@@ -58,9 +65,15 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteAuthDataSource>(
       () => RemoteAuthDataSourceImpl(instance()));
 
+  instance.registerLazySingleton<RemoteTradeDataSource>(
+      () => RemoteTradeDataSourceImpl(instance()));
+
   // repository
   instance.registerLazySingleton<Repository>(
       () => RepositoryTrafficLineImpl(instance(), instance()));
+
+  instance.registerLazySingleton<TradeRepository>(
+      () => TradeRepositoryImpl(instance(), instance()));
 
   instance.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(instance(), instance(), instance()));
@@ -80,9 +93,17 @@ initProfileModule() {
   }
 }
 
+initTradeModule() {
+  if (!GetIt.I.isRegistered<TradesUseCase>()) {
+    instance.registerFactory<TradeCubit>(() => TradeCubit(instance()));
+    instance.registerFactory<TradesUseCase>(() => TradesUseCase(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
   initLoginModule();
   initProfileModule();
+  initTradeModule();
 }
