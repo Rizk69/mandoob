@@ -3,6 +3,7 @@ import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/orders/presentation/el_salah/widget/DropdownMenu.dart';
@@ -19,67 +20,75 @@ class NewTraderView extends StatelessWidget {
 
     return SafeArea(
         top: false,
-        child: Scaffold(
-          key: scaffoldKey,
-          backgroundColor: ColorManager.backGround,
-          drawer: buildDrawer(context),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: AppSize.s6.h,
-                  ),
-                  HeaderScreen(
-                      functionDrawer: () {
-                        scaffoldKey.currentState?.openDrawer();
-                      },
-                      title: 'إضافة تاجر جديد',
-                      functionIcon: () {
-                        Navigator.pop(context);
-                      }),
-                  SizedBox(height: AppSize.s5.h),
-                  customRow(text: 'أسم التاجر'),
-                  SizedBox(height: AppSize.s5.h),
-                  customRow(text: 'عنوانه'),
-                  SizedBox(height: AppSize.s5.h),
-                  customRow(text: 'رقم التليفون'),
-                  SizedBox(height: AppSize.s5.h),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'التاجر',
-                          style: getBoldSegoeStyle(
-                              fontSize: 20, color: ColorManager.black),
+        child: Container(
+          color: Colors.white,
+          child: Stack(
+            children: [
+              imageBackground(context),
+              Scaffold(
+                key: scaffoldKey,
+                backgroundColor: ColorManager.backGround.withOpacity(0.5),
+                drawer: buildDrawer(context),
+                body: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: AppSize.s6.h,
                         ),
-                      ),
-                      SizedBox(
-                        width: AppSize.s4.w,
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: DropdownMenuCustom(
-                          color: Colors.white,
-                          dropdownMenuEntries: ['vd', 'ha', 'mo'],
-                          initText: 'مفرق',
+                        HeaderScreen(
+                            functionDrawer: () {
+                              scaffoldKey.currentState?.openDrawer();
+                            },
+                            title: 'إضافة تاجر جديد',
+                            functionIcon: () {
+                              Navigator.pop(context);
+                            }),
+                        SizedBox(height: AppSize.s5.h),
+                        customRow(text: 'أسم التاجر'),
+                        SizedBox(height: AppSize.s5.h),
+                        customRow(text: 'عنوانه'),
+                        SizedBox(height: AppSize.s5.h),
+                        customRow(text: 'رقم التليفون'),
+                        SizedBox(height: AppSize.s5.h),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'التاجر',
+                                style: getBoldSegoeStyle(
+                                    fontSize: 20, color: ColorManager.black),
+                              ),
+                            ),
+                            SizedBox(
+                              width: AppSize.s4.w,
+                            ),
+                            const Expanded(
+                              flex: 3,
+                              child: DropdownMenuCustom(
+                                color: Colors.white,
+                                dropdownMenuEntries: ['مفرق', 'جملة', 'جملة الجملة'],
+                                initText: 'مفرق',
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: AppSize.s12.h),
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child:
-                      CustomButton(onPressed: () {
-                        Navigator.pushReplacementNamed(context, Routes.sucssufflyAddTrader);
+                        SizedBox(height: AppSize.s12.h),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            child:
+                            CustomButton(onPressed: () {
+                              Navigator.pushReplacementNamed(context, Routes.sucssufflyAddTrader);
 
 
-                      }, buttonText: 'إضافة'))
-                ],
+                            }, buttonText: 'إضافة'))
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ));
   }
@@ -90,7 +99,7 @@ class NewTraderView extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.black,
