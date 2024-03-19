@@ -4,6 +4,13 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/core/netowork_core/network_info.dart';
 import 'package:mandoob/features/auth/data/data_source/local_auth_data_source.dart';
+import 'package:mandoob/features/home/data/data_source/remote_home_data_source.dart';
+import 'package:mandoob/features/home/data/network/home_api.dart';
+import 'package:mandoob/features/home/data/repository/home_repository_impl.dart';
+import 'package:mandoob/features/home/domain/repository/home_repository.dart';
+import 'package:mandoob/features/home/domain/usecase/edit_price_usecases.dart';
+import 'package:mandoob/features/home/domain/usecase/get_home_usecases.dart';
+import 'package:mandoob/features/home/presentation/cubit/home_cubit/home_cubit.dart';
 import 'package:mandoob/features/trader/data/data_source/remote_trade_data_source.dart';
 import 'package:mandoob/features/trader/data/network/trade_api.dart';
 import 'package:mandoob/features/trader/domain/repository/trade_repository.dart';
@@ -57,6 +64,9 @@ Future<void> initAppModule() async {
   instance
       .registerLazySingleton<AuthServiceClient>(() => AuthServiceClient(dio));
 
+  instance
+      .registerLazySingleton<HomeServiceClient>(() => HomeServiceClient(dio));
+
   // Local data source
   instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
@@ -70,6 +80,9 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteTradeDataSource>(
       () => RemoteTradeDataSourceImpl(instance()));
 
+  instance.registerLazySingleton<RemoteHomeDataSource>(
+      () => RemoteHomeDataSourceImpl(instance()));
+
   // repository
   instance.registerLazySingleton<Repository>(
       () => RepositoryTrafficLineImpl(instance(), instance()));
@@ -79,6 +92,9 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(instance(), instance(), instance()));
+
+  instance.registerLazySingleton<HomeRepository>(
+      () => HomeRepositoryImpl(instance(),instance()));
 }
 
 initLoginModule() {
@@ -104,10 +120,19 @@ initTradeModule() {
   }
 }
 
+initHomeModule() {
+  if (!GetIt.I.isRegistered<GetHomeUseCase>()) {
+    instance.registerFactory<HomeCubit>(() => HomeCubit(instance(),instance()));
+    instance.registerFactory<GetHomeUseCase>(() => GetHomeUseCase(instance()));
+    instance.registerFactory<EditPriceUseCase>(() => EditPriceUseCase(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
   initLoginModule();
   initProfileModule();
   initTradeModule();
+  initHomeModule();
 }

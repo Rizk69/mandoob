@@ -8,7 +8,7 @@ import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
-import 'package:mandoob/features/home/widget/drawer_home.dart';
+import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/trader/domain/model/trades_model.dart';
 import 'package:mandoob/features/trader/presentation/cubit/get_trade/trade_cubit.dart';
 import 'package:mandoob/features/trader/presentation/widget/trade_item.dart';

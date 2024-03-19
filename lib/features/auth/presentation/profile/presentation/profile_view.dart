@@ -7,7 +7,7 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/auth/presentation/profile/widget/ColorSelectionPage.dart';
-import 'package:mandoob/features/home/widget/drawer_home.dart';
+import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../cubit/profile_cubit.dart';
 

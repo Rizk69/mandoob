@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mandoob/features/home/presentation/cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_view.dart';
@@ -13,7 +14,6 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
 
 class HomeController extends StatelessWidget {
   const HomeController({super.key});

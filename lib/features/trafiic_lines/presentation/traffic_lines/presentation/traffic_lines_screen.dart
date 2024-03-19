@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
-import 'package:mandoob/features/home/widget/drawer_home.dart';
+import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/widget/time_line_tite.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

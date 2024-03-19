@@ -10,11 +10,11 @@ import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
+import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/trader/presentation/cubit/add_trade/add_trade_cubit.dart';
 import 'package:mandoob/features/trader/presentation/widget/new_trade_info.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../home/widget/drawer_home.dart';
 
 class NewTraderView extends StatelessWidget {
   const NewTraderView({Key? key}) : super(key: key);

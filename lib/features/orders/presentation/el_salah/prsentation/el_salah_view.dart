@@ -4,7 +4,7 @@ import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
-import 'package:mandoob/features/home/widget/drawer_home.dart';
+import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../el_salah_cubit.dart';
