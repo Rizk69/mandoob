@@ -68,17 +68,22 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ProfileView());
 
       case Routes.sucssufflyAddTrader:
+
+        final args = settings.arguments as SuccessMessageArguments;
+
+
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(
-                  title: 'تم إضافة التاجر محمد',
-                  textbutton: 'العودة',
+                  title: args.message,
+                  textbutton: args.actionMessage,
                 ));
 
       case Routes.trader:
         initTradeModule();
         return MaterialPageRoute(builder: (_) => TraderView());
+
+
       case Routes.newTrader:
-        initTradeModule();
         return MaterialPageRoute(builder: (_) => NewTraderView());
 
       default:
@@ -95,4 +100,13 @@ class RouteGenerator {
               body: Center(child: Text(LocaleKeys.noRouteFound.tr())),
             ));
   }
+}
+
+
+
+class SuccessMessageArguments {
+  final String message;
+  final String actionMessage;
+
+  SuccessMessageArguments(this.message,this.actionMessage);
 }

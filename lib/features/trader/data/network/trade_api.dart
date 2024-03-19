@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:mandoob/app/constants.dart';
-import 'package:mandoob/features/auth/data/network/auth_requests.dart';
-import 'package:mandoob/features/auth/data/responses/login/login_response.dart';
-import 'package:mandoob/features/auth/data/responses/profile/user_response.dart';
+import 'package:mandoob/features/trader/data/network/trade_requests.dart';
 import 'package:mandoob/features/trader/data/responses/trades_response.dart';
 import 'package:retrofit/http.dart';
 
@@ -17,6 +15,9 @@ abstract class TradeServiceClient {
 
   @GET("api/get_trader")
   Future<TradesResponse> getTrades();
+
+  @POST("api/add_trader")
+  Future<TradesResponse> addTrade(@Body() TradeRequest tradeRequest);
 
 
 }

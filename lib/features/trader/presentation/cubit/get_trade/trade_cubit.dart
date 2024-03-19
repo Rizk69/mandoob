@@ -8,6 +8,7 @@ part 'trade_state.dart';
 
 class TradeCubit extends Cubit<TradeState> {
   static TradeCubit get(context) => BlocProvider.of(context);
+
   final TradesUseCase _tradesUseCase;
 
   TradeCubit(this._tradesUseCase) : super(TradeInitial());
@@ -15,17 +16,12 @@ class TradeCubit extends Cubit<TradeState> {
   TradeModel? model;
 
   Future<void> getTrade() async {
-    try {
-      emit(GetTradeLoadingState());
-
-      final result = await _tradesUseCase.execute("");
-      result.fold((failure) => emit(GetTradeErrorState(failure.message)),
-          (trades) {
-        model = trades;
-        emit(GetTradeLoadedState());
-      });
-    } catch (e) {
-      emit(GetTradeErrorState('An error occurred while fetching profile data'));
-    }
+    emit(GetTradeLoadingState());
+    final result = await _tradesUseCase.execute("");
+    result.fold((failure) => emit(GetTradeErrorState(failure.message)),
+        (trades) {
+      model = trades;
+      emit(GetTradeLoadedState());
+    });
   }
 }

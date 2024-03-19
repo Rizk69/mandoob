@@ -88,6 +88,22 @@
   "salseDoler": "sales USD" ,
   "commissionsLera": "commissions Lera",
   "commissionsDoler": "commissions USD",
-  "Theme": "Theme"
+  "Theme": "Theme",
+
+
+  "searchHere": "Search Here",
+  "newTrade": "New Trade",
+
+
+  "addNewTrade": "Add New Trader",
+  "TradeName": "Trader Name",
+  "TradeAddress": "Address",
+  "TradePhone": "Phone Number",
+  "TradePrice": "Selling Price",
+  "retail": "Retail",
+  "wholesale": "Wholesale",
+  "factoryPrice": "Factory Price",
+  "add": "ADD"
+
 
 }

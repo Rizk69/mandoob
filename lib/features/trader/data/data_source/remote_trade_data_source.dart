@@ -1,12 +1,10 @@
-import 'package:mandoob/features/auth/data/network/auth_api.dart';
-import 'package:mandoob/features/auth/data/network/auth_requests.dart';
-import 'package:mandoob/features/auth/data/responses/login/login_response.dart';
-import 'package:mandoob/features/auth/data/responses/profile/user_response.dart';
 import 'package:mandoob/features/trader/data/network/trade_api.dart';
+import 'package:mandoob/features/trader/data/network/trade_requests.dart';
 import 'package:mandoob/features/trader/data/responses/trades_response.dart';
 
 abstract class RemoteTradeDataSource {
   Future<TradesResponse> getTrades();
+  Future<TradesResponse> addTrade(TradeRequest tradeRequest);
 }
 
 class RemoteTradeDataSourceImpl extends RemoteTradeDataSource {
@@ -17,5 +15,10 @@ class RemoteTradeDataSourceImpl extends RemoteTradeDataSource {
   @override
   Future<TradesResponse> getTrades() {
     return _tradeServiceClient.getTrades();
+  }
+
+  @override
+  Future<TradesResponse> addTrade(TradeRequest tradeRequest) {
+    return _tradeServiceClient.addTrade(tradeRequest);
   }
 }

@@ -87,8 +87,20 @@
   "salseDoler": "اجمالي المبيعات للشهر بالدولار" ,
   "commissionsLera": "عمولات الشهر بالليرة",
   "commissionsDoler": "عمولات الشهر بالدولار",
-  "Theme": "المظهر"
+  "Theme": "المظهر",
 
 
+  "searchHere": "ابحث هنا",
+  "newTrade": "تاجر جديد",
 
+
+  "addNewTrade": "إضافة تاجر جديد",
+  "TradeName": "أسم التاجر",
+  "TradeAddress": "العنوان",
+  "TradePhone": "رقم التليفون",
+  "TradePrice": "سعر البيع",
+  "retail": "مفرق",
+  "wholesale": "الجملة",
+  "factoryPrice": "جملة الجملة",
+  "add": "اضافة"
 }

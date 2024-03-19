@@ -87,5 +87,16 @@ abstract class  LocaleKeys {
   static const commissionsLera = 'commissionsLera';
   static const commissionsDoler = 'commissionsDoler';
   static const Theme = 'Theme';
+  static const searchHere = 'searchHere';
+  static const newTrade = 'newTrade';
+  static const addNewTrade = 'addNewTrade';
+  static const TradeName = 'TradeName';
+  static const TradeAddress = 'TradeAddress';
+  static const TradePhone = 'TradePhone';
+  static const TradePrice = 'TradePrice';
+  static const retail = 'retail';
+  static const wholesale = 'wholesale';
+  static const factoryPrice = 'factoryPrice';
+  static const add = 'add';
 
 }

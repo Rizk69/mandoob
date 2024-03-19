@@ -7,9 +7,11 @@ import 'package:mandoob/features/auth/data/data_source/local_auth_data_source.da
 import 'package:mandoob/features/trader/data/data_source/remote_trade_data_source.dart';
 import 'package:mandoob/features/trader/data/network/trade_api.dart';
 import 'package:mandoob/features/trader/domain/repository/trade_repository.dart';
-import 'package:mandoob/features/trader/domain/repository/trade_repository_impl.dart';
+import 'package:mandoob/features/trader/data/repository/trade_repository_impl.dart';
+import 'package:mandoob/features/trader/domain/usecase/add_trade_usecase.dart';
 import 'package:mandoob/features/trader/domain/usecase/get_trade_usecase.dart';
-import 'package:mandoob/features/trader/presentation/cubit/trade_cubit.dart';
+import 'package:mandoob/features/trader/presentation/cubit/add_trade/add_trade_cubit.dart';
+import 'package:mandoob/features/trader/presentation/cubit/get_trade/trade_cubit.dart';
 import 'package:mandoob/features/trafiic_lines/data/data_source/remote_traffic_line_data_source.dart';
 import 'package:mandoob/features/trafiic_lines/data/network/traffic_line_api.dart';
 import 'package:mandoob/core/netowork_core/dio_factory.dart';
@@ -97,6 +99,8 @@ initTradeModule() {
   if (!GetIt.I.isRegistered<TradesUseCase>()) {
     instance.registerFactory<TradeCubit>(() => TradeCubit(instance()));
     instance.registerFactory<TradesUseCase>(() => TradesUseCase(instance()));
+    instance.registerFactory<AddTradesUseCase>(() => AddTradesUseCase(instance()));
+    instance.registerFactory<AddTradeCubit>(() => AddTradeCubit(instance()));
   }
 }
 
