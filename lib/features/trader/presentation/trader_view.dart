@@ -9,6 +9,7 @@ import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/home/widget/drawer_home.dart';
+import 'package:mandoob/features/trader/domain/model/trades_model.dart';
 import 'package:mandoob/features/trader/presentation/cubit/get_trade/trade_cubit.dart';
 import 'package:mandoob/features/trader/presentation/widget/trade_item.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -16,12 +17,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../generated/locale_keys.g.dart';
 
 class TraderView extends StatelessWidget {
-  const TraderView({Key? key}) : super(key: key);
+  TraderView({Key? key}) : super(key: key);
+
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
     return BlocProvider(
       create: (_) => instance<TradeCubit>()..getTrade(),
       child: SafeArea(
@@ -52,15 +53,22 @@ class TraderView extends StatelessWidget {
                                 Navigator.pop(context);
                               }),
                           SizedBox(height: AppSize.s5.h),
-                          TextFormField(
-                            scribbleEnabled: true,
-                            cursorHeight: 30,
-                            decoration:  InputDecoration(
-                              prefixIcon: const Icon(Icons.search),
-                              hintText: LocaleKeys.searchHere.tr(),
-                              filled: true,
-                              fillColor: Colors.white,
-                            ),
+                          BlocBuilder<TradeCubit, TradeState>(
+                            builder: (context, state) {
+                              return TextFormField(
+                                scribbleEnabled: true,
+                                cursorHeight: 30,
+                                onChanged: (value) {
+                                  TradeCubit.get(context).searchTrade(value);
+                                },
+                                decoration: InputDecoration(
+                                  prefixIcon: const Icon(Icons.search),
+                                  hintText: LocaleKeys.searchHere.tr(),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                ),
+                              );
+                            },
                           ),
                           SizedBox(height: AppSize.s4.h),
                           GestureDetector(
@@ -77,7 +85,7 @@ class TraderView extends StatelessWidget {
                                   width: 5,
                                 ),
                                 Text(
-                                    LocaleKeys.newTrade.tr(),
+                                  LocaleKeys.newTrade.tr(),
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: ColorManager.black,
@@ -90,20 +98,37 @@ class TraderView extends StatelessWidget {
                             builder: (context, state) {
                               var cubit = TradeCubit.get(context);
 
+                              TradeModel? currentData;
+
+                              if (state is GetTradeLoadedState) {
+                                currentData = state.model;
+                              }
+                              if (state is SearchTradesSuccessState) {
+                                currentData = state.model;
+                              }
+
+                              bool hasData = currentData != null &&
+                                  currentData.trades != null &&
+                                  currentData.trades!.isNotEmpty;
+
                               return Column(
                                 children: [
                                   ConditionalBuilder(
-                                      condition: state is GetTradeLoadedState,
+                                      condition: (state
+                                                  is GetTradeLoadedState ||
+                                              state
+                                                  is SearchTradesSuccessState) &&
+                                          hasData,
                                       builder: (context) => ListView.builder(
                                             shrinkWrap: true,
                                             physics:
                                                 const BouncingScrollPhysics(),
                                             itemCount:
-                                                cubit.model!.trades!.length,
+                                            currentData!.trades!.length,
                                             // separatorBuilder: (context,index)=> SizedBox(height: AppSize.s1.h,),
                                             itemBuilder: (context, index) {
                                               final trade =
-                                                  cubit.model!.trades![index];
+                                              currentData!.trades![index];
                                               return TradeItem(
                                                 imageUrl: trade.img,
                                                 customerName:
@@ -112,8 +137,12 @@ class TraderView extends StatelessWidget {
                                               );
                                             },
                                           ),
-                                      fallback: (context) =>
-                                          state is GetTradeErrorState
+                                      fallback: (context) => state
+                                              is GetTradeErrorState
+                                          ? Center(
+                                              child: Text(state.message),
+                                            )
+                                          : state is SearchTradesErrorState
                                               ? Center(
                                                   child: Text(state.message),
                                                 )
