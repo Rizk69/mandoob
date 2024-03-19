@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
+import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/trader/presentation/cubit/add_trade/add_trade_cubit.dart';
 import 'package:mandoob/features/trader/presentation/widget/new_trade_info.dart';
@@ -31,6 +33,18 @@ class NewTraderView extends StatelessWidget {
                   state.message,
                   LocaleKeys.back.tr(),
                 ));
+          }
+
+
+          if (state is AddTradeErrorState) {
+            final snackBar = defaultSnakeBar(
+              title: LocaleKeys.ERROR.tr(),
+              message: "خطأ في الاضافة تأكد من المعلومات",
+              state: ContentType.failure,
+            );
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(snackBar);
           }
         },
         builder: (context, state) {

@@ -48,9 +48,10 @@ class TradeRepositoryImpl extends TradeRepository {
           print(response.status);
           return Right(response.toDomain());
         } else {
+          print(response.message);
           return Left(Failure(
             ResponseCode.UNAUTHORIZED,
-            LocaleKeys.UNAUTHORIZED.tr(),
+            response.message!??"خطأ",
           ));
         }
       } catch (error) {
