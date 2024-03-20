@@ -6,8 +6,10 @@ class MyTimeLineTitle extends StatelessWidget {
   final bool isFirst;
   final bool isLast;
   final bool isPast;
+  final String traderName;
+  final String address;
   const MyTimeLineTitle(
-      {required this.isFirst, required this.isLast, required this.isPast});
+      {super.key, required this.isFirst, required this.isLast, required this.isPast, required this.traderName, required this.address});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class MyTimeLineTitle extends StatelessWidget {
               iconData: Icons.done,
               color: isPast ? Colors.white : const Color(0XFFD9D9D9))),
       endChild:
-          EventCard(isPast: isPast, address: 'جيزة', traderName: 'تاجر محمد '),
+          EventCard(isPast: isPast, address: address, traderName: traderName),
     );
   }
 }

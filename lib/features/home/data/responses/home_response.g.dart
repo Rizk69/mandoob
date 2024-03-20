@@ -17,13 +17,16 @@ HomeResponse _$HomeResponseFromJson(Map<String, dynamic> json) => HomeResponse(
           ?.map((e) =>
               DeliveryLineDataResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+    )..countDataResponse = json['count'] == null
+        ? null
+        : CountDataResponse.fromJson(json['count'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$HomeResponseToJson(HomeResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
       'balance': instance.balance,
+      'count': instance.countDataResponse,
       'delivary_Line': instance.deliveryLine,
     };
 
@@ -38,6 +41,18 @@ Map<String, dynamic> _$BalanceDataResponseToJson(
     <String, dynamic>{
       'total_Doler': instance.totalDoler,
       'total_Lera': instance.totalLera,
+    };
+
+CountDataResponse _$CountDataResponseFromJson(Map<String, dynamic> json) =>
+    CountDataResponse(
+      active: json['active_1'] as num?,
+      notActive: json['active_0'] as num?,
+    );
+
+Map<String, dynamic> _$CountDataResponseToJson(CountDataResponse instance) =>
+    <String, dynamic>{
+      'active_1': instance.active,
+      'active_0': instance.notActive,
     };
 
 DeliveryLineDataResponse _$DeliveryLineDataResponseFromJson(

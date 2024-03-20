@@ -2,12 +2,15 @@ import 'package:mandoob/app/constants.dart';
 import 'package:mandoob/features/trafiic_lines/data/responses/traffic_line_response.dart';
 import 'package:mandoob/features/trafiic_lines/domain/model/traffic_line_model.dart';
 
+
+
 extension TrafficResponseMapper on TrafficResponse? {
   TrafficModel toDomain() {
     return TrafficModel(
         status: this?.status ?? false,
         message: this?.message ?? Constants.empty,
-        data: this?.data?.map((data) => data.toDomain()).toList() ?? []);
+        data: this?.data?.map((data) => data.toDomain()).toList() ?? [],
+        countDataModel: this!.countDataModel.toDomain(),);
   }
 }
 
@@ -20,6 +23,14 @@ extension TrafficDataResponseMapper on TrafficDataResponse? {
       date: this?.date ?? Constants.empty,
       active: this?.active ?? Constants.zero,
       number: this?.number ?? Constants.zero,
+    );
+  }
+}
+extension CountDataMapper on CountDataTrafficResponse? {
+  CountDataTrafficModel toDomain() {
+    return CountDataTrafficModel(
+      active: this?.active ?? Constants.zero,
+      notActive: this?.notActive ?? Constants.zero,
     );
   }
 }

@@ -10,6 +10,9 @@ class TrafficResponse {
   @JsonKey(name: "message")
   String? message;
 
+  @JsonKey(name: "count")
+  CountDataTrafficResponse? countDataModel;
+
   @JsonKey(name: "data")
   List<TrafficDataResponse>? data;
 
@@ -57,4 +60,21 @@ class TrafficDataResponse {
   factory TrafficDataResponse.fromJson(Map<String, dynamic> json) => _$TrafficDataResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$TrafficDataResponseToJson(this);
+}
+@JsonSerializable()
+class CountDataTrafficResponse {
+  @JsonKey(name: "active_1")
+  num? active;
+
+  @JsonKey(name: "active_0")
+  num? notActive;
+
+  CountDataTrafficResponse({
+    this.active,
+    this.notActive,
+  });
+
+  factory CountDataTrafficResponse.fromJson(Map<String, dynamic> json) => _$CountDataTrafficResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CountDataTrafficResponseToJson(this);
 }

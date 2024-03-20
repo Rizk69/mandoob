@@ -4,14 +4,15 @@ import 'package:mandoob/features/auth/data/responses/profile/user_response.dart'
 import 'package:mandoob/features/trafiic_lines/data/responses/traffic_line_response.dart';
 import 'package:retrofit/http.dart';
 
-part 'traffic_line_api.g.dart';
+import '../responses/eahduh_response.dart';
+
+part 'eahduh_api.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)
-abstract class TrafficLineServiceClient {
-  factory TrafficLineServiceClient(Dio dio, {String baseUrl}) = _TrafficLineServiceClient;
+abstract class EahduhServiceClient {
+  factory EahduhServiceClient(Dio dio, {String baseUrl}) = _EahduhServiceClient;
 
-  @GET("api/delivary_line")
-  Future<TrafficResponse> getDelivaryLine();
-  @GET("api/delivary_line/{id}")
-  Future<void> deleteDelivaryLine(@Path() int id);
+  @GET("api/order")
+  Future<EahduhResponse> getEahduhOrder();
+
 }

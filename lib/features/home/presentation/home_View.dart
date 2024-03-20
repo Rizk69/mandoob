@@ -218,9 +218,12 @@ class HomeView extends StatelessWidget {
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: StepProgressView(
-                                width: MediaQuery.of(context).size.width / 1.3,
-                                curStep: 1,
-                                color: Colors.black87,
+                                width: MediaQuery.of(context).size.width,
+                                curStep: (cubit.homeModel?.countDataModel.active
+                                            .toInt() ??
+                                        0) +
+                                    1,
+                                color: ColorManager.baseColorLight,
                                 titles: cubit.homeModel!.deliveryLine
                                     ?.map((e) => e.number.toString())
                                     .toList(),

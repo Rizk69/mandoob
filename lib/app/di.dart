@@ -4,6 +4,8 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/core/netowork_core/network_info.dart';
 import 'package:mandoob/features/auth/data/data_source/local_auth_data_source.dart';
+import 'package:mandoob/features/custody/el_eahduh/data/data_source/eahduh_data_source.dart';
+import 'package:mandoob/features/custody/el_eahduh/data/repository/repository_eahduh_impl.dart';
 import 'package:mandoob/features/home/data/data_source/remote_home_data_source.dart';
 import 'package:mandoob/features/home/data/network/home_api.dart';
 import 'package:mandoob/features/home/data/repository/home_repository_impl.dart';
@@ -33,6 +35,12 @@ import 'package:mandoob/features/auth/domain/usecase/login_usecase.dart';
 import 'package:mandoob/features/auth/presentation/login/manger/login_cubit.dart';
 import 'package:mandoob/features/auth/presentation/profile/cubit/profile_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../features/custody/el_eahduh/data/network/eahduh_api.dart';
+import '../features/custody/el_eahduh/domain/repository/eahduh_repository.dart';
+import '../features/custody/el_eahduh/domain/usecase/eahduh_usecases.dart';
+import '../features/custody/el_eahduh/presentation/cubit/eahduh_cubit.dart';
+import '../features/trafiic_lines/domain/usecase/get_dlivary_usecase.dart';
+import '../features/trafiic_lines/presentation/cubit/trafficlines_cubit.dart';
 
 final instance = GetIt.instance;
 
@@ -59,6 +67,8 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<TrafficLineServiceClient>(
       () => TrafficLineServiceClient(dio));
+  instance.registerLazySingleton<EahduhServiceClient>(
+      () => EahduhServiceClient(dio));
   instance
       .registerLazySingleton<TradeServiceClient>(() => TradeServiceClient(dio));
   instance
@@ -73,6 +83,8 @@ Future<void> initAppModule() async {
   // remote data source
   instance.registerLazySingleton<RemoteTrafficLineDataSource>(
       () => RemoteTrafficLinesDataSourceImpl(instance()));
+  instance.registerLazySingleton<RemoteEahduhDataSource>(
+      () => RemoteEahduhDataSourceImpl(instance()));
 
   instance.registerLazySingleton<RemoteAuthDataSource>(
       () => RemoteAuthDataSourceImpl(instance()));
@@ -87,6 +99,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<Repository>(
       () => RepositoryTrafficLineImpl(instance(), instance()));
 
+
   instance.registerLazySingleton<TradeRepository>(
       () => TradeRepositoryImpl(instance(), instance()));
 
@@ -94,7 +107,11 @@ Future<void> initAppModule() async {
       () => AuthRepositoryImpl(instance(), instance(), instance()));
 
   instance.registerLazySingleton<HomeRepository>(
-      () => HomeRepositoryImpl(instance(),instance()));
+      () => HomeRepositoryImpl(instance(), instance()));
+
+
+  instance.registerLazySingleton<EahduhRepository>(
+      () => RepositoryEahduhImpl(instance(), instance()));
 }
 
 initLoginModule() {
@@ -106,9 +123,11 @@ initLoginModule() {
 
 initProfileModule() {
   if (!GetIt.I.isRegistered<ProfileUseCase>()) {
-    instance.registerFactory<ProfileCubit>(() => ProfileCubit(instance(),instance()));
+    instance.registerFactory<ProfileCubit>(
+        () => ProfileCubit(instance(), instance()));
     instance.registerFactory<ProfileUseCase>(() => ProfileUseCase(instance()));
-    instance.registerFactory<ProfileEditColorUseCase>(() => ProfileEditColorUseCase(instance()));
+    instance.registerFactory<ProfileEditColorUseCase>(
+        () => ProfileEditColorUseCase(instance()));
   }
 }
 
@@ -116,16 +135,35 @@ initTradeModule() {
   if (!GetIt.I.isRegistered<TradesUseCase>()) {
     instance.registerFactory<TradeCubit>(() => TradeCubit(instance()));
     instance.registerFactory<TradesUseCase>(() => TradesUseCase(instance()));
-    instance.registerFactory<AddTradesUseCase>(() => AddTradesUseCase(instance()));
+    instance
+        .registerFactory<AddTradesUseCase>(() => AddTradesUseCase(instance()));
     instance.registerFactory<AddTradeCubit>(() => AddTradeCubit(instance()));
   }
 }
 
 initHomeModule() {
   if (!GetIt.I.isRegistered<GetHomeUseCase>()) {
-    instance.registerFactory<HomeCubit>(() => HomeCubit(instance(),instance()));
+    instance
+        .registerFactory<HomeCubit>(() => HomeCubit(instance(), instance()));
     instance.registerFactory<GetHomeUseCase>(() => GetHomeUseCase(instance()));
-    instance.registerFactory<EditPriceUseCase>(() => EditPriceUseCase(instance()));
+    instance
+        .registerFactory<EditPriceUseCase>(() => EditPriceUseCase(instance()));
+  }
+}
+
+initDelivaryLineModule() {
+  if (!GetIt.I.isRegistered<DelivaryLineUseCase>()) {
+    instance.registerFactory<TrafficLinesCubit>(
+        () => TrafficLinesCubit(instance()));
+    instance.registerFactory<DelivaryLineUseCase>(
+        () => DelivaryLineUseCase(instance()));
+  }
+}
+
+initEahduhModule() {
+  if (!GetIt.I.isRegistered<EahduhUseCase>()) {
+    instance.registerFactory<EahduhCubit>(() => EahduhCubit(instance()));
+    instance.registerFactory<EahduhUseCase>(() => EahduhUseCase(instance()));
   }
 }
 
@@ -136,4 +174,6 @@ resetModules() {
   initProfileModule();
   initTradeModule();
   initHomeModule();
+  initDelivaryLineModule();
+  initEahduhModule();
 }

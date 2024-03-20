@@ -12,7 +12,7 @@ class StepProgressView extends StatelessWidget {
   final List<String> _titlesName;
   final int _curStep;
   final Color _activeColor;
-  final Color _inactiveColor = ColorManager.baseColorLight;
+  final Color _inactiveColor =Colors.black87;
   final double lineWidth = 3.0;
   final StepProgressViewDirection direction;
 
@@ -153,7 +153,7 @@ class StepProgressView extends StatelessWidget {
       list.add(Text(text,
           style: const TextStyle(
             color: Colors.black,
-            fontSize: 22,
+            fontSize: 18,
           )));
     });
     return list;

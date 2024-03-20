@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'traffic_line_api.dart';
+part of 'eahduh_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'traffic_line_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _TrafficLineServiceClient implements TrafficLineServiceClient {
-  _TrafficLineServiceClient(
+class _EahduhServiceClient implements EahduhServiceClient {
+  _EahduhServiceClient(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,47 +21,26 @@ class _TrafficLineServiceClient implements TrafficLineServiceClient {
   String? baseUrl;
 
   @override
-  Future<TrafficResponse> getDelivaryLine() async {
+  Future<EahduhResponse> getEahduhOrder() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<TrafficResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<EahduhResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'api/delivary_line',
+              'api/order',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = TrafficResponse.fromJson(_result.data!);
+    final value = EahduhResponse.fromJson(_result.data!);
     return value;
-  }
-
-  @override
-  Future<void> deleteDelivaryLine(id) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    await _dio.fetch<void>(_setStreamType<void>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'api/delivary_line/${id}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

@@ -12,6 +12,8 @@ class HomeResponse {
 
   @JsonKey(name: "balance")
   BalanceDataResponse? balance;
+  @JsonKey(name: "count")
+  CountDataResponse? countDataResponse;
 
   @JsonKey(name: "delivary_Line")
   List<DeliveryLineDataResponse>? deliveryLine;
@@ -44,6 +46,24 @@ class BalanceDataResponse {
   factory BalanceDataResponse.fromJson(Map<String, dynamic> json) => _$BalanceDataResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$BalanceDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class CountDataResponse {
+  @JsonKey(name: "active_1")
+  num? active;
+
+  @JsonKey(name: "active_0")
+  num? notActive;
+
+  CountDataResponse({
+    this.active,
+    this.notActive,
+  });
+
+  factory CountDataResponse.fromJson(Map<String, dynamic> json) => _$CountDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CountDataResponseToJson(this);
 }
 
 @JsonSerializable()

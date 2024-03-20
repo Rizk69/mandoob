@@ -14,7 +14,6 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-
 class HomeController extends StatelessWidget {
   const HomeController({super.key});
   @override
@@ -46,7 +45,6 @@ class HomeController extends StatelessWidget {
           backgroundColor: ColorManager.baseColorLight,
           onPressed: () {
             Navigator.pushNamed(context, Routes.elHodaa);
-
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSize.s50),

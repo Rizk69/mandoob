@@ -13,12 +13,16 @@ TrafficResponse _$TrafficResponseFromJson(Map<String, dynamic> json) =>
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => TrafficDataResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+    )..countDataModel = json['count'] == null
+        ? null
+        : CountDataTrafficResponse.fromJson(
+            json['count'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$TrafficResponseToJson(TrafficResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
+      'count': instance.countDataModel?.toJson(),
       'data': instance.data?.map((e) => e.toJson()).toList(),
     };
 
@@ -41,4 +45,18 @@ Map<String, dynamic> _$TrafficDataResponseToJson(
       'date': instance.date,
       'active': instance.active,
       'number': instance.number,
+    };
+
+CountDataTrafficResponse _$CountDataTrafficResponseFromJson(
+        Map<String, dynamic> json) =>
+    CountDataTrafficResponse(
+      active: json['active_1'] as num?,
+      notActive: json['active_0'] as num?,
+    );
+
+Map<String, dynamic> _$CountDataTrafficResponseToJson(
+        CountDataTrafficResponse instance) =>
+    <String, dynamic>{
+      'active_1': instance.active,
+      'active_0': instance.notActive,
     };

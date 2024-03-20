@@ -52,6 +52,7 @@ class RouteGenerator {
       case Routes.elmulakhas:
         return MaterialPageRoute(builder: (_) => ElMulakhas());
       case Routes.elHodaa:
+        initEahduhModule();
         return MaterialPageRoute(builder: (_) => ElEahduh());
       case Routes.newTalab:
         return MaterialPageRoute(builder: (_) => NewTalabat());
@@ -64,6 +65,7 @@ class RouteGenerator {
       case Routes.fawaterTagerDetails:
         return MaterialPageRoute(builder: (_) => FawaterTagerDetailsView());
       case Routes.trafficLines:
+        initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => TrafficLines());
       case Routes.profileView:
         initProfileModule();

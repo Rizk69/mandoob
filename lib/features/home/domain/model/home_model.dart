@@ -3,12 +3,14 @@ class HomeModel {
   bool status;
   String message;
   BalanceDataModel balance;
+  CountDataModel countDataModel;
   List<DeliveryLineDataModel> ? deliveryLine;
 
   HomeModel({
     required this.status,
     required this.message,
     required this.balance,
+    required this.countDataModel,
     required this.deliveryLine,
   });
 
@@ -22,6 +24,17 @@ class BalanceDataModel {
   BalanceDataModel({
     required this.totalDoler,
     required this.totalLera,
+  });
+
+}
+class CountDataModel {
+
+  num active;
+  num notActive;
+
+  CountDataModel({
+    required this.active,
+    required this.notActive,
   });
 
 }

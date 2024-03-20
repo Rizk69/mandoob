@@ -32,4 +32,14 @@ class RepositoryTrafficLineImpl extends Repository {
       return Left(ErrorHandler.handle(error).failure);
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteDelivaryLine({required int id}) async {
+    try {
+      final response = await _remoteDataSource.deleteDelivaryLine(id: id);
+      return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
 }

@@ -11,6 +11,7 @@ extension HomeResponseMapper on HomeResponse? {
       balance: this!.balance.toDomain(),
       deliveryLine:
           this?.deliveryLine?.map((line) => line.toDomain()).toList() ?? [],
+      countDataModel: this!.countDataResponse.toDomain(),
     );
   }
 }
@@ -20,6 +21,15 @@ extension BalanceDataMapper on BalanceDataResponse? {
     return BalanceDataModel(
       totalDoler: this?.totalDoler ?? Constants.zero,
       totalLera: this?.totalLera ?? Constants.zero,
+    );
+  }
+}
+
+extension CountDataMapper on CountDataResponse? {
+  CountDataModel toDomain() {
+    return CountDataModel(
+      active: this?.active ?? Constants.zero,
+      notActive: this?.notActive ?? Constants.zero,
     );
   }
 }
