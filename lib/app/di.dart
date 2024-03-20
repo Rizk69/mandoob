@@ -106,8 +106,9 @@ initLoginModule() {
 
 initProfileModule() {
   if (!GetIt.I.isRegistered<ProfileUseCase>()) {
-    instance.registerFactory<ProfileCubit>(() => ProfileCubit(instance()));
+    instance.registerFactory<ProfileCubit>(() => ProfileCubit(instance(),instance()));
     instance.registerFactory<ProfileUseCase>(() => ProfileUseCase(instance()));
+    instance.registerFactory<ProfileEditColorUseCase>(() => ProfileEditColorUseCase(instance()));
   }
 }
 

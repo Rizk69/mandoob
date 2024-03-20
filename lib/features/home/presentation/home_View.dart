@@ -16,15 +16,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
-  final List<String> titles = ['1', '2', '3', '4', '5'];
-  final List<String> titlesName = [
-    'تاجر 1',
-    'تاجر 2',
-    'تاجر 3',
-    'تاجر 4',
-    'تاجر 5'
-  ];
-  FocusNode _focusNode = FocusNode();
+
+  // FocusNode _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -168,84 +161,102 @@ class HomeView extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: AppPadding.p20, vertical: AppPadding.p18),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                            color: ColorManager.shadowColor,
-                            blurRadius: 9,
-                            spreadRadius: 8)
-                      ]),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset(IconAssets.location,
-                              color: Colors.black54, height: 30),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          Text(
-                            'خط سير اليوم',
-                            style: getBold(
-                              color: ColorManager.black,
-                              fontSize: 25,
+                BlocBuilder<HomeCubit, HomeState>(
+                  builder: (context, state) {
+                    var cubit = HomeCubit.get(context);
+                    if (state is GetHomeLoadingState) {
+                      return const Center(
+                          child: CircularProgressIndicator.adaptive());
+                    } else if (state is GetHomeLoadedState) {
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20,
+                            vertical: AppPadding.p18),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: ColorManager.shadowColor,
+                                  blurRadius: 9,
+                                  spreadRadius: 8)
+                            ]),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(IconAssets.location,
+                                    color: Colors.black54, height: 30),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Text(
+                                  'خط سير اليوم',
+                                  style: getBold(
+                                    color: ColorManager.black,
+                                    fontSize: 25,
+                                  ),
+                                ),
+                                const Spacer(),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.search,
+                                      size: 28,
+                                    )),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.add,
+                                      size: 28,
+                                    )),
+                              ],
                             ),
-                          ),
-                          const Spacer(),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.search,
-                                size: 28,
-                              )),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.add,
-                                size: 28,
-                              )),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: AppSize.s34,
-                      ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: StepProgressView(
-                          width: MediaQuery.of(context).size.width,
-                          curStep: 5,
-                          color: Colors.black87,
-                          titles: titles,
-                          titlesName: titlesName,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: AppSize.s34,
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.trafficLines);
-                          },
-                          child: const Text(
-                            'عرض التفاصيل',
-                            style: TextStyle(
-                              color: Color(0Xff020736),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              decoration: TextDecoration.underline,
+                            const SizedBox(
+                              height: AppSize.s34,
                             ),
-                          ),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: StepProgressView(
+                                width: MediaQuery.of(context).size.width / 1.3,
+                                curStep: 1,
+                                color: Colors.black87,
+                                titles: cubit.homeModel!.deliveryLine
+                                    ?.map((e) => e.number.toString())
+                                    .toList(),
+                                titlesName: cubit.homeModel!.deliveryLine
+                                    ?.map((e) => e.customerName)
+                                    .toList(),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: AppSize.s34,
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, Routes.trafficLines);
+                                },
+                                child: const Text(
+                                  'عرض التفاصيل',
+                                  style: TextStyle(
+                                    color: Color(0Xff020736),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 ),
                 const SizedBox(
                   height: AppSize.s70,

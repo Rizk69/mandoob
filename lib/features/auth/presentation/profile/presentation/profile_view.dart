@@ -28,9 +28,11 @@ class ProfileView extends StatelessWidget {
             create: (_) => instance<ProfileCubit>()..getProfile(),
             child: BlocBuilder<ProfileCubit, ProfileState>(
               builder: (context, state) {
-                if (state is ProfileLoadingState) {
+                if (state is ProfileLoadingState ||
+                    state is EditProfileColorLoadingState) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (state is ProfileLoadedState) {
+                } else if (state is ProfileLoadedState ||
+                    state is EditProfileColorLoadedState) {
                   var user = ProfileCubit.get(context).userModel?.user;
                   return SingleChildScrollView(
                     child: Padding(
@@ -158,7 +160,7 @@ class ProfileView extends StatelessWidget {
                   return Center(
                       child: Text('Error fetching profile${state.message}'));
                 } else {
-                  return const Center(child: Text('Initial state'));
+                  return const Center(child: Text(''));
                 }
               },
             )),

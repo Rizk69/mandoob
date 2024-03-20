@@ -70,9 +70,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ProfileView());
 
       case Routes.sucssufflyAddTrader:
-
         final args = settings.arguments as SuccessMessageArguments;
-
 
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(
@@ -83,7 +81,6 @@ class RouteGenerator {
       case Routes.trader:
         initTradeModule();
         return MaterialPageRoute(builder: (_) => TraderView());
-
 
       case Routes.newTrader:
         return MaterialPageRoute(builder: (_) => NewTraderView());
@@ -104,11 +101,9 @@ class RouteGenerator {
   }
 }
 
-
-
 class SuccessMessageArguments {
   final String message;
   final String actionMessage;
 
-  SuccessMessageArguments(this.message,this.actionMessage);
+  SuccessMessageArguments(this.message, this.actionMessage);
 }

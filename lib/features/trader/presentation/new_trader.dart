@@ -35,7 +35,6 @@ class NewTraderView extends StatelessWidget {
                 ));
           }
 
-
           if (state is AddTradeErrorState) {
             final snackBar = defaultSnakeBar(
               title: LocaleKeys.ERROR.tr(),
@@ -111,7 +110,6 @@ class NewTraderView extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(width: 16),
-                                  // يمكن تعديل القيمة بناءً على تفضيلات التصميم
                                   Expanded(
                                     flex: 3,
                                     child: Container(
@@ -161,10 +159,11 @@ class NewTraderView extends StatelessWidget {
                                   width:
                                       MediaQuery.of(context).size.width * 0.9,
                                   child: CustomButton(
-                                      onPressed: () {
-                                        cubit.addTrade();
-                                      },
-                                      buttonText: LocaleKeys.add.tr(),))
+                                    onPressed: () {
+                                      cubit.addTrade();
+                                    },
+                                    buttonText: LocaleKeys.add.tr(),
+                                  ))
                             ],
                           ),
                         ),
