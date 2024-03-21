@@ -150,11 +150,14 @@ class StepProgressView extends StatelessWidget {
   List<Widget> _titleViews() {
     var list = <Widget>[];
     _titlesName.asMap().forEach((i, text) {
-      list.add(Text(text,
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-          )));
+      list.add(Flexible(
+        child: Text(text,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              overflow: TextOverflow.ellipsis
+            )),
+      ));
     });
     return list;
   }
