@@ -103,7 +103,10 @@
   "retail": "Retail",
   "wholesale": "Wholesale",
   "factoryPrice": "Factory Price",
-  "add": "ADD"
+  "add": "ADD",
+
+
+  "trafficLine": "Traffic Line"
 
 
 }

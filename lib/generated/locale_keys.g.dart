@@ -98,5 +98,6 @@ abstract class  LocaleKeys {
   static const wholesale = 'wholesale';
   static const factoryPrice = 'factoryPrice';
   static const add = 'add';
+  static const trafficLine = 'trafficLine';
 
 }
