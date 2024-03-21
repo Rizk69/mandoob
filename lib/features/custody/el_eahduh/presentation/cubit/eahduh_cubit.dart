@@ -22,4 +22,28 @@ class EahduhCubit extends Cubit<EahduhState> {
       emit(GetEahduhLoadedState());
     });
   }
+
+  Future<void> addEahduhOrder({required int id}) async {
+    emit(AddEahduhLoadingState());
+    final result = await _eahduhUseCase.addEahduhOrder(id: id);
+    result.fold(
+      (failure) => emit(AddEahduhErrorState(failure.message)),
+      (success)async {
+        await Future.delayed(Duration(seconds: 4));
+        getEahduhOrder();
+      },
+    );
+  }
+
+  Future<void> deleteEahduhOrder({required int id}) async {
+    emit(DeleteEahduhLoadingState());
+    final result = await _eahduhUseCase.deleteEahduhOrder(id: id);
+    result.fold(
+      (failure) => emit(DeleteEahduhErrorState(failure.message)),
+      (success)async {
+        await Future.delayed(Duration(seconds: 4));
+        getEahduhOrder();
+      },
+    );
+  }
 }

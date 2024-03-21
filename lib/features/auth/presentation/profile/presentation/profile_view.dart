@@ -128,7 +128,9 @@ class ProfileView extends StatelessWidget {
                                         text: 'المظهر \t\t\t\t',
                                       ),
                                       TextSpan(
-                                        text: 'light',
+                                        text: ProfileCubit.get(context).showRow
+                                            ? 'Dark'
+                                            : 'Light',
                                         style: getMediumInterStyle(
                                           fontSize: 15,
                                           color: ColorManager.desColor,
@@ -138,16 +140,19 @@ class ProfileView extends StatelessWidget {
                                   ),
                                 ),
                                 Switch(
-                                  thumbColor: MaterialStatePropertyAll<Color>(
+                                  thumbColor: MaterialStateProperty.all<Color>(
                                       ColorManager.baseColorLight),
                                   inactiveTrackColor: Colors.grey,
                                   trackOutlineColor:
-                                      MaterialStatePropertyAll<Color>(
+                                      MaterialStateProperty.all<Color>(
                                           ColorManager.baseColorLight),
-                                  value: true,
-                                  trackColor: MaterialStatePropertyAll<Color>(
+                                  value: ProfileCubit.get(context).showRow,
+                                  trackColor: MaterialStateProperty.all<Color>(
                                       Colors.white),
-                                  onChanged: (bool value) {},
+                                  onChanged: (bool value) {
+                                    ProfileCubit.get(context)
+                                        .changeRowVisalbilty();
+                                  },
                                 )
                               ],
                             ),

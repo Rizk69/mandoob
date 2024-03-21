@@ -13,4 +13,12 @@ class EahduhUseCase implements BaseUseCase<void, EahduhOrderModel> {
   Future<Either<Failure, EahduhOrderModel>> execute(void input) async {
     return await _eahduhRepository.getEahduhOrder();
   }
+
+  Future<Either<Failure, void>> addEahduhOrder( {required int id}) async {
+    return await _eahduhRepository.addEahduhOrder(id: id);
+  }
+
+  Future<Either<Failure, void>> deleteEahduhOrder( {required int id}) async {
+    return await _eahduhRepository.deleteEahduhOrder(id: id);
+  }
 }

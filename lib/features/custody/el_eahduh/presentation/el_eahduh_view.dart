@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:mandoob/app/di.dart';
-import 'package:mandoob/core/resources/assets_manager.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
@@ -28,9 +26,9 @@ class ElEahduh extends StatelessWidget {
           child: SingleChildScrollView(
             child: BlocBuilder<EahduhCubit, EahduhState>(
               builder: (context, state) {
-                if(state is GetEahduhLoadedState){
-                  var cubit= EahduhCubit.get(context);
-                  var data=cubit.orderModel;
+                if (state is GetEahduhLoadedState) {
+                  var cubit = EahduhCubit.get(context);
+                  var data = cubit.orderModel;
                   return Column(
                     children: [
                       SizedBox(height: AppSize.s8.h),
@@ -90,7 +88,7 @@ class ElEahduh extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             columnCard(
-                              title:data?.balance.totalDoler.toString() ??'' ,
+                              title: data?.balance.totalDoler.toString() ?? '',
                               colorTitle: ColorManager.greenLight,
                               des: "دولار",
                             ),
@@ -100,7 +98,7 @@ class ElEahduh extends StatelessWidget {
                               color: ColorManager.gray,
                             ),
                             columnCard(
-                              title: data?.balance.totalLera.toString() ??'',
+                              title: data?.balance.totalLera.toString() ?? '',
                               colorTitle: ColorManager.orangeLight,
                               des: "لير",
                             ),
@@ -108,199 +106,135 @@ class ElEahduh extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: AppSize.s6.h),
-                      Row(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width/2.5,
-                            padding: const EdgeInsets.only(
-                              top: 15,
-                            ),
-                            decoration: BoxDecoration(
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 2,
+                        child: GridView.builder(
+                          gridDelegate:
+                              new SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.75,
+                            mainAxisSpacing: 2.0,
+                            crossAxisSpacing: 1.0,
+                          ),
+                          itemCount:
+                              data?.data.length ?? 0, // Ensure data is not null
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              padding: EdgeInsets.only(top: 15),
+                              decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(25)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image.asset('assets/images/product.png',
-                                    height: AppSize.s13.h),
-                                Container(
-                                  margin:
-                                  const EdgeInsets.symmetric(vertical: 15),
-                                  decoration: BoxDecoration(
-                                      color: ColorManager.grey2,
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Image.asset(
+                                      'assets/images/product.png',
+                                      height: AppSize.s13.h,
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
                                       border: Border.all(
-                                          color: ColorManager.grey2, width: 1)),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 15),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Text(
-                                            data?.data[0].nameAr??'' ,
-                                            style: getBoldSegoeStyle(
+                                          color: Colors.grey[200]!, width: 1),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Text(
+                                              data?.data[index].nameAr ?? '',
+                                              style: TextStyle(
                                                 fontSize: 27,
-                                                color: ColorManager.black),
-                                          ),
-                                          Text(
-                                            '${data?.data[0].count} عبوة ',
-                                            style: getRegularInterStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              '${data?.data[index].count} عبوة ',
+                                              style: TextStyle(
                                                 fontSize: 18,
-                                                color: ColorManager.black),
-                                          ),
-                                          Text(
-                                            '${data?.data[0].priceLera} ليررة',
-                                            style: getRegularInterStyle(
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            Text(
+                                              '${data?.data[index].priceLera} ليررة',
+                                              style: TextStyle(
                                                 fontSize: 18,
-                                                color: ColorManager.greenLight),
-                                          )
-                                        ],
-                                      ),
-                                      IconButton(
-                                          onPressed: () {},
+                                                color: Colors.green,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        IconButton(
+                                          onPressed: () {
+                                            data.data[index].favoriteProduct
+                                                ? cubit.deleteEahduhOrder(
+                                                    id: data.data[index].id)
+                                                : cubit.addEahduhOrder(
+                                                    id: data.data[index].id);
+                                          },
                                           icon: Icon(
                                             Icons.star,
-                                            color:data!.data[0].favoriteProduct? ColorManager.orangeLight : ColorManager.grey3,
-                                          ))
-                                    ],
+                                            color: data!
+                                                    .data[index].favoriteProduct
+                                                ? Colors.orange
+                                                : Colors.grey,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: AppSize.s3.h),
-                                Container(
-                                  padding:
-                                  const EdgeInsets.symmetric(vertical: 5),
-                                  decoration: BoxDecoration(
-                                      color: ColorManager.baseColorLight,
+                                  Spacer(),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
                                       borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15))),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                        IconAssets.bagIcon,
-                                        color: Colors.white,
-                                        height: 30,
+                                        bottomLeft: Radius.circular(15),
+                                        bottomRight: Radius.circular(15),
                                       ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        'السلة',
-                                        style: getRegularInterStyle(
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.shopping_cart,
+                                          color: Colors.white,
+                                          size: 30,
+                                        ),
+                                        SizedBox(width: 8),
+                                        Text(
+                                          'السلة',
+                                          style: TextStyle(
                                             fontSize: 27,
-                                            color: ColorManager.white),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          // SizedBox(width: AppSize.s4.h),
-                          // Expanded(
-                          //   child: Container(
-                          //     padding: const EdgeInsets.only(
-                          //       top: 15,
-                          //     ),
-                          //     decoration: BoxDecoration(
-                          //         color: Colors.white,
-                          //         borderRadius: BorderRadius.circular(25)),
-                          //     child: Column(
-                          //       crossAxisAlignment: CrossAxisAlignment.start,
-                          //       children: [
-                          //         Image.asset('assets/images/product.png',
-                          //             height: AppSize.s13.h),
-                          //         Container(
-                          //           margin:
-                          //           const EdgeInsets.symmetric(vertical: 15),
-                          //           decoration: BoxDecoration(
-                          //               color: ColorManager.grey2,
-                          //               border: Border.all(
-                          //                   color: ColorManager.grey2, width: 1)),
-                          //         ),
-                          //         Padding(
-                          //           padding: EdgeInsets.symmetric(horizontal: 15),
-                          //           child: Row(
-                          //             mainAxisAlignment:
-                          //             MainAxisAlignment.spaceBetween,
-                          //             crossAxisAlignment:
-                          //             CrossAxisAlignment.start,
-                          //             children: [
-                          //               Column(
-                          //                 children: [
-                          //                   Text(
-                          //                     'شامبو',
-                          //                     style: getBoldSegoeStyle(
-                          //                         fontSize: 27,
-                          //                         color: ColorManager.black),
-                          //                   ),
-                          //                   Text(
-                          //                     '30 عبوة ',
-                          //                     style: getRegularInterStyle(
-                          //                         fontSize: 18,
-                          //                         color: ColorManager.black),
-                          //                   ),
-                          //                   Text(
-                          //                     '30 ليررة',
-                          //                     style: getRegularInterStyle(
-                          //                         fontSize: 18,
-                          //                         color: ColorManager.greenLight),
-                          //                   )
-                          //                 ],
-                          //               ),
-                          //               IconButton(
-                          //                   onPressed: () {},
-                          //                   icon: Icon(
-                          //                     Icons.star,
-                          //                     color: ColorManager.orangeLight,
-                          //                   ))
-                          //             ],
-                          //           ),
-                          //         ),
-                          //         SizedBox(height: AppSize.s3.h),
-                          //         Container(
-                          //           padding:
-                          //           const EdgeInsets.symmetric(vertical: 5),
-                          //           decoration: BoxDecoration(
-                          //               color: ColorManager.baseColorLight,
-                          //               borderRadius: BorderRadius.only(
-                          //                   bottomLeft: Radius.circular(15),
-                          //                   bottomRight: Radius.circular(15))),
-                          //           child: Row(
-                          //             mainAxisAlignment: MainAxisAlignment.center,
-                          //             children: [
-                          //               SvgPicture.asset(
-                          //                 IconAssets.bagIcon,
-                          //                 color: Colors.white,
-                          //                 height: 30,
-                          //               ),
-                          //               SizedBox(
-                          //                 width: 8,
-                          //               ),
-                          //               Text(
-                          //                 'السلة',
-                          //                 style: getRegularInterStyle(
-                          //                     fontSize: 27,
-                          //                     color: ColorManager.white),
-                          //               )
-                          //             ],
-                          //           ),
-                          //         )
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
-                      )
+                                            color: Colors.white,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ],
                   );
-                }else if(state is GetEahduhLoadingState){
+                } else if (state is GetEahduhLoadingState || state is AddEahduhLoadingState || state is DeleteEahduhLoadingState) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -309,12 +243,11 @@ class ElEahduh extends StatelessWidget {
                       ),
                     ],
                   );
-                }else if(state is GetEahduhErrorState){
+                } else if (state is GetEahduhErrorState) {
                   return Text(state.message);
-                }else{
+                } else {
                   return Container();
                 }
-
               },
             ),
           ),

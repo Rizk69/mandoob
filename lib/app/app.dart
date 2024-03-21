@@ -68,6 +68,7 @@ class _MyAppState extends State<MyApp> {
             onGenerateRoute: RouteGenerator.getRoute,
             initialRoute: Routes.loginRoute,
             theme: getApplicationTheme(),
+
           ),
         );
       },

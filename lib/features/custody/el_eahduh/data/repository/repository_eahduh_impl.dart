@@ -35,5 +35,23 @@ class RepositoryEahduhImpl extends EahduhRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, void>> addEahduhOrder({required int id}) async {
+    try {
+      final response = await _remoteDataSource.addEahduhOrder(id: id);
+      return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
 
+  @override
+  Future<Either<Failure, void>> deleteEahduhOrder({required int id}) async {
+    try {
+      final response = await _remoteDataSource.deleteEahduhOrder(id: id);
+      return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
 }
