@@ -1,8 +1,7 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/features/auth/data/network/auth_requests.dart';
 import 'package:mandoob/features/auth/domain/model/profile/user_model.dart';
-import 'package:meta/meta.dart';
 
 import '../../../domain/usecase/get_profle_usecase.dart';
 
@@ -21,7 +20,9 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   changeRowVisalbilty() {
     showRow = !showRow;
+
     emit(changeVisabialtyState());
+    emit(ProfileLoadedState());
   }
 
   Future<void> getProfile() async {
@@ -45,12 +46,14 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       final result =
           await _profileEditColorUseCase.execute(ColorProfile(id.toString()));
-      result.fold((failure) => emit(EditProfileColorErrorState(failure.message)),
-          (user) {
+      result
+          .fold((failure) => emit(EditProfileColorErrorState(failure.message)),
+              (user) {
         emit(EditProfileColorLoadedState());
       });
     } catch (e) {
-      emit(EditProfileColorErrorState('An error occurred while fetching profile data'));
+      emit(EditProfileColorErrorState(
+          'An error occurred while fetching profile data'));
     }
   }
 }

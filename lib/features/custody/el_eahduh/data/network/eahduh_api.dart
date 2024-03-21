@@ -14,5 +14,9 @@ abstract class EahduhServiceClient {
 
   @GET("api/order")
   Future<EahduhResponse> getEahduhOrder();
+  @GET("api/add_favorite_products/{productId}")
+  Future<void> addEahduhOrder(@Path() int productId);
+  @GET("api/delete_favorite_products/{productId}")
+  Future<void> deleteEahduhOrder(@Path() int productId);
 
 }
