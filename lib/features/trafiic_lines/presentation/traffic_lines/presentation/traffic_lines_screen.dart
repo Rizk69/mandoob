@@ -1,5 +1,6 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
@@ -105,13 +106,13 @@ class TrafficLines extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: ListView.builder(
                           shrinkWrap: true,
+                          physics:const BouncingScrollPhysics(),
                           itemCount: data?.length,
                           itemBuilder: (context, index) {
                             final activeItem = data?[index].active;
                             final isFirst = activeItem == 0;
                             final isLast = activeItem == 0;
                             final isPast = activeItem == 1;
-
                             return Column(
                               children: [
                                 MyTimeLineTitle(
