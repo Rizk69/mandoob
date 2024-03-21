@@ -27,6 +27,6 @@ class RemoteEahduhDataSourceImpl extends RemoteEahduhDataSource {
 
   @override
   Future<void> deleteEahduhOrder({required int id}) {
-    return _appServiceClient.getEahduhOrder();
+    return _appServiceClient.deleteEahduhOrder(id);
   }
 }

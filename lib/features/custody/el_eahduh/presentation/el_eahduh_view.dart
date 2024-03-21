@@ -26,7 +26,9 @@ class ElEahduh extends StatelessWidget {
           child: SingleChildScrollView(
             child: BlocBuilder<EahduhCubit, EahduhState>(
               builder: (context, state) {
-                if (state is GetEahduhLoadedState) {
+                if (state is GetEahduhLoadedState ||
+                    state is AddEahduhSuccessState ||
+                    state is AddEahduhSuccessState) {
                   var cubit = EahduhCubit.get(context);
                   var data = cubit.orderModel;
                   return Column(
@@ -234,11 +236,17 @@ class ElEahduh extends StatelessWidget {
                       ),
                     ],
                   );
-                } else if (state is GetEahduhLoadingState || state is AddEahduhLoadingState || state is DeleteEahduhLoadingState) {
+                } else if (state is GetEahduhLoadingState ||
+                    state is AddEahduhLoadingState ||
+                    state is DeleteEahduhLoadingState) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Center(
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 2,
+                      ),
+                      Center(
                         child: CircularProgressIndicator.adaptive(),
                       ),
                     ],

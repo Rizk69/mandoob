@@ -27,9 +27,14 @@ class EahduhCubit extends Cubit<EahduhState> {
     emit(AddEahduhLoadingState());
     final result = await _eahduhUseCase.addEahduhOrder(id: id);
     result.fold(
-      (failure) => emit(AddEahduhErrorState(failure.message)),
+          (failure) {
+        print(failure);
+        emit(AddEahduhErrorState(failure.message));
+      },
       (success)async {
-        await Future.delayed(Duration(seconds: 4));
+            print('success Add');
+        emit(AddEahduhSuccessState());
+        await Future.delayed(Duration(milliseconds: 100));
         getEahduhOrder();
       },
     );
@@ -39,9 +44,14 @@ class EahduhCubit extends Cubit<EahduhState> {
     emit(DeleteEahduhLoadingState());
     final result = await _eahduhUseCase.deleteEahduhOrder(id: id);
     result.fold(
-      (failure) => emit(DeleteEahduhErrorState(failure.message)),
+      (failure) {
+        print(failure);
+        emit(DeleteEahduhErrorState(failure.message));
+      } ,
       (success)async {
-        await Future.delayed(Duration(seconds: 4));
+        print('success Delete');
+        emit(DeleteEahduhSuccessState());
+        await Future.delayed(Duration(milliseconds: 100));
         getEahduhOrder();
       },
     );
