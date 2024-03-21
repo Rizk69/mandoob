@@ -21,4 +21,22 @@ class TrafficLinesCubit extends Cubit<TrafficLinesState> {
       emit(GetTrafficLinesLoaded());
     });
   }
+
+  DateTime focusDate = DateTime.now();
+
+  selectTime(DateTime time){
+    focusDate = time;
+    emit(SelectTimeSuccessState());
+  }
+
+  // void getTrafficLinesForDate(DateTime selectedDate) async {
+  //   emit(GetTrafficLinesLoading());
+  //   final result = await _delivaryLineUseCase.execute(selectedDate.toString()); // تأكد من تعديل الـuse case لتقبل التاريخ كمدخل
+  //   result.fold((failure) => emit(GetTrafficLinesError(failure.message)),
+  //           (success) {
+  //         trafficModel = success;
+  //         emit(GetTrafficLinesLoaded());
+  //       });
+  // }
+
 }

@@ -11,3 +11,6 @@ class GetTrafficLinesError extends TrafficLinesState {
 
   GetTrafficLinesError(this.message);
 }
+
+
+class SelectTimeSuccessState extends TrafficLinesState {}
