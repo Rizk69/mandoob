@@ -106,7 +106,7 @@ class TrafficLines extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: ListView.builder(
                           shrinkWrap: true,
-                          physics:const BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           itemCount: data?.length,
                           itemBuilder: (context, index) {
                             final activeItem = data?[index].active;
@@ -119,17 +119,16 @@ class TrafficLines extends StatelessWidget {
                                   isFirst: isFirst,
                                   isLast: isLast,
                                   isPast: isPast,
-                                  traderName: data![index].customerName
-                                  , address: data[index].address,
+                                  traderName: data![index].customerName,
+                                  address: data[index].address,
                                 ),
-
                               ],
                             );
                           },
                         ),
                       );
                     } else {
-                      return CircularProgressIndicator(); // Placeholder for loading state
+                      return const CircularProgressIndicator(); // Placeholder for loading state
                     }
                   },
                 )
