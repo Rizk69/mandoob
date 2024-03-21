@@ -5,6 +5,7 @@ import 'package:mandoob/core/netowork_core/failure.dart';
 import 'package:mandoob/core/netowork_core/network_info.dart';
 import 'package:mandoob/features/trafiic_lines/data/data_source/remote_traffic_line_data_source.dart';
 import 'package:mandoob/features/trafiic_lines/data/mapper/traffic_line_mapper.dart';
+import 'package:mandoob/features/trafiic_lines/data/network/search_requests.dart';
 import 'package:mandoob/features/trafiic_lines/domain/model/traffic_line_model.dart';
 import 'package:mandoob/features/trafiic_lines/domain/repository/traffic_line_repository.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
@@ -38,6 +39,24 @@ class RepositoryTrafficLineImpl extends Repository {
     try {
       final response = await _remoteDataSource.deleteDelivaryLine(id: id);
       return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, TrafficModel>> searchDelivaryLine(
+      {required SearchLineRequest searchLineRequest}) async {
+    try {
+      final response = await _remoteDataSource.searchDelivaryLine(searchLineRequest: searchLineRequest);
+      if (response.data!.isNotEmpty) {
+        return Right(response.toDomain());
+      } else {
+        return Left(Failure(
+          ResponseCode.NO_CONTENT,
+          LocaleKeys.NO_CONTENT.tr(),
+        ));
+      }
     } catch (error) {
       return Left(ErrorHandler.handle(error).failure);
     }

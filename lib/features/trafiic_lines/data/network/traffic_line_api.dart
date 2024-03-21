@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:mandoob/app/constants.dart';
-import 'package:mandoob/features/auth/data/responses/profile/user_response.dart';
+import 'package:mandoob/features/trafiic_lines/data/network/search_requests.dart';
 import 'package:mandoob/features/trafiic_lines/data/responses/traffic_line_response.dart';
 import 'package:retrofit/http.dart';
 
@@ -14,4 +14,7 @@ abstract class TrafficLineServiceClient {
   Future<TrafficResponse> getDelivaryLine();
   @GET("api/delivary_line/{id}")
   Future<void> deleteDelivaryLine(@Path() int id);
+
+  @POST("api/search_delivary_line")
+  Future<TrafficResponse> searchDelivaryLine(@Body() SearchLineRequest searchLineRequest);
 }

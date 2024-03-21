@@ -10,6 +10,7 @@ import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
+import 'package:mandoob/features/trafiic_lines/domain/model/traffic_line_model.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/cubit/trafficlines_cubit.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/widget/time_line_tite.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
@@ -48,58 +49,83 @@ class TrafficLines extends StatelessWidget {
                       Navigator.pop(context);
                     }),
                 SizedBox(height: AppSize.s4.h),
-                TextFormField(
-                  scribbleEnabled: true,
-                  cursorHeight: 30,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.date_range,
-                        color: ColorManager.grey2,
-                      ),
-                      onPressed: () {
-                        showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2100),
-                          builder: (BuildContext context, Widget? child) {
-                            return Theme(
-                              data: ThemeData.light().copyWith(
-                                primaryColor: ColorManager.babyBlue,
-                                hintColor: ColorManager.babyBlue,
-                                colorScheme: ColorScheme.light(
-                                    primary: ColorManager.babyBlue),
-                              ),
-                              child: child!,
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    hintText: LocaleKeys.searchHere.tr(),
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
-                ),
-                SizedBox(height: AppSize.s4.h),
                 BlocBuilder<TrafficLinesCubit, TrafficLinesState>(
                   builder: (context, state) {
-                      var cubit = TrafficLinesCubit.get(context);
-                      final data = cubit.trafficModel?.data;
-                      return Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+                    var cubit = TrafficLinesCubit.get(context);
+
+                    TrafficModel? currentData;
+
+                    if (state is GetTrafficLinesLoaded) {
+                      currentData = state.model;
+                    }
+                    if (state is SearchTrafficSuccessState) {
+                      currentData = state.model;
+                    }
+
+                    bool hasData =
+                        currentData != null && currentData.data.isNotEmpty;
+
+                    final data = cubit.trafficModel?.data;
+                    return Column(
+                      children: [
+                        TextFormField(
+                          scribbleEnabled: true,
+                          cursorHeight: 30,
+                          onChanged: (value) {
+                            cubit.searchTraffic(value);
+                          },
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.search),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                Icons.date_range,
+                                color: ColorManager.grey2,
+                              ),
+                              onPressed: () async {
+                                final selectedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2100),
+                                  builder:
+                                      (BuildContext context, Widget? child) {
+                                    return Theme(
+                                      data: ThemeData.light().copyWith(
+                                        primaryColor: ColorManager.babyBlue,
+                                        hintColor: ColorManager.babyBlue,
+                                        colorScheme: ColorScheme.light(
+                                            primary: ColorManager.babyBlue),
+                                      ),
+                                      child: child!,
+                                    );
+                                  },
+                                );
+
+                                if (selectedDate != null) {
+                                  // هنا نستدعي دالة التصفية بالتاريخ
+                                  cubit.filterTrafficByDate(selectedDate);
+                                }
+                              },
+                            ),
+                            hintText: LocaleKeys.searchHere.tr(),
+                            filled: true,
+                            fillColor: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: AppSize.s4.h),
+                        Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 30, horizontal: 15),
                             decoration: BoxDecoration(
                                 color: ColorManager.white,
                                 borderRadius: BorderRadius.circular(20)),
-                            child:EasyDateTimeLine(
+                            child: EasyDateTimeLine(
                               initialDate: DateTime.now(),
-                              locale: isCurrentLanguageEn(context) ?"en":'ar',
+                              locale:
+                                  isCurrentLanguageEn(context) ? "en" : 'ar',
                               onDateChange: (selectedDate) {
                                 cubit.selectTime(selectedDate);
+                                cubit.getTrafficLinesForDate(selectedDate);
                               },
                               headerProps: const EasyHeaderProps(
                                 monthPickerType: MonthPickerType.switcher,
@@ -109,7 +135,8 @@ class TrafficLines extends StatelessWidget {
                                 dayStructure: DayStructure.dayStrDayNum,
                                 activeDayStyle: DayStyle(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
                                     gradient: LinearGradient(
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter,
@@ -121,43 +148,51 @@ class TrafficLines extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            )
-                          ),
-                          SizedBox(height: AppSize.s1.h),
-
-                          ConditionalBuilder(
-                              condition: state is GetTrafficLinesLoaded || state is SelectTimeSuccessState,
-                              builder: (context){
-                                return  Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                                  child: ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: const BouncingScrollPhysics(),
-                                    itemCount: data?.length,
-                                    itemBuilder: (context, index) {
-                                      final activeItem = data?[index].active;
-                                      final isFirst = activeItem == 0;
-                                      final isLast = activeItem == 0;
-                                      final isPast = activeItem == 1;
-                                      return Column(
-                                        children: [
-                                          MyTimeLineTitle(
-                                            isFirst: isFirst,
-                                            isLast: isLast,
-                                            isPast: isPast,
-                                            traderName: data![index].customerName,
-                                            address: data[index].address,
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
-                              fallback: (context)=>const CircularProgressIndicator(),
-                          ),
-                        ],
-                      );
+                            )),
+                        SizedBox(height: AppSize.s1.h),
+                        ConditionalBuilder(
+                          condition: (state is GetTrafficLinesLoaded ||
+                                  state is SelectTimeSuccessState ||
+                                  state is SearchTrafficSuccessState) &&
+                              hasData,
+                          builder: (context) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: data?.length,
+                                itemBuilder: (context, index) {
+                                  final activeItem = data?[index].active;
+                                  final isFirst = activeItem == 0;
+                                  final isLast = activeItem == 0;
+                                  final isPast = activeItem == 1;
+                                  return Column(
+                                    children: [
+                                      MyTimeLineTitle(
+                                        isFirst: isFirst,
+                                        isLast: isLast,
+                                        isPast: isPast,
+                                        traderName: data![index].customerName,
+                                        address: data[index].address,
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          fallback: (context) =>
+                              (state is GetTrafficLinesError ||
+                                      state is SearchTrafficErrorState)
+                                  ? Center(
+                                      child: Text(LocaleKeys.NO_CONTENT.tr()),
+                                    )
+                                  : const CircularProgressIndicator(),
+                        ),
+                      ],
+                    );
                   },
                 )
               ],
