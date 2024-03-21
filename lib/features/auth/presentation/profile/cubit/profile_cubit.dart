@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/features/auth/data/network/auth_requests.dart';
 import 'package:mandoob/features/auth/domain/model/profile/user_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../domain/usecase/get_profle_usecase.dart';
 
@@ -13,16 +14,24 @@ class ProfileCubit extends Cubit<ProfileState> {
   final ProfileEditColorUseCase _profileEditColorUseCase;
 
   ProfileCubit(this._profileUseCase, this._profileEditColorUseCase)
-      : super(ProfileInitial());
+      : super(ProfileInitial()) {
+    loadRowVisibility();
+  }
   UserModel? userModel;
 
   bool showRow = false;
 
-  changeRowVisalbilty() {
+  changeRowVisalbilty() async {
     showRow = !showRow;
-
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('showRow', showRow);
     emit(changeVisabialtyState());
     emit(ProfileLoadedState());
+  }
+
+  Future<void> loadRowVisibility() async {
+    final prefs = await SharedPreferences.getInstance();
+    showRow = prefs.getBool('showRow') ?? false;
   }
 
   Future<void> getProfile() async {

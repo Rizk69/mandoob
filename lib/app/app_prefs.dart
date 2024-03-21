@@ -50,6 +50,9 @@ class AppPreferences {
       );
     }
   }
+  Future<bool> getThemePreference() async {
+    return _sharedPreferences.getBool("showRow") ?? false;
+  }
 
   Future<Locale> getLocal() async {
     String currentLang = await getAppLanguage();
