@@ -9,12 +9,14 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../core/resources/theme_manager.dart';
+import '../features/auth/domain/usecase/get_profle_usecase.dart';
+import '../features/auth/presentation/profile/cubit/profile_cubit.dart';
 
 class MyApp extends StatefulWidget {
   MyApp._internal(); // private named constructor
   int appState = 0;
   static final MyApp instance =
-  MyApp._internal(); // single instance -- singleton
+      MyApp._internal(); // single instance -- singleton
 
   factory MyApp() => instance; // factory for the class instance
 
@@ -36,48 +38,55 @@ class _MyAppState extends State<MyApp> {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
         return MultiBlocProvider(
-          providers: [
-            BlocProvider(create: (context) => BottomNavBarCubit()),
-          ],
-          child: FutureBuilder<bool>(
-            future: _appPreferences.getThemePreference(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
-              }
-              final isDarkMode = snapshot.data ?? false;
-              return MaterialApp(
-                builder: (context, child) {
-                  return ResponsiveWrapper.builder(
-                    ClampingScrollWrapper.builder(context, child!),
-                    defaultScale: true,
-                    breakpoints: [
-                      const ResponsiveBreakpoint.resize(450, name: MOBILE),
-                      const ResponsiveBreakpoint.resize(800, name: TABLET),
-                      const ResponsiveBreakpoint.resize(1000, name: TABLET),
-                      const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
-                      const ResponsiveBreakpoint.resize(2460, name: '4K'),
-                    ],
-                    breakpointsLandscape: [
-                      const ResponsiveBreakpoint.resize(560, name: MOBILE),
-                      const ResponsiveBreakpoint.resize(812, name: TABLET),
-                      const ResponsiveBreakpoint.resize(1024, name: TABLET),
-                      const ResponsiveBreakpoint.resize(1120, name: DESKTOP),
-                      const ResponsiveBreakpoint.resize(2460, name: '4K'),
-                    ],
-                  );
-                },
-                localizationsDelegates: context.localizationDelegates,
-                supportedLocales: context.supportedLocales,
-                locale: context.locale,
-                debugShowCheckedModeBanner: false,
-                onGenerateRoute: RouteGenerator.getRoute,
-                initialRoute: Routes.loginRoute,
-                theme: isDarkMode ? ThemeData.dark() : getApplicationTheme(), // Set theme based on preference
-              );
-            },
-          ),
-        );
+            providers: [
+              BlocProvider(create: (context) => BottomNavBarCubit()),
+              BlocProvider(
+                  create: (context) => ProfileCubit(
+                        instance<ProfileUseCase>(),
+                        instance<ProfileEditColorUseCase>(),
+                      )),
+            ],
+            child: BlocConsumer<ProfileCubit, ProfileState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                final themeMode = ProfileCubit.get(context).showRow
+                    ? ThemeMode.dark
+                    : ThemeMode.light;
+                print(themeMode);
+
+                return MaterialApp(
+                  builder: (context, child) {
+                    return ResponsiveWrapper.builder(
+                      ClampingScrollWrapper.builder(context, child!),
+                      defaultScale: true,
+                      breakpoints: [
+                        const ResponsiveBreakpoint.resize(450, name: MOBILE),
+                        const ResponsiveBreakpoint.resize(800, name: TABLET),
+                        const ResponsiveBreakpoint.resize(1000, name: TABLET),
+                        const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+                        const ResponsiveBreakpoint.resize(2460, name: '4K'),
+                      ],
+                      breakpointsLandscape: [
+                        const ResponsiveBreakpoint.resize(560, name: MOBILE),
+                        const ResponsiveBreakpoint.resize(812, name: TABLET),
+                        const ResponsiveBreakpoint.resize(1024, name: TABLET),
+                        const ResponsiveBreakpoint.resize(1120, name: DESKTOP),
+                        const ResponsiveBreakpoint.resize(2460, name: '4K'),
+                      ],
+                    );
+                  },
+                  localizationsDelegates: context.localizationDelegates,
+                  supportedLocales: context.supportedLocales,
+                  locale: context.locale,
+                  debugShowCheckedModeBanner: false,
+                  onGenerateRoute: RouteGenerator.getRoute,
+                  initialRoute: Routes.loginRoute,
+                  themeMode: themeMode,
+                  theme: getApplicationTheme(),
+                  darkTheme: ThemeData.dark(),
+                );
+              },
+            ));
       },
     );
   }

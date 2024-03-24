@@ -122,13 +122,13 @@ initLoginModule() {
   }
 }
 
-initProfileModule() {
-  if (!GetIt.I.isRegistered<ProfileUseCase>()) {
-    instance.registerFactory<ProfileCubit>(
-        () => ProfileCubit(instance(), instance()));
-    instance.registerFactory<ProfileUseCase>(() => ProfileUseCase(instance()));
-    instance.registerFactory<ProfileEditColorUseCase>(
-        () => ProfileEditColorUseCase(instance()));
+void initProfileModule() {
+  if (!GetIt.I.isRegistered<ProfileCubit>()) {
+    instance.registerLazySingleton<ProfileUseCase>(() => ProfileUseCase(instance()));
+
+    instance.registerLazySingleton<ProfileEditColorUseCase>(() => ProfileEditColorUseCase(instance()));
+
+    instance.registerFactory<ProfileCubit>(() => ProfileCubit(instance(), instance()));
   }
 }
 

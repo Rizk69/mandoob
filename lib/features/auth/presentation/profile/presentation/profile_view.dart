@@ -22,7 +22,7 @@ class ProfileView extends StatelessWidget {
       top: false,
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: ColorManager.backGround,
+        backgroundColor:  Theme.of(context).primaryColor,
         drawer: buildDrawer(context),
         body: BlocProvider<ProfileCubit>(
             create: (_) => instance<ProfileCubit>()..getProfile(),

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mandoob/core/resources/theme_manager.dart';
 import 'package:mandoob/features/home/presentation/cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_view.dart';
@@ -19,7 +20,7 @@ class HomeController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.backGround,
+      backgroundColor: getApplicationTheme().primaryColor,
       body: BlocBuilder<BottomNavBarCubit, BottomNavBarItem>(
         builder: (context, selectedItem) {
           switch (selectedItem) {

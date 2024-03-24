@@ -17,11 +17,12 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
-      statusBarBrightness: Brightness.light, // For iOS (dark icons)
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
     ),
   );
   await initAppModule();
+  initProfileModule();
   runApp(
     EasyLocalization(
       supportedLocales: const [ARABIC_LOCAL, ENGLISH_LOCAL],
