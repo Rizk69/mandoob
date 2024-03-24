@@ -19,6 +19,7 @@ const String USER_TYPE_AR_NAME = 'USER_TYPE_AR_NAME';
 const String ROLE_ID = 'ROLE_ID';
 const String TYPE_ID = 'TYPE_ID';
 const String USER_EMAIL = 'USER_EMAIL';
+const String IS_DARK = 'IS_DARK';
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -168,6 +169,14 @@ class AppPreferences {
 
   Future<int> getTypeId() async {
     return _sharedPreferences.getInt(TYPE_ID) ?? Constants.zero;
+  }
+
+  Future<void> setIsDark(bool isDark) async {
+    _sharedPreferences.setBool(IS_DARK, isDark);
+  }
+
+  bool getIsDark() {
+    return _sharedPreferences.getBool(IS_DARK) ?? false;
   }
 
   Future<void> logout() async {

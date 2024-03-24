@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/core/app_cubit/app_cubit.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
@@ -18,28 +20,30 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    AppPreferences _appPreferences = instance<AppPreferences>();
 
     return SafeArea(
       top: false,
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor:  Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         drawer: buildDrawer(context),
-        body: BlocProvider<ProfileCubit>(
-            create: (_) => instance<ProfileCubit>()..getProfile(),
+        body: MultiBlocProvider(
+            providers: [
+              BlocProvider<ProfileCubit>(create: (_) => instance<ProfileCubit>()..getProfile()),
+            ],
             child: BlocConsumer<ProfileCubit, ProfileState>(
               listener: (context, state) {
-
                 // if (state is changeVisabialtyState){
                 //   Navigator.popAndPushNamed(context, Routes.homeRoute);
                 // }
-
               },
               builder: (context, state) {
                 if (state is ProfileLoadingState ||
                     state is EditProfileColorLoadingState) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (state is ProfileLoadedState ||state is changeVisabialtyState ||
+                } else if (state is ProfileLoadedState ||
+                    state is changeVisabialtyState ||
                     state is EditProfileColorLoadedState) {
                   var user = ProfileCubit.get(context).userModel?.user;
                   return SingleChildScrollView(
@@ -136,7 +140,7 @@ class ProfileView extends StatelessWidget {
                                         text: 'المظهر \t\t\t\t',
                                       ),
                                       TextSpan(
-                                        text: ProfileCubit.get(context).showRow
+                                        text: _appPreferences.getIsDark()
                                             ? 'Dark'
                                             : 'Light',
                                         style: getMediumInterStyle(
@@ -154,12 +158,12 @@ class ProfileView extends StatelessWidget {
                                   trackOutlineColor:
                                       MaterialStateProperty.all<Color>(
                                           ColorManager.baseColorLight),
-                                  value: ProfileCubit.get(context).showRow,
+                                  value: _appPreferences.getIsDark(),
                                   trackColor: MaterialStateProperty.all<Color>(
                                       Colors.white),
                                   onChanged: (bool value) {
-                                    ProfileCubit.get(context)
-                                        .changeRowVisalbilty();
+                                    AppCubit.get(context)
+                                        .changeAppMode();
                                   },
                                 )
                               ],

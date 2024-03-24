@@ -15,25 +15,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   ProfileCubit(this._profileUseCase, this._profileEditColorUseCase)
       : super(ProfileInitial()) {
-    loadRowVisibility();
   }
   UserModel? userModel;
-
-  bool showRow = false;
-
-  changeRowVisalbilty() async {
-    showRow = !showRow;
-    print(showRow);
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('showRow', showRow);
-    emit(changeVisabialtyState());
-    // emit(ProfileLoadedState());
-  }
-
-  Future<void> loadRowVisibility() async {
-    final prefs = await SharedPreferences.getInstance();
-    showRow = prefs.getBool('showRow') ?? false;
-  }
 
   Future<void> getProfile() async {
     try {
