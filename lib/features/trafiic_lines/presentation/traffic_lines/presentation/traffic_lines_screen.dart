@@ -1,13 +1,18 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
+import 'package:mandoob/core/resources/routes_manager.dart';
+import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/trafiic_lines/domain/model/traffic_line_model.dart';
@@ -49,7 +54,34 @@ class TrafficLines extends StatelessWidget {
                       Navigator.pop(context);
                     }),
                 SizedBox(height: AppSize.s4.h),
-                BlocBuilder<TrafficLinesCubit, TrafficLinesState>(
+                BlocConsumer<TrafficLinesCubit, TrafficLinesState>(
+                  listener: (context, state) {
+
+                    if(state is DeleteTrafficLinesLoaded){
+                      final snackBar = defaultSnakeBar(
+                        title: LocaleKeys.SUCCESS.tr(),
+                        message: LocaleKeys.SUCCESS.tr(),
+                        state: ContentType.success,
+                      );
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(snackBar);
+
+                      Navigator.popAndPushNamed(context, Routes.homeRoute);
+                    }
+
+                    if(state is DeleteTrafficLinesError){
+                      final snackBar = defaultSnakeBar(
+                        title: LocaleKeys.ERROR.tr(),
+                        message: state.message,
+                        state: ContentType.failure,
+                      );
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(snackBar);
+                    }
+
+                  },
                   builder: (context, state) {
                     var cubit = TrafficLinesCubit.get(context);
 
@@ -159,27 +191,50 @@ class TrafficLines extends StatelessWidget {
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: data?.length,
-                                itemBuilder: (context, index) {
-                                  final activeItem = data?[index].active;
-                                  final isFirst = activeItem == 0;
-                                  final isLast = activeItem == 0;
-                                  final isPast = activeItem == 1;
-                                  return Column(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(height: AppSize.s1.h,),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      MyTimeLineTitle(
-                                        isFirst: isFirst,
-                                        isLast: isLast,
-                                        isPast: isPast,
-                                        traderName: data![index].customerName,
-                                        address: data[index].address,
+                                      Text("اضافة خط سير ",
+                                      style: getBoldInterStyle(color: Colors.black,fontSize: AppSize.s20.sp),
                                       ),
+                                      const Spacer(),
+                                      IconButton(
+                                          padding: EdgeInsets.zero,
+                                          onPressed: (){
+                                            Navigator.pushNamed(context, Routes.addtrafficLines);
+                                          }, icon:  Icon(Icons.add , size: AppSize.s25.sp,))
                                     ],
-                                  );
-                                },
+                                  ),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: const BouncingScrollPhysics(),
+                                    itemCount: data?.length,
+                                    itemBuilder: (context, index) {
+                                      final activeItem = data?[index].active;
+                                      final isFirst = activeItem == 0;
+                                      final isLast = activeItem == 0;
+                                      final isPast = activeItem == 1;
+                                      return Column(
+                                        children: [
+                                          MyTimeLineTitle(
+                                            isFirst: isFirst,
+                                            isLast: isLast,
+                                            isPast: isPast,
+                                            traderName: data![index].customerName,
+                                            address: data[index].address,
+                                            traderId: data[index].id,
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                ],
                               ),
                             );
                           },

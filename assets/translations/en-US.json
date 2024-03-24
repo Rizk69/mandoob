@@ -106,7 +106,10 @@
   "add": "ADD",
 
 
-  "trafficLine": "Traffic Line"
-
+  "trafficLine": "Traffic Line",
+  "addTrafficLine": "Add Traffic Line",
+  "Trader": "Trader",
+  "departureDate": "Departure Date",
+  "selectTrader": "Select Trader"
 
 }

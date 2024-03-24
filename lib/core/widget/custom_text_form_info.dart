@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget customRow({required String text, required void Function(String)? onChanged}) {
+Widget customTextFormFiledInfo({required String text, required void Function(String)? onChanged}) {
   return Row(
     children: [
       Expanded(

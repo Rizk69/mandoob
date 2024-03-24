@@ -105,7 +105,9 @@
   "add": "اضافة",
 
 
-  "trafficLine": "خطوط السير"
-
-
+  "trafficLine": "خطوط السير",
+  "addTrafficLine": "اضافة خطوط السير",
+  "Trader": "التاجر",
+  "departureDate": "تاريخ الذهاب",
+  "selectTrader": "اختر تاجر"
 }

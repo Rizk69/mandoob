@@ -12,7 +12,7 @@ import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/trader/presentation/cubit/add_trade/add_trade_cubit.dart';
-import 'package:mandoob/features/trader/presentation/widget/new_trade_info.dart';
+import 'package:mandoob/core/widget/custom_text_form_info.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -76,21 +76,21 @@ class NewTraderView extends StatelessWidget {
                                     Navigator.pop(context);
                                   }),
                               SizedBox(height: AppSize.s5.h),
-                              customRow(
+                              customTextFormFiledInfo(
                                 text: LocaleKeys.TradeName.tr(),
                                 onChanged: (name) {
                                   cubit.setName(name);
                                 },
                               ),
                               SizedBox(height: AppSize.s5.h),
-                              customRow(
+                              customTextFormFiledInfo(
                                 text: LocaleKeys.TradeAddress.tr(),
                                 onChanged: (address) {
                                   cubit.setAddress(address);
                                 },
                               ),
                               SizedBox(height: AppSize.s5.h),
-                              customRow(
+                              customTextFormFiledInfo(
                                 text: LocaleKeys.TradePhone.tr(),
                                 onChanged: (phone) {
                                   cubit.setPhone(phone);

@@ -32,3 +32,21 @@ class SearchTrafficErrorState extends TrafficLinesState {
 
   SearchTrafficErrorState(this.message);
 }
+
+
+
+
+class DeleteTrafficLinesLoaded extends TrafficLinesState {}
+class DeleteTrafficLinesLoading extends TrafficLinesState {}
+class DeleteTrafficLinesError extends TrafficLinesState {
+  final String message;
+  DeleteTrafficLinesError(this.message);
+}
+
+
+class AddTrafficLinesLoaded extends TrafficLinesState {}
+class AddTrafficLinesLoading extends TrafficLinesState {}
+class AddTrafficLinesError extends TrafficLinesState {
+  final String message;
+  AddTrafficLinesError(this.message);
+}

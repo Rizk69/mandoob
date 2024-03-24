@@ -99,5 +99,9 @@ abstract class  LocaleKeys {
   static const factoryPrice = 'factoryPrice';
   static const add = 'add';
   static const trafficLine = 'trafficLine';
+  static const addTrafficLine = 'addTrafficLine';
+  static const Trader = 'Trader';
+  static const departureDate = 'departureDate';
+  static const selectTrader = 'selectTrader';
 
 }

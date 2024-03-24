@@ -199,13 +199,9 @@ class HomeView extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.search,
-                                      size: 28,
-                                    )),
-                                IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, Routes.addtrafficLines);
+                                    },
                                     icon: const Icon(
                                       Icons.add,
                                       size: 28,

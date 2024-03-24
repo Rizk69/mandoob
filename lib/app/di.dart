@@ -34,6 +34,8 @@ import 'package:mandoob/features/auth/domain/usecase/get_profle_usecase.dart';
 import 'package:mandoob/features/auth/domain/usecase/login_usecase.dart';
 import 'package:mandoob/features/auth/presentation/login/manger/login_cubit.dart';
 import 'package:mandoob/features/auth/presentation/profile/cubit/profile_cubit.dart';
+import 'package:mandoob/features/trafiic_lines/domain/usecase/add_dlivary_usecase.dart';
+import 'package:mandoob/features/trafiic_lines/domain/usecase/delete_dlivary_usecase.dart';
 import 'package:mandoob/features/trafiic_lines/domain/usecase/search_dlivary_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../features/custody/el_eahduh/data/network/eahduh_api.dart';
@@ -155,9 +157,16 @@ initHomeModule() {
 initDelivaryLineModule() {
   if (!GetIt.I.isRegistered<DelivaryLineUseCase>()) {
     instance.registerFactory<TrafficLinesCubit>(
-        () => TrafficLinesCubit(instance(),instance()));
+        () => TrafficLinesCubit(instance(),instance(),instance(),instance()));
     instance.registerFactory<DelivaryLineUseCase>(
         () => DelivaryLineUseCase(instance()));
+
+
+    instance.registerFactory<DeleteDeliveryLineUseCase>(
+        () => DeleteDeliveryLineUseCase(instance()));
+
+    instance.registerFactory<AddDeliveryLineUseCase>(
+        () => AddDeliveryLineUseCase(instance()));
 
     instance.registerFactory<SearchDeliveryLineUseCase>(
         () => SearchDeliveryLineUseCase(instance()));

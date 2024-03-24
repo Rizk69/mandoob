@@ -12,6 +12,7 @@ import 'package:mandoob/features/orders/presentation/el_salah/prsentation/el_sal
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
 import 'package:mandoob/features/trader/presentation/new_trader.dart';
 import 'package:mandoob/features/trader/presentation/trader_view.dart';
+import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/add_traffic_lines_screen.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/traffic_lines_screen.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
@@ -28,6 +29,7 @@ class Routes {
   static const String sucssufflySceen = "/sucssufflySceen";
   static const String fawaterTagerDetails = "/fawaterTagerDetails";
   static const String trafficLines = "/trafficLines";
+  static const String addtrafficLines = "/addtrafficLines";
   static const String profileView = "/profileView";
 
   static const String trader = "/trader";
@@ -67,6 +69,10 @@ class RouteGenerator {
       case Routes.trafficLines:
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => TrafficLines());
+
+        case Routes.addtrafficLines:
+        initDelivaryLineModule();
+        return MaterialPageRoute(builder: (_) => AddTrafficLines());
       case Routes.profileView:
         initProfileModule();
         return MaterialPageRoute(builder: (_) => ProfileView());

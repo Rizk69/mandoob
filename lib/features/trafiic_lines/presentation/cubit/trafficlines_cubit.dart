@@ -1,7 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mandoob/features/trafiic_lines/data/network/add_requests.dart';
 import 'package:mandoob/features/trafiic_lines/data/network/search_requests.dart';
+import 'package:mandoob/features/trafiic_lines/domain/usecase/add_dlivary_usecase.dart';
+import 'package:mandoob/features/trafiic_lines/domain/usecase/delete_dlivary_usecase.dart';
 import 'package:mandoob/features/trafiic_lines/domain/usecase/search_dlivary_usecase.dart';
 
 import '../../domain/model/traffic_line_model.dart';
@@ -13,8 +16,10 @@ class TrafficLinesCubit extends Cubit<TrafficLinesState> {
   static TrafficLinesCubit get(context) => BlocProvider.of(context);
   final DelivaryLineUseCase _delivaryLineUseCase;
   final SearchDeliveryLineUseCase _searchDeliveryLineUseCase;
+  final DeleteDeliveryLineUseCase _deleteDeliveryLineUseCase;
+  final AddDeliveryLineUseCase _addDeliveryLineUseCase;
 
-  TrafficLinesCubit(this._delivaryLineUseCase, this._searchDeliveryLineUseCase)
+  TrafficLinesCubit(this._delivaryLineUseCase, this._searchDeliveryLineUseCase, this._deleteDeliveryLineUseCase, this._addDeliveryLineUseCase)
       : super(TrafficLinesInitial());
 
   TrafficModel? trafficModel;
@@ -102,4 +107,26 @@ class TrafficLinesCubit extends Cubit<TrafficLinesState> {
       emit(GetTrafficLinesLoaded(model));
     });
   }
+
+
+  deleteTrafficLine(int id) async {
+    emit(DeleteTrafficLinesLoading());
+    final result = await _deleteDeliveryLineUseCase.execute(id);
+    result.fold((failure) => emit(DeleteTrafficLinesError(failure.message)),
+            (success) {
+          emit(DeleteTrafficLinesLoaded());
+        });
+  }
+
+
+  addTrafficLine({required String customerId,required String date}) async {
+    emit(AddTrafficLinesLoading());
+    final result = await _addDeliveryLineUseCase.execute(AddLineRequest(customerId, date));
+    result.fold((failure) => emit(AddTrafficLinesError(failure.message)),
+            (success) {
+          emit(AddTrafficLinesLoaded());
+        });
+  }
+
+
 }

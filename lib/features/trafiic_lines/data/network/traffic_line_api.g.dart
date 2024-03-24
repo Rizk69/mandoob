@@ -56,7 +56,7 @@ class _TrafficLineServiceClient implements TrafficLineServiceClient {
     )
         .compose(
           _dio.options,
-          'api/delivary_line/${id}',
+          'api/delete_delivary_line/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -86,6 +86,28 @@ class _TrafficLineServiceClient implements TrafficLineServiceClient {
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = TrafficResponse.fromJson(_result.data!);
     return value;
+  }
+
+  @override
+  Future<void> addDelivaryLine(addLineRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(addLineRequest.toJson());
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'api/add_delivary_line',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    return null;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

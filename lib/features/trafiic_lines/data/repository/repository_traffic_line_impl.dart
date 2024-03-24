@@ -5,6 +5,7 @@ import 'package:mandoob/core/netowork_core/failure.dart';
 import 'package:mandoob/core/netowork_core/network_info.dart';
 import 'package:mandoob/features/trafiic_lines/data/data_source/remote_traffic_line_data_source.dart';
 import 'package:mandoob/features/trafiic_lines/data/mapper/traffic_line_mapper.dart';
+import 'package:mandoob/features/trafiic_lines/data/network/add_requests.dart';
 import 'package:mandoob/features/trafiic_lines/data/network/search_requests.dart';
 import 'package:mandoob/features/trafiic_lines/domain/model/traffic_line_model.dart';
 import 'package:mandoob/features/trafiic_lines/domain/repository/traffic_line_repository.dart';
@@ -61,4 +62,16 @@ class RepositoryTrafficLineImpl extends Repository {
       return Left(ErrorHandler.handle(error).failure);
     }
   }
+
+
+  @override
+  Future<Either<Failure, void>> addDelivaryLine({required AddLineRequest addLineRequest}) async {
+    try {
+      final response = await _remoteDataSource.addDelivaryLine(addLineRequest: addLineRequest);
+      return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
 }
