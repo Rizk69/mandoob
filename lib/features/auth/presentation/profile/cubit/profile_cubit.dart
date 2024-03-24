@@ -23,10 +23,11 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   changeRowVisalbilty() async {
     showRow = !showRow;
+    print(showRow);
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('showRow', showRow);
     emit(changeVisabialtyState());
-    emit(ProfileLoadedState());
+    // emit(ProfileLoadedState());
   }
 
   Future<void> loadRowVisibility() async {

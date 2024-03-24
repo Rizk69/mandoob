@@ -20,7 +20,7 @@ class HomeController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: getApplicationTheme().primaryColor,
+      backgroundColor: Theme.of(context).primaryColor,
       body: BlocBuilder<BottomNavBarCubit, BottomNavBarItem>(
         builder: (context, selectedItem) {
           switch (selectedItem) {

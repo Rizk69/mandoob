@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
+import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
@@ -26,12 +27,19 @@ class ProfileView extends StatelessWidget {
         drawer: buildDrawer(context),
         body: BlocProvider<ProfileCubit>(
             create: (_) => instance<ProfileCubit>()..getProfile(),
-            child: BlocBuilder<ProfileCubit, ProfileState>(
+            child: BlocConsumer<ProfileCubit, ProfileState>(
+              listener: (context, state) {
+
+                // if (state is changeVisabialtyState){
+                //   Navigator.popAndPushNamed(context, Routes.homeRoute);
+                // }
+
+              },
               builder: (context, state) {
                 if (state is ProfileLoadingState ||
                     state is EditProfileColorLoadingState) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (state is ProfileLoadedState ||
+                } else if (state is ProfileLoadedState ||state is changeVisabialtyState ||
                     state is EditProfileColorLoadedState) {
                   var user = ProfileCubit.get(context).userModel?.user;
                   return SingleChildScrollView(
