@@ -13,6 +13,7 @@ import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 BlocProvider<dynamic> buildDrawer(BuildContext context) {
+
   return BlocProvider<LoginCubit>(
       create: (_) => instance<LoginCubit>(),
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -32,6 +33,7 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
         },
         builder: (BuildContext context, LoginState state) {
           return Drawer(
+
             width: MediaQuery.of(context).size.width / 2.2,
             child: ListView(
               padding: EdgeInsets.zero,
@@ -44,7 +46,7 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                       Navigator.pop(context);
                       Navigator.pushNamed(context, Routes.trader);
                     },
-                    child: rowDrawer(title: LocaleKeys.clients.tr(), icon: '')),
+                    child: rowDrawer(title: LocaleKeys.clients.tr(), icon: '', context: context)),
                 const SizedBox(
                   height: AppSize.s7,
                 ),
@@ -54,7 +56,7 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                     Navigator.pushNamed(context, Routes.trafficLines);
                   },
                   child:
-                      rowDrawer(title: LocaleKeys.trafficLines.tr(), icon: ''),
+                      rowDrawer(title: LocaleKeys.trafficLines.tr(), icon: '', context: context),
                 ),
                 const SizedBox(
                   height: AppSize.s7,
@@ -64,7 +66,7 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.profileView);
                   },
-                  child: rowDrawer(title: LocaleKeys.account.tr(), icon: ''),
+                  child: rowDrawer(title: LocaleKeys.account.tr(), icon: '', context: context),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 3,
@@ -102,7 +104,7 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
       ));
 }
 
-Widget rowDrawer({required String title, required String icon}) {
+Widget rowDrawer({required String title, required String icon,required BuildContext context}) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: Row(
@@ -110,14 +112,14 @@ Widget rowDrawer({required String title, required String icon}) {
         const SizedBox(
           width: AppSize.s12,
         ),
-        const Icon(Icons.person_outline_sharp),
+         Icon(Icons.person_outline_sharp,color: Theme.of(context).primaryColor,),
         const SizedBox(
           width: AppSize.s8,
         ),
         Text(
           title,
           style: getBoldSegoeStyle(
-            color: ColorManager.black,
+            color:Theme.of(context).primaryColor,
             fontSize: AppSize.s20.sp,
           ),
         )

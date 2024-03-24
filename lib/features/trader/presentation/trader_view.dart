@@ -28,13 +28,12 @@ class TraderView extends StatelessWidget {
       child: SafeArea(
           top: false,
           child: Container(
-            color: Colors.white,
+            color: Theme.of(context).primaryColorDark,
             child: Stack(
               children: [
-                imageBackground(context),
                 Scaffold(
                   key: scaffoldKey,
-                  backgroundColor: ColorManager.backGround.withOpacity(0.5),
+                  backgroundColor:Theme.of(context).scaffoldBackgroundColor ,
                   drawer: buildDrawer(context),
                   body: SingleChildScrollView(
                     child: Padding(
@@ -58,14 +57,20 @@ class TraderView extends StatelessWidget {
                               return TextFormField(
                                 scribbleEnabled: true,
                                 cursorHeight: 30,
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                ),
                                 onChanged: (value) {
                                   TradeCubit.get(context).searchTrade(value);
                                 },
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.search),
                                   hintText: LocaleKeys.searchHere.tr(),
+                                  hintStyle: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                  ),
                                   filled: true,
-                                  fillColor: Colors.white,
+                                  fillColor: Theme.of(context).primaryColorDark,
                                 ),
                               );
                             },
@@ -159,6 +164,8 @@ class TraderView extends StatelessWidget {
                     ),
                   ),
                 ),
+                imageBackground(context),
+
               ],
             ),
           )),

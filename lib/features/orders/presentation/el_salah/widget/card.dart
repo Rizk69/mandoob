@@ -37,7 +37,7 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
             margin: EdgeInsets.symmetric(vertical: 25),
             padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             decoration: BoxDecoration(
-              color: ColorManager.white,
+              color:  Theme.of(context).primaryColorDark,
               boxShadow: [
                 BoxShadow(
                   color: ColorManager.grey3,

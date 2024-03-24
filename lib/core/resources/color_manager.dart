@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class ColorManager {
   static Color blue2 = const Color(0xFF269fb3);
+  static Color graymahrok = const Color(0xFF171717);
   static Color shadowColor = const Color(0XFF969FEE).withAlpha(40);
   static Color backGround = Colors.grey.shade100;
   static Color greenBorder = const Color(0XFF6CC51D);
   static Color baseColorLight = const Color(0xFF969FEE);
+  static Color baseColorDark = const Color(0xFFA7BBD3);
   static Color grey2 = const Color(0xFFCCCCCC);
   static Color desColor = const Color(0xFF7C7A7A);
   static Color customCardColor = const Color(0xFFF5F5F5);
@@ -14,6 +16,7 @@ class ColorManager {
   static Color darkGrey = const Color(0xFF707070);
   static Color midBlack = const Color(0xFF292b2d);
   static Color babyBlue = const Color(0xFF95cbff);
+  static Color darkbabyBlue = const Color(0xFFC9CEFD);
   static Color black = const Color(0xFF000000);
   static Color greyishBrown = const Color(0xFF3d3d3d);
   static Color greyishBrownTwo = const Color(0xFF424242);
