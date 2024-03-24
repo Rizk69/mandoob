@@ -25,7 +25,6 @@ class LoginView extends StatelessWidget {
     return BlocProvider(
       create: (_) => instance<LoginCubit>(),
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Padding(
           padding: EdgeInsets.only(
             right: AppPadding.p4.w,
@@ -78,7 +77,7 @@ class LoginView extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     controller: _emailController,
                     textInputAction: TextInputAction.next,
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: TextStyle(color: Theme.of(context).primaryColor),
                     autofillHints: const [AutofillHints.email],
                     onChanged: (email) {
                       context.read<LoginCubit>().setEmail(email);
@@ -92,16 +91,18 @@ class LoginView extends StatelessWidget {
                   ),
                   SizedBox(height: AppSize.s3.h),
                   TextField(
+
                     keyboardType: TextInputType.visiblePassword,
                     controller: _passwordController,
                     obscureText: context.read<LoginCubit>().isPassword,
                     textInputAction: TextInputAction.done,
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style:TextStyle(color: Theme.of(context).primaryColor),
                     autofillHints: const [AutofillHints.password],
                     onChanged: (password) {
                       context.read<LoginCubit>().setPassword(password);
                     },
                     decoration: InputDecoration(
+
                       hintText: LocaleKeys.password.tr(),
                       labelText: LocaleKeys.password.tr(),
                       prefixIcon: Icon(Icons.lock, color: ColorManager.grey3),
@@ -145,7 +146,7 @@ class LoginView extends StatelessWidget {
                       style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll<Color>(
                             context.read<LoginCubit>().isDataValid
-                                ? ColorManager.baseColorLight
+                                ? Theme.of(context).hoverColor
                                 : ColorManager.grey2),
                         shape: MaterialStatePropertyAll<OutlinedBorder>(
                           RoundedRectangleBorder(

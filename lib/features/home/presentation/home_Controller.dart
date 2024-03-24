@@ -20,7 +20,6 @@ class HomeController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
       body: BlocBuilder<BottomNavBarCubit, BottomNavBarItem>(
         builder: (context, selectedItem) {
           switch (selectedItem) {
@@ -43,7 +42,7 @@ class HomeController extends StatelessWidget {
         margin: EdgeInsets.all(AppMargin.m3.pt),
         child: FloatingActionButton(
           isExtended: true,
-          backgroundColor: ColorManager.baseColorLight,
+          backgroundColor: Theme.of(context).hoverColor ,
           onPressed: () {
             Navigator.pushNamed(context, Routes.elHodaa);
           },
@@ -61,7 +60,8 @@ class HomeController extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         height: AppPadding.p14.h,
-        surfaceTintColor: ColorManager.white,
+        color:Theme.of(context).primaryColorDark ,
+        surfaceTintColor:Theme.of(context).primaryColorDark,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         notchMargin: 3,
         shape: const CircularNotchedRectangle(),
@@ -132,13 +132,13 @@ class HomeController extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SvgPicture.asset(img),
+          SvgPicture.asset(img,color: Theme.of(context).hoverColor,),
           SizedBox(
             height: AppSize.s1.h,
           ),
           Text(
             title,
-            style: getSemiBoldInterStyle(color: ColorManager.baseColorLight),
+            style: getSemiBoldInterStyle(color: Theme.of(context).hoverColor),
           ), // Label for the icon
         ],
       ),

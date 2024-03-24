@@ -5,7 +5,6 @@ import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/app_cubit/app_cubit.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
-import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
@@ -26,11 +25,11 @@ class ProfileView extends StatelessWidget {
       top: false,
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Theme.of(context).primaryColor,
         drawer: buildDrawer(context),
         body: MultiBlocProvider(
             providers: [
-              BlocProvider<ProfileCubit>(create: (_) => instance<ProfileCubit>()..getProfile()),
+              BlocProvider<ProfileCubit>(
+                  create: (_) => instance<ProfileCubit>()..getProfile()),
             ],
             child: BlocConsumer<ProfileCubit, ProfileState>(
               listener: (context, state) {
@@ -80,7 +79,7 @@ class ProfileView extends StatelessWidget {
                           Text(
                             user!.name,
                             style: getBoldOxygenStyle(
-                              color: ColorManager.black,
+                              color: Theme.of(context).primaryColor,
                               fontSize: 23,
                             ),
                           ),
@@ -88,43 +87,51 @@ class ProfileView extends StatelessWidget {
                           ColorSelectionPage(colors: user.colors ?? []),
                           SizedBox(height: AppSize.s5.h),
                           customCardProfile(
-                              color: ColorManager.transparent,
+                              color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
                               title: 'اسم المستخدم',
-                              des: user.email),
+                              des: user.email,
+                              context: context),
                           customCardProfilePassword(
-                              color: ColorManager.grey2,
+                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2 ,
                               title: 'كلمة السر',
-                              des: '#############33'),
+                              des: '#############33',
+                              context: context),
                           customCardProfile(
-                              color: ColorManager.transparent,
+                              color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
                               title: 'الرصيد بالليرة',
-                              des: user.balanceTL.toString()),
+                              des: user.balanceTL.toString(),
+                              context: context),
                           customCardProfile(
-                              color: ColorManager.grey2,
+                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2 ,
                               title: 'الرصيد بالدولار',
-                              des: user.balanceUsd.toString()),
+                              des: user.balanceUsd.toString(),
+                              context: context),
                           customCardProfile(
-                              color: ColorManager.transparent,
+                              color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
                               title: 'اجمالي المبيعات للشهر بالليرة',
-                              des: user.salseLera.toString()),
+                              des: user.salseLera.toString(),
+                              context: context),
                           customCardProfile(
-                              color: ColorManager.grey2,
+                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2 ,
                               title: 'اجمالي الكميات بالدولار',
-                              des: user.salseDoler.toString()),
+                              des: user.salseDoler.toString(),
+                              context: context),
                           customCardProfile(
-                              color: ColorManager.transparent,
+                              color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
                               title: ' عمولات الشهر بالليرة',
-                              des: user.commissionsLera.toString()),
+                              des: user.commissionsLera.toString(),
+                              context: context),
                           customCardProfile(
-                              color: ColorManager.grey2,
+                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2 ,
                               title: 'عمولات الشهر بالدولار',
-                              des: user.commissionsDoler.toString()),
+                              des: user.commissionsDoler.toString(),
+                              context: context),
                           Container(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 20, horizontal: 10),
                             width: double.infinity,
                             decoration: BoxDecoration(
-                                color: ColorManager.transparent,
+                                color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,8 +144,11 @@ class ProfileView extends StatelessWidget {
                                     ),
                                     children: [
                                       TextSpan(
-                                        text: 'المظهر \t\t\t\t',
-                                      ),
+                                          text: 'المظهر \t\t\t\t',
+                                          style: TextStyle(
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          )),
                                       TextSpan(
                                         text: _appPreferences.getIsDark()
                                             ? 'Dark'
@@ -162,8 +172,7 @@ class ProfileView extends StatelessWidget {
                                   trackColor: MaterialStateProperty.all<Color>(
                                       Colors.white),
                                   onChanged: (bool value) {
-                                    AppCubit.get(context)
-                                        .changeAppMode();
+                                    AppCubit.get(context).changeAppMode();
                                   },
                                 )
                               ],
@@ -186,7 +195,10 @@ class ProfileView extends StatelessWidget {
   }
 
   Widget customCardProfile(
-      {required Color color, required String title, required String des}) {
+      {required Color color,
+      required String title,
+      required String des,
+      required BuildContext context}) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       width: double.infinity,
@@ -196,7 +208,7 @@ class ProfileView extends StatelessWidget {
         text: TextSpan(
           style: getSemiBoldInterStyle(
             fontSize: AppSize.s20.sp,
-            color: ColorManager.black,
+            color: Theme.of(context).primaryColor,
           ),
           children: [
             TextSpan(
@@ -216,7 +228,10 @@ class ProfileView extends StatelessWidget {
   }
 
   Widget customCardProfilePassword(
-      {required Color color, required String title, required String des}) {
+      {required Color color,
+      required String title,
+      required String des,
+      required BuildContext context}) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       width: double.infinity,
@@ -233,8 +248,8 @@ class ProfileView extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: '${title} \t\t\t\t',
-                ),
+                    text: '${title} \t\t\t\t',
+                    style: TextStyle(color: Theme.of(context).primaryColor)),
                 TextSpan(
                   text: des,
                   style: getMediumInterStyle(

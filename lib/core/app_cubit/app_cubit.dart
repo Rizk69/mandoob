@@ -7,21 +7,19 @@ import 'package:meta/meta.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
-  AppCubit() : super(AppInitial());
+  AppPreferences appPreferences = instance<AppPreferences>();
+  late bool isDark;
+
+  AppCubit() : super(AppInitial()) {
+    isDark = appPreferences.getIsDark();
+  }
+
   static AppCubit get(context) => BlocProvider.of(context);
 
-
-  bool isDark = false;
-
   void changeAppMode() {
-    AppPreferences _appPreferences = instance<AppPreferences>();
     isDark = !isDark;
-    _appPreferences.setIsDark(isDark);
+    appPreferences.setIsDark(isDark);
     print("Is dark : $isDark");
     emit(AppChangeModeState());
   }
-
-
-
-
 }

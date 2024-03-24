@@ -22,17 +22,17 @@ class HeaderScreen extends StatelessWidget {
       children: [
         IconButton(
           onPressed: functionDrawer,
-          icon: const Icon(Icons.menu),
+          icon:  Icon(Icons.menu,color: Theme.of(context).primaryColorLight),
         ),
         Center(
           child: Text(
             title,
-            style: getBoldSegoeStyle(fontSize: 25, color: ColorManager.black),
+            style: getBoldSegoeStyle(fontSize: 25, color:  Theme.of(context).primaryColorLight),
           ),
         ),
         IconButton(
           onPressed: functionIcon,
-          icon: const Icon(Icons.arrow_forward),
+          icon:  Icon(Icons.arrow_forward,color: Theme.of(context).primaryColorLight),
         ),
       ],
     );

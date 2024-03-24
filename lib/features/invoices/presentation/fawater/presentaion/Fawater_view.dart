@@ -45,14 +45,14 @@ class FawaterViewBody extends StatelessWidget {
                       onPressed: () {
                         scaffoldKey.currentState?.openDrawer();
                       },
-                      icon: const Icon(Icons.menu),
+                      icon:  Icon(Icons.menu,color: Theme.of(context).primaryColorLight,),
                     ),
                     Center(
                       child: Text(
                         'الفواتير',
                         style: getBoldSegoeStyle(
                           fontSize: 25,
-                          color: ColorManager.black,
+                          color: Theme.of(context).primaryColorLight,
                         ),
                       ),
                     ),
@@ -63,6 +63,9 @@ class FawaterViewBody extends StatelessWidget {
                 TextFormField(
                   scribbleEnabled: true,
                   cursorHeight: 30,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
                     suffixIcon: IconButton(
@@ -70,6 +73,7 @@ class FawaterViewBody extends StatelessWidget {
                         Icons.date_range,
                         color: ColorManager.grey2,
                       ),
+
                       onPressed: () {
                         showDatePicker(
                           context: context,
@@ -92,13 +96,16 @@ class FawaterViewBody extends StatelessWidget {
                     ),
                     hintText: 'ابحث هنا',
                     filled: true,
-                    fillColor: Colors.white,
+                    hintStyle: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    fillColor:Theme.of(context).primaryColorDark,
                   ),
                 ),
                 SizedBox(height: AppSize.s6.h),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).primaryColorDark,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
@@ -117,7 +124,7 @@ class FawaterViewBody extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                const TabBar(
+                                 TabBar(
                                   indicatorColor: Colors.black,
                                   tabs: [
                                     Tab(
@@ -126,8 +133,7 @@ class FawaterViewBody extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors
-                                              .black, // Change this to your desired text color
+                                          color: Theme.of(context).primaryColor,  // Change this to your desired text color
                                         ),
                                       ),
                                     ),
@@ -137,8 +143,7 @@ class FawaterViewBody extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors
-                                              .black, // Change this to your desired text color
+                                          color:Theme.of(context).primaryColor,  // Change this to your desired text color
                                         ),
                                       ),
                                     ),

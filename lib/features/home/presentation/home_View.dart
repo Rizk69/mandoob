@@ -27,7 +27,6 @@ class HomeView extends StatelessWidget {
       create: (_) => instance<HomeCubit>()..getHome(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.transparent,
         drawer: buildDrawer(context),
         body: SingleChildScrollView(
           child: Padding(
@@ -45,13 +44,17 @@ class HomeView extends StatelessWidget {
                       onPressed: () {
                         scaffoldKey.currentState?.openDrawer();
                       },
-                      icon: const Icon(Icons.menu),
+                      icon: Icon(
+                        Icons.menu,
+                        color: Theme.of(context).primaryColorLight,
+                      ),
                     ),
                     Center(
                       child: Text(
                         'الصفحة الرئيسية',
                         style: getBoldSegoeStyle(
-                            fontSize: 25, color: ColorManager.black),
+                            fontSize: 25,
+                            color: Theme.of(context).primaryColorLight),
                       ),
                     ),
                     const SizedBox(
@@ -69,7 +72,7 @@ class HomeView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: AppPadding.p20, vertical: AppPadding.p18),
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).primaryColorDark,
                           borderRadius: BorderRadius.circular(15),
                           boxShadow: [
                             BoxShadow(
@@ -82,14 +85,15 @@ class HomeView extends StatelessWidget {
                           Row(
                             children: [
                               SvgPicture.asset(IconAssets.shopIcon,
-                                  color: Colors.black54, height: 30),
+                                  color: Theme.of(context).disabledColor,
+                                  height: 30),
                               const SizedBox(
                                 width: 12,
                               ),
                               Text(
                                 'العهده الحاليه',
                                 style: getBold(
-                                  color: ColorManager.black,
+                                  color: Theme.of(context).disabledColor,
                                   fontSize: 25,
                                 ),
                               ),
@@ -117,12 +121,12 @@ class HomeView extends StatelessWidget {
                                   children: [
                                     Icon(
                                       Icons.filter_alt_outlined,
-                                      color: ColorManager.baseColorLight,
+                                      color: Theme.of(context).hoverColor,
                                     ),
                                     Text(
                                       "تخصيص",
                                       style: getSemiBoldInterStyle(
-                                        color: ColorManager.baseColorLight,
+                                        color: Theme.of(context).hoverColor,
                                         fontSize: AppSize.s13,
                                       ),
                                     ),
@@ -141,7 +145,7 @@ class HomeView extends StatelessWidget {
                               columnCard(
                                   title: cubit.dolarPrice.toString(),
                                   colorTitle: ColorManager.greenLight,
-                                  des: "كميه"),
+                                  des: "السعر دولار"),
                               Container(
                                 height: AppSize.s98,
                                 width: 2,
@@ -150,7 +154,7 @@ class HomeView extends StatelessWidget {
                               columnCard(
                                   title: cubit.tlPrice.toString(),
                                   colorTitle: ColorManager.orangeLight,
-                                  des: "سعر"),
+                                  des: "السعر بالليرة"),
                             ],
                           ),
                         ],
@@ -173,7 +177,7 @@ class HomeView extends StatelessWidget {
                             horizontal: AppPadding.p20,
                             vertical: AppPadding.p18),
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).primaryColorDark,
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: [
                               BoxShadow(
@@ -186,29 +190,32 @@ class HomeView extends StatelessWidget {
                             Row(
                               children: [
                                 SvgPicture.asset(IconAssets.location,
-                                    color: Colors.black54, height: 30),
+                                    color: Theme.of(context).disabledColor,
+                                    height: 30),
                                 const SizedBox(
                                   width: 12,
                                 ),
                                 Text(
                                   'خط سير اليوم',
                                   style: getBold(
-                                    color: ColorManager.black,
+                                    color: Theme.of(context).disabledColor,
                                     fontSize: 25,
                                   ),
                                 ),
                                 const Spacer(),
                                 IconButton(
                                     onPressed: () {},
-                                    icon: const Icon(
+                                    icon: Icon(
                                       Icons.search,
                                       size: 28,
+                                      color: Theme.of(context).disabledColor,
                                     )),
                                 IconButton(
                                     onPressed: () {},
-                                    icon: const Icon(
+                                    icon: Icon(
                                       Icons.add,
                                       size: 28,
+                                      color: Theme.of(context).disabledColor,
                                     )),
                               ],
                             ),
@@ -223,13 +230,14 @@ class HomeView extends StatelessWidget {
                                             .toInt() ??
                                         0) +
                                     1,
-                                color: ColorManager.baseColorLight,
+                                color: Theme.of(context).hoverColor,
                                 titles: cubit.homeModel!.deliveryLine
                                     ?.map((e) => e.number.toString())
                                     .toList(),
                                 titlesName: cubit.homeModel!.deliveryLine
                                     ?.map((e) => e.customerName)
                                     .toList(),
+                                color1: Theme.of(context).cardColor,
                               ),
                             ),
                             const SizedBox(
@@ -242,10 +250,10 @@ class HomeView extends StatelessWidget {
                                   Navigator.pushNamed(
                                       context, Routes.trafficLines);
                                 },
-                                child: const Text(
+                                child: Text(
                                   'عرض التفاصيل',
                                   style: TextStyle(
-                                    color: Color(0Xff020736),
+                                    color: Theme.of(context).disabledColor,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                     decoration: TextDecoration.underline,

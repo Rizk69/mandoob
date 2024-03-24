@@ -29,7 +29,6 @@ class TalabatViewBody extends StatelessWidget {
       create: (context) => talabatViewCubit, // Provide the Cubit
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: ColorManager.transparent,
         drawer: buildDrawer(context),
         body: SingleChildScrollView(
           child: Padding(
@@ -45,14 +44,14 @@ class TalabatViewBody extends StatelessWidget {
                       onPressed: () {
                         scaffoldKey.currentState?.openDrawer();
                       },
-                      icon: const Icon(Icons.menu),
+                      icon:  Icon(Icons.menu,color:  Theme.of(context).primaryColorLight,),
                     ),
                     Center(
                       child: Text(
                         'الطلبيات',
                         style: getBoldSegoeStyle(
                           fontSize: 25,
-                          color: ColorManager.black,
+                          color:  Theme.of(context).primaryColorLight,
                         ),
                       ),
                     ),
@@ -72,13 +71,14 @@ class TalabatViewBody extends StatelessWidget {
                             icon: Icon(
                               Icons.add,
                               size: 30,
+                              color:  Theme.of(context).primaryColorLight,
                             ),
                           ),
                           Text(
                             'طلبية جديدة',
                             style: getBoldSegoeStyle(
                               fontSize: 18,
-                              color: ColorManager.black,
+                              color:  Theme.of(context).primaryColorLight,
                             ),
                           )
                         ],
@@ -89,12 +89,18 @@ class TalabatViewBody extends StatelessWidget {
                 SizedBox(height: AppSize.s4.h),
                 TextFormField(
                   scribbleEnabled: true,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
                   cursorHeight: 30,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     prefixIcon: Icon(Icons.search),
                     hintText: 'ابحث هنا',
                     filled: true,
-                    fillColor: Colors.white,
+                    hintStyle: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    fillColor:Theme.of(context).primaryColorDark,
                   ),
                 ),
                 SizedBox(height: AppSize.s4.h),
@@ -104,7 +110,8 @@ class TalabatViewBody extends StatelessWidget {
                     vertical: AppPadding.p18,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).primaryColorDark,
+
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
@@ -139,7 +146,7 @@ class TalabatViewBody extends StatelessWidget {
                 SizedBox(height: AppSize.s6.h),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).primaryColorDark,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
@@ -158,7 +165,7 @@ class TalabatViewBody extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                const TabBar(
+                                 TabBar(
                                   indicatorColor: Colors.black,
                                   tabs: [
                                     Tab(
@@ -167,8 +174,7 @@ class TalabatViewBody extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors
-                                              .black, // Change this to your desired text color
+                                          color:  Theme.of(context).primaryColor, // Change this to your desired text color
                                         ),
                                       ),
                                     ),
@@ -178,8 +184,7 @@ class TalabatViewBody extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors
-                                              .black, // Change this to your desired text color
+                                          color:  Theme.of(context).primaryColor, // Change this to your desired text color
                                         ),
                                       ),
                                     ),

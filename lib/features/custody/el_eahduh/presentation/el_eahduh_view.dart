@@ -16,7 +16,6 @@ class ElEahduh extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.backGround,
       drawer: buildDrawer(context),
       key: scaffoldKey,
       body: BlocProvider(
@@ -41,31 +40,37 @@ class ElEahduh extends StatelessWidget {
                             onPressed: () {
                               scaffoldKey.currentState?.openDrawer();
                             },
-                            icon: const Icon(Icons.menu),
+                            icon:  Icon(Icons.menu,color: Theme.of(context).primaryColorLight,),
                           ),
                           Center(
                             child: Text(
                               'العهدة',
                               style: getBoldSegoeStyle(
-                                  fontSize: 25, color: ColorManager.black),
+                                  fontSize: 25, color: Theme.of(context).primaryColorLight),
                             ),
                           ),
                           IconButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, Routes.homeRoute);
                               },
-                              icon: Icon(Icons.arrow_forward))
+                              icon: Icon(Icons.arrow_forward,color: Theme.of(context).primaryColorLight,))
                         ],
                       ),
                       SizedBox(height: AppSize.s4.h),
                       TextFormField(
                         scribbleEnabled: true,
                         cursorHeight: 30,
-                        decoration: const InputDecoration(
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        decoration:  InputDecoration(
                           prefixIcon: Icon(Icons.search),
                           hintText: 'ابحث هنا',
                           filled: true,
-                          fillColor: Colors.white,
+                          hintStyle: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          fillColor:Theme.of(context).primaryColorDark,
                         ),
                       ),
                       SizedBox(height: AppSize.s4.h),
@@ -75,13 +80,13 @@ class ElEahduh extends StatelessWidget {
                           vertical: AppPadding.p18,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).primaryColorDark,
                           borderRadius: BorderRadius.circular(15),
                           boxShadow: [
                             BoxShadow(
                               color: ColorManager.shadowColor,
-                              blurRadius: 9,
-                              spreadRadius: 8,
+                              blurRadius: 4,
+                              spreadRadius: 2,
                             )
                           ],
                         ),
@@ -124,7 +129,7 @@ class ElEahduh extends StatelessWidget {
                             return Container(
                               padding: EdgeInsets.only(top: 15),
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Theme.of(context).primaryColorDark,
                                 borderRadius: BorderRadius.circular(25),
                               ),
                               child: Column(
@@ -160,7 +165,7 @@ class ElEahduh extends StatelessWidget {
                                               data?.data[index].nameAr ?? '',
                                               style: TextStyle(
                                                 fontSize: 27,
-                                                color: Colors.black,
+                                                color: Theme.of(context).primaryColor,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -168,7 +173,7 @@ class ElEahduh extends StatelessWidget {
                                               '${data?.data[index].count} عبوة ',
                                               style: TextStyle(
                                                 fontSize: 18,
-                                                color: Colors.black,
+                                                color: Theme.of(context).primaryColor,
                                               ),
                                             ),
                                             Text(
@@ -202,7 +207,7 @@ class ElEahduh extends StatelessWidget {
                                   Spacer(),
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Colors.blue,
+                                      color: Theme.of(context).hoverColor,
                                       borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15),

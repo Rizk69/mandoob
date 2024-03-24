@@ -21,7 +21,7 @@ class TradeItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(8.0), // إضافة هامش حول الكارت
       decoration: BoxDecoration(
-        color: Colors.white, // لون الكارت أبيض
+        color: Theme.of(context).primaryColorDark, // لون الكارت أبيض
         borderRadius: BorderRadius.circular(18), // حواف الكارت دائرية
         boxShadow: [
           BoxShadow(

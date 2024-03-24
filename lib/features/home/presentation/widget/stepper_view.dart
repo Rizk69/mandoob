@@ -12,7 +12,7 @@ class StepProgressView extends StatelessWidget {
   final List<String> _titlesName;
   final int _curStep;
   final Color _activeColor;
-  final Color _inactiveColor =Colors.black87;
+  final Color _inactiveColor ;
   final double lineWidth = 3.0;
   final StepProgressViewDirection direction;
 
@@ -23,14 +23,18 @@ class StepProgressView extends StatelessWidget {
     List<String>? titlesName,
     required double width,
     required Color color,
+    required Color color1,
     this.direction = StepProgressViewDirection.horizontal,
   })  : _titles = titles ?? [],
         _titlesName = titlesName ?? [],
         _curStep = curStep,
         _width = width,
         _activeColor = color,
+  _inactiveColor=color1,
         assert(width > 0),
         super(key: key);
+
+  static BuildContext get context => context;
 
   @override
   Widget build(BuildContext context) {

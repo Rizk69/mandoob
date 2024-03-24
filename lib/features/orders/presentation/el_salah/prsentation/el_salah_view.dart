@@ -28,7 +28,6 @@ class ElSalahViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.backGround,
       drawer: buildDrawer(context),
       body: SingleChildScrollView(
         child: Padding(
@@ -46,20 +45,20 @@ class ElSalahViewBody extends StatelessWidget {
                         onPressed: () {
                           context.read<ElSalahCubit>().openDrawer(context);
                         },
-                        icon: const Icon(Icons.menu),
+                        icon:  Icon(Icons.menu,color: Theme.of(context).primaryColorLight,),
                       ),
                       Center(
                         child: Text(
                           'السلة',
                           style: getBoldSegoeStyle(
-                              fontSize: 25, color: ColorManager.black),
+                              fontSize: 25, color:Theme.of(context).primaryColorLight),
                         ),
                       ),
                       IconButton(
                           onPressed: () {
                             Navigator.pushNamed(context, Routes.homeRoute);
                           },
-                          icon: Icon(Icons.arrow_forward))
+                          icon: Icon(Icons.arrow_forward,color: Theme.of(context).primaryColorLight,))
                     ],
                   ),
                   SizedBox(height: AppSize.s4.h),
@@ -74,7 +73,7 @@ class ElSalahViewBody extends StatelessWidget {
                           EdgeInsets.all(10.0),
                         ),
                         backgroundColor: MaterialStatePropertyAll<Color>(
-                            ColorManager.baseColorLight),
+                            Theme.of(context).hoverColor),
                         shape: MaterialStatePropertyAll<OutlinedBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
