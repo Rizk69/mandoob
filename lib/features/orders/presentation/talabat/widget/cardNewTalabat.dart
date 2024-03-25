@@ -16,7 +16,7 @@ class CardNewTalabat extends StatelessWidget {
             vertical: 18,
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).primaryColorDark,
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
@@ -39,7 +39,7 @@ class CardNewTalabat extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: Image.asset(
-                    'assets/images/prduct.jpg',
+                    'assets/images/product.png',
                     height: 50,
                     width: 50,
                     fit: BoxFit.fitHeight,
@@ -57,7 +57,7 @@ class CardNewTalabat extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),
@@ -95,10 +95,13 @@ class CardNewTalabat extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Theme.of(context).primaryColor,
                         ),
                       ),
-                      Icon(Icons.arrow_drop_down),
+                      Icon(
+                        Icons.arrow_drop_down,
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ],
                   )
                 ],

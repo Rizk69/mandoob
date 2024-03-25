@@ -41,7 +41,6 @@ class AddTrafficLines extends StatelessWidget {
       child: Scaffold(
           drawer: buildDrawer(context),
           key: scaffoldKey,
-          backgroundColor: ColorManager.backGround,
           body: MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => instance<TradeCubit>()..getTrade()),
@@ -104,7 +103,7 @@ class AddTrafficLines extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: AppSize.s20.sp,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                      color:  Theme.of(context).primaryColor,
                                     ),
                                   ),
                                 ),
@@ -118,9 +117,9 @@ class AddTrafficLines extends StatelessWidget {
                                           value: LocaleKeys.addNewTrade.tr(),
                                           child: Row(
                                             children: [
-                                              const Icon(Icons.add),
+                                               Icon(Icons.add),
                                               SizedBox(width: AppSize.s3.w,),
-                                              Text(LocaleKeys.addNewTrade.tr()),
+                                              Text(LocaleKeys.addNewTrade.tr(),style: TextStyle(color: Theme.of(context).primaryColor),),
                                             ],
                                           ),
                                         ),
@@ -151,17 +150,19 @@ class AddTrafficLines extends StatelessWidget {
                                       }
 
                                       return DropdownButtonFormField<String>(
-                                        decoration: const InputDecoration(
+                                        decoration:  InputDecoration(
                                           filled: true,
-                                          fillColor: Colors.white,
+                                          fillColor:Theme.of(context).primaryColorDark,
                                         ),
                                         items: tradeItems,
+                                        style: TextStyle(
+                                          color: Theme.of(context).primaryColor
+                                        ),
                                         onChanged: (value) {
                                           if (value == LocaleKeys.addNewTrade.tr()) {
                                             Navigator.pushNamed(context, Routes.newTrader);
                                           } else {
                                             customerId = value!;
-                                            // هنا يمكن التعامل مع اختيار تاجر معين
                                           }
                                         },
                                         hint: Text(LocaleKeys.selectTrader.tr()),
@@ -180,17 +181,22 @@ class AddTrafficLines extends StatelessWidget {
                                     style:  TextStyle(
                                       fontSize: AppSize.s20.sp,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   flex: 3,
                                   child: TextFormField(
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor
+                                    ),
                                     controller: _dateController, // استخدام TextEditingController
+
                                     decoration: InputDecoration(
+
                                       filled: true,
-                                      fillColor: Colors.white,
+                                      fillColor:Theme.of(context).primaryColorDark,
                                       suffixIcon: IconButton(
                                         icon: Icon(Icons.calendar_today),
                                         onPressed: () async {
@@ -217,6 +223,7 @@ class AddTrafficLines extends StatelessWidget {
                                 width:
                                 MediaQuery.of(context).size.width * 1.5,
                                 child: CustomButton(
+
                                   onPressed: () {
                                     TrafficLinesCubit.get(context).addTrafficLine(
                                       date: _dateController.text,

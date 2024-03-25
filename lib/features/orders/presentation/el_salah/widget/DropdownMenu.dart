@@ -21,7 +21,6 @@ class _DropdownMenuCustomState extends State<DropdownMenuCustom> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: widget.color,
         border: Border.all(
@@ -31,12 +30,14 @@ class _DropdownMenuCustomState extends State<DropdownMenuCustom> {
         borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
       ),
       child: DropdownButton<dynamic>(
+        focusColor: Theme.of(context).primaryColor,
         value: _selectedItem,
         underline: Container(),
-        hint: Text(widget.initText),
-        style: const TextStyle(
+        hint: Expanded(child: Text(widget.initText,overflow: TextOverflow.ellipsis,style: TextStyle(color: Theme.of(context).primaryColor, ),),),
+
+        style:  TextStyle(
           fontSize: 23,
-          color: Colors.black,
+          color: Theme.of(context).primaryColor,
           fontWeight: FontWeight.bold,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 15),

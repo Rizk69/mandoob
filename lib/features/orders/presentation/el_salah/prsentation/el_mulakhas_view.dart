@@ -18,7 +18,6 @@ class ElMulakhas extends StatelessWidget {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
-      backgroundColor: ColorManager.backGround,
       drawer: buildDrawer(context),
       key: scaffoldKey,
       body: Padding(
@@ -41,7 +40,7 @@ class ElMulakhas extends StatelessWidget {
                 Text(
                   'التاجر',
                   style: getBoldSegoeStyle(
-                      fontSize: 20, color: ColorManager.black),
+                      fontSize: 20, color: Theme.of(context).primaryColor),
                 ),
                 SizedBox(
                   width: AppSize.s4.w,
@@ -74,17 +73,17 @@ class ElMulakhas extends StatelessWidget {
                         Text(
                           'شامبو حجم كبير',
                           style: getRegularSegoeStyle(
-                              fontSize: 18, color: ColorManager.black),
+                              fontSize: 18, color: Theme.of(context).primaryColor),
                         ),
                         Text(
                           '1 طن',
                           style: getRegularSegoeStyle(
-                              fontSize: 18, color: ColorManager.black),
+                              fontSize: 18, color: Theme.of(context).primaryColor),
                         ),
                         Text(
                           '\$681',
                           style: getRegularSegoeStyle(
-                              fontSize: 18, color: ColorManager.black),
+                              fontSize: 18, color: Theme.of(context).primaryColor),
                         ),
                       ],
                     ),
@@ -108,17 +107,17 @@ class ElMulakhas extends StatelessWidget {
                         Text(
                           'شامبو حجم كبير',
                           style: getRegularSegoeStyle(
-                              fontSize: 18, color: ColorManager.black),
+                              fontSize: 18, color:Theme.of(context).primaryColor),
                         ),
                         Text(
                           '1 طن',
                           style: getRegularSegoeStyle(
-                              fontSize: 18, color: ColorManager.black),
+                              fontSize: 18, color: Theme.of(context).primaryColor),
                         ),
                         Text(
                           '\$681',
                           style: getRegularSegoeStyle(
-                              fontSize: 18, color: ColorManager.black),
+                              fontSize: 18, color:Theme.of(context).primaryColor),
                         ),
                       ],
                     ),

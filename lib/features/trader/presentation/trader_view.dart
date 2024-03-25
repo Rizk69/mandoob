@@ -69,8 +69,9 @@ class TraderView extends StatelessWidget {
                                   hintStyle: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                   ),
-                                  filled: true,
                                   fillColor: Theme.of(context).primaryColorDark,
+                                  filled: true,
+
                                 ),
                               );
                             },

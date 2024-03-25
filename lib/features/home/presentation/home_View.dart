@@ -53,7 +53,7 @@ class HomeView extends StatelessWidget {
                       child: Text(
                         'الصفحة الرئيسية',
                         style: getBoldSegoeStyle(
-                            fontSize: 25, color: ColorManager.black),
+                            fontSize: 25, color: Theme.of(context).primaryColorLight),
                       ),
                     ),
                     const SizedBox(
@@ -71,7 +71,7 @@ class HomeView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: AppPadding.p20, vertical: AppPadding.p18),
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color:Theme.of(context).primaryColorDark,
                           borderRadius: BorderRadius.circular(15),
                           boxShadow: [
                             BoxShadow(
@@ -206,9 +206,10 @@ class HomeView extends StatelessWidget {
                                     onPressed: () {
                                       Navigator.pushNamed(context, Routes.addtrafficLines);
                                     },
-                                    icon: const Icon(
+                                    icon:  Icon(
                                       Icons.add,
                                       size: 28,
+                                      color:  Theme.of(context).disabledColor,
                                     )),
                               ],
                             ),
@@ -243,10 +244,10 @@ class HomeView extends StatelessWidget {
                                   Navigator.pushNamed(
                                       context, Routes.trafficLines);
                                 },
-                                child: const Text(
+                                child:  Text(
                                   'عرض التفاصيل',
                                   style: TextStyle(
-                                    color: Color(0Xff020736),
+                                    color: Theme.of(context).disabledColor,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                     decoration: TextDecoration.underline,

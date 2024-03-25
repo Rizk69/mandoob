@@ -50,127 +50,125 @@ class NewTraderView extends StatelessWidget {
           var cubit = AddTradeCubit.get(context);
           return SafeArea(
               top: false,
-              child: Container(
-                color: Colors.white,
-                child: Stack(
-                  children: [
-                    imageBackground(context),
-                    Scaffold(
-                      key: scaffoldKey,
-                      backgroundColor: ColorManager.backGround.withOpacity(0.5),
-                      drawer: buildDrawer(context),
-                      body: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 18),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: AppSize.s6.h,
-                              ),
-                              HeaderScreen(
-                                  functionDrawer: () {
-                                    scaffoldKey.currentState?.openDrawer();
+              child: Stack(
+
+                children: [
+                  imageBackground(context),
+                  Scaffold(
+                    key: scaffoldKey,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
+                    drawer: buildDrawer(context),
+                    body: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: AppSize.s6.h,
+                            ),
+                            HeaderScreen(
+                                functionDrawer: () {
+                                  scaffoldKey.currentState?.openDrawer();
+                                },
+                                title: LocaleKeys.addNewTrade.tr(),
+                                functionIcon: () {
+                                  Navigator.pop(context);
+                                }),
+                            SizedBox(height: AppSize.s5.h),
+                            customTextFormFiledInfo(
+                              text: LocaleKeys.TradeName.tr(),
+                              onChanged: (name) {
+                                cubit.setName(name);
+                              }, context: context,
+                            ),
+                            SizedBox(height: AppSize.s5.h),
+                            customTextFormFiledInfo(
+                              text: LocaleKeys.TradeAddress.tr(),
+                              onChanged: (address) {
+                                cubit.setAddress(address);
+                              }, context: context,
+                            ),
+                            SizedBox(height: AppSize.s5.h),
+                            customTextFormFiledInfo(
+                              text: LocaleKeys.TradePhone.tr(),
+                              onChanged: (phone) {
+                                cubit.setPhone(phone);
+                              }, context: context,
+                            ),
+                            SizedBox(height: AppSize.s5.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    LocaleKeys.TradePrice.tr(),
+                                    style:  TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color:  Theme.of(context).primaryColor
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    decoration:  BoxDecoration(
+                                      shape: BoxShape.rectangle,
+                                      color: Theme.of(context).primaryColorDark,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(20.0),
+                                      ),
+                                    ),
+                                    child: DropdownButton<int>(
+                                      value: cubit.tradeObject.price,
+                                      elevation: 16,
+                                      style:  TextStyle(
+                                        color: Theme.of(context).primaryColor, // لون النص
+                                        fontSize: 18, // حجم النص
+                                      ),
+                                      dropdownColor: Theme.of(context).primaryColorDark,
+                                      onChanged: (value) {
+                                        cubit.setPrice(value!);
+                                      },
+                                      items: [
+                                        DropdownMenuItem(
+                                          value: 0,
+                                          child: Text(LocaleKeys.retail.tr()),
+                                        ),
+                                        DropdownMenuItem(
+                                          value: 1,
+                                          child: Text(
+                                            LocaleKeys.wholesale.tr(),
+                                          ),
+                                        ),
+                                        DropdownMenuItem(
+                                          value: 2,
+                                          child: Text(
+                                            LocaleKeys.factoryPrice.tr(),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: AppSize.s12.h),
+                            SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 0.9,
+                                child: CustomButton(
+                                  onPressed: () {
+                                    cubit.addTrade();
                                   },
-                                  title: LocaleKeys.addNewTrade.tr(),
-                                  functionIcon: () {
-                                    Navigator.pop(context);
-                                  }),
-                              SizedBox(height: AppSize.s5.h),
-                              customTextFormFiledInfo(
-                                text: LocaleKeys.TradeName.tr(),
-                                onChanged: (name) {
-                                  cubit.setName(name);
-                                },
-                              ),
-                              SizedBox(height: AppSize.s5.h),
-                              customTextFormFiledInfo(
-                                text: LocaleKeys.TradeAddress.tr(),
-                                onChanged: (address) {
-                                  cubit.setAddress(address);
-                                },
-                              ),
-                              SizedBox(height: AppSize.s5.h),
-                              customTextFormFiledInfo(
-                                text: LocaleKeys.TradePhone.tr(),
-                                onChanged: (phone) {
-                                  cubit.setPhone(phone);
-                                },
-                              ),
-                              SizedBox(height: AppSize.s5.h),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      LocaleKeys.TradePrice.tr(),
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 16),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(20.0),
-                                        ),
-                                      ),
-                                      child: DropdownButton<int>(
-                                        value: cubit.tradeObject.price,
-                                        elevation: 16,
-                                        style: const TextStyle(
-                                          color: Colors.black, // لون النص
-                                          fontSize: 18, // حجم النص
-                                        ),
-                                        dropdownColor: Colors.white,
-                                        onChanged: (value) {
-                                          cubit.setPrice(value!);
-                                        },
-                                        items: [
-                                          DropdownMenuItem(
-                                            value: 0,
-                                            child: Text(LocaleKeys.retail.tr()),
-                                          ),
-                                          DropdownMenuItem(
-                                            value: 1,
-                                            child: Text(
-                                              LocaleKeys.wholesale.tr(),
-                                            ),
-                                          ),
-                                          DropdownMenuItem(
-                                            value: 2,
-                                            child: Text(
-                                              LocaleKeys.factoryPrice.tr(),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: AppSize.s12.h),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.9,
-                                  child: CustomButton(
-                                    onPressed: () {
-                                      cubit.addTrade();
-                                    },
-                                    buttonText: LocaleKeys.add.tr(),
-                                  ))
-                            ],
-                          ),
+                                  buttonText: LocaleKeys.add.tr(),
+                                ))
+                          ],
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ));
         },
       ),

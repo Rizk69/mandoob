@@ -33,7 +33,6 @@ class NewTalabatViewBody extends StatelessWidget {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: ColorManager.backGround,
       drawer: buildDrawer(context),
       body: BlocBuilder<NewTalabatCubit, int>(
         builder: (context, state) {
@@ -51,14 +50,14 @@ class NewTalabatViewBody extends StatelessWidget {
                         onPressed: () {
                           scaffoldKey.currentState?.openDrawer();
                         },
-                        icon: const Icon(Icons.menu),
+                        icon:  Icon(Icons.menu,color:  Theme.of(context).primaryColorLight,),
                       ),
                       Center(
                         child: Text(
                           'طلبية جديدة',
                           style: getBoldSegoeStyle(
                             fontSize: 25,
-                            color: ColorManager.black,
+                            color:  Theme.of(context).primaryColorLight,
                           ),
                         ),
                       ),
@@ -66,7 +65,7 @@ class NewTalabatViewBody extends StatelessWidget {
                         onPressed: () {
                           Navigator.pushNamed(context, Routes.homeRoute);
                         },
-                        icon: Icon(Icons.arrow_forward),
+                        icon: Icon(Icons.arrow_forward,color:  Theme.of(context).primaryColorLight,),
                       )
                     ],
                   ),
@@ -77,11 +76,17 @@ class NewTalabatViewBody extends StatelessWidget {
                         child: TextFormField(
                           scribbleEnabled: true,
                           cursorHeight: 30,
-                          decoration: const InputDecoration(
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          decoration:  InputDecoration(
                             prefixIcon: Icon(Icons.search),
                             hintText: 'ابحث هنا',
                             filled: true,
-                            fillColor: Colors.white,
+                            hintStyle: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            fillColor: Theme.of(context).primaryColorDark,
                           ),
                         ),
                       ),
@@ -91,17 +96,24 @@ class NewTalabatViewBody extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           showMenu(
+                            color: Theme.of(context).primaryColorDark,
                             context: context,
                             position: RelativeRect.fromLTRB(0, 200, 100, 100),
                             items: [
                               PopupMenuItem(
-                                child: Text('شامبو'),
+                                child: Text('شامبو',style:TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                ),),
                               ),
                               PopupMenuItem(
-                                child: Text('شاور'),
+                                child: Text('شاور',style:TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                ),),
                               ),
                               PopupMenuItem(
-                                child: Text('صابون'),
+                                child: Text('صابون',style:TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                ),),
                               ),
                             ],
                           );

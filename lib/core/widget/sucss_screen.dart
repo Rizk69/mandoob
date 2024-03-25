@@ -20,7 +20,7 @@ class SucssufflySceen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.3,),
           const Center(child: AnimatedCheck(img: 'assets/images/sucssimage.png')),
           SizedBox(height: AppSize.s4.h,),
-          Text(title,style: getBoldSegoeStyle(fontSize: 25, color: ColorManager.black),),
+          Text(title,style: getBoldSegoeStyle(fontSize: 25, color: Theme.of(context).primaryColor),),
           SizedBox(height: AppSize.s18.h,),
           SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,

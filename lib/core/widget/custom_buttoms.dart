@@ -25,7 +25,7 @@ class CustomButton extends StatelessWidget {
             EdgeInsets.all(10.0),
           ),
           backgroundColor:
-          MaterialStateProperty.all<Color>(ColorManager.baseColorLight),
+          MaterialStateProperty.all<Color>(Theme.of(context).hoverColor),
           shape: MaterialStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(

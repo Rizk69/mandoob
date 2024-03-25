@@ -34,7 +34,6 @@ class TrafficLines extends StatelessWidget {
     return Scaffold(
       drawer: buildDrawer(context),
       key: scaffoldKey,
-      backgroundColor: ColorManager.backGround,
       body: BlocProvider(
         create: (context) => instance<TrafficLinesCubit>()..getTrafficLines(),
         child: Padding(
@@ -56,8 +55,7 @@ class TrafficLines extends StatelessWidget {
                 SizedBox(height: AppSize.s4.h),
                 BlocConsumer<TrafficLinesCubit, TrafficLinesState>(
                   listener: (context, state) {
-
-                    if(state is DeleteTrafficLinesLoaded){
+                    if (state is DeleteTrafficLinesLoaded) {
                       final snackBar = defaultSnakeBar(
                         title: LocaleKeys.SUCCESS.tr(),
                         message: LocaleKeys.SUCCESS.tr(),
@@ -70,7 +68,7 @@ class TrafficLines extends StatelessWidget {
                       Navigator.popAndPushNamed(context, Routes.homeRoute);
                     }
 
-                    if(state is DeleteTrafficLinesError){
+                    if (state is DeleteTrafficLinesError) {
                       final snackBar = defaultSnakeBar(
                         title: LocaleKeys.ERROR.tr(),
                         message: state.message,
@@ -80,7 +78,6 @@ class TrafficLines extends StatelessWidget {
                         ..hideCurrentSnackBar()
                         ..showSnackBar(snackBar);
                     }
-
                   },
                   builder: (context, state) {
                     var cubit = TrafficLinesCubit.get(context);
@@ -103,6 +100,9 @@ class TrafficLines extends StatelessWidget {
                         TextFormField(
                           scribbleEnabled: true,
                           cursorHeight: 30,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
                           onChanged: (value) {
                             cubit.searchTraffic(value);
                           },
@@ -141,7 +141,10 @@ class TrafficLines extends StatelessWidget {
                             ),
                             hintText: LocaleKeys.searchHere.tr(),
                             filled: true,
-                            fillColor: Colors.white,
+                            hintStyle: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            fillColor: Theme.of(context).primaryColorDark,
                           ),
                         ),
                         SizedBox(height: AppSize.s4.h),
@@ -149,9 +152,10 @@ class TrafficLines extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 30, horizontal: 15),
                             decoration: BoxDecoration(
-                                color: ColorManager.white,
+                                color: Theme.of(context).primaryColorDark,
                                 borderRadius: BorderRadius.circular(20)),
                             child: EasyDateTimeLine(
+                              activeColor: Theme.of(context).primaryColor,
                               initialDate: DateTime.now(),
                               locale:
                                   isCurrentLanguageEn(context) ? "en" : 'ar',
@@ -159,27 +163,34 @@ class TrafficLines extends StatelessWidget {
                                 cubit.selectTime(selectedDate);
                                 cubit.getTrafficLinesForDate(selectedDate);
                               },
-                              headerProps: const EasyHeaderProps(
-                                monthPickerType: MonthPickerType.switcher,
-                                dateFormatter: DateFormatter.fullDateDMY(),
-                              ),
-                              dayProps: const EasyDayProps(
-                                dayStructure: DayStructure.dayStrDayNum,
-                                activeDayStyle: DayStyle(
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)),
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Color(0xffD9D9D9),
-                                        Color(0xff05138B),
-                                      ],
+                              headerProps: EasyHeaderProps(
+                                  monthPickerType: MonthPickerType.switcher,
+                                  dateFormatter: DateFormatter.fullDateDMY(),
+                                  monthStyle: TextStyle(
+                                      color: Theme.of(context).primaryColor)),
+                              dayProps: EasyDayProps(
+                                  dayStructure: DayStructure.dayStrDayNum,
+                                  activeDayStyle: DayStyle(
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).primaryColor,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8)),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Color(0xffD9D9D9),
+                                          Color(0xff05138B),
+                                        ],
+                                      ),
                                     ),
+                                    // Set the text color here
                                   ),
-                                ),
-                              ),
+                                  borderColor: Theme.of(context).primaryColor,
+                                  todayStyle: DayStyle(
+                                      dayStrStyle: TextStyle(
+                                          color:
+                                              Theme.of(context).primaryColor))),
                             )),
                         SizedBox(height: AppSize.s1.h),
                         ConditionalBuilder(
@@ -188,63 +199,96 @@ class TrafficLines extends StatelessWidget {
                                   state is SearchTrafficSuccessState) &&
                               hasData,
                           builder: (context) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(height: AppSize.s1.h,),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("اضافة خط سير ",
-                                      style: getBoldInterStyle(color: Colors.black,fontSize: AppSize.s20.sp),
-                                      ),
-                                      const Spacer(),
-                                      IconButton(
-                                          padding: EdgeInsets.zero,
-                                          onPressed: (){
-                                            Navigator.pushNamed(context, Routes.addtrafficLines);
-                                          }, icon:  Icon(Icons.add , size: AppSize.s25.sp,))
-                                    ],
-                                  ),
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: const BouncingScrollPhysics(),
-                                    itemCount: data?.length,
-                                    itemBuilder: (context, index) {
-                                      final activeItem = data?[index].active;
-                                      final isFirst = activeItem == 0;
-                                      final isLast = activeItem == 0;
-                                      final isPast = activeItem == 1;
-                                      return Column(
-                                        children: [
-                                          MyTimeLineTitle(
-                                            isFirst: isFirst,
-                                            isLast: isLast,
-                                            isPast: isPast,
-                                            traderName: data![index].customerName,
-                                            address: data[index].address,
-                                            traderId: data[index].id,
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ),
-                            );
+                            return cubit.trafficModel?.data==0
+                                ? Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: AppSize.s1.h,
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "اضافة خط سير ",
+                                              style: getBoldInterStyle(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  fontSize: AppSize.s20.sp),
+                                            ),
+                                            const Spacer(),
+                                            IconButton(
+                                                padding: EdgeInsets.zero,
+                                                onPressed: () {
+                                                  Navigator.pushNamed(context,
+                                                      Routes.addtrafficLines);
+                                                },
+                                                icon: Icon(
+                                                  Icons.add,
+                                                  size: AppSize.s25.sp,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                ))
+                                          ],
+                                        ),
+                                        ListView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          itemCount: data?.length,
+                                          itemBuilder: (context, index) {
+                                            final activeItem =
+                                                data?[index].active;
+                                            final isFirst = activeItem == 0;
+                                            final isLast = activeItem == 0;
+                                            final isPast = activeItem == 1;
+                                            return Column(
+                                              children: [
+                                                MyTimeLineTitle(
+                                                  isFirst: isFirst,
+                                                  isLast: isLast,
+                                                  isPast: isPast,
+                                                  traderName:
+                                                      data![index].customerName,
+                                                  address: data[index].address,
+                                                  traderId: data[index].id,
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : Center(
+                                    child: Text(
+                                      LocaleKeys.NO_CONTENT.tr(),
+                                      style: TextStyle(
+                                          color:
+                                              Theme.of(context).primaryColor),
+                                    ),
+                                  );
                           },
-                          fallback: (context) =>
-                              (state is GetTrafficLinesError ||
-                                      state is SearchTrafficErrorState)
-                                  ? Center(
-                                      child: Text(LocaleKeys.NO_CONTENT.tr()),
-                                    )
-                                  : const CircularProgressIndicator(),
+                          fallback: (context) => (state
+                                      is GetTrafficLinesError ||
+                                  state is SearchTrafficErrorState)
+                              ? Center(
+                                  child: Text(
+                                    LocaleKeys.NO_CONTENT.tr(),
+                                    style: TextStyle(
+                                        color: Theme.of(context).primaryColor),
+                                  ),
+                                )
+                              : const CircularProgressIndicator(),
                         ),
                       ],
                     );

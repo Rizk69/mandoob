@@ -211,7 +211,7 @@ class TalabatViewBody extends StatelessWidget {
                                                   'المواد : شامبو 1 - شامبو 2',
                                                   style: getBoldSegoeStyle(
                                                     fontSize: 18,
-                                                    color: ColorManager.black,
+                                                    color: Theme.of(context).primaryColor,
                                                   ),
                                                 ),
                                                 SizedBox(height: 8),
@@ -219,7 +219,7 @@ class TalabatViewBody extends StatelessWidget {
                                                   'المبلغ  : 4545',
                                                   style: getBoldSegoeStyle(
                                                     fontSize: 18,
-                                                    color: ColorManager.black,
+                                                    color: Theme.of(context).primaryColor,
                                                   ),
                                                 ),
                                                 SizedBox(height: 8),
@@ -228,7 +228,7 @@ class TalabatViewBody extends StatelessWidget {
                                                     text: 'الحالة : ',
                                                     style: getBoldSegoeStyle(
                                                       fontSize: 18,
-                                                      color: ColorManager.black,
+                                                      color: Theme.of(context).primaryColor,
                                                     ),
                                                     children: [
                                                       TextSpan(
@@ -249,7 +249,7 @@ class TalabatViewBody extends StatelessWidget {
                                                   'التاريخ :  24-11-2022 ',
                                                   style: getBoldSegoeStyle(
                                                     fontSize: 18,
-                                                    color: ColorManager.black,
+                                                    color:Theme.of(context).primaryColor,
                                                   ),
                                                 ),
                                                 Align(
@@ -294,7 +294,7 @@ class TalabatViewBody extends StatelessWidget {
                                                   'المواد : شامبو 1 - شامبو 2',
                                                   style: getBoldSegoeStyle(
                                                     fontSize: 18,
-                                                    color: ColorManager.black,
+                                                    color:Theme.of(context).primaryColor,
                                                   ),
                                                 ),
                                                 SizedBox(height: 8),
@@ -302,7 +302,7 @@ class TalabatViewBody extends StatelessWidget {
                                                   'المبلغ  : 4545',
                                                   style: getBoldSegoeStyle(
                                                     fontSize: 18,
-                                                    color: ColorManager.black,
+                                                    color: Theme.of(context).primaryColor,
                                                   ),
                                                 ),
                                                 SizedBox(height: 8),
@@ -311,7 +311,7 @@ class TalabatViewBody extends StatelessWidget {
                                                     text: 'الحالة : ',
                                                     style: getBoldSegoeStyle(
                                                       fontSize: 18,
-                                                      color: ColorManager.black,
+                                                      color: Theme.of(context).primaryColor,
                                                     ),
                                                     children: [
                                                       TextSpan(
@@ -332,7 +332,7 @@ class TalabatViewBody extends StatelessWidget {
                                                   'التاريخ :  24-11-2022 ',
                                                   style: getBoldSegoeStyle(
                                                     fontSize: 18,
-                                                    color: ColorManager.black,
+                                                    color: Theme.of(context).primaryColor,
                                                   ),
                                                 ),
                                                 Align(

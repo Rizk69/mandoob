@@ -37,7 +37,7 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
             margin: EdgeInsets.symmetric(vertical: 25),
             padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             decoration: BoxDecoration(
-              color:  Theme.of(context).primaryColorDark,
+              color: Theme.of(context).primaryColorDark,
               boxShadow: [
                 BoxShadow(
                   color: ColorManager.grey3,
@@ -54,12 +54,21 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                   children: [
                     Image.asset('assets/images/product.png',
                         height: AppSize.s13.h),
-                    const Column(
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('شامبو حجم كبير'),
-                        Text('1 طن'),
-                        Text('\$681'),
+                        Text('شامبو حجم كبير',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor)),
+                        Text('1 طن',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor)),
+                        Text('\$681',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor)),
                       ],
                     ),
                     Spacer(),
@@ -78,7 +87,9 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                               Icons.add,
                               color: ColorManager.greenLight,
                             )),
-                        Text('${context.read<ElSalahCubit>().countItems}'),
+                        Text('${context.read<ElSalahCubit>().countItems}',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor)),
                         IconButton(
                             onPressed: () {
                               context.read<ElSalahCubit>().removeItem();
@@ -98,14 +109,23 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                         children: [
                           Text('الكمية المطلوبة',
                               style: getBoldSegoeStyle(
-                                  fontSize: 20, color: ColorManager.black)),
+                                  fontSize: 20,
+                                  color: Theme.of(context).primaryColor)),
                           SizedBox(width: 10),
                           Expanded(
                             child: SizedBox(
                               height: 50, // Adjust the height as needed
                               child: TextFormField(
+
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                ),
                                 decoration: InputDecoration(
-                                  hintText: '',
+                                  hintText: 'ss',
+                                  hintStyle: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  fillColor: Theme.of(context).primaryColorDark,
                                 ),
                               ),
                             ),
@@ -116,8 +136,11 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                             child: SizedBox(
                               height: 50, // Adjust the height as needed
                               child: DropdownMenuCustom(
-                                  dropdownMenuEntries: dropdownItems,
-                                  initText: 'وحدة ', color: Colors.transparent,),
+                                dropdownMenuEntries: dropdownItems,
+                                initText: 'وحدة ',
+
+                                color: Colors.transparent,
+                              ),
                             ),
                           ),
                         ],
@@ -130,12 +153,12 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                           Text(
                             'السعر ',
                             style: getBoldSegoeStyle(
-                                fontSize: 20, color: ColorManager.black),
+                                fontSize: 20, color:Theme.of(context).primaryColor),
                           ),
                           SizedBox(width: 10),
                           Expanded(
                             child: SizedBox(
-                              height: 50, // Adjust the height as needed
+                              height: 50,
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   hintText: '',
@@ -149,7 +172,7 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                             child: SizedBox(
                               height: 50, // Adjust the height as needed
                               child: DropdownMenuCustom(
-                                color: Colors.transparent,
+                                  color: Colors.transparent,
                                   dropdownMenuEntries: dropdownItems,
                                   initText: 'السعر العادي'),
                             ),
