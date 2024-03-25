@@ -61,4 +61,14 @@ class TradeRepositoryImpl extends TradeRepository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, void>> activeTrades(int traderId) async {
+    try {
+      final response = await _remoteTradeDataSource.activeTrader(traderId);
+      return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
 }

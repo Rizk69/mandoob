@@ -3,10 +3,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:mandoob/core/netowork_core/error_handler.dart';
 import 'package:mandoob/core/netowork_core/failure.dart';
 import 'package:mandoob/core/netowork_core/network_info.dart';
-import 'package:mandoob/features/custody/el_eahduh/data/data_source/eahduh_data_source.dart';
-import 'package:mandoob/features/custody/el_eahduh/data/mapper/eahduh_mapper.dart';
-import 'package:mandoob/features/custody/el_eahduh/domain/repository/eahduh_repository.dart';
-
+import 'package:mandoob/features/custody/data/data_source/eahduh_data_source.dart';
+import 'package:mandoob/features/custody/data/mapper/cart_mapper.dart';
+import 'package:mandoob/features/custody/data/mapper/eahduh_mapper.dart';
+import 'package:mandoob/features/custody/domain/model/cart_model.dart';
+import 'package:mandoob/features/custody/domain/repository/eahduh_repository.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
 import '../../domain/model/eahduh_order_model.dart';
@@ -50,6 +51,24 @@ class RepositoryEahduhImpl extends EahduhRepository {
     try {
       final response = await _remoteDataSource.deleteEahduhOrder(id: id);
       return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, CartModel>> getCart() async {
+    try {
+      final response = await _remoteDataSource.getCart();
+      if (response.status == true) {
+        print(response.status);
+        return Right(response.toDomain());
+      } else {
+        return Left(Failure(
+          ResponseCode.UNAUTHORIZED,
+          response.message ?? LocaleKeys.UNAUTHORIZED.tr(),
+        ));
+      }
     } catch (error) {
       return Left(ErrorHandler.handle(error).failure);
     }

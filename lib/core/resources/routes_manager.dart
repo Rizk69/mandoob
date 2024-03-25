@@ -4,6 +4,7 @@ import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/widget/sucss_screen.dart';
 import 'package:mandoob/features/auth/presentation/login/view/login_view.dart';
 import 'package:mandoob/features/auth/presentation/profile/presentation/profile_view.dart';
+import 'package:mandoob/features/custody/presentation/el_eahduh_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_details.dart';
@@ -15,8 +16,6 @@ import 'package:mandoob/features/trader/presentation/trader_view.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/add_traffic_lines_screen.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/traffic_lines_screen.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
-
-import '../../features/custody/el_eahduh/presentation/el_eahduh_view.dart';
 
 class Routes {
   static const String loginRoute = "/login";
@@ -55,6 +54,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ElMulakhas());
       case Routes.elHodaa:
         initEahduhModule();
+        initTradeModule();
         return MaterialPageRoute(builder: (_) => ElEahduh());
       case Routes.newTalab:
         return MaterialPageRoute(builder: (_) => NewTalabat());
@@ -72,6 +72,7 @@ class RouteGenerator {
 
         case Routes.addtrafficLines:
         initDelivaryLineModule();
+        initTradeModule();
         return MaterialPageRoute(builder: (_) => AddTrafficLines());
       case Routes.profileView:
         initProfileModule();

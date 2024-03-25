@@ -9,4 +9,6 @@ abstract class TradeRepository {
 
   Future<Either<Failure, TradeModel>> addTrades(TradeRequest tradeRequest);
 
+  Future<Either<Failure, void>> activeTrades(int traderId);
+
 }

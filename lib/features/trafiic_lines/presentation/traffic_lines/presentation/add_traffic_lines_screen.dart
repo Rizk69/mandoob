@@ -99,7 +99,7 @@ class AddTrafficLines extends StatelessWidget {
                               children: [
                                  Expanded(
                                   child: Text(
-                                    LocaleKeys.Trader.tr(), // "تاريخ الذهاب"
+                                    LocaleKeys.Trader.tr(),
                                     style: TextStyle(
                                       fontSize: AppSize.s20.sp,
                                       fontWeight: FontWeight.bold,

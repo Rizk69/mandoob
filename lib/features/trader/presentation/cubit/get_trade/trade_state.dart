@@ -33,3 +33,16 @@ class GetTradeErrorState extends TradeState {
 
   GetTradeErrorState(this.message);
 }
+
+
+
+
+class ActiveTradeLoadingState extends TradeState {}
+
+class ActiveTradeLoadedState extends TradeState {}
+
+class ActiveTradeErrorState extends TradeState {
+  final String message;
+
+  ActiveTradeErrorState(this.message);
+}

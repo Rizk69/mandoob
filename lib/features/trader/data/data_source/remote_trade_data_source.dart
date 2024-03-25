@@ -5,6 +5,7 @@ import 'package:mandoob/features/trader/data/responses/trades_response.dart';
 abstract class RemoteTradeDataSource {
   Future<TradesResponse> getTrades();
   Future<TradesResponse> addTrade(TradeRequest tradeRequest);
+  Future<void> activeTrader(int traderId);
 }
 
 class RemoteTradeDataSourceImpl extends RemoteTradeDataSource {
@@ -20,5 +21,10 @@ class RemoteTradeDataSourceImpl extends RemoteTradeDataSource {
   @override
   Future<TradesResponse> addTrade(TradeRequest tradeRequest) {
     return _tradeServiceClient.addTrade(tradeRequest);
+  }
+
+  @override
+  Future<void> activeTrader(int traderId) {
+    return _tradeServiceClient.activeTrade(traderId);
   }
 }

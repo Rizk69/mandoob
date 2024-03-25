@@ -52,7 +52,12 @@ class TraderView extends StatelessWidget {
                                 Navigator.pop(context);
                               }),
                           SizedBox(height: AppSize.s5.h),
-                          BlocBuilder<TradeCubit, TradeState>(
+                          BlocConsumer<TradeCubit, TradeState>(
+                            listener: (context, state) {
+                              if (state is ActiveTradeLoadedState){
+                                Navigator.popAndPushNamed(context, Routes.homeRoute);
+                              }
+                            },
                             builder: (context, state) {
                               return TextFormField(
                                 scribbleEnabled: true,
@@ -127,19 +132,16 @@ class TraderView extends StatelessWidget {
                                           hasData,
                                       builder: (context) => ListView.builder(
                                             shrinkWrap: true,
-                                            physics:
-                                                const BouncingScrollPhysics(),
-                                            itemCount:
-                                            currentData!.trades!.length,
+                                            physics: const BouncingScrollPhysics(),
+                                            itemCount: currentData!.trades!.length,
                                             // separatorBuilder: (context,index)=> SizedBox(height: AppSize.s1.h,),
                                             itemBuilder: (context, index) {
-                                              final trade =
-                                              currentData!.trades![index];
+                                              final trade = currentData!.trades![index];
                                               return TradeItem(
                                                 imageUrl: trade.img,
-                                                customerName:
-                                                    trade.customerName,
+                                                traderName: trade.customerName,
                                                 phone: trade.phone,
+                                                traderId: trade.id,
                                               );
                                             },
                                           ),

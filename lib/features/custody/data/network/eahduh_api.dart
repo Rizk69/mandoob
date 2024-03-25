@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:mandoob/app/constants.dart';
-import 'package:mandoob/features/auth/data/responses/profile/user_response.dart';
-import 'package:mandoob/features/trafiic_lines/data/responses/traffic_line_response.dart';
+import 'package:mandoob/features/custody/data/responses/cart_response.dart';
 import 'package:retrofit/http.dart';
 
 import '../responses/eahduh_response.dart';
@@ -14,9 +13,14 @@ abstract class EahduhServiceClient {
 
   @GET("api/order")
   Future<EahduhResponse> getEahduhOrder();
+
   @GET("api/add_favorite_products/{productId}")
   Future<void> addEahduhOrder(@Path() int productId);
+
   @GET("api/delete_favorite_products/{productId}")
   Future<void> deleteEahduhOrder(@Path() int productId);
+
+  @GET("api/get_cart")
+  Future<CartResponse> getCart();
 
 }

@@ -20,4 +20,8 @@ abstract class TradeServiceClient {
   Future<TradesResponse> addTrade(@Body() TradeRequest tradeRequest);
 
 
+  @GET("api/add_trader_cart/{trader_id}")
+  Future<void> activeTrade(@Path() int trader_id);
+
+
 }
