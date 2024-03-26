@@ -11,6 +11,14 @@ abstract class RemoteEahduhDataSource {
   Future<void> deleteEahduhOrder({required int id});
 
   Future<CartResponse> getCart();
+
+
+  Future<void> addProductToCart({required int productId});
+  Future<void> deleteOneProductInCart({required int productId});
+  Future<void> deleteAllProductInCart();
+
+
+
 }
 
 class RemoteEahduhDataSourceImpl extends RemoteEahduhDataSource {
@@ -36,5 +44,20 @@ class RemoteEahduhDataSourceImpl extends RemoteEahduhDataSource {
   @override
   Future<CartResponse> getCart() {
     return _appServiceClient.getCart();
+  }
+
+  @override
+  Future<void> addProductToCart({required int productId}) {
+    return _appServiceClient.addProductToCart(productId);
+  }
+
+  @override
+  Future<void> deleteAllProductInCart() {
+    return _appServiceClient.deleteAllProductInCart();
+  }
+
+  @override
+  Future<void> deleteOneProductInCart({required int productId}) {
+    return _appServiceClient.deleteOneProductInCart(productId);
   }
 }

@@ -73,4 +73,41 @@ class RepositoryEahduhImpl extends EahduhRepository {
       return Left(ErrorHandler.handle(error).failure);
     }
   }
+
+
+
+  @override
+  Future<Either<Failure, void>> addProductToCart({required int productId}) async {
+    try {
+      final response = await _remoteDataSource.addProductToCart(productId: productId);
+      return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+
+  @override
+  Future<Either<Failure, void>> deleteOneProductInCart({required int productId}) async {
+    try {
+      final response = await _remoteDataSource.deleteOneProductInCart(productId: productId);
+      return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+
+  @override
+  Future<Either<Failure, void>> deleteAllProductInCart() async {
+    try {
+      final response = await _remoteDataSource.deleteAllProductInCart();
+      return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+
+
 }

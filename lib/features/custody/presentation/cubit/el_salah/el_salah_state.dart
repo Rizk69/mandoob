@@ -17,6 +17,28 @@ class GetCartErrorState extends ElSalahState {
 }
 
 
+class DeleteCartLoadingState extends ElSalahState {}
+
+class DeleteCartLoadedState extends ElSalahState {}
+
+class DeleteCartErrorState extends ElSalahState {
+  final String message;
+
+  DeleteCartErrorState(this.message);
+}
+
+
+class DeleteOneProductCartLoadingState extends ElSalahState {}
+
+class DeleteOneProductCartLoadedState extends ElSalahState {}
+
+class DeleteOneProductCartErrorState extends ElSalahState {
+  final String message;
+
+  DeleteOneProductCartErrorState(this.message);
+}
+
+
 
 class YourInitialState extends ElSalahState {}
 
