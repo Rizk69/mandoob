@@ -171,6 +171,7 @@ class ElEahduh extends StatelessWidget {
                                         ..hideCurrentSnackBar()
                                         ..showSnackBar(snackBar);
 
+                                      Navigator.pushReplacementNamed(context, Routes.homeRoute);
                                     }
 
                                     if (state is ActiveTradeLoadedState) {
@@ -182,7 +183,7 @@ class ElEahduh extends StatelessWidget {
                                       ScaffoldMessenger.of(context)
                                         ..hideCurrentSnackBar()
                                         ..showSnackBar(snackBar);
-                                      
+
                                       TradeCubit.get(context).getTrade();
 
                                     }
