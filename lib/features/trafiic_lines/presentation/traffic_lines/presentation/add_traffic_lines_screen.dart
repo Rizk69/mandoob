@@ -117,7 +117,7 @@ class AddTrafficLines extends StatelessWidget {
                                           value: LocaleKeys.addNewTrade.tr(),
                                           child: Row(
                                             children: [
-                                               Icon(Icons.add),
+                                               Icon(Icons.add,color: Theme.of(context).primaryColor,),
                                               SizedBox(width: AppSize.s3.w,),
                                               Text(LocaleKeys.addNewTrade.tr(),style: TextStyle(color: Theme.of(context).primaryColor),),
                                             ],

@@ -149,7 +149,6 @@ class ElEahduh extends StatelessWidget {
                                 flex: 3,
                                 child: BlocConsumer<TradeCubit, TradeState>(
                                   listener: (context, state) {
-
                                     if (state is ActiveTradeErrorState) {
                                       final snackBar = defaultSnakeBar(
                                         title: LocaleKeys.ERROR.tr(),
@@ -163,7 +162,7 @@ class ElEahduh extends StatelessWidget {
                                       TradeCubit.get(context).getTrade();
                                     }
 
-                                    if(state is ActiveTradeLoadedState){
+                                    if (state is ActiveTradeLoadedState) {
                                       final snackBar = defaultSnakeBar(
                                         title: LocaleKeys.SUCCESS.tr(),
                                         message: LocaleKeys.SUCCESS.tr(),
@@ -173,20 +172,31 @@ class ElEahduh extends StatelessWidget {
                                         ..hideCurrentSnackBar()
                                         ..showSnackBar(snackBar);
 
-                                      Navigator.popAndPushNamed(context, Routes.homeRoute);
+                                      Navigator.popAndPushNamed(
+                                          context, Routes.homeRoute);
                                     }
-
                                   },
                                   builder: (context, state) {
                                     List<DropdownMenuItem<String>> tradeItems =
                                         [
                                       DropdownMenuItem(
+
                                         value: '-1',
                                         child: Row(
                                           children: [
-                                            const Icon(Icons.add),
+                                            Icon(
+                                              Icons.add,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                            ),
                                             const SizedBox(width: 8),
-                                            Text(LocaleKeys.addNewTrade.tr()),
+                                            Text(
+                                              LocaleKeys.addNewTrade.tr(),
+                                              style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -217,7 +227,13 @@ class ElEahduh extends StatelessWidget {
                                                   ),
                                                 ),
                                                 const SizedBox(width: 8),
-                                                Text(trade.customerName),
+                                                Text(
+                                                  trade.customerName,
+                                                  style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           );
@@ -232,8 +248,7 @@ class ElEahduh extends StatelessWidget {
                                     return DropdownButtonFormField<String>(
                                       decoration: InputDecoration(
                                         filled: true,
-                                        fillColor: Colors.grey[
-                                            200], // Example color, adjust as needed
+                                          fillColor:Theme.of(context).primaryColorDark,
                                       ),
                                       value: currentDropdownValue,
                                       items: tradeItems,
@@ -298,8 +313,8 @@ class ElEahduh extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding:
-                                          const EdgeInsets.symmetric(horizontal: 15),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
