@@ -107,7 +107,14 @@
 
 
   "trafficLine": "Traffic Line",
-  "expenses": "Masfofat",
+  "expenses": "Expenses",
+  "addExpenses": "New expense",
+  "addNewExpense": "Add New Expense",
+
+  "typeExpenses": "Type Expenses",
+  "quantity": "Quantity",
+  "invoice": "Invoice",
+  "cost": "Cost",
   "addTrafficLine": "Add Traffic Line",
   "Trader": "Trader",
   "departureDate": "Departure Date",

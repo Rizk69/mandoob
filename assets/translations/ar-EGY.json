@@ -95,6 +95,7 @@
 
 
   "addNewTrade": "إضافة تاجر جديد",
+  "addNewExpense": "إضافة مصروف جديد",
   "TradeName": "أسم التاجر",
   "TradeAddress": "العنوان",
   "TradePhone": "رقم التليفون",
@@ -107,6 +108,12 @@
 
   "trafficLine": "خطوط السير",
   "expenses": "المصروفات",
+  "quantity": "الكمية",
+  "invoice": "الفاتورة",
+  "cost": "التكلفة",
+  "addExpenses": "مصروف جديد",
+  "typeExpenses": "نوع المصروف",
+
   "addTrafficLine": "اضافة خطوط السير",
   "Trader": "التاجر",
   "departureDate": "تاريخ الذهاب",
