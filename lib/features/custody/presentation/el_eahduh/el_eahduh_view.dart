@@ -48,6 +48,18 @@ class ElEahduh extends StatelessWidget {
                       ..showSnackBar(snackBar);
                     EahduhCubit.get(context)..getEahduhOrder();
                   }
+
+
+                  if (state is AddProductToCartErrorState) {
+                    final snackBar = defaultSnakeBar(
+                      title: LocaleKeys.ERROR.tr(),
+                      message: LocaleKeys.ERROR.tr(),
+                      state: ContentType.failure,
+                    );
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(snackBar);
+                  }
                 },
                 builder: (context, state) {
                   if (state is GetEahduhLoadedState || state is AddEahduhSuccessState || state is AddProductToCartSuccessState|| state is ActiveTradeErrorState) {
