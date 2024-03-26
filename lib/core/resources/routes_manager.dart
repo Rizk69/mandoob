@@ -7,6 +7,7 @@ import 'package:mandoob/features/auth/presentation/profile/presentation/profile_
 import 'package:mandoob/features/custody/presentation/el_eahduh/el_eahduh_view.dart';
 import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_mulakhas_view.dart';
 import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_salah_view.dart';
+import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_details.dart';
@@ -36,6 +37,7 @@ class Routes {
 
   static const String trader = "/trader";
   static const String newTrader = "/newtrader";
+  static const String addExpenses = "/addExpenses";
   static const String sucssufflyAddTrader = "/sucssufflyAddTrader";
 }
 
@@ -54,7 +56,7 @@ class RouteGenerator {
       case Routes.elSalah:
         return MaterialPageRoute(builder: (_) => ElSalahView());
       case Routes.elmulakhas:
-        return MaterialPageRoute(builder: (_) =>  ElMulakhas());
+        return MaterialPageRoute(builder: (_) => ElMulakhas());
       case Routes.elHodaa:
         initEahduhModule();
         initTradeModule();
@@ -68,15 +70,16 @@ class RouteGenerator {
                   textbutton: 'الفاتورة',
                 ));
       case Routes.fawaterTagerDetails:
-        return MaterialPageRoute(builder: (_) => const FawaterTagerDetailsView());
+        return MaterialPageRoute(
+            builder: (_) => const FawaterTagerDetailsView());
       case Routes.trafficLines:
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => TrafficLines());
-        case Routes.expenses:
+      case Routes.expenses:
         initDelivaryLineModule();
-        return MaterialPageRoute(builder: (_) => const ExpensesScreen());
+        return MaterialPageRoute(builder: (_) => ExpensesScreen());
 
-        case Routes.addtrafficLines:
+      case Routes.addtrafficLines:
         initDelivaryLineModule();
         initTradeModule();
         return MaterialPageRoute(builder: (_) => AddTrafficLines());
@@ -99,6 +102,8 @@ class RouteGenerator {
 
       case Routes.newTrader:
         return MaterialPageRoute(builder: (_) => const NewTraderView());
+      case Routes.addExpenses:
+        return MaterialPageRoute(builder: (_) => AddExpensesView());
 
       default:
         return unDefinedRoute();

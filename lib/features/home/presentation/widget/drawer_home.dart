@@ -13,27 +13,25 @@ import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 BlocProvider<dynamic> buildDrawer(BuildContext context) {
-
   return BlocProvider<LoginCubit>(
       create: (_) => instance<LoginCubit>(),
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LogoutSuccessState) {
             final snackBar = defaultSnakeBar(
-            title: LocaleKeys.SUCCESS.tr(),
-            message: LocaleKeys.SUCCESS.tr(),
-            state: ContentType.success,
+              title: LocaleKeys.SUCCESS.tr(),
+              message: LocaleKeys.SUCCESS.tr(),
+              state: ContentType.success,
             );
             ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(snackBar);
+              ..hideCurrentSnackBar()
+              ..showSnackBar(snackBar);
 
             Navigator.pushReplacementNamed(context, Routes.loginRoute);
           }
         },
         builder: (BuildContext context, LoginState state) {
           return Drawer(
-
             width: MediaQuery.of(context).size.width / 2.2,
             child: ListView(
               padding: EdgeInsets.zero,
@@ -46,7 +44,10 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                       Navigator.pop(context);
                       Navigator.pushNamed(context, Routes.trader);
                     },
-                    child: rowDrawer(title: LocaleKeys.clients.tr(), icon: '', context: context)),
+                    child: rowDrawer(
+                        title: LocaleKeys.clients.tr(),
+                        icon: 'assets/images/drower/person.png',
+                        context: context)),
                 const SizedBox(
                   height: AppSize.s7,
                 ),
@@ -55,8 +56,10 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.trafficLines);
                   },
-                  child:
-                      rowDrawer(title: LocaleKeys.trafficLines.tr(), icon: '', context: context),
+                  child: rowDrawer(
+                      title: LocaleKeys.trafficLines.tr(),
+                      icon: 'assets/images/drower/trafficlines.png',
+                      context: context),
                 ),
                 const SizedBox(
                   height: AppSize.s7,
@@ -66,8 +69,10 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.expenses);
                   },
-                  child:
-                      rowDrawer(title: LocaleKeys.expenses.tr(), icon: '', context: context),
+                  child: rowDrawer(
+                      title: LocaleKeys.expenses.tr(),
+                      icon: 'assets/images/drower/expenses.png',
+                      context: context),
                 ),
                 const SizedBox(
                   height: AppSize.s7,
@@ -77,7 +82,10 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.profileView);
                   },
-                  child: rowDrawer(title: LocaleKeys.account.tr(), icon: '', context: context),
+                  child: rowDrawer(
+                      title: LocaleKeys.account.tr(),
+                      icon: 'assets/images/drower/account .png',
+                      context: context),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 3,
@@ -97,7 +105,6 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                     ),
                     onPressed: () {
                       context.read<LoginCubit>().logout(context);
-
                     },
                     child: Text(
                       LocaleKeys.logout.tr(),
@@ -115,7 +122,10 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
       ));
 }
 
-Widget rowDrawer({required String title, required String icon,required BuildContext context}) {
+Widget rowDrawer(
+    {required String title,
+    required String icon,
+    required BuildContext context}) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: Row(
@@ -123,14 +133,17 @@ Widget rowDrawer({required String title, required String icon,required BuildCont
         const SizedBox(
           width: AppSize.s12,
         ),
-         Icon(Icons.person_outline_sharp,color: Theme.of(context).primaryColor,),
+        Image.asset(
+          icon,
+          color: Theme.of(context).primaryColor,
+        ),
         const SizedBox(
           width: AppSize.s8,
         ),
         Text(
           title,
           style: getBoldSegoeStyle(
-            color:Theme.of(context).primaryColor,
+            color: Theme.of(context).primaryColor,
             fontSize: AppSize.s20.sp,
           ),
         )

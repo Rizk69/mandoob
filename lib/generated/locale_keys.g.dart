@@ -80,6 +80,7 @@ abstract class  LocaleKeys {
   static const clients = 'clients';
   static const trafficLines = 'trafficLines';
   static const expenses = 'expenses';
+  static const addExpenses = 'addExpenses';
   static const account = 'account';
   static const balanceTL = 'balanceTL';
   static const balanceUsd = 'balanceUsd';
@@ -91,10 +92,15 @@ abstract class  LocaleKeys {
   static const searchHere = 'searchHere';
   static const newTrade = 'newTrade';
   static const addNewTrade = 'addNewTrade';
+  static const addNewExpense = 'addNewExpense';
   static const TradeName = 'TradeName';
   static const TradeAddress = 'TradeAddress';
   static const TradePhone = 'TradePhone';
   static const TradePrice = 'TradePrice';
+  static const typeExpenses = 'typeExpenses';
+  static const quantity = 'quantity';
+  static const invoice = 'invoice';
+  static const cost = 'cost';
   static const retail = 'retail';
   static const wholesale = 'wholesale';
   static const factoryPrice = 'factoryPrice';
