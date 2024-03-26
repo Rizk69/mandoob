@@ -71,4 +71,12 @@ class ElSalahCubit extends Cubit<ElSalahState> {
 
     emit(YourItemRemovedState());
   }
+
+
+  bool isExpanded = false;
+
+  void expand(){
+    isExpanded = !isExpanded;
+    emit(ExpandedState());
+  }
 }

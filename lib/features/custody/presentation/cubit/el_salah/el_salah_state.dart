@@ -45,3 +45,4 @@ class YourInitialState extends ElSalahState {}
 class YourItemAddedState extends ElSalahState {}
 
 class YourItemRemovedState extends ElSalahState {}
+class ExpandedState extends ElSalahState {}
