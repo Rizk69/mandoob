@@ -110,6 +110,8 @@
   "expenses": "Expenses",
   "addExpenses": "New expense",
   "addNewExpense": "Add New Expense",
+  "confirm": "Confirm",
+  "deleteAll": "Delete All",
 
   "typeExpenses": "Type Expenses",
   "quantity": "Quantity",
