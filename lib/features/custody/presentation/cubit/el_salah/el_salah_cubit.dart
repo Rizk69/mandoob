@@ -25,7 +25,6 @@ class ElSalahCubit extends Cubit<ElSalahState> {
     });
   }
 
-
   int countItems = 0;
 
   void addItem() {
@@ -44,5 +43,4 @@ class ElSalahCubit extends Cubit<ElSalahState> {
 
     emit(YourItemRemovedState());
   }
-
 }

@@ -9,6 +9,9 @@ import 'package:mandoob/features/custody/domain/model/cart_model.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../../../core/resources/routes_manager.dart';
+import '../../../../../generated/locale_keys.g.dart';
+
 class YourExpandedItem extends StatefulWidget {
   final ProductModel product;
 
@@ -250,10 +253,40 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                                     ),
                                   ),
                                 ),
+
                               ],
                             ),
+                            SizedBox(height: AppSize.s7.w),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                    EdgeInsets.all(10.0),
+                                  ),
+                                  backgroundColor: MaterialStatePropertyAll<Color>(
+                                      Theme.of(context).hoverColor),
+                                  shape: MaterialStatePropertyAll<OutlinedBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(AppSize.s40),
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.pushNamed(context, Routes.elmulakhas);
+                                },
+                                child: Text(
+                                  LocaleKeys.confirm.trim(),
+                                  style: getBoldSegoeStyle(
+                                    color: ColorManager.black,
+                                    fontSize: AppSize.s20.sp,
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
+
                     ],
                   ),
                 ),

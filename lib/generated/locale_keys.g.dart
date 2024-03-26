@@ -17,6 +17,7 @@ abstract class  LocaleKeys {
   static const confirmPassword = 'confirmPassword';
   static const newPassword = 'newPassword';
   static const confirmNewPassword = 'confirmNewPassword';
+  static const confirm = 'confirm';
   static const mobileError = 'mobileError';
   static const passwordError = 'passwordError';
   static const save = 'save';
@@ -82,6 +83,7 @@ abstract class  LocaleKeys {
   static const expenses = 'expenses';
   static const addExpenses = 'addExpenses';
   static const account = 'account';
+  static const deleteAll = 'deleteAll';
   static const balanceTL = 'balanceTL';
   static const balanceUsd = 'balanceUsd';
   static const salseLera = 'salseLera';
