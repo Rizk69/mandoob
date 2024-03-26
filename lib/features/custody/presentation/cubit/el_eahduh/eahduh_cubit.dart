@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../domain/model/eahduh_order_model.dart';
-import '../../domain/usecase/eahduh_usecases.dart';
+import '../../../domain/model/eahduh_order_model.dart';
+import '../../../domain/usecase/eahduh_usecases.dart';
 
 part 'eahduh_state.dart';
 
 class EahduhCubit extends Cubit<EahduhState> {
   EahduhCubit(this._eahduhUseCase) : super(EahduhInitial());
+
   static EahduhCubit get(context) => BlocProvider.of(context);
 
   EahduhOrderModel? orderModel;
@@ -27,12 +27,12 @@ class EahduhCubit extends Cubit<EahduhState> {
     emit(AddEahduhLoadingState());
     final result = await _eahduhUseCase.addEahduhOrder(id: id);
     result.fold(
-          (failure) {
+      (failure) {
         print(failure);
         emit(AddEahduhErrorState(failure.message));
       },
-      (success)async {
-            print('success Add');
+      (success) async {
+        print('success Add');
         emit(AddEahduhSuccessState());
         await Future.delayed(Duration(milliseconds: 100));
         getEahduhOrder();
@@ -47,8 +47,8 @@ class EahduhCubit extends Cubit<EahduhState> {
       (failure) {
         print(failure);
         emit(DeleteEahduhErrorState(failure.message));
-      } ,
-      (success)async {
+      },
+      (success) async {
         print('success Delete');
         emit(DeleteEahduhSuccessState());
         await Future.delayed(Duration(milliseconds: 100));

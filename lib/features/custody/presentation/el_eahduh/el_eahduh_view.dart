@@ -12,7 +12,7 @@ import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/trader/presentation/cubit/get_trade/trade_cubit.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'cubit/eahduh_cubit.dart';
+import '../cubit/el_eahduh/eahduh_cubit.dart';
 
 class ElEahduh extends StatelessWidget {
   ElEahduh({Key? key}) : super(key: key);

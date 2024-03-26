@@ -4,12 +4,12 @@ import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/widget/sucss_screen.dart';
 import 'package:mandoob/features/auth/presentation/login/view/login_view.dart';
 import 'package:mandoob/features/auth/presentation/profile/presentation/profile_view.dart';
-import 'package:mandoob/features/custody/presentation/el_eahduh_view.dart';
+import 'package:mandoob/features/custody/presentation/el_eahduh/el_eahduh_view.dart';
+import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_mulakhas_view.dart';
+import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_salah_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_details.dart';
-import 'package:mandoob/features/orders/presentation/el_salah/prsentation/el_mulakhas_view.dart';
-import 'package:mandoob/features/orders/presentation/el_salah/prsentation/el_salah_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
 import 'package:mandoob/features/trader/presentation/new_trader.dart';
 import 'package:mandoob/features/trader/presentation/trader_view.dart';
@@ -47,20 +47,20 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LoginView());
       case Routes.homeRoute:
         initHomeModule();
-        return MaterialPageRoute(builder: (_) => HomeController());
+        return MaterialPageRoute(builder: (_) => const HomeController());
       case Routes.homeViewRoute:
         initHomeModule();
         return MaterialPageRoute(builder: (_) => HomeView());
       case Routes.elSalah:
         return MaterialPageRoute(builder: (_) => ElSalahView());
       case Routes.elmulakhas:
-        return MaterialPageRoute(builder: (_) => ElMulakhas());
+        return MaterialPageRoute(builder: (_) =>  ElMulakhas());
       case Routes.elHodaa:
         initEahduhModule();
         initTradeModule();
         return MaterialPageRoute(builder: (_) => ElEahduh());
       case Routes.newTalab:
-        return MaterialPageRoute(builder: (_) => NewTalabat());
+        return MaterialPageRoute(builder: (_) => const NewTalabat());
       case Routes.sucssufflySceen:
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(
@@ -68,13 +68,13 @@ class RouteGenerator {
                   textbutton: 'الفاتورة',
                 ));
       case Routes.fawaterTagerDetails:
-        return MaterialPageRoute(builder: (_) => FawaterTagerDetailsView());
+        return MaterialPageRoute(builder: (_) => const FawaterTagerDetailsView());
       case Routes.trafficLines:
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => TrafficLines());
         case Routes.expenses:
         initDelivaryLineModule();
-        return MaterialPageRoute(builder: (_) => ExpensesScreen());
+        return MaterialPageRoute(builder: (_) => const ExpensesScreen());
 
         case Routes.addtrafficLines:
         initDelivaryLineModule();
@@ -82,7 +82,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => AddTrafficLines());
       case Routes.profileView:
         initProfileModule();
-        return MaterialPageRoute(builder: (_) => ProfileView());
+        return MaterialPageRoute(builder: (_) => const ProfileView());
 
       case Routes.sucssufflyAddTrader:
         final args = settings.arguments as SuccessMessageArguments;
@@ -98,7 +98,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => TraderView());
 
       case Routes.newTrader:
-        return MaterialPageRoute(builder: (_) => NewTraderView());
+        return MaterialPageRoute(builder: (_) => const NewTraderView());
 
       default:
         return unDefinedRoute();
