@@ -1,6 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
@@ -34,11 +35,22 @@ class ElEahduh extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: SingleChildScrollView(
-              child: BlocBuilder<EahduhCubit, EahduhState>(
+              child: BlocConsumer<EahduhCubit, EahduhState>(
+                listener: (context, state) {
+                  if (state is AddProductToCartSuccessState) {
+                    final snackBar = defaultSnakeBar(
+                      title: LocaleKeys.SUCCESS.tr(),
+                      message: "تم اضافه المنتج بنجاح",
+                      state: ContentType.success,
+                    );
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(snackBar);
+                    EahduhCubit.get(context)..getEahduhOrder();
+                  }
+                },
                 builder: (context, state) {
-                  if (state is GetEahduhLoadedState ||
-                      state is AddEahduhSuccessState ||
-                      state is AddEahduhSuccessState) {
+                  if (state is GetEahduhLoadedState || state is AddEahduhSuccessState || state is AddProductToCartSuccessState) {
                     var cubit = EahduhCubit.get(context);
                     var data = cubit.orderModel;
                     return Column(
@@ -172,8 +184,9 @@ class ElEahduh extends StatelessWidget {
                                         ..hideCurrentSnackBar()
                                         ..showSnackBar(snackBar);
 
-                                      Navigator.popAndPushNamed(
-                                          context, Routes.homeRoute);
+                                      //
+                                      // Navigator.popAndPushNamed(
+                                      //     context, Routes.homeRoute);
                                     }
                                   },
                                   builder: (context, state) {
@@ -369,33 +382,38 @@ class ElEahduh extends StatelessWidget {
                                       ),
                                     ),
                                     const Spacer(),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context).hoverColor,
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
+                                    GestureDetector(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context).hoverColor,
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(15),
+                                            bottomRight: Radius.circular(15),
+                                          ),
+                                        ),
+                                        child: const Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.shopping_cart,
+                                              color: Colors.white,
+                                              size: 30,
+                                            ),
+                                            SizedBox(width: 8),
+                                            Text(
+                                              'السلة',
+                                              style: TextStyle(
+                                                fontSize: 27,
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ),
-                                      child: const Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.shopping_cart,
-                                            color: Colors.white,
-                                            size: 30,
-                                          ),
-                                          SizedBox(width: 8),
-                                          Text(
-                                            'السلة',
-                                            style: TextStyle(
-                                              fontSize: 27,
-                                              color: Colors.white,
-                                            ),
-                                          )
-                                        ],
-                                      ),
+                                      onTap: (){
+                                        EahduhCubit.get(context).addProductToCart( data.data[index].id);
+                                      },
                                     )
                                   ],
                                 ),
