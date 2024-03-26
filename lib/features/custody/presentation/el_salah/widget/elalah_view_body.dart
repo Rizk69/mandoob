@@ -15,120 +15,113 @@ import 'cutom_alert.dart';
 
 class ElSalahViewBody extends StatelessWidget {
   final List<ProductModel> cartItems;
-  final bool isLoading;
 
-
-   ElSalahViewBody(
-      {Key? key, required this.cartItems, required this.isLoading})
-      : super(key: key);
+  ElSalahViewBody({Key? key, required this.cartItems}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key:scaffoldKey ,
+      key: scaffoldKey,
       drawer: buildDrawer(context),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: isLoading
-              ? CircularProgressIndicator()
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(height: AppSize.s8.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            ElSalahCubit.get(context).openDrawer(context);
-                          },
-                          icon: Icon(
-                            Icons.menu,
-                            color: Theme.of(context).primaryColorLight,
-                          ),
-                        ),
-                        Center(
-                          child: Text(
-                            'السلة',
-                            style: getBoldSegoeStyle(
-                                fontSize: 25,
-                                color: Theme.of(context).primaryColorLight),
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.homeRoute);
-                          },
-                          icon: Icon(
-                            Icons.arrow_forward,
-                            color: Theme.of(context).primaryColorLight,
-                          ),
-                        )
-                      ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: AppSize.s8.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      ElSalahCubit.get(context).openDrawer(context);
+                    },
+                    icon: Icon(
+                      Icons.menu,
+                      color: Theme.of(context).primaryColorLight,
                     ),
-                    SizedBox(height: AppSize.s4.h),
-                    GestureDetector(
-                      onTap: (){
-                        ElSalahCubit.get(context).deleteCart();
-                      },
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Text(
-                            LocaleKeys.deleteAll.tr(),
-                            style: TextStyle(
-                              color: ColorManager.babyBlue,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ),
+                  ),
+                  Center(
+                    child: Text(
+                      'السلة',
+                      style: getBoldSegoeStyle(
+                          fontSize: 25,
+                          color: Theme.of(context).primaryColorLight),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.homeRoute);
+                    },
+                    icon: Icon(
+                      Icons.arrow_forward,
+                      color: Theme.of(context).primaryColorLight,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: AppSize.s4.h),
+              GestureDetector(
+                onTap: () {
+                  ElSalahCubit.get(context).deleteCart();
+                },
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      LocaleKeys.deleteAll.tr(),
+                      style: TextStyle(
+                        color: ColorManager.babyBlue,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        decoration: TextDecoration.underline,
                       ),
                     ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: cartItems.length,
-                      itemBuilder: (context, index) {
-                        return YourExpandedItem(product: cartItems[index]);
-                      },
-                    ),
-                    SizedBox(height: AppSize.s10.h),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 60),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          padding:
-                              MaterialStateProperty.all<EdgeInsetsGeometry>(
-                            EdgeInsets.all(10.0),
-                          ),
-                          backgroundColor: MaterialStatePropertyAll<Color>(
-                              Theme.of(context).hoverColor),
-                          shape: MaterialStatePropertyAll<OutlinedBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(AppSize.s40),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          // Navigator.pushNamed(context, Routes.elmulakhas);
-                          showContainerDialog(context);
-                        },
-                        child: Text(
-                          LocaleKeys.next.trim(),
-                          style: getBoldSegoeStyle(
-                            color: ColorManager.black,
-                            fontSize: AppSize.s20.sp,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+                  ),
                 ),
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: cartItems.length,
+                itemBuilder: (context, index) {
+                  return YourExpandedItem(product: cartItems[index]);
+                },
+              ),
+              SizedBox(height: AppSize.s10.h),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 60),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                      EdgeInsets.all(10.0),
+                    ),
+                    backgroundColor: MaterialStatePropertyAll<Color>(
+                        Theme.of(context).hoverColor),
+                    shape: MaterialStatePropertyAll<OutlinedBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppSize.s40),
+                      ),
+                    ),
+                  ),
+                  onPressed: () {
+                    // Navigator.pushNamed(context, Routes.elmulakhas);
+                    showContainerDialog(context);
+                  },
+                  child: Text(
+                    LocaleKeys.next.trim(),
+                    style: getBoldSegoeStyle(
+                      color: ColorManager.black,
+                      fontSize: AppSize.s20.sp,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

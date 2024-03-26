@@ -23,15 +23,9 @@ class ElSalahView extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          bool isLoading = false;
-          if (state is GetCartLoadingState) {
-            isLoading = true;
-          }
-
           if (state is GetCartLoadedState) {
             return ElSalahViewBody(
               cartItems: ElSalahCubit.get(context).cart!.data!,
-              isLoading: isLoading,
             );
           } else {
             return const Scaffold(
