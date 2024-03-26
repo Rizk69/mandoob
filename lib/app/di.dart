@@ -8,6 +8,9 @@ import 'package:mandoob/features/custody/data/data_source/eahduh_data_source.dar
 import 'package:mandoob/features/custody/data/network/eahduh_api.dart';
 import 'package:mandoob/features/custody/data/repository/repository_eahduh_impl.dart';
 import 'package:mandoob/features/custody/domain/repository/eahduh_repository.dart';
+import 'package:mandoob/features/custody/domain/usecase/add_to_cart_usecases.dart';
+import 'package:mandoob/features/custody/domain/usecase/delete_all_product_in_cart_usecases.dart';
+import 'package:mandoob/features/custody/domain/usecase/delete_product_in_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/eahduh_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/get_cart_usecases.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_eahduh/eahduh_cubit.dart';
@@ -184,6 +187,10 @@ initEahduhModule() {
 
     instance.registerFactory<EahduhCubit>(() => EahduhCubit(instance(),instance()));
     instance.registerFactory<EahduhUseCase>(() => EahduhUseCase(instance()));
+
+    instance.registerFactory<AddProductToCartUseCase>(() => AddProductToCartUseCase(instance()));
+    instance.registerFactory<DeleteCartUseCase>(() => DeleteCartUseCase(instance()));
+    instance.registerFactory<DeleteProductInCartUseCase>(() => DeleteProductInCartUseCase(instance()));
   }
 }
 
