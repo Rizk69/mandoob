@@ -64,6 +64,17 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                 InkWell(
                   onTap: () {
                     Navigator.pop(context);
+                    Navigator.pushNamed(context, Routes.expenses);
+                  },
+                  child:
+                      rowDrawer(title: LocaleKeys.expenses.tr(), icon: '', context: context),
+                ),
+                const SizedBox(
+                  height: AppSize.s7,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.profileView);
                   },
                   child: rowDrawer(title: LocaleKeys.account.tr(), icon: '', context: context),

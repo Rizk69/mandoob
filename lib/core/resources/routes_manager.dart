@@ -17,6 +17,8 @@ import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presen
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/traffic_lines_screen.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
+import '../../features/expenses/presentaton/expenses_view.dart';
+
 class Routes {
   static const String loginRoute = "/login";
   static const String homeRoute = "/home";
@@ -28,6 +30,7 @@ class Routes {
   static const String sucssufflySceen = "/sucssufflySceen";
   static const String fawaterTagerDetails = "/fawaterTagerDetails";
   static const String trafficLines = "/trafficLines";
+  static const String expenses = "/expenses";
   static const String addtrafficLines = "/addtrafficLines";
   static const String profileView = "/profileView";
 
@@ -69,6 +72,9 @@ class RouteGenerator {
       case Routes.trafficLines:
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => TrafficLines());
+        case Routes.expenses:
+        initDelivaryLineModule();
+        return MaterialPageRoute(builder: (_) => ExpensesScreen());
 
         case Routes.addtrafficLines:
         initDelivaryLineModule();

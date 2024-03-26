@@ -79,6 +79,7 @@ abstract class  LocaleKeys {
   static const cart = 'cart';
   static const clients = 'clients';
   static const trafficLines = 'trafficLines';
+  static const expenses = 'expenses';
   static const account = 'account';
   static const balanceTL = 'balanceTL';
   static const balanceUsd = 'balanceUsd';
