@@ -9,7 +9,9 @@ import 'package:mandoob/features/custody/data/network/eahduh_api.dart';
 import 'package:mandoob/features/custody/data/repository/repository_eahduh_impl.dart';
 import 'package:mandoob/features/custody/domain/repository/eahduh_repository.dart';
 import 'package:mandoob/features/custody/domain/usecase/eahduh_usecases.dart';
+import 'package:mandoob/features/custody/domain/usecase/get_cart_usecases.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_eahduh/eahduh_cubit.dart';
+import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
 import 'package:mandoob/features/home/data/data_source/remote_home_data_source.dart';
 import 'package:mandoob/features/home/data/network/home_api.dart';
 import 'package:mandoob/features/home/data/repository/home_repository_impl.dart';
@@ -177,6 +179,9 @@ initDelivaryLineModule() {
 
 initEahduhModule() {
   if (!GetIt.I.isRegistered<EahduhUseCase>()) {
+    instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(instance()));
+    instance.registerFactory<GetCartUseCase>(() => GetCartUseCase(instance()));
+
     instance.registerFactory<EahduhCubit>(() => EahduhCubit(instance()));
     instance.registerFactory<EahduhUseCase>(() => EahduhUseCase(instance()));
   }

@@ -10,6 +10,7 @@ extension TradeDataResponseMapper on TradesDataResponse? {
       customerName: this?.customer_name?.orEmpty() ?? Constants.empty,
       img: this?.img?.orEmpty() ?? Constants.empty,
       phone: this?.phone?.orEmpty() ?? Constants.empty,
+      selectCustomer: this?.selectCustomer?? false,
     );
   }
 }

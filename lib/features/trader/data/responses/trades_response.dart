@@ -40,11 +40,15 @@ class TradesDataResponse {
   @JsonKey(name: "phone")
   String? phone;
 
+  @JsonKey(name: "select_custoomer")
+  bool? selectCustomer;
+
   TradesDataResponse({
     this.id,
     this.img,
     this.customer_name,
     this.phone,
+    this.selectCustomer,
   });
 
   factory TradesDataResponse.fromJson(Map<String, dynamic> json) => _$TradesDataResponseFromJson(json);
