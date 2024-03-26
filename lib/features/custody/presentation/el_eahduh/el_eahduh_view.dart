@@ -50,7 +50,7 @@ class ElEahduh extends StatelessWidget {
                   }
                 },
                 builder: (context, state) {
-                  if (state is GetEahduhLoadedState || state is AddEahduhSuccessState || state is AddProductToCartSuccessState) {
+                  if (state is GetEahduhLoadedState || state is AddEahduhSuccessState || state is AddProductToCartSuccessState|| state is ActiveTradeErrorState) {
                     var cubit = EahduhCubit.get(context);
                     var data = cubit.orderModel;
                     return Column(
@@ -171,7 +171,6 @@ class ElEahduh extends StatelessWidget {
                                         ..hideCurrentSnackBar()
                                         ..showSnackBar(snackBar);
 
-                                      Navigator.pushReplacementNamed(context, Routes.homeRoute);
                                     }
 
                                     if (state is ActiveTradeLoadedState) {
