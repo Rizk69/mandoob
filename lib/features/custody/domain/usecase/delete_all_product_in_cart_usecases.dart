@@ -11,6 +11,6 @@ class DeleteCartUseCase implements BaseUseCase<void, void> {
 
   @override
   Future<Either<Failure, void>> execute(void input) async {
-    return await _eahduhRepository.getCart();
+    return await _eahduhRepository.deleteAllProductInCart();
   }
 }

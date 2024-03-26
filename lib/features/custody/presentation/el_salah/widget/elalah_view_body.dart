@@ -17,6 +17,7 @@ class ElSalahViewBody extends StatelessWidget {
   final List<ProductModel> cartItems;
   final bool isLoading;
 
+
    ElSalahViewBody(
       {Key? key, required this.cartItems, required this.isLoading})
       : super(key: key);
@@ -69,7 +70,9 @@ class ElSalahViewBody extends StatelessWidget {
                     ),
                     SizedBox(height: AppSize.s4.h),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        ElSalahCubit.get(context).deleteCart();
+                      },
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(

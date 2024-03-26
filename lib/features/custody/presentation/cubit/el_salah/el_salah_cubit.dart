@@ -10,7 +10,11 @@ import 'package:meta/meta.dart';
 part 'el_salah_state.dart';
 
 class ElSalahCubit extends Cubit<ElSalahState> {
-  ElSalahCubit(this._getCartUseCase,this._deleteProductInCartUseCase,this._deleteCartUseCase,) : super(ElSalahInitial());
+  ElSalahCubit(
+    this._getCartUseCase,
+    this._deleteProductInCartUseCase,
+    this._deleteCartUseCase,
+  ) : super(ElSalahInitial());
 
   static ElSalahCubit get(context) => BlocProvider.of(context);
 
@@ -29,22 +33,23 @@ class ElSalahCubit extends Cubit<ElSalahState> {
     });
   }
 
-
-
   deleteCart() async {
     emit(DeleteCartLoadingState());
     final result = await _deleteCartUseCase.execute('');
-    result.fold((failure) => emit(DeleteCartErrorState(failure.message)), (model) {
+    result.fold((failure) => emit(DeleteCartErrorState(failure.message)),
+        (model) {
       emit(DeleteCartLoadedState());
     });
   }
 
-
   deleteOneProductInCart(int productId) async {
     emit(DeleteOneProductCartLoadingState());
     final result = await _deleteProductInCartUseCase.execute(productId);
-    result.fold((failure) => emit(DeleteOneProductCartErrorState(failure.message)), (model) {
+    result.fold(
+        (failure) => emit(DeleteOneProductCartErrorState(failure.message)),
+        (model) {
       emit(DeleteOneProductCartLoadedState());
+
     });
   }
 
@@ -66,5 +71,4 @@ class ElSalahCubit extends Cubit<ElSalahState> {
 
     emit(YourItemRemovedState());
   }
-
 }

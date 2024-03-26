@@ -300,7 +300,9 @@ class _YourExpandedItemState extends State<YourExpandedItem> {
                     color: Colors.red,
                     size: 36,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    ElSalahCubit.get(context).deleteOneProductInCart(widget.product.id!);
+                  },
                 ),
               ),
             ],
