@@ -12,4 +12,10 @@ abstract class EahduhRepository {
   Future<Either<Failure, void>> deleteEahduhOrder({required int id});
 
   Future<Either<Failure, CartModel>> getCart();
+
+
+  Future<Either<Failure, void>> addProductToCart({required int productId});
+  Future<Either<Failure, void>> deleteOneProductInCart({required int productId});
+  Future<Either<Failure, void>> deleteAllProductInCart();
+
 }

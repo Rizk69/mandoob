@@ -108,6 +108,69 @@ class _EahduhServiceClient implements EahduhServiceClient {
     return value;
   }
 
+  @override
+  Future<void> addProductToCart(productId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'api/addToCart/${productId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    return null;
+  }
+
+  @override
+  Future<void> deleteOneProductInCart(productId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'api/delete_product_cart/${productId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    return null;
+  }
+
+  @override
+  Future<void> deleteAllProductInCart() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'api/delete_cart',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    return null;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

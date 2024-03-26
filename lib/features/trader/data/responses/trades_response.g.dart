@@ -28,6 +28,7 @@ TradesDataResponse _$TradesDataResponseFromJson(Map<String, dynamic> json) =>
       img: json['img'] as String?,
       customer_name: json['customer_name'] as String?,
       phone: json['phone'] as String?,
+      selectCustomer: json['select_custoomer'] as bool?,
     );
 
 Map<String, dynamic> _$TradesDataResponseToJson(TradesDataResponse instance) =>
@@ -36,4 +37,5 @@ Map<String, dynamic> _$TradesDataResponseToJson(TradesDataResponse instance) =>
       'img': instance.img,
       'customer_name': instance.customer_name,
       'phone': instance.phone,
+      'select_custoomer': instance.selectCustomer,
     };

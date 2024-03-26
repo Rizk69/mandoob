@@ -352,9 +352,9 @@ class ElEahduh extends StatelessWidget {
                                           IconButton(
                                             onPressed: () {
                                               data.data[index].favoriteProduct
-                                                  ? cubit.deleteEahduhOrder(
+                                                  ? cubit.deleteFavorite(
                                                       id: data.data[index].id)
-                                                  : cubit.addEahduhOrder(
+                                                  : cubit.addFavorite(
                                                       id: data.data[index].id);
                                             },
                                             icon: Icon(

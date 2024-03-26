@@ -23,4 +23,15 @@ abstract class EahduhServiceClient {
   @GET("api/get_cart")
   Future<CartResponse> getCart();
 
+
+
+  @GET("api/addToCart/{productId}")
+  Future<void> addProductToCart(@Path() int productId);
+
+  @GET("api/delete_product_cart/{productId}")
+  Future<void> deleteOneProductInCart(@Path() int productId);
+
+  @GET("api/delete_cart")
+  Future<void> deleteAllProductInCart();
+
 }

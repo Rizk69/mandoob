@@ -23,7 +23,9 @@ class DeleteEahduhErrorState extends EahduhState {
   final String message;
 
   DeleteEahduhErrorState(this.message);
-}class AddEahduhLoadingState extends EahduhState {}
+}
+
+class AddEahduhLoadingState extends EahduhState {}
 
 class AddEahduhSuccessState extends EahduhState {}
 
@@ -31,4 +33,16 @@ class AddEahduhErrorState extends EahduhState {
   final String message;
 
   AddEahduhErrorState(this.message);
+}
+
+
+
+class AddProductToCartLoadingState extends EahduhState {}
+
+class AddProductToCartSuccessState extends EahduhState {}
+
+class AddProductToCartErrorState extends EahduhState {
+  final String message;
+
+  AddProductToCartErrorState(this.message);
 }
