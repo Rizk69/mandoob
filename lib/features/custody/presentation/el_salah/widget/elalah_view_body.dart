@@ -17,13 +17,15 @@ class ElSalahViewBody extends StatelessWidget {
   final List<ProductModel> cartItems;
   final bool isLoading;
 
-  const ElSalahViewBody(
+   ElSalahViewBody(
       {Key? key, required this.cartItems, required this.isLoading})
       : super(key: key);
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key:scaffoldKey ,
       drawer: buildDrawer(context),
       body: SingleChildScrollView(
         child: Padding(

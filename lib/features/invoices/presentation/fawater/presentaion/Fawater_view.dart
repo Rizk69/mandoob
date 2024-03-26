@@ -9,7 +9,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../cubit/fawater_cubit.dart';
 
 class FawaterView extends StatelessWidget {
-  const FawaterView({Key? key}) : super(key: key);
+   FawaterView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class FawaterView extends StatelessWidget {
 class FawaterViewBody extends StatelessWidget {
   FawaterViewBody({Key? key}) : super(key: key);
   final talabatViewCubit = FawaterViewCubit();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return BlocProvider(
       create: (context) => talabatViewCubit,

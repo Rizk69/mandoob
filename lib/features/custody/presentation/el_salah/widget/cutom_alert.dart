@@ -88,7 +88,7 @@ Widget contentBox(
               child: Text(
                 'كاش',
                 style: getBoldSegoeStyle(
-                  color: ColorManager.black,
+                  color: Theme.of(context).primaryColor,
                   fontSize: AppSize.s20.sp,
                 ),
               ),
@@ -100,7 +100,7 @@ Widget contentBox(
                   const EdgeInsets.symmetric(horizontal: 40, vertical: 13),
                 ),
                 backgroundColor: MaterialStatePropertyAll<Color>(
-                    Theme.of(context).primaryColor),
+                    Theme.of(context).primaryColorDark),
                 shape: MaterialStatePropertyAll<OutlinedBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppSize.s40),
@@ -111,7 +111,7 @@ Widget contentBox(
               child: Text(
                 'أجل',
                 style: getBoldSegoeStyle(
-                  color: ColorManager.black,
+                  color:  Theme.of(context).hoverColor,
                   fontSize: AppSize.s20.sp,
                 ),
               ),
