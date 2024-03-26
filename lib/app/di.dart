@@ -179,10 +179,10 @@ initDelivaryLineModule() {
 
 initEahduhModule() {
   if (!GetIt.I.isRegistered<EahduhUseCase>()) {
-    instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(instance()));
+    instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(instance(),instance(),instance()));
     instance.registerFactory<GetCartUseCase>(() => GetCartUseCase(instance()));
 
-    instance.registerFactory<EahduhCubit>(() => EahduhCubit(instance()));
+    instance.registerFactory<EahduhCubit>(() => EahduhCubit(instance(),instance()));
     instance.registerFactory<EahduhUseCase>(() => EahduhUseCase(instance()));
   }
 }
