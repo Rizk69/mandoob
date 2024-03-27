@@ -168,6 +168,41 @@ class CardExpandedItem extends StatelessWidget {
                           ),
                         ],
                       ),
+
+                      Row(
+                        children: [
+                          Text(
+                            'الكمية',
+                            style: getBoldSegoeStyle(
+                              fontSize: 20,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                          SizedBox(width: AppSize.s7.w),
+                          Expanded(
+                            flex: 2,
+                            child: SizedBox(
+                              height: 50, // Adjust the height as needed
+                              child: TextFormField(
+                                enabled: false,
+                                decoration: InputDecoration(
+                                    disabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        25.0,
+                                      ),
+                                      borderSide: BorderSide(
+                                          color: ColorManager.babyBlue),
+                                    ),
+                                    hintText: product.quantity.toString()
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: AppSize.s1.h,
+                      ),
                       Row(
                         children: [
 
