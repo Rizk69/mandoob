@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
@@ -12,10 +13,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../core/resources/routes_manager.dart';
 import '../../../../../generated/locale_keys.g.dart';
 
-class YourExpandedItem extends StatelessWidget {
+class CardExpandedItem extends StatelessWidget {
   final ProductModel product;
 
-  const YourExpandedItem({Key? key, required this.product}) : super(key: key);
+  const CardExpandedItem({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class YourExpandedItem extends StatelessWidget {
                 Row(
                   children: [
                     Image.network(
-                      product.img!,
+                      product.img,
                       height: AppSize.s13.h,
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
@@ -109,7 +110,6 @@ class YourExpandedItem extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {
-                            ElSalahCubit.get(context).expand();
                             ElSalahCubit.get(context).addItem();
                           },
                           icon: Icon(
@@ -118,7 +118,7 @@ class YourExpandedItem extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${ElSalahCubit.get(context).countItems}',
+                          '${product.quantity}',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                           ),
@@ -140,7 +140,37 @@ class YourExpandedItem extends StatelessWidget {
                   Column(
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Expanded(
+                            child: ListTile(
+                              title: Text('دولار'),
+                              leading: Radio<int>(
+                                value: 1,
+                                groupValue: ElSalahCubit.get(context).selectedCurrency,
+                                onChanged: (value) {
+                                  ElSalahCubit.get(context).updateCurrency(value!);
+                                },
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: ListTile(
+                              title: Text('ليرة'),
+                              leading: Radio<int>(
+                                value: 2,
+                                groupValue: ElSalahCubit.get(context).selectedCurrency,
+                                onChanged: (value) {
+                                  ElSalahCubit.get(context).updateCurrency(value!);
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+
                           Text(
                             'الوحدة',
                             style: getBoldSegoeStyle(
@@ -201,7 +231,7 @@ class YourExpandedItem extends StatelessWidget {
                                         color: ColorManager.babyBlue),
                                   ),
                                   hintText:
-                                  '${(product.priceUnitDoler)! * (product.quantity!)}',
+                                  '${(product.priceUnitDoler) * (product.quantity)}',
                                 ),
                               ),
                             ),
@@ -235,7 +265,7 @@ class YourExpandedItem extends StatelessWidget {
                                         color: ColorManager.babyBlue),
                                   ),
                                   hintText:
-                                  '${product.priceUnitLera! * (product.quantity!)}',
+                                  '${product.priceUnitLera * (product.quantity)}',
                                 ),
                               ),
                             ),
@@ -263,11 +293,16 @@ class YourExpandedItem extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, Routes.elmulakhas);
+                            ElSalahCubit.get(context).addCurrencyAndCount(
+                                product_id: product.id,
+                                currency_id:  ElSalahCubit.get(context).selectedCurrency,
+                                count: ElSalahCubit.get(context).countItems
+                            );
+
+
                           },
                           child: Text(
-                            LocaleKeys.confirm.trim(),
+                            LocaleKeys.confirm.tr(),
                             style: getBoldSegoeStyle(
                               color: ColorManager.black,
                               fontSize: AppSize.s20.sp,
@@ -292,7 +327,7 @@ class YourExpandedItem extends StatelessWidget {
             ),
             onPressed: () {
               ElSalahCubit.get(context)
-                  .deleteOneProductInCart(product.id!);
+                  .deleteOneProductInCart(product.id);
             },
           ),
         ),

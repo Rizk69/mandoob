@@ -1,4 +1,6 @@
+import 'package:mandoob/features/custody/data/network/eahduh_requests.dart';
 import 'package:mandoob/features/custody/data/responses/cart_response.dart';
+import 'package:mandoob/features/custody/data/responses/confirm_response.dart';
 
 import '../network/eahduh_api.dart';
 import '../responses/eahduh_response.dart';
@@ -16,6 +18,10 @@ abstract class RemoteEahduhDataSource {
   Future<void> addProductToCart({required int productId});
   Future<void> deleteOneProductInCart({required int productId});
   Future<void> deleteAllProductInCart();
+
+  Future<void> addCurrencyAndCount({required int product_id ,required  int currency_id ,required  num count});
+
+  Future<ConfirmResponse> confirmInvoice({required ConfirmRequest confirmRequest});
 
 
 
@@ -59,5 +65,17 @@ class RemoteEahduhDataSourceImpl extends RemoteEahduhDataSource {
   @override
   Future<void> deleteOneProductInCart({required int productId}) {
     return _appServiceClient.deleteOneProductInCart(productId);
+  }
+
+  @override
+  Future<void> addCurrencyAndCount({required int product_id, required int currency_id, required num count}) {
+    return _appServiceClient.addCurrencyAndCount(product_id,currency_id,count);
+
+  }
+
+  @override
+  Future<ConfirmResponse> confirmInvoice({required ConfirmRequest confirmRequest}) {
+    return _appServiceClient.confirmInvoice(confirmRequest);
+
   }
 }

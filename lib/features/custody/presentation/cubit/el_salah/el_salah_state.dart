@@ -40,9 +40,33 @@ class DeleteOneProductCartErrorState extends ElSalahState {
 
 
 
+class ConfirmInvoiceLoadingState extends ElSalahState {}
+
+class ConfirmInvoiceLoadedState extends ElSalahState {}
+
+class ConfirmInvoiceErrorState extends ElSalahState {
+  final String message;
+
+  ConfirmInvoiceErrorState(this.message);
+}
+
+
+class AddCurrencyAndCountLoadingState extends ElSalahState {}
+
+class AddCurrencyAndCountLoadedState extends ElSalahState {}
+
+class AddCurrencyAndCountErrorState extends ElSalahState {
+  final String message;
+
+  AddCurrencyAndCountErrorState(this.message);
+}
+
+
 class YourInitialState extends ElSalahState {}
 
 class YourItemAddedState extends ElSalahState {}
 
 class YourItemRemovedState extends ElSalahState {}
 class ExpandedState extends ElSalahState {}
+
+class ElSalahCurrencyUpdated extends ElSalahState {}

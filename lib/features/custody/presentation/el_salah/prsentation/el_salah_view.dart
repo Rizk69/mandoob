@@ -21,11 +21,19 @@ class ElSalahView extends StatelessWidget {
           if (state is DeleteOneProductCartLoadedState) {
             ElSalahCubit.get(context).getCartOrder();
           }
+
+          if (state is AddCurrencyAndCountLoadedState) {
+            print("Success");
+          }
+
+           if (state is AddCurrencyAndCountLoadedState) {
+             ElSalahCubit.get(context).getCartOrder();
+          }
         },
         builder: (context, state) {
-          if (state is GetCartLoadedState) {
+          if (state is GetCartLoadedState ||  state is ExpandedState||  state is YourItemAddedState||  state is YourItemRemovedState||  state is ElSalahCurrencyUpdated ) {
             return ElSalahViewBody(
-              cartItems: ElSalahCubit.get(context).cart!.data!,
+              cartItems: ElSalahCubit.get(context).cart!.data,
             );
           } else {
             return const Scaffold(

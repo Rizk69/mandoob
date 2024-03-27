@@ -7,7 +7,7 @@ extension CartResponseMapper on CartResponse? {
   CartModel toDomain() {
     return CartModel(
       status: this?.status ?? false,
-      message: this?.message.orEmpty(),
+      message: this?.message.orEmpty()??Constants.empty,
       trader: this?.trader?.toDomain(),
       total: this?.total?.toDomain(),
       data: this?.data?.toDomain() ?? [],
@@ -18,8 +18,8 @@ extension CartResponseMapper on CartResponse? {
 extension TraderDataMapper on TraderDataResponse? {
   TraderModel toDomain() {
     return TraderModel(
-      id: this?.id.orZero(),
-      name: this?.name.orEmpty(),
+      id: this?.id.orZero()??Constants.zero,
+      name: this?.name.orEmpty()??Constants.empty,
     );
   }
 }
@@ -27,8 +27,8 @@ extension TraderDataMapper on TraderDataResponse? {
 extension TotalDataMapper on TotalDataResponse? {
   TotalModel toDomain() {
     return TotalModel(
-      priceDoler: this?.priceDoler.orZero(),
-      priceLera: this?.priceLera.orZero(),
+      priceDoler: this?.priceDoler.orZero()??Constants.zero,
+      priceLera: this?.priceLera.orZero()??Constants.zero,
     );
   }
 }

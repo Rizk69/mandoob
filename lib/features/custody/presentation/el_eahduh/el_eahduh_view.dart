@@ -53,7 +53,7 @@ class ElEahduh extends StatelessWidget {
                   if (state is AddProductToCartErrorState) {
                     final snackBar = defaultSnakeBar(
                       title: LocaleKeys.ERROR.tr(),
-                      message: LocaleKeys.ERROR.tr(),
+                      message: "يجب اضافة تاجر اولا",
                       state: ContentType.failure,
                     );
                     ScaffoldMessenger.of(context)
@@ -62,7 +62,7 @@ class ElEahduh extends StatelessWidget {
                   }
                 },
                 builder: (context, state) {
-                  if (state is GetEahduhLoadedState || state is AddEahduhSuccessState || state is AddProductToCartSuccessState|| state is ActiveTradeErrorState) {
+                  if (state is GetEahduhLoadedState || state is AddEahduhSuccessState || state is AddProductToCartSuccessState|| state is ActiveTradeErrorState|| state is AddProductToCartErrorState) {
                     var cubit = EahduhCubit.get(context);
                     var data = cubit.orderModel;
                     return Column(
@@ -296,11 +296,11 @@ class ElEahduh extends StatelessWidget {
                           height: MediaQuery.of(context).size.height / 2,
                           child: GridView.builder(
                             gridDelegate:
-                                new SliverGridDelegateWithFixedCrossAxisCount(
+                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               childAspectRatio: 0.75,
                               mainAxisSpacing: 2.0,
-                              crossAxisSpacing: 1.0,
+                              crossAxisSpacing: AppSize.s2.w,
                             ),
                             itemCount: data?.data.length ??
                                 0, // Ensure data is not null

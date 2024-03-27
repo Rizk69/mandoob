@@ -8,7 +8,9 @@ import 'package:mandoob/features/custody/data/data_source/eahduh_data_source.dar
 import 'package:mandoob/features/custody/data/network/eahduh_api.dart';
 import 'package:mandoob/features/custody/data/repository/repository_eahduh_impl.dart';
 import 'package:mandoob/features/custody/domain/repository/eahduh_repository.dart';
+import 'package:mandoob/features/custody/domain/usecase/add_currency_and_count_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/add_to_cart_usecases.dart';
+import 'package:mandoob/features/custody/domain/usecase/confirm_invoice_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/delete_all_product_in_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/delete_product_in_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/eahduh_usecases.dart';
@@ -108,7 +110,6 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<Repository>(
       () => RepositoryTrafficLineImpl(instance(), instance()));
 
-
   instance.registerLazySingleton<TradeRepository>(
       () => TradeRepositoryImpl(instance(), instance()));
 
@@ -117,7 +118,6 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<HomeRepository>(
       () => HomeRepositoryImpl(instance(), instance()));
-
 
   instance.registerLazySingleton<EahduhRepository>(
       () => RepositoryEahduhImpl(instance(), instance()));
@@ -132,19 +132,25 @@ initLoginModule() {
 
 void initProfileModule() {
   if (!GetIt.I.isRegistered<ProfileCubit>()) {
-    instance.registerLazySingleton<ProfileUseCase>(() => ProfileUseCase(instance()));
+    instance.registerLazySingleton<ProfileUseCase>(
+        () => ProfileUseCase(instance()));
 
-    instance.registerLazySingleton<ProfileEditColorUseCase>(() => ProfileEditColorUseCase(instance()));
+    instance.registerLazySingleton<ProfileEditColorUseCase>(
+        () => ProfileEditColorUseCase(instance()));
 
-    instance.registerFactory<ProfileCubit>(() => ProfileCubit(instance(), instance()));
+    instance.registerFactory<ProfileCubit>(
+        () => ProfileCubit(instance(), instance()));
   }
 }
 
 initTradeModule() {
   if (!GetIt.I.isRegistered<GetTradesUseCase>()) {
-    instance.registerFactory<TradeCubit>(() => TradeCubit(instance(),instance()));
-    instance.registerFactory<GetTradesUseCase>(() => GetTradesUseCase(instance()));
-    instance.registerFactory<ActiveTradesUseCase>(() => ActiveTradesUseCase(instance()));
+    instance
+        .registerFactory<TradeCubit>(() => TradeCubit(instance(), instance()));
+    instance
+        .registerFactory<GetTradesUseCase>(() => GetTradesUseCase(instance()));
+    instance.registerFactory<ActiveTradesUseCase>(
+        () => ActiveTradesUseCase(instance()));
     instance
         .registerFactory<AddTradesUseCase>(() => AddTradesUseCase(instance()));
     instance.registerFactory<AddTradeCubit>(() => AddTradeCubit(instance()));
@@ -163,11 +169,10 @@ initHomeModule() {
 
 initDelivaryLineModule() {
   if (!GetIt.I.isRegistered<DelivaryLineUseCase>()) {
-    instance.registerFactory<TrafficLinesCubit>(
-        () => TrafficLinesCubit(instance(),instance(),instance(),instance()));
+    instance.registerFactory<TrafficLinesCubit>(() =>
+        TrafficLinesCubit(instance(), instance(), instance(), instance()));
     instance.registerFactory<DelivaryLineUseCase>(
         () => DelivaryLineUseCase(instance()));
-
 
     instance.registerFactory<DeleteDeliveryLineUseCase>(
         () => DeleteDeliveryLineUseCase(instance()));
@@ -182,15 +187,25 @@ initDelivaryLineModule() {
 
 initEahduhModule() {
   if (!GetIt.I.isRegistered<EahduhUseCase>()) {
-    instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(instance(),instance(),instance()));
+    instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(
+        instance(), instance(), instance(), instance(), instance()));
     instance.registerFactory<GetCartUseCase>(() => GetCartUseCase(instance()));
 
-    instance.registerFactory<EahduhCubit>(() => EahduhCubit(instance(),instance()));
+    instance.registerFactory<EahduhCubit>(
+        () => EahduhCubit(instance(), instance()));
     instance.registerFactory<EahduhUseCase>(() => EahduhUseCase(instance()));
 
-    instance.registerFactory<AddProductToCartUseCase>(() => AddProductToCartUseCase(instance()));
-    instance.registerFactory<DeleteCartUseCase>(() => DeleteCartUseCase(instance()));
-    instance.registerFactory<DeleteProductInCartUseCase>(() => DeleteProductInCartUseCase(instance()));
+    instance.registerFactory<ConfirmInvoiceUseCase>(
+        () => ConfirmInvoiceUseCase(instance()));
+    instance.registerFactory<AddCurrencyAndCountUseCase>(
+        () => AddCurrencyAndCountUseCase(instance()));
+
+    instance.registerFactory<AddProductToCartUseCase>(
+        () => AddProductToCartUseCase(instance()));
+    instance.registerFactory<DeleteCartUseCase>(
+        () => DeleteCartUseCase(instance()));
+    instance.registerFactory<DeleteProductInCartUseCase>(
+        () => DeleteProductInCartUseCase(instance()));
   }
 }
 
