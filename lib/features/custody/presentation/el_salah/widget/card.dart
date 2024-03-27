@@ -15,8 +15,9 @@ import '../../../../../generated/locale_keys.g.dart';
 
 class CardExpandedItem extends StatelessWidget {
   final ProductModel product;
+  final int index;
 
-  const CardExpandedItem({Key? key, required this.product}) : super(key: key);
+  const CardExpandedItem({Key? key, required this.product,required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
