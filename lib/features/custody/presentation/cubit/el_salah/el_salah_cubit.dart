@@ -92,32 +92,41 @@ class ElSalahCubit extends Cubit<ElSalahState> {
     );
   }
 
-  int countItems = 0;
 
 
   int selectedCurrency = 1;
   void updateCurrency(int currency) {
     print(currency);
     selectedCurrency = currency;
-    emit(ElSalahCurrencyUpdated()); // تحديث الحالة
+    emit(ElSalahCurrencyUpdated());
   }
 
-  void addItem() {
-    countItems++;
-    emit(YourItemAddedState());
-  }
 
   void openDrawer(BuildContext context) {
     Scaffold.of(context).openDrawer();
   }
 
-  void removeItem() {
-    if (countItems != 0) {
-      countItems--;
-    }
 
+
+  Map<int, int> itemsCountPerProduct = {};
+
+
+  void addItem(int productId) {
+    if (itemsCountPerProduct.containsKey(productId)) {
+      itemsCountPerProduct[productId] = itemsCountPerProduct[productId]! + 1;
+    } else {
+      itemsCountPerProduct[productId] = 1;
+    }
+    emit(YourItemAddedState());
+  }
+
+  void removeItem(int productId) {
+    if (itemsCountPerProduct.containsKey(productId) && itemsCountPerProduct[productId]! > 0) {
+      itemsCountPerProduct[productId] = itemsCountPerProduct[productId]! - 1;
+    }
     emit(YourItemRemovedState());
   }
+
 
   bool isExpanded = false;
 
@@ -125,4 +134,13 @@ class ElSalahCubit extends Cubit<ElSalahState> {
     isExpanded = !isExpanded;
     emit(ExpandedState());
   }
+
+
+  int? expandedProductId;
+  void toggleExpanded(int productId) {
+    expandedProductId = (expandedProductId == productId) ? null : productId;
+    emit(ExpandedState());
+  }
+
+
 }

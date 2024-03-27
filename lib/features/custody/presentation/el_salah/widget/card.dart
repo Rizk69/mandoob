@@ -20,11 +20,15 @@ class CardExpandedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isExpanded = ElSalahCubit.get(context).expandedProductId == product.id;
+
     return Stack(
       children: [
         GestureDetector(
           onTap: () {
-            ElSalahCubit.get(context).expand();
+            // ElSalahCubit.get(context).expand();
+            ElSalahCubit.get(context).toggleExpanded(product.id);
+
           },
           child: Container(
             margin: EdgeInsets.symmetric(vertical: 25),
@@ -110,7 +114,7 @@ class CardExpandedItem extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {
-                            ElSalahCubit.get(context).addItem();
+                            ElSalahCubit.get(context).addItem(product.id);
                           },
                           icon: Icon(
                             Icons.add,
@@ -118,25 +122,26 @@ class CardExpandedItem extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${product.quantity}',
+                          '${ElSalahCubit.get(context).itemsCountPerProduct[product.id] ?? 0}',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                           ),
                         ),
                         IconButton(
                           onPressed: () {
-                            ElSalahCubit.get(context).removeItem();
+                            ElSalahCubit.get(context).removeItem(product.id);
                           },
                           icon: Icon(
                             Icons.remove,
                             color: ColorManager.greenLight,
                           ),
                         ),
+
                       ],
                     ),
                   ],
                 ),
-                if (ElSalahCubit.get(context).isExpanded)
+                if (isExpanded)
                   Column(
                     children: [
                       Row(
@@ -331,7 +336,7 @@ class CardExpandedItem extends StatelessWidget {
                             ElSalahCubit.get(context).addCurrencyAndCount(
                                 product_id: product.id,
                                 currency_id:  ElSalahCubit.get(context).selectedCurrency,
-                                count: ElSalahCubit.get(context).countItems
+                                count: ElSalahCubit.get(context).itemsCountPerProduct[product.id] ?? 0
                             );
 
 
