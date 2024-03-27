@@ -88,7 +88,7 @@ class ElSalahViewBody extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: cartItems.length,
                 itemBuilder: (context, index) {
-                  return CardExpandedItem(product: cartItems[index]);
+                  return CardExpandedItem(product: cartItems[index],index: index,);
                 },
               ),
               SizedBox(height: AppSize.s10.h),

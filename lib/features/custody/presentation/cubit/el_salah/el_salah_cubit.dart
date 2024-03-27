@@ -99,7 +99,7 @@ class ElSalahCubit extends Cubit<ElSalahState> {
   void updateCurrency(int currency) {
     print(currency);
     selectedCurrency = currency;
-    emit(ElSalahCurrencyUpdated()); // تحديث الحالة
+    emit(ElSalahCurrencyUpdated());
   }
 
   void addItem() {
