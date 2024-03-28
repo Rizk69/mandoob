@@ -5,7 +5,7 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/anmation.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
-import 'package:mandoob/features/custody/presentation/el_salah/pay_prtial_invoice.dart';
+import 'package:mandoob/features/custody/presentation/pay_prtial_invoice.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ConfirmInvoiceScreen extends StatelessWidget {

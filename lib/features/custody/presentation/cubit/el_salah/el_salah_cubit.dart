@@ -162,5 +162,18 @@ class ElSalahCubit extends Cubit<ElSalahState> {
     emit(ExpandedState());
   }
 
+int ? invoiceId ;
+num ? pay_Doler ;
+num ? pay_Lera ;
+
+setPayDoler(num payDolar){
+  pay_Doler= payDolar;
+  emit(SetPayDolarState());
+}
+setPayLera(num payLera){
+  pay_Lera = payLera;
+  emit(SetPayLeraState());
+
+}
 
 }

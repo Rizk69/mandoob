@@ -152,11 +152,22 @@ class RepositoryEahduhImpl extends EahduhRepository {
   @override
   Future<Either<Failure, void>> payPartialDept(
       {required PayPartialDeptRequest partialDeptRequest}) async {
+
     try {
-      final response = await _remoteDataSource.payPartialDept(
-          partialDeptRequest: partialDeptRequest);
-      return Right(response);
+      final response = await _remoteDataSource.payPartialDept(partialDeptRequest: partialDeptRequest);
+
+      if (response.status == true) {
+        print(response.status);
+        return Right(response.message);
+      } else {
+        return Left(Failure(
+          ResponseCode.NOT_FOUND,
+          response.message.orEmpty(),
+        ));
+      }
+
     } catch (error) {
+      print("catch");
       return Left(ErrorHandler.handle(error).failure);
     }
   }

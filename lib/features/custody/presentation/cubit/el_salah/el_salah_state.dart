@@ -86,4 +86,7 @@ class YourItemRemovedState extends ElSalahState {}
 
 class ExpandedState extends ElSalahState {}
 
+class SetPayDolarState extends ElSalahState {}
+class SetPayLeraState extends ElSalahState {}
+
 class ElSalahCurrencyUpdated extends ElSalahState {}

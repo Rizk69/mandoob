@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
@@ -347,13 +348,18 @@ class ElEahduh extends StatelessWidget {
                                           Column(
                                             children: [
                                               Text(
-                                                data?.data[index].nameAr ?? '',
+
+                                                translateString(context: context,
+                                                enString: data?.data[index].nameEn,
+                                                  arString:data?.data[index].nameAr ,
+                                                ),
                                                 style: TextStyle(
-                                                  fontSize: 27,
+                                                  fontSize: AppSize.s20.sp,
                                                   color: Theme.of(context)
                                                       .primaryColor,
                                                   fontWeight: FontWeight.bold,
                                                 ),
+                                                maxLines: 1,
                                               ),
                                               Text(
                                                 '${data?.data[index].count} عبوة ',
