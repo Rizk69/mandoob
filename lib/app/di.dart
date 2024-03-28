@@ -24,6 +24,8 @@ import 'package:mandoob/features/home/domain/repository/home_repository.dart';
 import 'package:mandoob/features/home/domain/usecase/edit_price_usecases.dart';
 import 'package:mandoob/features/home/domain/usecase/get_home_usecases.dart';
 import 'package:mandoob/features/home/presentation/cubit/home_cubit/home_cubit.dart';
+import 'package:mandoob/features/orders/data/data_source/remote_talabat_data_source.dart';
+import 'package:mandoob/features/orders/domain/usecase/talabat_usecases.dart';
 import 'package:mandoob/features/trader/data/data_source/remote_trade_data_source.dart';
 import 'package:mandoob/features/trader/data/network/trade_api.dart';
 import 'package:mandoob/features/trader/domain/repository/trade_repository.dart';
@@ -50,6 +52,10 @@ import 'package:mandoob/features/trafiic_lines/domain/usecase/add_dlivary_usecas
 import 'package:mandoob/features/trafiic_lines/domain/usecase/delete_dlivary_usecase.dart';
 import 'package:mandoob/features/trafiic_lines/domain/usecase/search_dlivary_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../features/orders/data/network/talabat_api.dart';
+import '../features/orders/data/repository/talabat_repository_impl.dart';
+import '../features/orders/domain/repository/talabat_repository.dart';
+import '../features/orders/presentation/talabat/cubit/talabat_cubit.dart';
 import '../features/trafiic_lines/domain/usecase/get_dlivary_usecase.dart';
 import '../features/trafiic_lines/presentation/cubit/trafficlines_cubit.dart';
 
@@ -86,7 +92,8 @@ Future<void> initAppModule() async {
       .registerLazySingleton<AuthServiceClient>(() => AuthServiceClient(dio));
 
   instance
-      .registerLazySingleton<HomeServiceClient>(() => HomeServiceClient(dio));
+      .registerLazySingleton<HomeServiceClient>(() => HomeServiceClient(dio));  instance
+      .registerLazySingleton<TalabatServiceClient>(() => TalabatServiceClient(dio));
 
   // Local data source
   instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
@@ -99,6 +106,8 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<RemoteAuthDataSource>(
       () => RemoteAuthDataSourceImpl(instance()));
+  instance.registerLazySingleton<RemoteTalabatSource>(
+      () => TalabatSourceImpl(instance()));
 
   instance.registerLazySingleton<RemoteTradeDataSource>(
       () => RemoteTradeDataSourceImpl(instance()));
@@ -118,6 +127,8 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<HomeRepository>(
       () => HomeRepositoryImpl(instance(), instance()));
+  instance.registerLazySingleton<TalabatRepository>(
+      () => TalabatRepositoryImpl(instance(), instance()));
 
   instance.registerLazySingleton<EahduhRepository>(
       () => RepositoryEahduhImpl(instance(), instance()));
@@ -167,6 +178,17 @@ initHomeModule() {
   }
 }
 
+initTalabatModule() {
+  if (!GetIt.I.isRegistered<GetPresentTalabatUseCase>()) {
+    instance.registerFactory<TalabatViewCubit>(
+        () => TalabatViewCubit(instance(), instance()));
+    instance.registerFactory<GetPresentTalabatUseCase>(
+        () => GetPresentTalabatUseCase(instance()));
+    instance.registerFactory<GetOldTalabatUseCase>(
+        () => GetOldTalabatUseCase(instance()));
+  }
+}
+
 initDelivaryLineModule() {
   if (!GetIt.I.isRegistered<DelivaryLineUseCase>()) {
     instance.registerFactory<TrafficLinesCubit>(() =>
@@ -213,6 +235,7 @@ resetModules() {
   instance.reset(dispose: false);
   initAppModule();
   initLoginModule();
+  initTalabatModule();
   initProfileModule();
   initTradeModule();
   initHomeModule();

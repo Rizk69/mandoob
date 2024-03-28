@@ -49,6 +49,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LoginView());
       case Routes.homeRoute:
         initHomeModule();
+        initTalabatModule();
         return MaterialPageRoute(builder: (_) => const HomeController());
       case Routes.homeViewRoute:
         initHomeModule();
