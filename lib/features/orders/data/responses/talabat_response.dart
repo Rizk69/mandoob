@@ -1,4 +1,3 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'talabat_response.g.dart';
 
@@ -12,19 +11,16 @@ class TalabatResponse {
   BalanceTalabatResponse? balance;
 
   @JsonKey(name: "orders")
-
   List<OrdersTalabatResponse>? orders;
 
-  TalabatResponse({
-      this.status, 
-      this.message, 
-      this.balance, 
-      this.orders});
+  TalabatResponse({this.status, this.message, this.balance, this.orders});
 
   TalabatResponse.fromJson(dynamic json) {
     status = json["status"];
     message = json["message"];
-    balance = json["balance"] != null ? BalanceTalabatResponse.fromJson(json["balance"]) : null;
+    balance = json["balance"] != null
+        ? BalanceTalabatResponse.fromJson(json["balance"])
+        : null;
     if (json["orders"] != null) {
       orders = [];
       json["orders"].forEach((v) {
@@ -45,7 +41,6 @@ class TalabatResponse {
     }
     return map;
   }
-
 }
 
 class OrdersTalabatResponse {
@@ -53,18 +48,23 @@ class OrdersTalabatResponse {
   String? orderNo;
   int? status;
   String? date;
-
-  OrdersTalabatResponse({
-      this.id, 
-      this.orderNo, 
-      this.status, 
-      this.date});
+  int? priceDoler;
+  int? priceLera;
+  OrdersTalabatResponse(
+      {this.id,
+      this.orderNo,
+      this.status,
+      this.date,
+      this.priceLera,
+      this.priceDoler});
 
   OrdersTalabatResponse.fromJson(dynamic json) {
     id = json["id"];
     orderNo = json["orderNo"];
     status = json["status"];
     date = json["date"];
+    priceLera = json["price_Lera"];
+    priceDoler = json["price_Doler"];
   }
 
   Map<String, dynamic> toJson() {
@@ -73,18 +73,17 @@ class OrdersTalabatResponse {
     map["orderNo"] = orderNo;
     map["status"] = status;
     map["date"] = date;
+    map["price_Doler"] = priceDoler;
+    map["price_Lera"] = priceLera;
     return map;
   }
-
 }
 
 class BalanceTalabatResponse {
   int? totalDoler;
   int? totalLera;
 
-  BalanceTalabatResponse({
-      this.totalDoler, 
-      this.totalLera});
+  BalanceTalabatResponse({this.totalDoler, this.totalLera});
 
   BalanceTalabatResponse.fromJson(dynamic json) {
     totalDoler = json["total_Doler"];
@@ -97,5 +96,4 @@ class BalanceTalabatResponse {
     map["total_Lera"] = totalLera;
     return map;
   }
-
 }

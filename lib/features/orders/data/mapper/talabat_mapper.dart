@@ -35,6 +35,8 @@ extension OrdersDataMapper on OrdersTalabatResponse? {
       orderNo: this?.orderNo ?? Constants.empty,
       status: this?.status ?? Constants.zero,
       date: this?.date ?? Constants.empty,
+      priceDoler: this?.priceDoler ?? Constants.zero,
+      priceLera:this?.priceLera ?? Constants.zero,
     );
   }
 }

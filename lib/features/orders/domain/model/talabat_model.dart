@@ -16,12 +16,16 @@ class OrdersTalabat {
   String orderNo;
   int status;
   String date;
+  int priceDoler;
+  int priceLera;
 
   OrdersTalabat(
       {required this.id,
       required this.orderNo,
       required this.status,
-      required this.date});
+      required this.date,
+      required this.priceDoler,
+      required this.priceLera,});
 }
 
 class BalanceTalabat {

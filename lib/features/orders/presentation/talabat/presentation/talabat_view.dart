@@ -37,9 +37,11 @@ class TalabatViewBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: BlocBuilder<TalabatViewCubit, TalabatViewState>(
               builder: (context, state) {
-                if (state == TalabatViewState.loaded){
-                  var talabatOld= TalabatViewCubit.get(context).talabatOldModel;
-                  var talabatPresent= TalabatViewCubit.get(context).talabatPresentModel;
+                if (state == TalabatViewState.loaded) {
+                  var talabatOld =
+                      TalabatViewCubit.get(context).talabatOldModel;
+                  var talabatPresent =
+                      TalabatViewCubit.get(context).talabatPresentModel;
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -74,7 +76,8 @@ class TalabatViewBody extends StatelessWidget {
                               children: [
                                 IconButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, Routes.newTalab);
+                                    Navigator.pushNamed(
+                                        context, Routes.newTalab);
                                   },
                                   icon: Icon(
                                     Icons.add,
@@ -133,7 +136,9 @@ class TalabatViewBody extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             columnCard(
-                              title: talabatPresent?.balance.totalDoler.toString() ??'',
+                              title: talabatPresent?.balance.totalDoler
+                                      .toString() ??
+                                  '',
                               colorTitle: ColorManager.greenLight,
                               des: "السعر دولار",
                             ),
@@ -143,7 +148,9 @@ class TalabatViewBody extends StatelessWidget {
                               color: ColorManager.gray,
                             ),
                             columnCard(
-                              title: talabatPresent?.balance.totalLera.toString() ??'',
+                              title: talabatPresent?.balance.totalLera
+                                      .toString() ??
+                                  '',
                               colorTitle: ColorManager.orangeLight,
                               des: "السعر ليرة",
                             ),
@@ -165,190 +172,210 @@ class TalabatViewBody extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                          DefaultTabController(
-                                  length: 2,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.stretch,
-                                    children: [
-                                      TabBar(
-                                        indicatorColor: Colors.black,
-                                        tabs: [
-                                          Tab(
-                                            child: Text(
-                                              'الطلبيات الحالية',
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Theme.of(context)
-                                                    .primaryColor, // Change this to your desired text color
-                                              ),
-                                            ),
+                            DefaultTabController(
+                              length: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  TabBar(
+                                    indicatorColor: Colors.black,
+                                    tabs: [
+                                      Tab(
+                                        child: Text(
+                                          'الطلبيات الحالية',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .primaryColor, // Change this to your desired text color
                                           ),
-                                          Tab(
-                                            child: Text(
-                                              'الطلبيات السابقة',
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Theme.of(context)
-                                                    .primaryColor, // Change this to your desired text color
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                        ),
                                       ),
-                                      SizedBox(
-                                        height: AppSize.s64.h,
-                                        child: TabBarView(
-                                          children: [
-                                            ListView.builder(itemBuilder: (context, index) => Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8.0,
-                                                      vertical: 15),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        'المواد : شامبو 1 - شامبو 2',
-                                                        style: getBoldSegoeStyle(
-                                                          fontSize: 18,
-                                                          color: Theme.of(context)
-                                                              .primaryColor,
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 8),
-                                                      Text(
-                                                        'المبلغ  : 4545',
-                                                        style: getBoldSegoeStyle(
-                                                          fontSize: 18,
-                                                          color: Theme.of(context)
-                                                              .primaryColor,
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 8),
-                                                      Text.rich(
-                                                        TextSpan(
-                                                          text: 'الحالة : ',
-                                                          style:
-                                                          getBoldSegoeStyle(
-                                                            fontSize: 18,
-                                                            color:
-                                                            Theme.of(context)
-                                                                .primaryColor,
+                                      Tab(
+                                        child: Text(
+                                          'الطلبيات السابقة',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .primaryColor, // Change this to your desired text color
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: AppSize.s64.h,
+                                    child: TabBarView(
+                                      children: [
+                                        ListView.builder(
+                                            itemBuilder: (context, index) =>
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                          horizontal: 8.0,
+                                                          vertical: 15),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'رقم الطلبية :  ${talabatPresent?.orders[index].orderNo}',
+                                                            style:
+                                                                getBoldSegoeStyle(
+                                                              fontSize: 18,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColor,
+                                                            ),
                                                           ),
-                                                          children: [
+                                                          SizedBox(height: 8),
+                                                          Text.rich(
                                                             TextSpan(
-                                                              text: 'جاهزة للصرف',
+                                                              text: 'الحالة : ',
+                                                              style:
+                                                                  getBoldSegoeStyle(
+                                                                fontSize: 18,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                              ),
+                                                              children: [
+                                                                TextSpan(
+                                                                  text:
+                                                                      '${talabatPresent?.orders[index].status}',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: ColorManager
+                                                                        .greenLight, // Change this to your desired color
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 8),
+                                                          Text(
+                                                            'التاريخ : ${talabatPresent?.orders[index].date} ',
+                                                            style:
+                                                                getBoldSegoeStyle(
+                                                              fontSize: 18,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColor,
+                                                            ),
+                                                          ),
+                                                          Align(
+                                                            alignment: Alignment
+                                                                .centerLeft,
+                                                            child: Text(
+                                                              'تعديل',
                                                               style: TextStyle(
+                                                                color:
+                                                                    ColorManager
+                                                                        .babyBlue,
                                                                 fontSize: 18,
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                                color: ColorManager
-                                                                    .greenLight, // Change this to your desired color
+                                                                    FontWeight
+                                                                        .w500,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .underline,
                                                               ),
                                                             ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 8),
-                                                      Text(
-                                                        'التاريخ :  24-11-2022 ',
-                                                        style: getBoldSegoeStyle(
-                                                          fontSize: 18,
-                                                          color: Theme.of(context)
-                                                              .primaryColor,
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                        Alignment.centerLeft,
-                                                        child: Text(
-                                                          'تعديل',
-                                                          style: TextStyle(
-                                                            color: ColorManager
-                                                                .babyBlue,
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                            FontWeight.w500,
-                                                            decoration:
-                                                            TextDecoration
-                                                                .underline,
                                                           ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 12),
-                                                      Container(
-                                                        width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors.grey,
-                                                            border: Border.all(
+                                                          SizedBox(height: 12),
+                                                          Container(
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            decoration: BoxDecoration(
                                                                 color:
-                                                                Colors.grey,
-                                                                width: 1)),
-                                                      )
-                                                    ],
-                                                  ),
+                                                                    Colors.grey,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                        .grey,
+                                                                    width: 1)),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
+                                            itemCount:
+                                                talabatPresent?.orders.length),
+                                        ListView.builder(
+                                          itemBuilder: (context, index) {
+                                            if (talabatOld == null ||
+                                                talabatOld.orders.isEmpty) {
+                                              return SizedBox();
+                                            }
 
-                                              ],
-                                            ),itemCount: talabatPresent?.orders.length)
-                                            ,
-                                            ListView.builder(itemBuilder: (context, index) =>  Column(
+                                            if (index >=
+                                                talabatOld.orders.length) {
+                                              return SizedBox();
+                                            }
+
+                                            final order =
+                                                talabatOld.orders[index];
+                                            return Column(
                                               crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding:
-                                                  const EdgeInsets.symmetric(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
                                                       horizontal: 8.0,
                                                       vertical: 15),
                                                   child: Column(
                                                     crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Row(
                                                         mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
                                                         children: [
                                                           Text(
-                                                            'المواد : شامبو 1 - شامبو 2',
+                                                            'المبلغ : ${order.status}',
                                                             style:
-                                                            getBoldSegoeStyle(
+                                                                getBoldSegoeStyle(
                                                               fontSize: 18,
-                                                              color: ColorManager
-                                                                  .grey3,
+                                                              color:
+                                                                  ColorManager
+                                                                      .grey3,
                                                             ),
                                                           ),
                                                           Padding(
                                                             padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 8),
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 8),
                                                             child: Text(
                                                               "التفاصيل",
                                                               style: TextStyle(
                                                                 color:
-                                                                ColorManager
-                                                                    .babyBlue,
+                                                                    ColorManager
+                                                                        .babyBlue,
                                                                 fontSize: 20,
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .w500,
+                                                                    FontWeight
+                                                                        .w500,
                                                                 decoration:
-                                                                TextDecoration
-                                                                    .underline,
+                                                                    TextDecoration
+                                                                        .underline,
                                                               ),
                                                             ),
                                                           ),
@@ -357,68 +384,74 @@ class TalabatViewBody extends StatelessWidget {
                                                       SizedBox(height: 8),
                                                       Text(
                                                         'المبلغ  : 4545',
-                                                        style: getBoldSegoeStyle(
+                                                        style:
+                                                            getBoldSegoeStyle(
                                                           fontSize: 18,
-                                                          color:
-                                                          ColorManager.grey3,
+                                                          color: ColorManager
+                                                              .grey3,
                                                         ),
                                                       ),
                                                       SizedBox(height: 8),
                                                       Text(
-                                                        'التاريخ :  24-11-2022 ',
-                                                        style: getBoldSegoeStyle(
+                                                        'التاريخ :  24-11-2022',
+                                                        style:
+                                                            getBoldSegoeStyle(
                                                           fontSize: 18,
-                                                          color:
-                                                          ColorManager.grey3,
+                                                          color: ColorManager
+                                                              .grey3,
                                                         ),
                                                       ),
                                                       SizedBox(height: 12),
                                                       Container(
-                                                        width:
-                                                        MediaQuery.of(context)
+                                                        width: MediaQuery.of(
+                                                                context)
                                                             .size
                                                             .width,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors.grey,
-                                                            border: Border.all(
-                                                                color:
-                                                                Colors.grey,
-                                                                width: 1)),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.grey,
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.grey,
+                                                              width: 1),
+                                                        ),
                                                       )
                                                     ],
                                                   ),
                                                 ),
-
                                               ],
-                                            ),itemCount: talabatOld?.orders.length)
-
-
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                            );
+                                          },
+                                          itemCount:
+                                              talabatOld?.orders.length ?? 0,
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                )
-
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
                     ],
                   );
-                }else if(state == TalabatViewState.loading ){
-                  return const Column(
+                } else if (state == TalabatViewState.loading) {
+                  return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Center(
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 2.1,
+                      ),
+                      const Center(
                         child: CircularProgressIndicator.adaptive(),
                       ),
                     ],
                   );
-                }else {
-                  return Text('Somting Error');
+                } else {
+                  return const Text('Somting Error');
                 }
-
               },
             ),
           ),
