@@ -123,7 +123,7 @@ class CardExpandedItem extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${ElSalahCubit.get(context).itemsCountPerProduct[product.id] ?? 0}',
+                          '${ElSalahCubit.get(context).itemsCountPerProduct[product.id] ?? product.quantity}',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                           ),
@@ -337,7 +337,7 @@ class CardExpandedItem extends StatelessWidget {
                             ElSalahCubit.get(context).addCurrencyAndCount(
                                 product_id: product.id,
                                 currency_id:  ElSalahCubit.get(context).selectedCurrency,
-                                count: ElSalahCubit.get(context).itemsCountPerProduct[product.id] ?? 0
+                                count: ElSalahCubit.get(context).itemsCountPerProduct[product.id] ?? product.quantity
                             );
 
 

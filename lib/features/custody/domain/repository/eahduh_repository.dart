@@ -24,4 +24,7 @@ abstract class EahduhRepository {
   Future<Either<Failure, void>> addCurrencyAndCount({required int product_id ,required  int currency_id ,required  num count});
   Future<Either<Failure, ConfirmModel>> confirmInvoice({required ConfirmRequest confirmRequest});
 
+  Future<Either<Failure, void>> payPartialDept(
+      {required PayPartialDeptRequest partialDeptRequest});
+
 }

@@ -4,13 +4,13 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 
 
 class HeaderScreen extends StatelessWidget {
-  final VoidCallback functionDrawer;
+  final VoidCallback? functionDrawer;
   final VoidCallback functionIcon;
   final String title;
 
   const HeaderScreen({
     Key? key,
-    required this.functionDrawer,
+     this.functionDrawer,
     required this.title,
     required this.functionIcon,
   }) : super(key: key);
@@ -22,8 +22,9 @@ class HeaderScreen extends StatelessWidget {
       children: [
         IconButton(
           onPressed: functionDrawer,
-          icon:  Icon(Icons.menu,color: Theme.of(context).primaryColorLight),
+          icon:functionDrawer!=null ? Icon(Icons.menu,color: Theme.of(context).primaryColorLight):Container(),
         ),
+
         Center(
           child: Text(
             title,

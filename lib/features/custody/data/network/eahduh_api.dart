@@ -46,4 +46,8 @@ abstract class EahduhServiceClient {
   Future<ConfirmResponse> confirmInvoice(@Body() ConfirmRequest confirmRequest);
 
 
+  @POST("api/pay_debt")
+  Future<void> payPartialDept(@Body() PayPartialDeptRequest partialDeptRequest);
+
+
 }

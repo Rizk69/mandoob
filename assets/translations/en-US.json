@@ -120,6 +120,16 @@
   "addTrafficLine": "Add Traffic Line",
   "Trader": "Trader",
   "departureDate": "Departure Date",
-  "selectTrader": "Select Trader"
+  "selectTrader": "Select Trader",
+  "Cashing": "Cashing",
+
+
+  "payDept": "Deferred Payment",
+  "totalLera": "Total Amount in Lira",
+  "totalUSD": "Total Amount in USD",
+  "payedTL": "Amount Paid in Lira",
+  "payedUSD": "Amount Paid in USD",
+  "remainingAmount": "Remaining Amount",
+  "payDate": "Payment Due Date"
 
 }

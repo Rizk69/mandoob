@@ -46,3 +46,28 @@ class ConfirmRequest {
 
 
 
+@JsonSerializable()
+class PayPartialDeptRequest {
+  @JsonKey(name: "invoice_id")
+  num? invoice_id;
+
+  @JsonKey(name: "pay_Doler")
+  num? pay_Doler;
+
+  @JsonKey(name: "pay_Lera")
+  num? pay_Lera;
+
+
+  PayPartialDeptRequest({
+    this.invoice_id,
+    this.pay_Doler,
+    this.pay_Lera,
+  });
+
+  factory PayPartialDeptRequest.fromJson(Map<String, dynamic> json) =>
+      _$PayPartialDeptRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PayPartialDeptRequestToJson(this);
+}
+
+

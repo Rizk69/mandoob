@@ -31,3 +31,19 @@ Map<String, dynamic> _$ConfirmRequestToJson(ConfirmRequest instance) =>
     <String, dynamic>{
       'pay': instance.pay,
     };
+
+PayPartialDeptRequest _$PayPartialDeptRequestFromJson(
+        Map<String, dynamic> json) =>
+    PayPartialDeptRequest(
+      invoice_id: json['invoice_id'] as num?,
+      pay_Doler: json['pay_Doler'] as num?,
+      pay_Lera: json['pay_Lera'] as num?,
+    );
+
+Map<String, dynamic> _$PayPartialDeptRequestToJson(
+        PayPartialDeptRequest instance) =>
+    <String, dynamic>{
+      'invoice_id': instance.invoice_id,
+      'pay_Doler': instance.pay_Doler,
+      'pay_Lera': instance.pay_Lera,
+    };

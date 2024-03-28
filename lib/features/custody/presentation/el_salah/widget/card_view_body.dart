@@ -11,12 +11,11 @@ import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import 'cutom_alert.dart';
 
-class ElSalahViewBody extends StatelessWidget {
+class CartViewBody extends StatelessWidget {
   final List<ProductModel> cartItems;
 
-  ElSalahViewBody({Key? key, required this.cartItems}) : super(key: key);
+  CartViewBody({Key? key, required this.cartItems}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -108,11 +107,12 @@ class ElSalahViewBody extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // Navigator.pushNamed(context, Routes.elmulakhas);
-                    showContainerDialog(context);
+                    // showContainerDialog(context);
+
+                    Navigator.pushNamed(context, Routes.elmulakhas);
                   },
                   child: Text(
-                    LocaleKeys.next.trim(),
+                    LocaleKeys.next.tr(),
                     style: getBoldSegoeStyle(
                       color: ColorManager.black,
                       fontSize: AppSize.s20.sp,

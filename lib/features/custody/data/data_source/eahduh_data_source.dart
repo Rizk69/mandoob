@@ -23,6 +23,8 @@ abstract class RemoteEahduhDataSource {
 
   Future<ConfirmResponse> confirmInvoice({required ConfirmRequest confirmRequest});
 
+  Future<void> payPartialDept({required PayPartialDeptRequest partialDeptRequest});
+
 
 
 }
@@ -77,5 +79,10 @@ class RemoteEahduhDataSourceImpl extends RemoteEahduhDataSource {
   Future<ConfirmResponse> confirmInvoice({required ConfirmRequest confirmRequest}) {
     return _appServiceClient.confirmInvoice(confirmRequest);
 
+  }
+
+  @override
+  Future<void> payPartialDept({required PayPartialDeptRequest partialDeptRequest}) {
+    return _appServiceClient.payPartialDept(partialDeptRequest);
   }
 }

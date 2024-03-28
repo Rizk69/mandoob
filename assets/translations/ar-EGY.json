@@ -119,5 +119,14 @@
   "addTrafficLine": "اضافة خطوط السير",
   "Trader": "التاجر",
   "departureDate": "تاريخ الذهاب",
-  "selectTrader": "اختر تاجر"
+  "selectTrader": "اختر تاجر",
+  "Cashing": "صرف",
+
+  "payDept": "الدفع الأجل",
+  "totalLera": "اجمالي المبلغ باللليرة",
+  "totalUSD": "اجمالي المبلغ بالدولار",
+  "payedTL": "المبلغ المدفوع بالليرة",
+  "payedUSD": "المبلغ المدفوع بالدولار",
+  "remainingAmount": "المبلغ المتبقي",
+  "payDate": "تاريخ استحقاق الدفع"
 }

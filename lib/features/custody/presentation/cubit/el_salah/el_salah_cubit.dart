@@ -9,6 +9,7 @@ import 'package:mandoob/features/custody/domain/usecase/confirm_invoice_usecases
 import 'package:mandoob/features/custody/domain/usecase/delete_all_product_in_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/delete_product_in_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/get_cart_usecases.dart';
+import 'package:mandoob/features/custody/domain/usecase/pay_partial_dept_usecases.dart';
 import 'package:meta/meta.dart';
 
 part 'el_salah_state.dart';
@@ -19,6 +20,7 @@ class ElSalahCubit extends Cubit<ElSalahState> {
       this._deleteProductInCartUseCase,
       this._deleteCartUseCase,
       this._confirmInvoiceUseCase,
+      this._payPartialDeptUseCase,
       this._addCurrencyAndCountUseCase)
       : super(ElSalahInitial());
 
@@ -32,6 +34,7 @@ class ElSalahCubit extends Cubit<ElSalahState> {
 
   final ConfirmInvoiceUseCase _confirmInvoiceUseCase;
   final AddCurrencyAndCountUseCase _addCurrencyAndCountUseCase;
+  final PayPartialDeptUseCase _payPartialDeptUseCase;
 
   getCartOrder() async {
     emit(GetCartLoadingState());
@@ -71,7 +74,15 @@ class ElSalahCubit extends Cubit<ElSalahState> {
     result.fold((failure) => emit(ConfirmInvoiceErrorState(failure.message)),
         (model) {
       confirmModel = model;
-      emit(ConfirmInvoiceLoadedState());
+
+      if (pay ==0){
+        emit(ConfirmCashInvoiceLoadedState(model));
+
+      }else {
+        emit(ConfirmDeptInvoiceLoadedState(model));
+
+      }
+
     });
   }
 
@@ -92,6 +103,15 @@ class ElSalahCubit extends Cubit<ElSalahState> {
     );
   }
 
+  payPartialDept({required PayPartialDeptRequest partialDeptRequest}) async {
+    emit(PayPartialDeptLoadingState());
+    final result =
+    await _payPartialDeptUseCase.execute(partialDeptRequest);
+    result.fold(
+          (failure) => emit(PayPartialDeptErrorState(failure.message)),
+          (model) => emit(PayPartialDeptLoadedState()),
+    );
+  }
 
 
   int selectedCurrency = 1;

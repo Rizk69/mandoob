@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
-import 'package:mandoob/features/custody/presentation/el_salah/widget/elalah_view_body.dart';
+import 'package:mandoob/features/custody/presentation/el_salah/widget/card_view_body.dart';
 
 import '../../../../../core/resources/routes_manager.dart';
 
@@ -32,7 +32,7 @@ class ElSalahView extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is GetCartLoadedState ||  state is ExpandedState||  state is YourItemAddedState||  state is YourItemRemovedState||  state is ElSalahCurrencyUpdated ) {
-            return ElSalahViewBody(
+            return CartViewBody(
               cartItems: ElSalahCubit.get(context).cart!.data,
             );
           } else {

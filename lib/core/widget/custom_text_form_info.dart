@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget customTextFormFiledInfo({required String text, required void Function(String)? onChanged,required BuildContext context}) {
+Widget customTextFormFiledInfo({required String text, bool? enable, String? hint, required void Function(String)? onChanged,required BuildContext context}) {
   return Row(
     children: [
       Expanded(
@@ -14,8 +14,9 @@ Widget customTextFormFiledInfo({required String text, required void Function(Str
         ),
       ),
       Expanded(
-        flex: 3,
+        flex: 1,
         child: TextFormField(
+          enabled: enable??true,
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),
@@ -23,6 +24,7 @@ Widget customTextFormFiledInfo({required String text, required void Function(Str
           cursorHeight: 30,
           onChanged: onChanged,
           decoration:  InputDecoration(
+            hintText: hint,
             filled: true,
             hintStyle: TextStyle(
               color: Theme.of(context).primaryColor,

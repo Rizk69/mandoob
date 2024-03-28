@@ -131,10 +131,10 @@ class RepositoryEahduhImpl extends EahduhRepository {
   @override
   Future<Either<Failure, ConfirmModel>> confirmInvoice(
       {required ConfirmRequest confirmRequest}) async {
-    final response =
-        await _remoteDataSource.confirmInvoice(confirmRequest: confirmRequest);
-
     try {
+      final response = await _remoteDataSource.confirmInvoice(
+          confirmRequest: confirmRequest);
+
       if (response.status == true) {
         print(response.status);
         return Right(response.toDomain());
@@ -144,6 +144,18 @@ class RepositoryEahduhImpl extends EahduhRepository {
           response.message.orEmpty(),
         ));
       }
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> payPartialDept(
+      {required PayPartialDeptRequest partialDeptRequest}) async {
+    try {
+      final response = await _remoteDataSource.payPartialDept(
+          partialDeptRequest: partialDeptRequest);
+      return Right(response);
     } catch (error) {
       return Left(ErrorHandler.handle(error).failure);
     }

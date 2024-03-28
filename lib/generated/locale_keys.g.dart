@@ -17,7 +17,6 @@ abstract class  LocaleKeys {
   static const confirmPassword = 'confirmPassword';
   static const newPassword = 'newPassword';
   static const confirmNewPassword = 'confirmNewPassword';
-  static const confirm = 'confirm';
   static const mobileError = 'mobileError';
   static const passwordError = 'passwordError';
   static const save = 'save';
@@ -80,10 +79,7 @@ abstract class  LocaleKeys {
   static const cart = 'cart';
   static const clients = 'clients';
   static const trafficLines = 'trafficLines';
-  static const expenses = 'expenses';
-  static const addExpenses = 'addExpenses';
   static const account = 'account';
-  static const deleteAll = 'deleteAll';
   static const balanceTL = 'balanceTL';
   static const balanceUsd = 'balanceUsd';
   static const salseLera = 'salseLera';
@@ -99,18 +95,30 @@ abstract class  LocaleKeys {
   static const TradeAddress = 'TradeAddress';
   static const TradePhone = 'TradePhone';
   static const TradePrice = 'TradePrice';
-  static const typeExpenses = 'typeExpenses';
-  static const quantity = 'quantity';
-  static const invoice = 'invoice';
-  static const cost = 'cost';
   static const retail = 'retail';
   static const wholesale = 'wholesale';
   static const factoryPrice = 'factoryPrice';
   static const add = 'add';
+  static const confirm = 'confirm';
+  static const deleteAll = 'deleteAll';
   static const trafficLine = 'trafficLine';
+  static const expenses = 'expenses';
+  static const quantity = 'quantity';
+  static const invoice = 'invoice';
+  static const cost = 'cost';
+  static const addExpenses = 'addExpenses';
+  static const typeExpenses = 'typeExpenses';
   static const addTrafficLine = 'addTrafficLine';
   static const Trader = 'Trader';
   static const departureDate = 'departureDate';
   static const selectTrader = 'selectTrader';
+  static const Cashing = 'Cashing';
+  static const payDept = 'payDept';
+  static const totalLera = 'totalLera';
+  static const totalUSD = 'totalUSD';
+  static const payedTL = 'payedTL';
+  static const payedUSD = 'payedUSD';
+  static const remainingAmount = 'remainingAmount';
+  static const payDate = 'payDate';
 
 }
