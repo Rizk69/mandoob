@@ -87,6 +87,31 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                       icon: 'assets/images/drower/account .png',
                       context: context),
                 ),
+                const SizedBox(
+                  height: AppSize.s7,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, Routes.debts);
+                  },
+                  child: rowDrawer(
+                      title: LocaleKeys.debts.tr(),
+                      icon: 'assets/images/drower/deyon.png',
+                      context: context),
+                ),                const SizedBox(
+                  height: AppSize.s7,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, Routes.payingDebts);
+                  },
+                  child: rowDrawer(
+                      title: LocaleKeys.addPurchases.tr(),
+                      icon: 'assets/images/drower/addcashproduct.png',
+                      context: context),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 3,
                 ),

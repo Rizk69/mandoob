@@ -7,6 +7,7 @@ import 'package:mandoob/features/auth/presentation/profile/presentation/profile_
 import 'package:mandoob/features/custody/presentation/el_eahduh/el_eahduh_view.dart';
 import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_mulakhas_view.dart';
 import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_salah_view.dart';
+import 'package:mandoob/features/debts/presentation/debts/presentation/debts_view.dart';
 import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
@@ -18,6 +19,7 @@ import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presen
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/traffic_lines_screen.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
+import '../../features/debts/presentation/debts/presentation/debts_paying.dart';
 import '../../features/expenses/presentaton/expenses_view.dart';
 
 class Routes {
@@ -32,6 +34,8 @@ class Routes {
   static const String fawaterTagerDetails = "/fawaterTagerDetails";
   static const String trafficLines = "/trafficLines";
   static const String expenses = "/expenses";
+  static const String debts = "/debts";
+  static const String payingDebts = "/payingDebts";
   static const String addtrafficLines = "/addtrafficLines";
   static const String profileView = "/profileView";
 
@@ -79,6 +83,10 @@ class RouteGenerator {
       case Routes.expenses:
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => ExpensesScreen());
+        case Routes.debts:
+        return MaterialPageRoute(builder: (_) => DebtsView());
+        case Routes.payingDebts:
+        return MaterialPageRoute(builder: (_) => PayingDebts());
 
       case Routes.addtrafficLines:
         initDelivaryLineModule();
