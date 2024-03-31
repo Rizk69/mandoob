@@ -59,28 +59,33 @@ class PayingDebts extends StatelessWidget {
                           context: context,
                         ),
                         SizedBox(height: AppSize.s5.h),
-                        // في داخل دالة build بدل من customTextFormFiledInfo
-                        DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                            labelText: 'عملة الشراء',
-                            border: OutlineInputBorder(),
-                          ),
-                          value: selectedCurrency, // قيمة العملة المختارة
-                          onChanged: (newValue) {
-                            // عندما يتغير القيمة المختارة
-                            setState(() {
-                              selectedCurrency = newValue; // تحديث القيمة المختارة
-                            });
-                          },
-                          items: <String>['دولار', 'ليرة'].map((String value) {
-                            // إنشاء عناصر القائمة
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'عملة الشراء',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: DropdownButtonFormField<String>(
+                                value: null,
+                                items: <String>['دولار', 'ليرة']
+                                    .map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                                onChanged: (String? value) {},
+                              ),
+                            )
+                          ],
                         ),
-
                         SizedBox(height: AppSize.s5.h),
                         customTextFormFiledInfo(
                           text: 'سعر الشراء',
@@ -104,14 +109,9 @@ class PayingDebts extends StatelessWidget {
                         ),
                         SizedBox(height: AppSize.s12.h),
                         SizedBox(
-                            width:
-                            MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.9,
+                            width: MediaQuery.of(context).size.width * 0.9,
                             child: CustomButton(
-                              onPressed: () {
-                              },
+                              onPressed: () {},
                               buttonText: LocaleKeys.add.tr(),
                             ))
                       ],
