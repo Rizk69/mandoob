@@ -59,12 +59,28 @@ class PayingDebts extends StatelessWidget {
                           context: context,
                         ),
                         SizedBox(height: AppSize.s5.h),
-                        customTextFormFiledInfo(
-                          text: 'عملة الشراء',
-                          enable: true,
-                          onChanged: (payTl) {},
-                          context: context,
+                        // في داخل دالة build بدل من customTextFormFiledInfo
+                        DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                            labelText: 'عملة الشراء',
+                            border: OutlineInputBorder(),
+                          ),
+                          value: selectedCurrency, // قيمة العملة المختارة
+                          onChanged: (newValue) {
+                            // عندما يتغير القيمة المختارة
+                            setState(() {
+                              selectedCurrency = newValue; // تحديث القيمة المختارة
+                            });
+                          },
+                          items: <String>['دولار', 'ليرة'].map((String value) {
+                            // إنشاء عناصر القائمة
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
                         ),
+
                         SizedBox(height: AppSize.s5.h),
                         customTextFormFiledInfo(
                           text: 'سعر الشراء',
