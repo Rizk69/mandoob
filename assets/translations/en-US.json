@@ -112,6 +112,8 @@
   "addNewExpense": "Add New Expense",
   "confirm": "Confirm",
   "deleteAll": "Delete All",
+  "debts": "Debts",
+  "addPurchases": "Add Purchases",
 
   "typeExpenses": "Type Expenses",
   "quantity": "Quantity",
