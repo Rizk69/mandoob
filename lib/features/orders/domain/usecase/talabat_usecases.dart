@@ -3,6 +3,7 @@ import 'package:mandoob/core/base_usecase.dart';
 import 'package:mandoob/core/netowork_core/failure.dart';
 import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
 
+import '../model/company_products_model.dart';
 import '../repository/talabat_repository.dart';
 
 class GetOldTalabatUseCase implements BaseUseCase<void, TalabatModel> {
@@ -24,5 +25,17 @@ class GetPresentTalabatUseCase implements BaseUseCase<void, TalabatModel> {
   @override
   Future<Either<Failure, TalabatModel>> execute(_) async {
     return await _talabatRepository.getPresentOrders();
+  }
+}
+
+class GetCompanyProductsUseCase
+    implements BaseUseCase<void, CompanyProductsModel> {
+  final TalabatRepository _talabatRepository;
+
+  GetCompanyProductsUseCase(this._talabatRepository);
+
+  @override
+  Future<Either<Failure, CompanyProductsModel>> execute(_) async {
+    return await _talabatRepository.getCompanyProducts();
   }
 }

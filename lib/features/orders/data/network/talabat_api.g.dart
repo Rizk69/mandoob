@@ -66,6 +66,53 @@ class _TalabatServiceClient implements TalabatServiceClient {
     return value;
   }
 
+  @override
+  Future<CompanyProductsResponse> getCompanyProducts() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CompanyProductsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'api/get_products_company',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CompanyProductsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<CompanyProductsResponse> addTalabat(List<Map<String, dynamic>> data) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = data;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CompanyProductsResponse>(Options(
+          method: 'POST',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+          _dio.options,
+          'api/add_order',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CompanyProductsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

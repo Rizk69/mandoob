@@ -29,8 +29,6 @@ extension BalanceDataMapper on BalanceTalabatResponse? {
 extension OrdersDataMapper on OrdersTalabatResponse? {
   OrdersTalabat toDomain() {
     return OrdersTalabat(
-      // Map properties from OrdersDataResponse to OrdersDataModel
-      // Example:
       id: this?.id ?? Constants.zero,
       orderNo: this?.orderNo ?? Constants.empty,
       status: this?.status ?? Constants.zero,
@@ -40,3 +38,7 @@ extension OrdersDataMapper on OrdersTalabatResponse? {
     );
   }
 }
+
+
+
+

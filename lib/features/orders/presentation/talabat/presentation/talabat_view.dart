@@ -27,8 +27,8 @@ class TalabatViewBody extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => instance<TalabatViewCubit>()
-        ..getOldTalabat()
-        ..getPresentTalabat(),
+        ..getPresentTalabat()
+        ..getOldTalabat(),
       child: Scaffold(
         key: scaffoldKey,
         drawer: buildDrawer(context),
@@ -37,7 +37,8 @@ class TalabatViewBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: BlocBuilder<TalabatViewCubit, TalabatViewState>(
               builder: (context, state) {
-                if (state == TalabatViewState.loaded) {
+                if (state == TalabatViewState.loadedOld ||
+                    state == TalabatViewState.loadedPresent) {
                   var talabatOld =
                       TalabatViewCubit.get(context).talabatOldModel;
                   var talabatPresent =
@@ -436,7 +437,8 @@ class TalabatViewBody extends StatelessWidget {
                       ),
                     ],
                   );
-                } else if (state == TalabatViewState.loading) {
+                } else if (state == TalabatViewState.loadingOld &&
+                    state == TalabatViewState.loadingPresent) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,

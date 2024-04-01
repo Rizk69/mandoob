@@ -56,6 +56,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../features/orders/data/network/talabat_api.dart';
 import '../features/orders/data/repository/talabat_repository_impl.dart';
 import '../features/orders/domain/repository/talabat_repository.dart';
+import '../features/orders/presentation/talabat/cubit/newTalabatCubit.dart';
 import '../features/orders/presentation/talabat/cubit/talabat_cubit.dart';
 import '../features/trafiic_lines/domain/usecase/get_dlivary_usecase.dart';
 import '../features/trafiic_lines/presentation/cubit/trafficlines_cubit.dart';
@@ -93,8 +94,9 @@ Future<void> initAppModule() async {
       .registerLazySingleton<AuthServiceClient>(() => AuthServiceClient(dio));
 
   instance
-      .registerLazySingleton<HomeServiceClient>(() => HomeServiceClient(dio));  instance
-      .registerLazySingleton<TalabatServiceClient>(() => TalabatServiceClient(dio));
+      .registerLazySingleton<HomeServiceClient>(() => HomeServiceClient(dio));
+  instance.registerLazySingleton<TalabatServiceClient>(
+      () => TalabatServiceClient(dio));
 
   // Local data source
   instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
@@ -180,13 +182,15 @@ initHomeModule() {
 }
 
 initTalabatModule() {
-  if (!GetIt.I.isRegistered<GetPresentTalabatUseCase>()) {
-    instance.registerFactory<TalabatViewCubit>(
-        () => TalabatViewCubit(instance(), instance()));
-    instance.registerFactory<GetPresentTalabatUseCase>(
-        () => GetPresentTalabatUseCase(instance()));
-    instance.registerFactory<GetOldTalabatUseCase>(
-        () => GetOldTalabatUseCase(instance()));
+  if (!instance.isRegistered<GetPresentTalabatUseCase>()) {
+    instance.registerFactory<TalabatViewCubit>(() => TalabatViewCubit(instance(), instance()));
+    instance.registerFactory<GetPresentTalabatUseCase>(() => GetPresentTalabatUseCase(instance()));
+    instance.registerFactory<GetOldTalabatUseCase>(() => GetOldTalabatUseCase(instance()));
+  }
+
+  if (!instance.isRegistered<GetCompanyProductsUseCase>()) {
+    instance.registerFactory<NewTalabatCubit>(() => NewTalabatCubit(instance()));
+    instance.registerFactory<GetCompanyProductsUseCase>(() => GetCompanyProductsUseCase(instance()));
   }
 }
 
@@ -210,12 +214,12 @@ initDelivaryLineModule() {
 
 initEahduhModule() {
   if (!GetIt.I.isRegistered<EahduhUseCase>()) {
-    instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(
-        instance(), instance(), instance(), instance(), instance(), instance()));
+    instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(instance(),
+        instance(), instance(), instance(), instance(), instance()));
     instance.registerFactory<GetCartUseCase>(() => GetCartUseCase(instance()));
 
-
-    instance.registerFactory<PayPartialDeptUseCase>(() => PayPartialDeptUseCase(instance()));
+    instance.registerFactory<PayPartialDeptUseCase>(
+        () => PayPartialDeptUseCase(instance()));
 
     instance.registerFactory<EahduhCubit>(
         () => EahduhCubit(instance(), instance()));

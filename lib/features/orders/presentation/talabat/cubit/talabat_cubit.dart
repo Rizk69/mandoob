@@ -6,14 +6,19 @@ import '../../../domain/usecase/talabat_usecases.dart';
 enum TalabatViewState {
   currentOrdersExpanded,
   previousOrdersExpanded,
-  loading,
-  error,
-  loaded
+  loadingPresent,
+  errorPresent,
+  loadedPresent,
+  loadingOld,
+  errorOld,
+  loadedOld
 }
+
 class TalabatViewCubit extends Cubit<TalabatViewState> {
   GetOldTalabatUseCase _getOldTalabatUseCase;
   GetPresentTalabatUseCase _getPresentTalabatUseCase;
-  TalabatViewCubit(this._getOldTalabatUseCase,this._getPresentTalabatUseCase) : super(TalabatViewState.currentOrdersExpanded);
+  TalabatViewCubit(this._getOldTalabatUseCase, this._getPresentTalabatUseCase)
+      : super(TalabatViewState.currentOrdersExpanded);
   TalabatModel? talabatOldModel;
   TalabatModel? talabatPresentModel;
   static TalabatViewCubit get(context) => BlocProvider.of(context);
@@ -25,26 +30,24 @@ class TalabatViewCubit extends Cubit<TalabatViewState> {
   void togglePreviousOrdersExpansion() {
     emit(TalabatViewState.previousOrdersExpanded);
   }
+
   void getOldTalabat() async {
-    emit(TalabatViewState.loading); // Emit loading state
+    emit(TalabatViewState.loadingOld);
     final result = await _getOldTalabatUseCase.execute("");
-    result.fold(
-          (failure) => emit(TalabatViewState.error), // Emit error state
-          (success) {
-            talabatOldModel =success;
-           emit(TalabatViewState.loaded);} // Emit loaded state
-    );
+    result.fold((failure) => emit(TalabatViewState.errorOld), (success) {
+      talabatOldModel = success;
+      emit(TalabatViewState.loadedOld);
+    });
   }
 
   void getPresentTalabat() async {
-    emit(TalabatViewState.loading); // Emit loading state
+    emit(TalabatViewState.loadingPresent); // Emit loading state
     final result = await _getPresentTalabatUseCase.execute("");
     result.fold(
-          (failure) => emit(TalabatViewState.error), // Emit error state
-          (success) {
-            talabatPresentModel=success;
-            emit(TalabatViewState.loaded);} // Emit loaded state
-    );
+        (failure) => emit(TalabatViewState.errorPresent), // Emit error state
+        (success) {
+      talabatPresentModel = success;
+      emit(TalabatViewState.loadedPresent);
+    });
   }
 }
-

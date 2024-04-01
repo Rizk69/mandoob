@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:mandoob/app/constants.dart';
 import 'package:retrofit/http.dart';
 
+import '../responses/company_products_response.dart';
 import '../responses/talabat_response.dart';
 
 part 'talabat_api.g.dart';
@@ -15,7 +16,11 @@ abstract class TalabatServiceClient {
 
   @GET("api/get_old_orders")
   Future<TalabatResponse> getOldOrders();
-  //
-  // @GET("api/home")
-  // Future<HomeResponse> getHome();
+
+  @GET("api/get_products_company")
+  Future<CompanyProductsResponse> getCompanyProducts();
+
+  @POST("api/add_order")
+  Future<CompanyProductsResponse> addTalabat(@Body() List<Map<String, dynamic>> data);
+
 }

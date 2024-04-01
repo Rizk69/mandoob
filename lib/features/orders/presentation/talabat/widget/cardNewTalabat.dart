@@ -8,9 +8,12 @@ class CardNewTalabat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NewTalabatCubit, int>(
+    return BlocBuilder<NewTalabatCubit, NewTalabatState>(
       builder: (context, count) {
         return Container(
+          margin:EdgeInsets.symmetric(
+            vertical: 20,
+          ),
           padding: EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 18,
@@ -74,7 +77,7 @@ class CardNewTalabat extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '$count',
+                        '0',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
