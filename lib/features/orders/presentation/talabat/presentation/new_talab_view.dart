@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/assets_manager.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
-import 'package:mandoob/features/orders/presentation/talabat/cubit/newTalabatCubit.dart';
+import 'package:mandoob/features/orders/presentation/talabat/cubit/add_order_cubit/new_talabat_cubit.dart';
+import 'package:mandoob/features/orders/presentation/talabat/cubit/add_order_cubit/new_talabat_state.dart';
 import 'package:mandoob/features/orders/presentation/talabat/widget/cardNewTalabat.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -22,7 +24,21 @@ class NewTalabat extends StatelessWidget {
 }
 
 class NewTalabatViewBody extends StatelessWidget {
-  const NewTalabatViewBody({Key? key}) : super(key: key);
+  NewTalabatViewBody({Key? key}) : super(key: key);
+  final TextEditingController _searchController = TextEditingController();
+
+  Set<String> getProductNamesSet(BuildContext context) {
+    final products =
+        NewTalabatCubit.get(context).companyProductsModel?.products ?? [];
+    final namesSet = <String>{};
+    for (var product in products) {
+      namesSet.add(translateString(
+          context: context,
+          arString: product.nameAr,
+          enString: product.nameEn));
+    }
+    return namesSet;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +51,13 @@ class NewTalabatViewBody extends StatelessWidget {
         create: (context) => instance<NewTalabatCubit>()..getCompanyProducts(),
         child: BlocBuilder<NewTalabatCubit, NewTalabatState>(
           builder: (context, state) {
-            if (state is NewTalabatSuccess) {
+            if (state is NewTalabatLoading) {
+              return const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Center(child: CircularProgressIndicator.adaptive())],
+              );
+            } else if (state is! NewTalabatFailure) {
               return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -80,13 +102,14 @@ class NewTalabatViewBody extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextFormField(
+                              controller: _searchController,
                               scribbleEnabled: true,
                               cursorHeight: 30,
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                               ),
                               decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.search),
+                                prefixIcon: const Icon(Icons.search),
                                 hintText: 'ابحث هنا',
                                 filled: true,
                                 hintStyle: TextStyle(
@@ -94,45 +117,55 @@ class NewTalabatViewBody extends StatelessWidget {
                                 ),
                                 fillColor: Theme.of(context).primaryColorDark,
                               ),
+                              onChanged: (searchText) {},
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: AppSize.s20,
                           ),
                           InkWell(
                             onTap: () {
+                              final productNamesSet =
+                                  getProductNamesSet(context);
                               showMenu(
-                                color: Theme.of(context).primaryColorDark,
                                 context: context,
-                                position:
-                                    RelativeRect.fromLTRB(0, 200, 100, 100),
-                                items: [
+                                position: const RelativeRect.fromLTRB(
+                                    0, 200, 100, 100),
+                                items: <PopupMenuItem<String>>[
+                                  ...productNamesSet.map((name) {
+                                    return PopupMenuItem(
+                                      value: name,
+                                      child: Text(
+                                        name,
+                                        style: TextStyle(
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                      ), // قيمة كل عنصر في القائمة
+                                    );
+                                  }).toList(),
                                   PopupMenuItem(
+                                    value: 'remove_filters',
                                     child: Text(
-                                      'شامبو',
+                                      'إزالة جميع الفلاتر',
                                       style: TextStyle(
                                         color: Theme.of(context).primaryColor,
                                       ),
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    child: Text(
-                                      'شاور',
-                                      style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    child: Text(
-                                      'صابون',
-                                      style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
+                                    ), // قيمة خاصة لتحديد هذا الخيار
                                   ),
                                 ],
-                              );
+                              ).then((selectedValue) {
+                                if (selectedValue != null) {
+                                  if (selectedValue == 'remove_filters') {
+                                    context
+                                        .read<NewTalabatCubit>()
+                                        .setSelectedProductName(null);
+                                  } else {
+                                    context
+                                        .read<NewTalabatCubit>()
+                                        .setSelectedProductName(selectedValue);
+                                  }
+                                }
+                              });
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 18),
@@ -161,7 +194,25 @@ class NewTalabatViewBody extends StatelessWidget {
                       SizedBox(height: AppSize.s8.h),
                       ListView.builder(
                         itemBuilder: (context, index) {
-                          return CardNewTalabat();
+                          final product = NewTalabatCubit.get(context)
+                              .companyProductsModel!
+                              .products[index];
+                          // تحقق مما إذا كان ينبغي عرض المنتج بناءً على الفلترة
+                          if (context
+                                      .watch<NewTalabatCubit>()
+                                      .selectedProductName ==
+                                  null ||
+                              context
+                                      .watch<NewTalabatCubit>()
+                                      .selectedProductName ==
+                                  translateString(
+                                      context: context,
+                                      enString: product.nameEn,
+                                      arString: product.nameAr)) {
+                            return CardNewOrder(product: product);
+                          } else {
+                            return Container();
+                          }
                         },
                         shrinkWrap: true,
                         itemCount: NewTalabatCubit.get(context)
@@ -169,30 +220,17 @@ class NewTalabatViewBody extends StatelessWidget {
                                 ?.products
                                 .length ??
                             0,
+                        physics: const NeverScrollableScrollPhysics(),
                       ),
                     ],
                   ),
                 ),
               );
-            }
-            if (state is NewTalabatLoading) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Center(child: CircularProgressIndicator.adaptive())],
-              );
-            }
-            if (state is NewTalabatFailure) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Center(child: Text(state.massage))],
-              );
             } else {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Center(child: Text('ERROR'))],
+                children: [Center(child: Text(state.massage))],
               );
             }
           },

@@ -21,6 +21,6 @@ abstract class TalabatServiceClient {
   Future<CompanyProductsResponse> getCompanyProducts();
 
   @POST("api/add_order")
-  Future<CompanyProductsResponse> addTalabat(@Body() List<Map<String, dynamic>> data);
+  Future<CompanyProductsResponse> addTalabat();
 
 }

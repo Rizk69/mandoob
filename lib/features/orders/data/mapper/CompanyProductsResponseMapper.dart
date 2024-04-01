@@ -22,20 +22,18 @@ extension ProductsCompanyResponseMapper on ProductsCompanyResponse? {
       nameEn: this?.nameEn ?? Constants.empty,
       nameAr: this?.nameAr ?? Constants.empty,
       img: this?.img ?? Constants.empty,
-      unit: this?.unit?.toDomain() ??
-          Unit(nameAr: '', nameEn: '', id: 0, count: ''),
-      unitCategory: this?.unitCategory?.toDomain() ??
-          UnitCategory(count: '', id: 0, nameEn: '', nameAr: ''),
-      unitSubCategory: this?.unitSubCategory?.toDomain() ??
-          UnitSubCategory(nameAr: '', nameEn: '', id: 0, count: ''),
+      unit: this!.unit.toDomain(),
+      unitCategory: this?.unitCategory.toDomain(),
+      unitSubCategory: this!.unitSubCategory.toDomain(),
     );
   }
 }
 
 extension UnitResponseMapper on UnitResponse? {
-  Unit toDomain() {
-    return Unit(
+  UnitModel toDomain() {
+    return UnitModel(
       id: this?.id ?? Constants.zero,
+      type: this?.type ?? Constants.zero,
       nameAr: this?.nameAr ?? Constants.empty,
       nameEn: this?.nameEn ?? Constants.empty,
       count: this?.count ?? Constants.empty,
@@ -43,10 +41,11 @@ extension UnitResponseMapper on UnitResponse? {
   }
 }
 
-extension UnitCategoryResponseMapper on UnitCategoryResponse {
-  UnitCategory toDomain() {
-    return UnitCategory(
+extension UnitCategoryResponseMapper on UnitResponse {
+  UnitModel toDomain() {
+    return UnitModel(
       id: this.id ?? Constants.zero,
+      type: this.type ?? Constants.zero,
       nameAr: this.nameAr ?? "",
       nameEn: this.nameEn ?? "",
       count: this.count ?? "",
@@ -54,10 +53,11 @@ extension UnitCategoryResponseMapper on UnitCategoryResponse {
   }
 }
 
-extension UnitSubCategoryResponseMapper on UnitSubCategoryResponse {
-  UnitSubCategory toDomain() {
-    return UnitSubCategory(
+extension UnitSubCategoryResponseMapper on UnitResponse {
+  UnitModel toDomain() {
+    return UnitModel(
       id: this.id ?? Constants.zero,
+      type: this.type ?? Constants.zero,
       nameAr: this.nameAr ?? "",
       nameEn: this.nameEn ?? "",
       count: this.count ?? "",

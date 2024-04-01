@@ -1,4 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
+
 part 'talabat_response.g.dart';
 
 @JsonSerializable()
@@ -15,85 +16,59 @@ class TalabatResponse {
 
   TalabatResponse({this.status, this.message, this.balance, this.orders});
 
-  TalabatResponse.fromJson(dynamic json) {
-    status = json["status"];
-    message = json["message"];
-    balance = json["balance"] != null
-        ? BalanceTalabatResponse.fromJson(json["balance"])
-        : null;
-    if (json["orders"] != null) {
-      orders = [];
-      json["orders"].forEach((v) {
-        orders?.add(OrdersTalabatResponse.fromJson(v));
-      });
-    }
-  }
 
-  Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    map["status"] = status;
-    map["message"] = message;
-    if (balance != null) {
-      map["balance"] = balance?.toJson();
-    }
-    if (orders != null) {
-      map["orders"] = orders?.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
+  factory TalabatResponse.fromJson(Map<String, dynamic> json) => _$TalabatResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TalabatResponseToJson(this);
+
 }
 
+@JsonSerializable()
 class OrdersTalabatResponse {
+  @JsonKey(name: "id")
   int? id;
+
+  @JsonKey(name: "orderNo")
   String? orderNo;
+
+  @JsonKey(name: "status")
   int? status;
+
+  @JsonKey(name: "date")
   String? date;
+
+  @JsonKey(name: "priceDoler")
   int? priceDoler;
+
+  @JsonKey(name: "priceLera")
   int? priceLera;
-  OrdersTalabatResponse(
-      {this.id,
-      this.orderNo,
-      this.status,
-      this.date,
-      this.priceLera,
-      this.priceDoler});
 
-  OrdersTalabatResponse.fromJson(dynamic json) {
-    id = json["id"];
-    orderNo = json["orderNo"];
-    status = json["status"];
-    date = json["date"];
-    priceLera = json["price_Lera"];
-    priceDoler = json["price_Doler"];
-  }
+  OrdersTalabatResponse({
+    this.id,
+    this.orderNo,
+    this.status,
+    this.date,
+    this.priceDoler,
+    this.priceLera,
+  });
 
-  Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    map["id"] = id;
-    map["orderNo"] = orderNo;
-    map["status"] = status;
-    map["date"] = date;
-    map["price_Doler"] = priceDoler;
-    map["price_Lera"] = priceLera;
-    return map;
-  }
+  factory OrdersTalabatResponse.fromJson(Map<String, dynamic> json) => _$OrdersTalabatResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrdersTalabatResponseToJson(this);
 }
 
+
+@JsonSerializable()
 class BalanceTalabatResponse {
+  @JsonKey(name: "totalDoler")
   int? totalDoler;
+
+  @JsonKey(name: "totalLera")
   int? totalLera;
 
   BalanceTalabatResponse({this.totalDoler, this.totalLera});
 
-  BalanceTalabatResponse.fromJson(dynamic json) {
-    totalDoler = json["total_Doler"];
-    totalLera = json["total_Lera"];
-  }
+  factory BalanceTalabatResponse.fromJson(Map<String, dynamic> json) => _$BalanceTalabatResponseFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    map["total_Doler"] = totalDoler;
-    map["total_Lera"] = totalLera;
-    return map;
-  }
+  Map<String, dynamic> toJson() => _$BalanceTalabatResponseToJson(this);
 }

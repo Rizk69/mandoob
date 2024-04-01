@@ -17,9 +17,9 @@ class ProductsCompanyModel {
   String img;
   String nameAr;
   String nameEn;
-  Unit unit;
-  UnitCategory unitCategory;
-  UnitSubCategory unitSubCategory;
+  UnitModel? unit;
+  UnitModel? unitCategory;
+  UnitModel? unitSubCategory;
 
   ProductsCompanyModel({
     required   this.id,
@@ -33,49 +33,18 @@ class ProductsCompanyModel {
 
 
 }
-
-class UnitSubCategory {
+class UnitModel {
   int id;
   String nameAr;
   String nameEn;
   String count;
+  int type;
 
-  UnitSubCategory({
-    required   this.id,
-    required   this.nameAr,
-    required   this.nameEn,
-    required  this.count});
-
-
-
-}
-
-class UnitCategory {
-  int id;
-  String nameAr;
-  String nameEn;
-  String count;
-
-  UnitCategory({
-    required   this.id,
-    required  this.nameAr,
-    required  this.nameEn,
-    required  this.count});
-
-
-
-}
-
-class Unit {
-  int id;
-  String nameAr;
-  String nameEn;
-  String count;
-
-  Unit({
+  UnitModel({
     required  this.id,
     required   this.nameAr,
     required  this.nameEn,
+    required  this.type,
     required  this.count});
 
 

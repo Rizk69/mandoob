@@ -34,6 +34,6 @@ class TalabatSourceImpl extends RemoteTalabatSource {
 
   @override
   Future<CompanyProductsResponse> addTalabat() {
-    return _talabatServiceClient.addTalabat([]);
+    return _talabatServiceClient.addTalabat();
   }
 }
