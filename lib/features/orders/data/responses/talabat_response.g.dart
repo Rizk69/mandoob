@@ -33,18 +33,20 @@ OrdersTalabatResponse _$OrdersTalabatResponseFromJson(
     OrdersTalabatResponse(
       id: json['id'] as int?,
       orderNo: json['orderNo'] as String?,
-      status: json['status'] as int?,
       date: json['date'] as String?,
       priceDoler: json['priceDoler'] as int?,
       priceLera: json['priceLera'] as int?,
-    );
+    )
+      ..status_ar = json['status_ar'] as String?
+      ..status_en = json['status_en'] as String?;
 
 Map<String, dynamic> _$OrdersTalabatResponseToJson(
         OrdersTalabatResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'orderNo': instance.orderNo,
-      'status': instance.status,
+      'status_ar': instance.status_ar,
+      'status_en': instance.status_en,
       'date': instance.date,
       'priceDoler': instance.priceDoler,
       'priceLera': instance.priceLera,

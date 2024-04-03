@@ -14,17 +14,19 @@ class TalabatModel {
 class OrdersTalabat {
   int id;
   String orderNo;
-  int status;
   String date;
   int priceDoler;
+  String status_ar;
+  String status_en;
   int priceLera;
 
   OrdersTalabat(
       {required this.id,
       required this.orderNo,
-      required this.status,
       required this.date,
       required this.priceDoler,
+      required this.status_ar,
+      required this.status_en,
       required this.priceLera,});
 }
 

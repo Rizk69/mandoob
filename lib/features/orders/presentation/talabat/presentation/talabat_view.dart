@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
@@ -249,7 +250,10 @@ class TalabatViewBody extends StatelessWidget {
                                                               children: [
                                                                 TextSpan(
                                                                   text:
-                                                                      '${talabatPresent?.orders[index].status}',
+                                                                      translateString(context: context,
+                                                                      arString:talabatPresent?.orders[index].status_ar ,
+                                                                        enString: talabatPresent?.orders[index].status_en
+                                                                      ),
                                                                   style:
                                                                       TextStyle(
                                                                     fontSize:
@@ -344,13 +348,25 @@ class TalabatViewBody extends StatelessWidget {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
+
+                                                      Text(
+                                                        'رقم الطلبية :  ${talabatPresent?.orders[index].orderNo}',
+                                                        style:
+                                                        getBoldSegoeStyle(
+                                                          fontSize: 18,
+                                                          color:
+                                                          ColorManager
+                                                              .grey3,
+                                                        ),
+                                                      ),
+
                                                       Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
                                                         children: [
                                                           Text(
-                                                            'المبلغ : ${order.status}',
+                                                            'المبلغ بالدولار : ${order.priceDoler}',
                                                             style:
                                                                 getBoldSegoeStyle(
                                                               fontSize: 18,
@@ -384,7 +400,7 @@ class TalabatViewBody extends StatelessWidget {
                                                       ),
                                                       SizedBox(height: 8),
                                                       Text(
-                                                        'المبلغ  : 4545',
+                                                        'المبلغ بالليرة : ${order.priceLera}',
                                                         style:
                                                             getBoldSegoeStyle(
                                                           fontSize: 18,
@@ -394,7 +410,7 @@ class TalabatViewBody extends StatelessWidget {
                                                       ),
                                                       SizedBox(height: 8),
                                                       Text(
-                                                        'التاريخ :  24-11-2022',
+                                                        'التاريخ :  ${order.date}',
                                                         style:
                                                             getBoldSegoeStyle(
                                                           fontSize: 18,

@@ -31,7 +31,8 @@ extension OrdersDataMapper on OrdersTalabatResponse? {
     return OrdersTalabat(
       id: this?.id ?? Constants.zero,
       orderNo: this?.orderNo ?? Constants.empty,
-      status: this?.status ?? Constants.zero,
+      status_ar: this?.status_ar.orEmpty() ?? Constants.empty,
+      status_en: this?.status_en.orEmpty() ?? Constants.empty,
       date: this?.date ?? Constants.empty,
       priceDoler: this?.priceDoler ?? Constants.zero,
       priceLera:this?.priceLera ?? Constants.zero,

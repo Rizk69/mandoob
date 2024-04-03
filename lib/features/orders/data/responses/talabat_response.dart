@@ -31,8 +31,11 @@ class OrdersTalabatResponse {
   @JsonKey(name: "orderNo")
   String? orderNo;
 
-  @JsonKey(name: "status")
-  int? status;
+  @JsonKey(name: "status_ar")
+  String? status_ar;
+
+  @JsonKey(name: "status_en")
+  String? status_en;
 
   @JsonKey(name: "date")
   String? date;
@@ -46,7 +49,6 @@ class OrdersTalabatResponse {
   OrdersTalabatResponse({
     this.id,
     this.orderNo,
-    this.status,
     this.date,
     this.priceDoler,
     this.priceLera,
