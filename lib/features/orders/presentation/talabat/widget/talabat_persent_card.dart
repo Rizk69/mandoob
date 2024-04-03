@@ -81,7 +81,11 @@ class PresentOrder extends StatelessWidget {
               InkWell(
                 onTap: (){
 
-                  Navigator.pushNamed(context, Routes.talabatPresentEdit,arguments:talabatPresent.id.toString() );
+                  Navigator.pushNamed(context, Routes.talabatPresentEdit,
+                      arguments: OrderArguments(
+                          talabatPresent.id
+                      )
+                  );
 
                 },
                 child: Align(

@@ -28,6 +28,7 @@ import 'package:mandoob/features/home/presentation/cubit/home_cubit/home_cubit.d
 import 'package:mandoob/features/orders/data/data_source/remote_talabat_data_source.dart';
 import 'package:mandoob/features/orders/domain/usecase/order_usecases.dart';
 import 'package:mandoob/features/orders/domain/usecase/talabat_usecases.dart';
+import 'package:mandoob/features/orders/presentation/talabat/cubit/order_cubit/order_cubit.dart';
 import 'package:mandoob/features/trader/data/data_source/remote_trade_data_source.dart';
 import 'package:mandoob/features/trader/data/network/trade_api.dart';
 import 'package:mandoob/features/trader/domain/repository/trade_repository.dart';
@@ -210,6 +211,10 @@ initTalabatModule() {
         () => IncreaseOrderUseCase(instance()));
     instance.registerFactory<DeleteOrderUseCase>(
         () => DeleteOrderUseCase(instance()));
+
+
+    instance.registerFactory<OrderCubit>(
+        () => OrderCubit(instance(),instance(),instance(),instance()));
   }
 }
 

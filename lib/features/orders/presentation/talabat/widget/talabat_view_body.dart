@@ -12,7 +12,6 @@ import 'package:mandoob/features/orders/presentation/talabat/widget/talabat_old_
 import 'package:mandoob/features/orders/presentation/talabat/widget/talabat_persent_card.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-
 class TalabatViewBody extends StatelessWidget {
   TalabatViewBody({Key? key}) : super(key: key);
 
@@ -32,8 +31,7 @@ class TalabatViewBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: BlocBuilder<TalabatViewCubit, TalabatViewState>(
               builder: (context, state) {
-                if (state == TalabatViewState.loadedOld ||
-                    state == TalabatViewState.loadedPresent) {
+                if (state == TalabatViewState.loadedOld || state == TalabatViewState.loadedPresent) {
                   var talabatOld =
                       TalabatViewCubit.get(context).talabatOldModel;
                   var talabatPresent =
@@ -128,8 +126,10 @@ class TalabatViewBody extends StatelessWidget {
                           ],
                         ),
                         child: CustomBalance(
-                          TL: talabatPresent?.balance.totalLera.toString()??"0",
-                          USD: talabatPresent?.balance.totalDoler.toString()??"0",
+                          TL: talabatPresent?.balance.totalLera.toString() ??
+                              "0",
+                          USD: talabatPresent?.balance.totalDoler.toString() ??
+                              "0",
                         ),
                       ),
                       SizedBox(height: AppSize.s6.h),
@@ -180,35 +180,48 @@ class TalabatViewBody extends StatelessWidget {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: MediaQuery.sizeOf(context).height/2,
-                                    child: TabBarView(
-                                      children: [
-                                        // تاب الطلبات الحالية
-                                        ListView.builder(
-                                          shrinkWrap: true, // تجعل القائمة تأخذ حجم محتواها فقط
-                                          physics: const ClampingScrollPhysics(), // يُحسن التمرير ضمن TabBarView
-                                          itemBuilder: (context, index) => PresentOrder(talabatPresent: talabatPresent!.orders[index]),
-                                          itemCount: talabatPresent?.orders.length,
-                                        ),
-                                        // تاب الطلبات السابقة
-                                        ListView.builder(
-                                          shrinkWrap: true, // تجعل القائمة تأخذ حجم محتواها فقط
-                                          physics: const ClampingScrollPhysics(), // يُحسن التمرير ضمن TabBarView
-                                          itemBuilder: (context, index) {
-                                            if (talabatOld == null || talabatOld.orders.isEmpty) {
-                                              return const SizedBox.shrink();
-                                            }
-                                            if (index >= talabatOld.orders.length) {
-                                              return const SizedBox.shrink();
-                                            }
-                                            return OldOrder(talabatOld: talabatOld.orders[index]);
-                                          },
-                                          itemCount: talabatOld?.orders.length ?? 0,
-                                        ),
-                                      ],
-                                    )
-
-                                  ),
+                                      height:
+                                          MediaQuery.sizeOf(context).height / 2,
+                                      child: TabBarView(
+                                        children: [
+                                          talabatPresent!.orders.isNotEmpty?
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                                const ClampingScrollPhysics(),
+                                            itemBuilder: (context, index) =>
+                                                PresentOrder(
+                                                    talabatPresent:
+                                                        talabatPresent!
+                                                            .orders[index]),
+                                            itemCount:
+                                                talabatPresent?.orders.length,
+                                          ):Container(),
+                                          // تاب الطلبات السابقة
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            // تجعل القائمة تأخذ حجم محتواها فقط
+                                            physics:
+                                                const ClampingScrollPhysics(),
+                                            // يُحسن التمرير ضمن TabBarView
+                                            itemBuilder: (context, index) {
+                                              if (talabatOld == null ||
+                                                  talabatOld.orders.isEmpty) {
+                                                return const SizedBox.shrink();
+                                              }
+                                              if (index >=
+                                                  talabatOld.orders.length) {
+                                                return const SizedBox.shrink();
+                                              }
+                                              return OldOrder(
+                                                  talabatOld:
+                                                      talabatOld.orders[index]);
+                                            },
+                                            itemCount:
+                                                talabatOld?.orders.length ?? 0,
+                                          ),
+                                        ],
+                                      )),
                                 ],
                               ),
                             )
@@ -217,7 +230,7 @@ class TalabatViewBody extends StatelessWidget {
                       ),
                     ],
                   );
-                } else if (state == TalabatViewState.loadingOld &&
+                } else if (state == TalabatViewState.loadingOld ||
                     state == TalabatViewState.loadingPresent) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -241,6 +254,4 @@ class TalabatViewBody extends StatelessWidget {
       ),
     );
   }
-
-
 }

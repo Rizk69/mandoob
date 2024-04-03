@@ -14,7 +14,7 @@ import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_details.dart';
 import 'package:mandoob/features/notfication/presentation/notification/Screen/notification.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
-import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_od_details.dart';
+import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_old_details.dart';
 import 'package:mandoob/features/trader/presentation/new_trader.dart';
 import 'package:mandoob/features/trader/presentation/trader_view.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/add_traffic_lines_screen.dart';
@@ -66,10 +66,18 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => HomeView());
       case Routes.elSalah:
         return MaterialPageRoute(builder: (_) => ElSalahView());
+
         case Routes.talabatOldDetails:
-        return MaterialPageRoute(builder: (_) => TalabatOldDetails());
+
+          final args = settings.arguments as OrderArguments;
+
+          return MaterialPageRoute(builder: (_) => TalabatOldDetails(orderId: args.orderId,));
+
+
         case Routes.talabatPresentEdit:
-        return MaterialPageRoute(builder: (_) => TalabatPresentEdit());
+          final args = settings.arguments as OrderArguments;
+
+          return MaterialPageRoute(builder: (_) => TalabatPresentEdit(orderId: args.orderId,));
       case Routes.elmulakhas:
         return MaterialPageRoute(builder: (_) => ElMulakhas());
       case Routes.elHodaa:
@@ -147,4 +155,12 @@ class SuccessMessageArguments {
   final String actionMessage;
 
   SuccessMessageArguments(this.message, this.actionMessage);
+}
+
+
+
+class OrderArguments {
+  final int orderId;
+
+  OrderArguments(this.orderId);
 }
