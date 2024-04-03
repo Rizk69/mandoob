@@ -82,6 +82,7 @@ abstract class  LocaleKeys {
   static const account = 'account';
   static const debts = 'debts';
   static const addPurchases = 'addPurchases';
+  static const notification = 'notification';
   static const balanceTL = 'balanceTL';
   static const balanceUsd = 'balanceUsd';
   static const salseLera = 'salseLera';

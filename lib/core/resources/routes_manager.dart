@@ -12,6 +12,7 @@ import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_details.dart';
+import 'package:mandoob/features/notfication/presentation/notification/Screen/notification.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
 import 'package:mandoob/features/trader/presentation/new_trader.dart';
 import 'package:mandoob/features/trader/presentation/trader_view.dart';
@@ -36,6 +37,7 @@ class Routes {
   static const String expenses = "/expenses";
   static const String debts = "/debts";
   static const String payingDebts = "/payingDebts";
+  static const String notification = "/notification";
   static const String addtrafficLines = "/addtrafficLines";
   static const String profileView = "/profileView";
 
@@ -87,6 +89,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => DebtsView());
         case Routes.payingDebts:
         return MaterialPageRoute(builder: (_) => PayingDebts());
+        case Routes.notification:
+        return MaterialPageRoute(builder: (_) => NotificationScreen());
 
       case Routes.addtrafficLines:
         initDelivaryLineModule();

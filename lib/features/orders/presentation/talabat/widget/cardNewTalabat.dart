@@ -52,10 +52,16 @@ class CardNewOrder extends StatelessWidget {
                   child:  Image.network(
                     product.img,
                     height: AppSize.s8.h,
+                    width: AppSize.s8.h,
+                    fit: BoxFit.cover,
+
                     errorBuilder: (context, error, stackTrace) {
                       return Image.asset(
                         'assets/images/product.png',
                         height: AppSize.s8.h,
+                        width: AppSize.s8.h,
+                        fit: BoxFit.cover,
+
                       );
                     },
                   ),
