@@ -5,12 +5,12 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
 
 class OldOrder extends StatelessWidget {
-  final OrdersTalabat talabatOld ;
-  const OldOrder({super.key , required this.talabatOld});
+  final OrdersTalabat talabatOld;
+
+  const OldOrder({super.key, required this.talabatOld});
 
   @override
   Widget build(BuildContext context) {
-
     final order = talabatOld;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,8 +39,8 @@ class OldOrder extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, Routes.talabatOldDetails,arguments:order.id.toString() );
-
+                      Navigator.pushNamed(context, Routes.talabatOldDetails,
+                          arguments: OrderArguments(order.id));
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8),

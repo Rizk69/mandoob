@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/functions.dart';
-
+import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/orders/data/network/order_requests.dart';
 import 'package:mandoob/features/orders/domain/model/company_products_model.dart';
@@ -141,7 +141,7 @@ class CardNewOrder extends StatelessWidget {
                           product.unitCategory,
                           product.unitSubCategory
                         ]
-                            .where((unit) => unit != null)
+                            .where((unit) => unit != null) // Filter out nulls
                             .map<DropdownMenuItem<UnitModel>>(
                                 (UnitModel? value) {
                           return DropdownMenuItem<UnitModel>(
@@ -160,8 +160,10 @@ class CardNewOrder extends StatelessWidget {
               Spacer(),
               IconButton(
                 onPressed: () {
-                  final selectedUnit = NewTalabatCubit.get(context).getCurrentSelectedUnit();
-                  final productCount = NewTalabatCubit.get(context).getCurrentProductCount();
+                  final selectedUnit =
+                      NewTalabatCubit.get(context).getCurrentSelectedUnit();
+                  final productCount =
+                      NewTalabatCubit.get(context).getCurrentProductCount();
 
                   if (selectedUnit != null && productCount != null) {
                     if (selectedUnit.type == 0 && productCount != 0) {
@@ -181,7 +183,8 @@ class CardNewOrder extends StatelessWidget {
                       NewTalabatCubit.get(context).addOrderList(AddOrderRequest(
                         count: productCount.toString(),
                         product_id: product.id.toString(),
-                        unit_sub_categories_id: product.unitSubCategory?.id.toString(),
+                        unit_sub_categories_id:
+                            product.unitSubCategory?.id.toString(),
                       ));
                     }
                   }
