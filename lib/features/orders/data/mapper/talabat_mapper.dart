@@ -20,8 +20,8 @@ extension TalabatResponseMapper on TalabatResponse? {
 extension BalanceDataMapper on BalanceTalabatResponse? {
   BalanceTalabat toDomain() {
     return BalanceTalabat(
-      totalDoler: this?.totalDoler ?? Constants.zero,
-      totalLera: this?.totalLera ?? Constants.zero,
+      totalDoler: this?.totalDoler.orZero() ?? Constants.zero,
+      totalLera: this?.totalLera.orZero() ?? Constants.zero,
     );
   }
 }
@@ -29,13 +29,13 @@ extension BalanceDataMapper on BalanceTalabatResponse? {
 extension OrdersDataMapper on OrdersTalabatResponse? {
   OrdersTalabat toDomain() {
     return OrdersTalabat(
-      id: this?.id ?? Constants.zero,
+      id: this?.id.orZero() ?? Constants.zero,
       orderNo: this?.orderNo ?? Constants.empty,
       status_ar: this?.status_ar.orEmpty() ?? Constants.empty,
       status_en: this?.status_en.orEmpty() ?? Constants.empty,
       date: this?.date ?? Constants.empty,
-      priceDoler: this?.priceDoler ?? Constants.zero,
-      priceLera:this?.priceLera ?? Constants.zero,
+      priceDoler: this?.priceDoler.orZero() ?? Constants.zero,
+      priceLera:this?.priceLera.orZero().orZero() ?? Constants.zero,
     );
   }
 }

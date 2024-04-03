@@ -26,6 +26,7 @@ import 'package:mandoob/features/home/domain/usecase/edit_price_usecases.dart';
 import 'package:mandoob/features/home/domain/usecase/get_home_usecases.dart';
 import 'package:mandoob/features/home/presentation/cubit/home_cubit/home_cubit.dart';
 import 'package:mandoob/features/orders/data/data_source/remote_talabat_data_source.dart';
+import 'package:mandoob/features/orders/domain/usecase/order_usecases.dart';
 import 'package:mandoob/features/orders/domain/usecase/talabat_usecases.dart';
 import 'package:mandoob/features/trader/data/data_source/remote_trade_data_source.dart';
 import 'package:mandoob/features/trader/data/network/trade_api.dart';
@@ -183,14 +184,32 @@ initHomeModule() {
 
 initTalabatModule() {
   if (!instance.isRegistered<GetPresentTalabatUseCase>()) {
-    instance.registerFactory<TalabatViewCubit>(() => TalabatViewCubit(instance(), instance()));
-    instance.registerFactory<GetPresentTalabatUseCase>(() => GetPresentTalabatUseCase(instance()));
-    instance.registerFactory<GetOldTalabatUseCase>(() => GetOldTalabatUseCase(instance()));
+    instance.registerFactory<TalabatViewCubit>(
+        () => TalabatViewCubit(instance(), instance()));
+    instance.registerFactory<GetPresentTalabatUseCase>(
+        () => GetPresentTalabatUseCase(instance()));
+    instance.registerFactory<GetOldTalabatUseCase>(
+        () => GetOldTalabatUseCase(instance()));
+    instance.registerFactory<AddTalabatUseCase>(
+        () => AddTalabatUseCase(instance()));
   }
 
   if (!instance.isRegistered<GetCompanyProductsUseCase>()) {
-    instance.registerFactory<NewTalabatCubit>(() => NewTalabatCubit(instance()));
-    instance.registerFactory<GetCompanyProductsUseCase>(() => GetCompanyProductsUseCase(instance()));
+    instance
+        .registerFactory<NewTalabatCubit>(() => NewTalabatCubit(instance()));
+    instance.registerFactory<GetCompanyProductsUseCase>(
+        () => GetCompanyProductsUseCase(instance()));
+  }
+
+  if (!instance.isRegistered<GetOrderDetailsUseCase>()) {
+    instance.registerFactory<GetOrderDetailsUseCase>(
+        () => GetOrderDetailsUseCase(instance()));
+    instance.registerFactory<DecreaseOrderUseCase>(
+        () => DecreaseOrderUseCase(instance()));
+    instance.registerFactory<IncreaseOrderUseCase>(
+        () => IncreaseOrderUseCase(instance()));
+    instance.registerFactory<DeleteOrderUseCase>(
+        () => DeleteOrderUseCase(instance()));
   }
 }
 

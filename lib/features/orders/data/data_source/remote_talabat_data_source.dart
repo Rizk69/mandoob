@@ -1,5 +1,6 @@
-import 'package:mandoob/features/home/data/network/home_api.dart';
-import 'package:mandoob/features/home/data/responses/home_response.dart';
+import 'package:mandoob/features/orders/data/network/order_requests.dart';
+import 'package:mandoob/features/orders/data/responses/add_order_response.dart';
+import 'package:mandoob/features/orders/data/responses/order_details_response.dart';
 
 import '../network/talabat_api.dart';
 import '../responses/company_products_response.dart';
@@ -7,9 +8,22 @@ import '../responses/talabat_response.dart';
 
 abstract class RemoteTalabatSource {
   Future<TalabatResponse> getPresentOrders();
+
   Future<TalabatResponse> getOldOrders();
+
   Future<CompanyProductsResponse> getCompanyProducts();
-  Future<CompanyProductsResponse> addTalabat();
+
+  Future<AddOrderResponse> addTalabat(List<AddOrderRequest> orders);
+
+
+
+  Future<OrderDetailsResponse> getOrderDetails(int orderId);
+
+  Future<OrderResponse> decreaseOrder(OrderRequest orderRequest);
+
+  Future<OrderResponse> increaseOrder(OrderRequest orderRequest);
+
+  Future<OrderResponse> deleteOrder(OrderRequest orderRequest);
 }
 
 class TalabatSourceImpl extends RemoteTalabatSource {
@@ -33,7 +47,27 @@ class TalabatSourceImpl extends RemoteTalabatSource {
   }
 
   @override
-  Future<CompanyProductsResponse> addTalabat() {
-    return _talabatServiceClient.addTalabat();
+  Future<AddOrderResponse> addTalabat(List<AddOrderRequest> orders) {
+    return _talabatServiceClient.addTalabat(orders);
+  }
+
+  @override
+  Future<OrderResponse> decreaseOrder(OrderRequest orderRequest) {
+    return _talabatServiceClient.decreaseOrder(orderRequest);
+  }
+
+  @override
+  Future<OrderResponse> deleteOrder(OrderRequest orderRequest) {
+    return _talabatServiceClient.deleteOrder(orderRequest);
+  }
+
+  @override
+  Future<OrderResponse> increaseOrder(OrderRequest orderRequest) {
+    return _talabatServiceClient.increaseOrder(orderRequest);
+  }
+
+  @override
+  Future<OrderDetailsResponse> getOrderDetails(int orderId) {
+    return _talabatServiceClient.getOrderDetails(orderId);
   }
 }
