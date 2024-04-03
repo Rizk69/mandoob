@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:mandoob/app/functions.dart';
-import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/orders/domain/model/company_products_model.dart';
 import 'package:mandoob/features/orders/presentation/talabat/cubit/add_order_cubit/new_talabat_state.dart';
