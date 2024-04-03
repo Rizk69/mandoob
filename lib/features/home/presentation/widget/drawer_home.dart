@@ -99,7 +99,8 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                       title: LocaleKeys.debts.tr(),
                       icon: 'assets/images/drower/deyon.png',
                       context: context),
-                ),                const SizedBox(
+                ),
+                const SizedBox(
                   height: AppSize.s7,
                 ),
                 InkWell(
@@ -112,8 +113,21 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                       icon: 'assets/images/drower/addcashproduct.png',
                       context: context),
                 ),
+                const SizedBox(
+                  height: AppSize.s7,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, Routes.notification);
+                  },
+                  child: rowDrawer(
+                      title: LocaleKeys.notification.tr(),
+                      icon: 'assets/images/drower/notification.png',
+                      context: context),
+                ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 3,
+                  height: MediaQuery.of(context).size.height / 8,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
