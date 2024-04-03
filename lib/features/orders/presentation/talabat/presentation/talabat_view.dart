@@ -322,77 +322,49 @@ class TalabatViewBody extends StatelessWidget {
                                                 talabatPresent?.orders.length),
                                         ListView.builder(
                                           itemBuilder: (context, index) {
-                                            if (talabatOld == null ||
-                                                talabatOld.orders.isEmpty) {
-                                              return SizedBox();
+                                            if (talabatOld == null || talabatOld.orders.isEmpty) {
+                                              return const SizedBox();
                                             }
 
-                                            if (index >=
-                                                talabatOld.orders.length) {
-                                              return SizedBox();
+                                            if (index >= talabatOld.orders.length) {
+                                              return const SizedBox();
                                             }
 
-                                            final order =
-                                                talabatOld.orders[index];
+                                            final order = talabatOld.orders[index];
                                             return Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 8.0,
-                                                      vertical: 15),
+                                                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
                                                   child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
-
                                                       Text(
-                                                        'رقم الطلبية :  ${talabatPresent?.orders[index].orderNo}',
-                                                        style:
-                                                        getBoldSegoeStyle(
+                                                        'رقم الطلبية :  ${order.orderNo}',
+                                                        style: getBoldSegoeStyle(
                                                           fontSize: 18,
-                                                          color:
-                                                          ColorManager
-                                                              .grey3,
+                                                          color: ColorManager.grey3,
                                                         ),
                                                       ),
-
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                         children: [
                                                           Text(
                                                             'المبلغ بالدولار : ${order.priceDoler}',
-                                                            style:
-                                                                getBoldSegoeStyle(
+                                                            style: getBoldSegoeStyle(
                                                               fontSize: 18,
-                                                              color:
-                                                                  ColorManager
-                                                                      .grey3,
+                                                              color: ColorManager.grey3,
                                                             ),
                                                           ),
                                                           Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    left: 8),
+                                                            padding: const EdgeInsets.only(left: 8),
                                                             child: Text(
                                                               "التفاصيل",
                                                               style: TextStyle(
-                                                                color:
-                                                                    ColorManager
-                                                                        .babyBlue,
+                                                                color: ColorManager.babyBlue,
                                                                 fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .underline,
+                                                                fontWeight: FontWeight.w500,
+                                                                decoration: TextDecoration.underline,
                                                               ),
                                                             ),
                                                           ),
@@ -401,36 +373,25 @@ class TalabatViewBody extends StatelessWidget {
                                                       SizedBox(height: 8),
                                                       Text(
                                                         'المبلغ بالليرة : ${order.priceLera}',
-                                                        style:
-                                                            getBoldSegoeStyle(
+                                                        style: getBoldSegoeStyle(
                                                           fontSize: 18,
-                                                          color: ColorManager
-                                                              .grey3,
+                                                          color: ColorManager.grey3,
                                                         ),
                                                       ),
                                                       SizedBox(height: 8),
                                                       Text(
                                                         'التاريخ :  ${order.date}',
-                                                        style:
-                                                            getBoldSegoeStyle(
+                                                        style: getBoldSegoeStyle(
                                                           fontSize: 18,
-                                                          color: ColorManager
-                                                              .grey3,
+                                                          color: ColorManager.grey3,
                                                         ),
                                                       ),
                                                       SizedBox(height: 12),
                                                       Container(
-                                                        width: MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width,
-                                                        decoration:
-                                                            BoxDecoration(
+                                                        width: MediaQuery.of(context).size.width,
+                                                        decoration: BoxDecoration(
                                                           color: Colors.grey,
-                                                          border: Border.all(
-                                                              color:
-                                                                  Colors.grey,
-                                                              width: 1),
+                                                          border: Border.all(color: Colors.grey, width: 1),
                                                         ),
                                                       )
                                                     ],
@@ -439,8 +400,7 @@ class TalabatViewBody extends StatelessWidget {
                                               ],
                                             );
                                           },
-                                          itemCount:
-                                              talabatOld?.orders.length ?? 0,
+                                          itemCount: talabatOld?.orders.length ?? 0,
                                         )
                                       ],
                                     ),
