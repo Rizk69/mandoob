@@ -197,7 +197,7 @@ initTalabatModule() {
 
   if (!instance.isRegistered<GetCompanyProductsUseCase>()) {
     instance
-        .registerFactory<NewTalabatCubit>(() => NewTalabatCubit(instance()));
+        .registerFactory<NewTalabatCubit>(() => NewTalabatCubit(instance(),instance()));
     instance.registerFactory<GetCompanyProductsUseCase>(
         () => GetCompanyProductsUseCase(instance()));
   }
