@@ -1,5 +1,6 @@
 import 'package:mandoob/features/orders/data/network/order_requests.dart';
 import 'package:mandoob/features/orders/data/responses/add_order_response.dart';
+import 'package:mandoob/features/orders/data/responses/order_details_response.dart';
 
 import '../network/talabat_api.dart';
 import '../responses/company_products_response.dart';
@@ -13,6 +14,10 @@ abstract class RemoteTalabatSource {
   Future<CompanyProductsResponse> getCompanyProducts();
 
   Future<AddOrderResponse> addTalabat(List<AddOrderRequest> orders);
+
+
+
+  Future<OrderDetailsResponse> getOrderDetails(int orderId);
 
   Future<OrderResponse> decreaseOrder(OrderRequest orderRequest);
 
@@ -59,5 +64,10 @@ class TalabatSourceImpl extends RemoteTalabatSource {
   @override
   Future<OrderResponse> increaseOrder(OrderRequest orderRequest) {
     return _talabatServiceClient.increaseOrder(orderRequest);
+  }
+
+  @override
+  Future<OrderDetailsResponse> getOrderDetails(int orderId) {
+    return _talabatServiceClient.getOrderDetails(orderId);
   }
 }

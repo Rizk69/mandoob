@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:mandoob/app/constants.dart';
 import 'package:mandoob/features/orders/data/network/order_requests.dart';
 import 'package:mandoob/features/orders/data/responses/add_order_response.dart';
+import 'package:mandoob/features/orders/data/responses/order_details_response.dart';
 import 'package:retrofit/http.dart';
 
 import '../responses/company_products_response.dart';
@@ -24,6 +25,12 @@ abstract class TalabatServiceClient {
 
   @POST("api/add_order")
   Future<AddOrderResponse> addTalabat(@Body() List<AddOrderRequest> order);
+
+
+
+
+  @GET("api/get_order/{orderId}")
+  Future<OrderDetailsResponse> getOrderDetails(@Path() int orderId);
 
 
   @POST("api/miss_count_product")
