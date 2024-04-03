@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
+import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
 
@@ -77,22 +78,29 @@ class PresentOrder extends StatelessWidget {
                       .primaryColor,
                 ),
               ),
-              Align(
-                alignment: Alignment
-                    .centerLeft,
-                child: Text(
-                  'تعديل',
-                  style: TextStyle(
-                    color:
-                    ColorManager
-                        .babyBlue,
-                    fontSize: 18,
-                    fontWeight:
-                    FontWeight
-                        .w500,
-                    decoration:
-                    TextDecoration
-                        .underline,
+              InkWell(
+                onTap: (){
+
+                  Navigator.pushNamed(context, Routes.talabatPresentEdit,arguments:talabatPresent.id.toString() );
+
+                },
+                child: Align(
+                  alignment: Alignment
+                      .centerLeft,
+                  child: Text(
+                    'تعديل',
+                    style: TextStyle(
+                      color:
+                      ColorManager
+                          .babyBlue,
+                      fontSize: 18,
+                      fontWeight:
+                      FontWeight
+                          .w500,
+                      decoration:
+                      TextDecoration
+                          .underline,
+                    ),
                   ),
                 ),
               ),

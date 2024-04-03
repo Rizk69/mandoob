@@ -14,6 +14,7 @@ import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_details.dart';
 import 'package:mandoob/features/notfication/presentation/notification/Screen/notification.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
+import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_od_details.dart';
 import 'package:mandoob/features/trader/presentation/new_trader.dart';
 import 'package:mandoob/features/trader/presentation/trader_view.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/add_traffic_lines_screen.dart';
@@ -22,6 +23,7 @@ import 'package:mandoob/generated/locale_keys.g.dart';
 
 import '../../features/debts/presentation/debts/presentation/debts_paying.dart';
 import '../../features/expenses/presentaton/expenses_view.dart';
+import '../../features/orders/presentation/talabat/presentation/talabat_peresent_edit.dart';
 
 class Routes {
   static const String loginRoute = "/login";
@@ -40,6 +42,8 @@ class Routes {
   static const String notification = "/notification";
   static const String addtrafficLines = "/addtrafficLines";
   static const String profileView = "/profileView";
+  static const String talabatOldDetails = "/talabatOldDetails";
+  static const String talabatPresentEdit = "/talabatPresentEdit";
 
   static const String trader = "/trader";
   static const String newTrader = "/newtrader";
@@ -62,6 +66,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => HomeView());
       case Routes.elSalah:
         return MaterialPageRoute(builder: (_) => ElSalahView());
+        case Routes.talabatOldDetails:
+        return MaterialPageRoute(builder: (_) => TalabatOldDetails());
+        case Routes.talabatPresentEdit:
+        return MaterialPageRoute(builder: (_) => TalabatPresentEdit());
       case Routes.elmulakhas:
         return MaterialPageRoute(builder: (_) => ElMulakhas());
       case Routes.elHodaa:

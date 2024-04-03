@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
@@ -8,7 +7,6 @@ import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/notfication/presentation/notification/widget/cart_notification.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../../../app/functions.dart';
 import '../../../../../generated/locale_keys.g.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -18,6 +16,7 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String idOrder = ModalRoute.of(context)?.settings.arguments as String;
     return SafeArea(
         top: false,
         child: Container(

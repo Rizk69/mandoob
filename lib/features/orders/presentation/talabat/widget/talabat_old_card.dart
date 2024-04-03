@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
+import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
 
@@ -36,15 +37,21 @@ class OldOrder extends StatelessWidget {
                       color: ColorManager.grey3,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Text(
-                      "التفاصيل",
-                      style: TextStyle(
-                        color: ColorManager.babyBlue,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        decoration: TextDecoration.underline,
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.talabatOldDetails,arguments:order.id.toString() );
+
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        "التفاصيل",
+                        style: TextStyle(
+                          color: ColorManager.babyBlue,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
                   ),
