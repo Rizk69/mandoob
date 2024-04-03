@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,10 +9,12 @@ import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/orders/presentation/talabat/cubit/add_order_cubit/new_talabat_cubit.dart';
 import 'package:mandoob/features/orders/presentation/talabat/cubit/add_order_cubit/new_talabat_state.dart';
 import 'package:mandoob/features/orders/presentation/talabat/widget/cardNewTalabat.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NewTalabat extends StatelessWidget {
@@ -51,12 +54,20 @@ class NewTalabatViewBody extends StatelessWidget {
         create: (context) => instance<NewTalabatCubit>()..getCompanyProducts(),
         child: BlocBuilder<NewTalabatCubit, NewTalabatState>(
           builder: (context, state) {
-            if (state is NewTalabatLoading) {
+            if (state is NewTalabatLoading || state is AddTalabatLoading) {
               return const Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [Center(child: CircularProgressIndicator.adaptive())],
               );
+            } else if (state is AddTalabatSuccess) {
+              Future.microtask(() {
+                Navigator.pushReplacementNamed(
+                  context,
+                  Routes.homeRoute,
+                );
+              });
+              return SizedBox();
             } else if (state is! NewTalabatFailure) {
               return SingleChildScrollView(
                 child: Padding(
@@ -191,13 +202,11 @@ class NewTalabatViewBody extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: AppSize.s8.h),
                       ListView.builder(
                         itemBuilder: (context, index) {
                           final product = NewTalabatCubit.get(context)
                               .companyProductsModel!
                               .products[index];
-                          // تحقق مما إذا كان ينبغي عرض المنتج بناءً على الفلترة
                           if (context
                                       .watch<NewTalabatCubit>()
                                       .selectedProductName ==
@@ -222,6 +231,17 @@ class NewTalabatViewBody extends StatelessWidget {
                             0,
                         physics: const NeverScrollableScrollPhysics(),
                       ),
+                      SizedBox(
+                        height: AppSize.s8.h,
+                      ),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width * 1.5,
+                          child: CustomButton(
+                            onPressed: () {
+                              NewTalabatCubit.get(context).sendProducts();
+                            },
+                            buttonText: LocaleKeys.add.tr(),
+                          ))
                     ],
                   ),
                 ),

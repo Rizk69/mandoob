@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:mandoob/app/functions.dart';
-import 'package:mandoob/core/resources/color_manager.dart';
+
 import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/features/orders/data/network/order_requests.dart';
 import 'package:mandoob/features/orders/domain/model/company_products_model.dart';
 import 'package:mandoob/features/orders/presentation/talabat/cubit/add_order_cubit/new_talabat_state.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -141,7 +141,7 @@ class CardNewOrder extends StatelessWidget {
                           product.unitCategory,
                           product.unitSubCategory
                         ]
-                            .where((unit) => unit != null) // Filter out nulls
+                            .where((unit) => unit != null)
                             .map<DropdownMenuItem<UnitModel>>(
                                 (UnitModel? value) {
                           return DropdownMenuItem<UnitModel>(
@@ -158,9 +158,36 @@ class CardNewOrder extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              Icon(
-                Icons.check,
-                color: Colors.green,
+              IconButton(
+                onPressed: () {
+                  final selectedUnit = NewTalabatCubit.get(context).getCurrentSelectedUnit();
+                  final productCount = NewTalabatCubit.get(context).getCurrentProductCount();
+
+                  if (selectedUnit != null && productCount != null) {
+                    if (selectedUnit.type == 0 && productCount != 0) {
+                      NewTalabatCubit.get(context).addOrderList(AddOrderRequest(
+                        count: productCount.toString(),
+                        type: '',
+                        product_id: product.id.toString(),
+                        unit_id: product.unit?.id.toString(),
+                      ));
+                    } else if (selectedUnit.type == 1 && productCount != 0) {
+                      NewTalabatCubit.get(context).addOrderList(AddOrderRequest(
+                        count: productCount.toString(),
+                        product_id: product.id.toString(),
+                        unit_category_id: product.unitCategory?.id.toString(),
+                      ));
+                    } else if (selectedUnit.type == 2 && productCount != 0) {
+                      NewTalabatCubit.get(context).addOrderList(AddOrderRequest(
+                        count: productCount.toString(),
+                        product_id: product.id.toString(),
+                        unit_sub_categories_id: product.unitSubCategory?.id.toString(),
+                      ));
+                    }
+                  }
+                },
+                icon: Icon(Icons.add),
+                color: Theme.of(context).primaryColor,
               ),
             ],
           ),

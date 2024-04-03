@@ -11,6 +11,15 @@ class NewTalabatFailure extends NewTalabatState {
 
   NewTalabatFailure(this.massage);
 }
+class AddTalabatLoading extends NewTalabatState {}
+
+class AddTalabatSuccess extends NewTalabatState {}
+
+class AddTalabatFailure extends NewTalabatState {
+  final String massage;
+
+  AddTalabatFailure(this.massage);
+}
 
 class ProductCountChanged extends NewTalabatState {
   final int productId;

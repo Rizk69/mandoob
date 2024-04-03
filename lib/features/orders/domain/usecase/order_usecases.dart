@@ -4,9 +4,7 @@ import 'package:mandoob/core/netowork_core/failure.dart';
 import 'package:mandoob/features/orders/data/network/order_requests.dart';
 import 'package:mandoob/features/orders/domain/model/add_order_model.dart';
 import 'package:mandoob/features/orders/domain/model/order_details_model.dart';
-import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
 
-import '../model/company_products_model.dart';
 import '../repository/talabat_repository.dart';
 
 class GetOrderDetailsUseCase implements BaseUseCase<int, OrderDetailsModel> {
