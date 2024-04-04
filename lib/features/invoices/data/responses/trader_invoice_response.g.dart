@@ -30,8 +30,8 @@ TraderInvoiceDataResponse _$TraderInvoiceDataResponseFromJson(
     TraderInvoiceDataResponse(
       id: json['id'] as int?,
       invoiceNo: json['invoiceNo'] as String?,
-      priceDoler: json['price_Doler'] as String?,
-      priceLera: json['price_Lera'] as String?,
+      priceDoler: json['price_Doler'] as int?,
+      priceLera: json['price_Lera'] as int?,
       customerName: json['customerName'] as String?,
       date: json['date'] as String?,
     );

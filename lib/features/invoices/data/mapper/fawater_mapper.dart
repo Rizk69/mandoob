@@ -19,8 +19,8 @@ extension TraderInvoiceDataResponseMapper on TraderInvoiceDataResponse? {
     return TraderInvoiceDataModel(
       id: this?.id ?? 0,
       invoiceNo: this?.invoiceNo ?? '',
-      priceDoler: int.tryParse(this?.priceDoler ?? '') ?? Constants.zero,
-      priceLera: int.tryParse(this?.priceLera ?? '') ?? Constants.zero,
+      priceDoler: this?.priceDoler  ?? Constants.zero,
+      priceLera: this?.priceLera ?? Constants.zero,
       customerName: this?.customerName ?? '',
       date: this?.date ?? '',
     );
