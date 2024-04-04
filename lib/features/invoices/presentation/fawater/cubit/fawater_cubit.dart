@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.dart';
 import 'package:mandoob/features/invoices/domain/model/trader_invoice_model.dart';
-import 'package:mandoob/features/invoices/domain/usecase/fawater_usecases.dart';
+import 'package:mandoob/features/invoices/domain/usecase/invoices_usecases.dart';
 
 enum FawaterViewState {   currentOrdersExpanded,
   previousOrdersExpanded,
@@ -15,8 +15,8 @@ enum FawaterViewState {   currentOrdersExpanded,
 class FawaterViewCubit extends Cubit<FawaterViewState> {
 
 
-  GetFawaterTraderInvoiceUseCase _getFawaterTraderInvoiceUseCase;
-  GetFawaterSupplierInvoiceUseCase _getFawaterSupplierInvoiceUseCase;
+  GetInvoicesTraderInvoiceUseCase _getFawaterTraderInvoiceUseCase;
+  GetInvoicesSupplierInvoiceUseCase _getFawaterSupplierInvoiceUseCase;
   FawaterViewCubit(this._getFawaterTraderInvoiceUseCase, this._getFawaterSupplierInvoiceUseCase)
       : super(FawaterViewState.currentOrdersExpanded);
   TraderInvoiceModel? traderInvoiceModel;

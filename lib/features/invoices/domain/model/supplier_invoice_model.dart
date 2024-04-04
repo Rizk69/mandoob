@@ -13,8 +13,8 @@ class SupplierInvoiceModel {
 }
 
 class SupplierInvoiceDataModel {
-  int totalDoler;
-  int totalLera;
+  num totalDoler;
+  num totalLera;
   String date;
 
   SupplierInvoiceDataModel({

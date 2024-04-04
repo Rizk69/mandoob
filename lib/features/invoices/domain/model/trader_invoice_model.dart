@@ -10,8 +10,8 @@ class TraderInvoiceModel {
 class TraderInvoiceDataModel {
   int id;
   String invoiceNo;
-  int priceDoler;
-  int priceLera;
+  num priceDoler;
+  num priceLera;
   String customerName;
   String date;
 

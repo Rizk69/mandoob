@@ -44,6 +44,53 @@ class _FawaterServiceClient implements FawaterServiceClient {
   }
 
   @override
+  Future<TraderDetailsInvoiceResponse> getTraderInvoiceDetails(
+      invoiceId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = invoiceId;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<TraderDetailsInvoiceResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'api/trader_invoice/{invoiceId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = TraderDetailsInvoiceResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SupplierDetailsInvoiceResponse> getSupplierInvoiceDetails() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SupplierDetailsInvoiceResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'api/supplier_invoice',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SupplierDetailsInvoiceResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<SupplierInvoiceResponse> getSupplierInvoice() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

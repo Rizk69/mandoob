@@ -25,11 +25,11 @@ import 'package:mandoob/features/home/domain/repository/home_repository.dart';
 import 'package:mandoob/features/home/domain/usecase/edit_price_usecases.dart';
 import 'package:mandoob/features/home/domain/usecase/get_home_usecases.dart';
 import 'package:mandoob/features/home/presentation/cubit/home_cubit/home_cubit.dart';
-import 'package:mandoob/features/invoices/data/data_source/remote_fawater_data_source.dart';
+import 'package:mandoob/features/invoices/data/data_source/remote_invoices_data_source.dart';
 import 'package:mandoob/features/invoices/data/network/fawater_api.dart';
-import 'package:mandoob/features/invoices/data/repository/fawater_repository_impl.dart';
-import 'package:mandoob/features/invoices/domain/repository/Fawater_repository.dart';
-import 'package:mandoob/features/invoices/domain/usecase/fawater_usecases.dart';
+import 'package:mandoob/features/invoices/data/repository/invoice_repository_impl.dart';
+import 'package:mandoob/features/invoices/domain/repository/invoices_repository.dart';
+import 'package:mandoob/features/invoices/domain/usecase/invoices_usecases.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
 import 'package:mandoob/features/orders/data/data_source/remote_talabat_data_source.dart';
 import 'package:mandoob/features/orders/domain/usecase/order_usecases.dart';
@@ -121,8 +121,8 @@ Future<void> initAppModule() async {
       () => RemoteAuthDataSourceImpl(instance()));
   instance.registerLazySingleton<RemoteTalabatSource>(
       () => TalabatSourceImpl(instance()));
-  instance.registerLazySingleton<RemoteFawaterSource>(
-      () => FawaterSourceImpl(instance()));
+  instance.registerLazySingleton<RemoteInvoicesSource>(
+      () => InvoicesSourceImpl(instance()));
 
   instance.registerLazySingleton<RemoteTradeDataSource>(
       () => RemoteTradeDataSourceImpl(instance()));
@@ -144,8 +144,8 @@ Future<void> initAppModule() async {
       () => HomeRepositoryImpl(instance(), instance()));
   instance.registerLazySingleton<TalabatRepository>(
       () => TalabatRepositoryImpl(instance(), instance()));
-  instance.registerLazySingleton<FawaterRepository>(
-      () => FawaterRepositoryImpl(instance(), instance()));
+  instance.registerLazySingleton<InvoicesRepository>(
+      () => InvoicesRepositoryImpl(instance(), instance()));
 
   instance.registerLazySingleton<EahduhRepository>(
       () => RepositoryEahduhImpl(instance(), instance()));
@@ -230,13 +230,13 @@ initTalabatModule() {
   }
 }
 initFawaterModule() {
-  if (!instance.isRegistered<GetFawaterTraderInvoiceUseCase>()) {
+  if (!instance.isRegistered<GetInvoicesTraderInvoiceUseCase>()) {
     instance.registerFactory<FawaterViewCubit>(
         () => FawaterViewCubit(instance(), instance()));
-    instance.registerFactory<GetFawaterTraderInvoiceUseCase>(
-        () => GetFawaterTraderInvoiceUseCase(instance()));
-    instance.registerFactory<GetFawaterSupplierInvoiceUseCase>(
-        () => GetFawaterSupplierInvoiceUseCase(instance()));
+    instance.registerFactory<GetInvoicesTraderInvoiceUseCase>(
+        () => GetInvoicesTraderInvoiceUseCase(instance()));
+    instance.registerFactory<GetInvoicesSupplierInvoiceUseCase>(
+        () => GetInvoicesSupplierInvoiceUseCase(instance()));
 
   }
 
