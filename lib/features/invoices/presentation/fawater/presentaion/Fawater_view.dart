@@ -6,6 +6,9 @@ import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
+import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.dart';
+import 'package:mandoob/features/invoices/domain/model/trader_invoice_model.dart';
+import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/traderfawater.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../cubit/fawater_cubit.dart';
 
@@ -40,7 +43,12 @@ class FawaterViewBody extends StatelessWidget {
                 if (state == FawaterViewState.loadedSupplierInvoice ||
                     state == FawaterViewState.loadedTraderInvoice) {
                   var supplierInvoiceModel =
-                      FawaterViewCubit.get(context).supplierInvoiceModel;
+                      FawaterViewCubit.get(context).supplierInvoiceModel ??
+                          SupplierInvoiceModel(
+                              status: false,
+                              message: '',
+                              data: SupplierInvoiceDataModel(
+                                  totalDoler: 0, totalLera: 0, date: ''));
                   var traderInvoiceModel =
                       FawaterViewCubit.get(context).traderInvoiceModel;
                   final int count = traderInvoiceModel?.data.length ?? 0;
@@ -173,237 +181,18 @@ class FawaterViewBody extends StatelessWidget {
                                                 physics:
                                                     const ClampingScrollPhysics(),
                                                 itemBuilder: (context, index) {
-                                                  return Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .symmetric(
-                                                                horizontal: 8.0,
-                                                                vertical: 15),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              'الكمية:  2طن و 5 كيلو و 5 شكارة ',
-                                                              style:
-                                                                  getBoldSegoeStyle(
-                                                                fontSize: 18,
-                                                                color:
-                                                                    ColorManager
-                                                                        .grey3,
-                                                              ),
-                                                            ),
-                                                            SizedBox(height: 8),
-                                                            Text(
-                                                              'الأنواع:  شامبو - شاور - صابون ',
-                                                              style:
-                                                                  getBoldSegoeStyle(
-                                                                fontSize: 18,
-                                                                color:
-                                                                    ColorManager
-                                                                        .grey3,
-                                                              ),
-                                                            ),
-                                                            SizedBox(height: 8),
-                                                            Text(
-                                                              'السعر :  625436 ',
-                                                              style:
-                                                                  getBoldSegoeStyle(
-                                                                fontSize: 18,
-                                                                color:
-                                                                    ColorManager
-                                                                        .grey3,
-                                                              ),
-                                                            ),
-                                                            SizedBox(height: 8),
-                                                            Text(
-                                                              'التاجر:  محمد ',
-                                                              style:
-                                                                  getBoldSegoeStyle(
-                                                                fontSize: 18,
-                                                                color:
-                                                                    ColorManager
-                                                                        .grey3,
-                                                              ),
-                                                            ),
-                                                            SizedBox(height: 8),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Text(
-                                                                  'التاريخ : 24-11-2022 ',
-                                                                  style:
-                                                                      getBoldSegoeStyle(
-                                                                    fontSize:
-                                                                        18,
-                                                                    color: ColorManager
-                                                                        .grey3,
-                                                                  ),
-                                                                ),
-                                                                GestureDetector(
-                                                                  onTap: () {
-                                                                    Navigator.pushNamed(
-                                                                        context,
-                                                                        Routes
-                                                                            .fawaterTagerDetails);
-                                                                  },
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: const EdgeInsets
-                                                                        .only(
-                                                                        left:
-                                                                            8),
-                                                                    child: Text(
-                                                                      "التفاصيل",
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: ColorManager
-                                                                            .babyBlue,
-                                                                        fontSize:
-                                                                            20,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                        decoration:
-                                                                            TextDecoration.underline,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            SizedBox(
-                                                                height: 12),
-                                                            Container(
-                                                              width:
-                                                                  MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
-                                                              decoration: BoxDecoration(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  border: Border.all(
-                                                                      color: Colors
-                                                                          .grey,
-                                                                      width:
-                                                                          1)),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  );
+                                                  return TraderInvoiceFawater(
+                                                      traderInvoiceModel:
+                                                          traderInvoiceModel,
+                                                      index: index);
                                                 },
                                                 itemCount: count),
                                             ListView.builder(
                                                 itemBuilder: (context, index) =>
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  horizontal:
-                                                                      8.0,
-                                                                  vertical: 15),
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                'السعر بالليرة : ${supplierInvoiceModel?.data.totalLera}',
-                                                                style:
-                                                                    getBoldSegoeStyle(
-                                                                  fontSize: 18,
-                                                                  color:
-                                                                      ColorManager
-                                                                          .grey3,
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                  height: 8),
-                                                              Text(
-                                                                'السعر بالدولار : ${supplierInvoiceModel?.data.totalDoler}',
-                                                                style:
-                                                                    getBoldSegoeStyle(
-                                                                  fontSize: 18,
-                                                                  color:
-                                                                      ColorManager
-                                                                          .grey3,
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                  height: 8),
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Text(
-                                                                    'التاريخ  : ${supplierInvoiceModel?.data.date}',
-                                                                    style:
-                                                                        getBoldSegoeStyle(
-                                                                      fontSize:
-                                                                          18,
-                                                                      color: ColorManager
-                                                                          .grey3,
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: const EdgeInsets
-                                                                        .only(
-                                                                        left:
-                                                                            8),
-                                                                    child: Text(
-                                                                      "التفاصيل",
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: ColorManager
-                                                                            .babyBlue,
-                                                                        fontSize:
-                                                                            20,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                        decoration:
-                                                                            TextDecoration.underline,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              SizedBox(
-                                                                  height: 12),
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                                decoration: BoxDecoration(
-                                                                    color: Colors
-                                                                        .grey,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        width:
-                                                                            1)),
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                    SupplierInvoiceFawater(
+                                                        supplierInvoiceModel:
+                                                            supplierInvoiceModel,
+                                                        index: index),
                                                 itemCount: 1)
                                           ],
                                         ),
@@ -433,7 +222,18 @@ class FawaterViewBody extends StatelessWidget {
                     ],
                   );
                 } else {
-                  return const Text('Somting Error');
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 2.1,
+                      ),
+                      const Center(
+                        child: Text('Somting Error !'),
+                      ),
+                    ],
+                  );
                 }
               },
             ),
