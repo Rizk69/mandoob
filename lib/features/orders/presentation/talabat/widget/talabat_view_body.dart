@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
@@ -7,9 +8,12 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/custom_balance.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
-import 'package:mandoob/features/orders/presentation/talabat/cubit/talabat_cubit.dart';
+import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
+import 'package:mandoob/features/orders/presentation/talabat/cubit/talabat_cubit/talabat_cubit.dart';
+import 'package:mandoob/features/orders/presentation/talabat/cubit/talabat_cubit/talabat_state.dart';
 import 'package:mandoob/features/orders/presentation/talabat/widget/talabat_old_card.dart';
 import 'package:mandoob/features/orders/presentation/talabat/widget/talabat_persent_card.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class TalabatViewBody extends StatelessWidget {
@@ -31,11 +35,15 @@ class TalabatViewBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: BlocBuilder<TalabatViewCubit, TalabatViewState>(
               builder: (context, state) {
-                if (state == TalabatViewState.loadedOld || state == TalabatViewState.loadedPresent) {
+                if (state is LoadedOldState || state is LoadedPresentState) {
                   var talabatOld =
-                      TalabatViewCubit.get(context).talabatOldModel;
+                      TalabatViewCubit.get(context).talabatOldModel ??
+                          TalabatModel.empty();
+
                   var talabatPresent =
-                      TalabatViewCubit.get(context).talabatPresentModel;
+                      TalabatViewCubit.get(context).talabatPresentModel ??
+                          TalabatModel.empty();
+
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -54,7 +62,7 @@ class TalabatViewBody extends StatelessWidget {
                           ),
                           Center(
                             child: Text(
-                              'الطلبيات',
+                              LocaleKeys.Orders.tr(),
                               style: getBoldSegoeStyle(
                                 fontSize: 25,
                                 color: Theme.of(context).primaryColorLight,
@@ -80,7 +88,7 @@ class TalabatViewBody extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'طلبية جديدة',
+                                  LocaleKeys.NewOrder.tr(),
                                   style: getBoldSegoeStyle(
                                     fontSize: 18,
                                     color: Theme.of(context).primaryColorLight,
@@ -98,9 +106,12 @@ class TalabatViewBody extends StatelessWidget {
                           color: Theme.of(context).primaryColor,
                         ),
                         cursorHeight: 30,
+                        onChanged: (value) {
+                          TalabatViewCubit.get(context).searchTalabat(value);
+                        },
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search),
-                          hintText: 'ابحث هنا',
+                          prefixIcon: const Icon(Icons.search),
+                          hintText: LocaleKeys.SearchHere.tr(),
                           filled: true,
                           hintStyle: TextStyle(
                             color: Theme.of(context).primaryColor,
@@ -110,7 +121,7 @@ class TalabatViewBody extends StatelessWidget {
                       ),
                       SizedBox(height: AppSize.s4.h),
                       Container(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: AppPadding.p20,
                           vertical: AppPadding.p18,
                         ),
@@ -126,10 +137,8 @@ class TalabatViewBody extends StatelessWidget {
                           ],
                         ),
                         child: CustomBalance(
-                          TL: talabatPresent?.balance.totalLera.toString() ??
-                              "0",
-                          USD: talabatPresent?.balance.totalDoler.toString() ??
-                              "0",
+                          TL: talabatPresent.balance.totalLera.toString(),
+                          USD: talabatPresent.balance.totalDoler.toString(),
                         ),
                       ),
                       SizedBox(height: AppSize.s6.h),
@@ -157,7 +166,7 @@ class TalabatViewBody extends StatelessWidget {
                                     tabs: [
                                       Tab(
                                         child: Text(
-                                          'الطلبيات الحالية',
+                                          LocaleKeys.CurrentOrders.tr(),
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -168,7 +177,7 @@ class TalabatViewBody extends StatelessWidget {
                                       ),
                                       Tab(
                                         child: Text(
-                                          'الطلبيات السابقة',
+                                          LocaleKeys.PreviousOrders.tr(),
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -184,41 +193,40 @@ class TalabatViewBody extends StatelessWidget {
                                           MediaQuery.sizeOf(context).height / 2,
                                       child: TabBarView(
                                         children: [
-                                          talabatPresent!.orders.isNotEmpty?
+                                          talabatPresent.orders.isNotEmpty
+                                              ? ListView.builder(
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const ClampingScrollPhysics(),
+                                                  itemBuilder: (context,
+                                                          index) =>
+                                                      PresentOrder(
+                                                          talabatPresent:
+                                                              TalabatViewCubit.get(
+                                                                          context)
+                                                                      .filteredPresentOrders[
+                                                                  index]),
+                                                  itemCount:
+                                                      TalabatViewCubit.get(
+                                                              context)
+                                                          .filteredPresentOrders
+                                                          .length,
+                                                )
+                                              : Container(),
                                           ListView.builder(
                                             shrinkWrap: true,
                                             physics:
                                                 const ClampingScrollPhysics(),
                                             itemBuilder: (context, index) =>
-                                                PresentOrder(
-                                                    talabatPresent:
-                                                        talabatPresent!
-                                                            .orders[index]),
+                                                OldOrder(
+                                                    talabatOld: TalabatViewCubit
+                                                                .get(context)
+                                                            .filteredOldOrders[
+                                                        index]),
                                             itemCount:
-                                                talabatPresent?.orders.length,
-                                          ):Container(),
-                                          // تاب الطلبات السابقة
-                                          ListView.builder(
-                                            shrinkWrap: true,
-                                            // تجعل القائمة تأخذ حجم محتواها فقط
-                                            physics:
-                                                const ClampingScrollPhysics(),
-                                            // يُحسن التمرير ضمن TabBarView
-                                            itemBuilder: (context, index) {
-                                              if (talabatOld == null ||
-                                                  talabatOld.orders.isEmpty) {
-                                                return const SizedBox.shrink();
-                                              }
-                                              if (index >=
-                                                  talabatOld.orders.length) {
-                                                return const SizedBox.shrink();
-                                              }
-                                              return OldOrder(
-                                                  talabatOld:
-                                                      talabatOld.orders[index]);
-                                            },
-                                            itemCount:
-                                                talabatOld?.orders.length ?? 0,
+                                                TalabatViewCubit.get(context)
+                                                    .filteredOldOrders
+                                                    .length,
                                           ),
                                         ],
                                       )),
@@ -230,8 +238,8 @@ class TalabatViewBody extends StatelessWidget {
                       ),
                     ],
                   );
-                } else if (state == TalabatViewState.loadingOld ||
-                    state == TalabatViewState.loadingPresent) {
+                } else if (state is LoadingOldState ||
+                    state is LoadingPresentState) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -244,8 +252,17 @@ class TalabatViewBody extends StatelessWidget {
                       ),
                     ],
                   );
+                } else if (state is ErrorOldState ||
+                    state is ErrorPresentState) {
+                  // Handle the error state
+                  return Center(
+                      child: Text(
+                    LocaleKeys.ErrorLoadingData.tr(),
+                  ));
                 } else {
-                  return const Text('Somting Error');
+                  return Text(
+                    LocaleKeys.SomethingError.tr(),
+                  );
                 }
               },
             ),

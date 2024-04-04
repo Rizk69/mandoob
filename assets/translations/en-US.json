@@ -133,6 +133,20 @@
   "payedTL": "Amount Paid in Lira",
   "payedUSD": "Amount Paid in USD",
   "remainingAmount": "Remaining Amount",
-  "payDate": "Payment Due Date"
+  "payDate": "Payment Due Date",
+
+  "Orders": "Orders",
+  "NewOrder": "New Order",
+  "SearchHere": "Search Here",
+  "TotalAmountLira": "Total Amount in Lira",
+  "TotalAmountUSD": "Total Amount in USD",
+  "AmountPaidLira": "Amount Paid in Lira",
+  "AmountPaidUSD": "Amount Paid in USD",
+  "RemainingAmount": "Remaining Amount",
+  "PaymentDueDate": "Payment Due Date",
+  "CurrentOrders": "Current Orders",
+  "PreviousOrders": "Previous Orders",
+  "ErrorLoadingData": "Error Loading Data",
+  "SomethingError": "Something Error"
 
 }

@@ -80,9 +80,6 @@ abstract class  LocaleKeys {
   static const clients = 'clients';
   static const trafficLines = 'trafficLines';
   static const account = 'account';
-  static const debts = 'debts';
-  static const addPurchases = 'addPurchases';
-  static const notification = 'notification';
   static const balanceTL = 'balanceTL';
   static const balanceUsd = 'balanceUsd';
   static const salseLera = 'salseLera';
@@ -102,8 +99,10 @@ abstract class  LocaleKeys {
   static const wholesale = 'wholesale';
   static const factoryPrice = 'factoryPrice';
   static const add = 'add';
+  static const debts = 'debts';
   static const confirm = 'confirm';
   static const deleteAll = 'deleteAll';
+  static const addPurchases = 'addPurchases';
   static const trafficLine = 'trafficLine';
   static const expenses = 'expenses';
   static const quantity = 'quantity';
@@ -111,6 +110,7 @@ abstract class  LocaleKeys {
   static const cost = 'cost';
   static const addExpenses = 'addExpenses';
   static const typeExpenses = 'typeExpenses';
+  static const notification = 'notification';
   static const addTrafficLine = 'addTrafficLine';
   static const Trader = 'Trader';
   static const departureDate = 'departureDate';
@@ -123,5 +123,18 @@ abstract class  LocaleKeys {
   static const payedUSD = 'payedUSD';
   static const remainingAmount = 'remainingAmount';
   static const payDate = 'payDate';
+  static const Orders = 'Orders';
+  static const NewOrder = 'NewOrder';
+  static const SearchHere = 'SearchHere';
+  static const TotalAmountLira = 'TotalAmountLira';
+  static const TotalAmountUSD = 'TotalAmountUSD';
+  static const AmountPaidLira = 'AmountPaidLira';
+  static const AmountPaidUSD = 'AmountPaidUSD';
+  static const RemainingAmount = 'RemainingAmount';
+  static const PaymentDueDate = 'PaymentDueDate';
+  static const CurrentOrders = 'CurrentOrders';
+  static const PreviousOrders = 'PreviousOrders';
+  static const ErrorLoadingData = 'ErrorLoadingData';
+  static const SomethingError = 'SomethingError';
 
 }

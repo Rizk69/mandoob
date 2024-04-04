@@ -59,7 +59,7 @@ import '../features/orders/data/network/talabat_api.dart';
 import '../features/orders/data/repository/talabat_repository_impl.dart';
 import '../features/orders/domain/repository/talabat_repository.dart';
 import '../features/orders/presentation/talabat/cubit/add_order_cubit/new_talabat_cubit.dart';
-import '../features/orders/presentation/talabat/cubit/talabat_cubit.dart';
+import '../features/orders/presentation/talabat/cubit/talabat_cubit/talabat_cubit.dart';
 import '../features/trafiic_lines/domain/usecase/get_dlivary_usecase.dart';
 import '../features/trafiic_lines/presentation/cubit/trafficlines_cubit.dart';
 
