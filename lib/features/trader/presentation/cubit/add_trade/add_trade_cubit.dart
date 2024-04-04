@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/core/common/freezed_data_class.dart';
 import 'package:mandoob/features/trader/data/network/trade_requests.dart';
+import 'package:mandoob/features/trader/domain/model/trades_model.dart';
 import 'package:mandoob/features/trader/domain/usecase/add_trade_usecase.dart';
 import 'package:meta/meta.dart';
 
@@ -16,7 +17,6 @@ class AddTradeCubit extends Cubit<AddTradeState> {
   var tradeObject = TraderObject("", "","",0);
 
   static AddTradeCubit get(context) => BlocProvider.of(context);
-
 
 
 
@@ -54,7 +54,7 @@ class AddTradeCubit extends Cubit<AddTradeState> {
     ));
     result.fold((failure) => emit(AddTradeErrorState(failure.message)),
             (success) {
-          emit(AddTradeLoadedState(success.message));
+          emit(AddTradeLoadedState(success.message,success));
         });
 
   }

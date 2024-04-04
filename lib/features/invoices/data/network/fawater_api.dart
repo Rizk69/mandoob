@@ -19,7 +19,7 @@ abstract class FawaterServiceClient {
 
 
   @GET("api/trader_invoice/{invoiceId}")
-  Future<TraderDetailsInvoiceResponse> getTraderInvoiceDetails(@Body() int invoiceId);
+  Future<TraderDetailsInvoiceResponse> getTraderInvoiceDetails(@Path() int invoiceId);
 
 
   @GET("api/supplier_invoice")

@@ -49,7 +49,7 @@ class _FawaterServiceClient implements FawaterServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = invoiceId;
+    final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<TraderDetailsInvoiceResponse>(Options(
       method: 'GET',
@@ -58,7 +58,7 @@ class _FawaterServiceClient implements FawaterServiceClient {
     )
             .compose(
               _dio.options,
-              'api/trader_invoice/{invoiceId}',
+              'api/trader_invoice/${invoiceId}',
               queryParameters: queryParameters,
               data: _data,
             )

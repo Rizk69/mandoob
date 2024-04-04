@@ -100,8 +100,8 @@ Future<void> initAppModule() async {
       .registerLazySingleton<TradeServiceClient>(() => TradeServiceClient(dio));
   instance
       .registerLazySingleton<AuthServiceClient>(() => AuthServiceClient(dio));
-  instance
-      .registerLazySingleton<FawaterServiceClient>(() => FawaterServiceClient(dio));
+  instance.registerLazySingleton<FawaterServiceClient>(
+      () => FawaterServiceClient(dio));
 
   instance
       .registerLazySingleton<HomeServiceClient>(() => HomeServiceClient(dio));
@@ -208,8 +208,8 @@ initTalabatModule() {
   }
 
   if (!instance.isRegistered<GetCompanyProductsUseCase>()) {
-    instance
-        .registerFactory<NewTalabatCubit>(() => NewTalabatCubit(instance(),instance()));
+    instance.registerFactory<NewTalabatCubit>(
+        () => NewTalabatCubit(instance(), instance()));
     instance.registerFactory<GetCompanyProductsUseCase>(
         () => GetCompanyProductsUseCase(instance()));
   }
@@ -224,23 +224,24 @@ initTalabatModule() {
     instance.registerFactory<DeleteOrderUseCase>(
         () => DeleteOrderUseCase(instance()));
 
-
     instance.registerFactory<OrderCubit>(
-        () => OrderCubit(instance(),instance(),instance(),instance()));
+        () => OrderCubit(instance(), instance(), instance(), instance()));
   }
 }
+
 initFawaterModule() {
   if (!instance.isRegistered<GetInvoicesTraderInvoiceUseCase>()) {
     instance.registerFactory<FawaterViewCubit>(
-        () => FawaterViewCubit(instance(), instance()));
+        () => FawaterViewCubit(instance(), instance(), instance(), instance()));
     instance.registerFactory<GetInvoicesTraderInvoiceUseCase>(
         () => GetInvoicesTraderInvoiceUseCase(instance()));
     instance.registerFactory<GetInvoicesSupplierInvoiceUseCase>(
         () => GetInvoicesSupplierInvoiceUseCase(instance()));
-
+    instance.registerFactory<GetTraderInvoiceDetailsUseCase>(
+        () => GetTraderInvoiceDetailsUseCase(instance()));
+    instance.registerFactory<GetSupplierInvoiceDetailsUseCase>(
+        () => GetSupplierInvoiceDetailsUseCase(instance()));
   }
-
-
 }
 
 initDelivaryLineModule() {
