@@ -16,7 +16,6 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String idOrder = ModalRoute.of(context)?.settings.arguments as String;
     return SafeArea(
         top: false,
         child: Container(
