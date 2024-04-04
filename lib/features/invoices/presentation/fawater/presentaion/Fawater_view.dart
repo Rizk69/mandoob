@@ -222,7 +222,18 @@ class FawaterViewBody extends StatelessWidget {
                     ],
                   );
                 } else {
-                  return const Text('Somting Error');
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 2.1,
+                      ),
+                      const Center(
+                        child: Text('Somting Error !'),
+                      ),
+                    ],
+                  );
                 }
               },
             ),
