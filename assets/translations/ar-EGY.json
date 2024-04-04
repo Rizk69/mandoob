@@ -131,5 +131,21 @@
   "payedTL": "المبلغ المدفوع بالليرة",
   "payedUSD": "المبلغ المدفوع بالدولار",
   "remainingAmount": "المبلغ المتبقي",
-  "payDate": "تاريخ استحقاق الدفع"
+  "payDate": "تاريخ استحقاق الدفع",
+
+
+  "Orders": "الطلبيات",
+  "NewOrder": "طلبية جديدة",
+  "SearchHere": "ابحث هنا",
+  "TotalAmountLira": "اجمالي المبلغ بالليرة",
+  "TotalAmountUSD": "اجمالي المبلغ بالدولار",
+  "AmountPaidLira": "المبلغ المدفوع بالليرة",
+  "AmountPaidUSD": "المبلغ المدفوع بالدولار",
+  "RemainingAmount": "المبلغ المتبقي",
+  "PaymentDueDate": "تاريخ استحقاق الدفع",
+  "CurrentOrders": "الطلبيات الحالية",
+  "PreviousOrders": "الطلبيات السابقة",
+  "ErrorLoadingData": "خطأ في تحميل البيانات",
+  "SomethingError": "خطأ ما"
+
 }
