@@ -38,8 +38,10 @@ class ExpensesCubit extends Cubit<ExpensesState> {
   }
 
   getReasonExpenses() async {
+    if (isClosed) return; // Check if the cubit is closed
     emit(GetExpensesReasonsLoadingState());
     final result = await _getExpensesReasonsUseCase.execute('');
+    if (isClosed) return; // Check again because the operation is async
     result.fold(
           (failure) => emit(GetExpensesReasonsErrorState(failure.message)),
           (success) {
@@ -49,15 +51,21 @@ class ExpensesCubit extends Cubit<ExpensesState> {
     );
   }
 
+
   addReasonExpenses(AddExpensesRequests addExpensesRequests) async {
-    emit(GetExpensesReasonsLoadingState());
-    final result = await _addExpensesReasonsUseCase.execute(addExpensesRequests);
-    result.fold(
-          (failure) => emit(GetExpensesReasonsErrorState(failure.message)),
-          (success) {
-        model = success;
-        emit(GetExpensesReasonsLoadedState());
-      },
-    );
+    print(addExpensesRequests.count);
+    print(addExpensesRequests.image);
+    print(addExpensesRequests.price);
+    print(addExpensesRequests.currencyId);
+    print(addExpensesRequests.reasonExpenseId);
+    // emit(GetExpensesReasonsLoadingState());
+    // final result = await _addExpensesReasonsUseCase.execute(addExpensesRequests);
+    // result.fold(
+    //       (failure) => emit(GetExpensesReasonsErrorState(failure.message)),
+    //       (success) {
+    //     model = success;
+    //     emit(GetExpensesReasonsLoadedState());
+    //   },
+    // );
   }
 }
