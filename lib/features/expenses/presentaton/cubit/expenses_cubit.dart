@@ -10,8 +10,9 @@ part 'expenses_state.dart';
 
 class ExpensesCubit extends Cubit<ExpensesState> {
   ExpensesCubit(
-      this._getExpensesReasonsUseCase, this._addExpensesReasonsUseCase)
-      : super(ExpensesInitial());
+      this._getExpensesReasonsUseCase,
+      this._addExpensesReasonsUseCase,
+      ) : super(ExpensesInitial());
 
   static ExpensesCubit get(context) => BlocProvider.of(context);
 
@@ -32,9 +33,33 @@ class ExpensesCubit extends Cubit<ExpensesState> {
     if (image != null) {}
   }
 
-  void updateReasonExpenseId(int newValue) {
+  void setReasonExpenseId(int newValue) {
     reasonExpenseId = newValue;
     emit(ChoseCurrency());
+  }
+
+  void setPrice(String newPrice) {
+    price = newPrice;
+    emit(UpdatedPriceState(newPrice));
+  }
+
+  void setCurrencyId(String newCurrencyId) {
+    currencyId = newCurrencyId;
+    emit(UpdatedCurrencyIdState(newCurrencyId));
+  }
+
+  void setupdateCount(String newCount) {
+    count = newCount;
+    emit(UpdatedCountState(newCount));
+  }
+
+  void clearFields() {
+    image = null;
+    reasonExpenseId = null;
+    price = null;
+    currencyId = null;
+    count = null;
+    emit(ClearedFieldsState());
   }
 
   getReasonExpenses() async {
@@ -51,21 +76,15 @@ class ExpensesCubit extends Cubit<ExpensesState> {
     );
   }
 
-
   addReasonExpenses(AddExpensesRequests addExpensesRequests) async {
-    print(addExpensesRequests.count);
-    print(addExpensesRequests.image);
-    print(addExpensesRequests.price);
-    print(addExpensesRequests.currencyId);
-    print(addExpensesRequests.reasonExpenseId);
-    // emit(GetExpensesReasonsLoadingState());
-    // final result = await _addExpensesReasonsUseCase.execute(addExpensesRequests);
-    // result.fold(
-    //       (failure) => emit(GetExpensesReasonsErrorState(failure.message)),
-    //       (success) {
-    //     model = success;
-    //     emit(GetExpensesReasonsLoadedState());
-    //   },
-    // );
+    emit(AddingExpensesLoadingState());
+    final result = await _addExpensesReasonsUseCase.execute(addExpensesRequests);
+    result.fold(
+          (failure) => emit(AddingExpensesErrorState(failure.message)),
+          (success) {
+        emit(ExpensesAddedState());
+        clearFields(); // Clear fields after successful addition
+      },
+    );
   }
 }
