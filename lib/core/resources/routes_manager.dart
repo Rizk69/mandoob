@@ -17,6 +17,7 @@ import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawat
 import 'package:mandoob/features/notfication/presentation/notification/Screen/notification.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_old_details.dart';
+import 'package:mandoob/features/splash_screen/Splash_View.dart';
 import 'package:mandoob/features/trader/presentation/new_trader.dart';
 import 'package:mandoob/features/trader/presentation/trader_view.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/add_traffic_lines_screen.dart';
@@ -29,6 +30,7 @@ import '../../features/orders/presentation/talabat/presentation/talabat_peresent
 
 class Routes {
   static const String loginRoute = "/login";
+  static const String splashRoute = "/splashRoute";
   static const String homeRoute = "/home";
   static const String homeViewRoute = "/homeView";
   static const String elSalah = "/elsalah";
@@ -60,6 +62,8 @@ class RouteGenerator {
       case Routes.loginRoute:
         initLoginModule();
         return MaterialPageRoute(builder: (_) => LoginView());
+        case Routes.splashRoute:
+        return MaterialPageRoute(builder: (_) => SplashScreen());
       case Routes.homeRoute:
         initHomeModule();
         initTalabatModule();

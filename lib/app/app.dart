@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
                 locale: context.locale,
                 debugShowCheckedModeBanner: false,
                 onGenerateRoute: RouteGenerator.getRoute,
-                initialRoute: Routes.loginRoute,
+                initialRoute: Routes.splashRoute,
                 themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
                 theme: lightTheme,
                 darkTheme: darkTheme,
