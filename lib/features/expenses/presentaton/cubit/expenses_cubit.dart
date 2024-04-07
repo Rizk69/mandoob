@@ -40,23 +40,24 @@ class ExpensesCubit extends Cubit<ExpensesState> {
   getReasonExpenses() async {
     emit(GetExpensesReasonsLoadingState());
     final result = await _getExpensesReasonsUseCase.execute('');
-    result
-        .fold((failure) => emit(GetExpensesReasonsErrorState(failure.message)),
-            (success) {
-      model = success;
-      emit(GetExpensesReasonsLoadedState());
-    });
+    result.fold(
+          (failure) => emit(GetExpensesReasonsErrorState(failure.message)),
+          (success) {
+        model = success;
+        emit(GetExpensesReasonsLoadedState());
+      },
+    );
   }
 
   addReasonExpenses(AddExpensesRequests addExpensesRequests) async {
     emit(GetExpensesReasonsLoadingState());
-    final result =
-        await _addExpensesReasonsUseCase.execute(addExpensesRequests);
-    result
-        .fold((failure) => emit(GetExpensesReasonsErrorState(failure.message)),
-            (success) {
-      model = success;
-      emit(GetExpensesReasonsLoadedState());
-    });
+    final result = await _addExpensesReasonsUseCase.execute(addExpensesRequests);
+    result.fold(
+          (failure) => emit(GetExpensesReasonsErrorState(failure.message)),
+          (success) {
+        model = success;
+        emit(GetExpensesReasonsLoadedState());
+      },
+    );
   }
 }
