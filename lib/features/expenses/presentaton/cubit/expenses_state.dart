@@ -17,3 +17,4 @@ class GetExpensesReasonsErrorState extends ExpensesState {
 }
 
 class GetExpensesReasonsLoadedState extends ExpensesState {}
+class ChoseCurrency extends ExpensesState {}

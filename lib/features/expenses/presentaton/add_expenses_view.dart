@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
@@ -65,7 +64,8 @@ class AddExpensesView extends StatelessWidget {
                               const SizedBox(width: 16),
                               BlocBuilder<ExpensesCubit, ExpensesState>(
                                 builder: (context, state) {
-                                  if (state is GetExpensesReasonsLoadedState) {
+                                  if (state is GetExpensesReasonsLoadedState ||
+                                      state is ChoseCurrency) {
                                     if (context.read<ExpensesCubit>().model !=
                                             null &&
                                         context
@@ -103,7 +103,8 @@ class AddExpensesView extends StatelessWidget {
                                             dropdownColor: Theme.of(context)
                                                 .primaryColorDark,
                                             onChanged: (value) {
-                                              // Handle dropdown value change
+                                              ExpensesCubit.get(context)
+                                                  .reasonExpenseId = value;
                                             },
                                             items: context
                                                 .read<ExpensesCubit>()
@@ -135,14 +136,74 @@ class AddExpensesView extends StatelessWidget {
                           SizedBox(height: AppSize.s5.h),
                           customTextFormFiledInfo(
                             text: LocaleKeys.quantity.tr(),
-                            onChanged: (name) {},
+                            onChanged: (name) {
+                              context.read<ExpensesCubit>().count = name;
+                            },
                             context: context,
                           ),
                           SizedBox(height: AppSize.s5.h),
-                          customTextFormFiledInfo(
-                            text: LocaleKeys.cost.tr(),
-                            onChanged: (address) {},
-                            context: context,
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: customTextFormFiledInfo(
+                                  text: LocaleKeys.cost.tr(),
+                                  onChanged: (price) {
+                                    context.read<ExpensesCubit>().price = price;
+                                  },
+                                  context: context,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child:
+                                    BlocBuilder<ExpensesCubit, ExpensesState>(
+                                  builder: (context, state) {
+                                    return Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        color:
+                                            Theme.of(context).primaryColorDark,
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(12)),
+                                      ),
+                                      child: DropdownButton<int>(
+                                        value: context.select(
+                                            (ExpensesCubit cubit) =>
+                                                cubit.reasonExpenseId ?? 0),
+                                        elevation: 16,
+                                        style: TextStyle(
+                                          color: Theme.of(context).primaryColor,
+                                          fontSize: 18,
+                                        ),
+                                        dropdownColor:
+                                            Theme.of(context).primaryColorDark,
+                                        onChanged: (value) {
+                                          context
+                                              .read<ExpensesCubit>()
+                                              .updateReasonExpenseId(value!);
+                                        },
+                                        items: const <DropdownMenuItem<int>>[
+                                          DropdownMenuItem<int>(
+                                            value: 0,
+                                            child: Text("ليره"),
+                                          ),
+                                          DropdownMenuItem<int>(
+                                            value: 1,
+                                            child: Text("دولار"),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: AppSize.s5.h),
                           Row(
@@ -169,13 +230,38 @@ class AddExpensesView extends StatelessWidget {
                           ),
                           SizedBox(height: AppSize.s12.h),
                           SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              child: CustomButton(
-                                onPressed: () {
-                                  ExpensesCubit.get(context).addReasonExpenses(AddExpensesRequests());
-                                },
-                                buttonText: LocaleKeys.add.tr(),
-                              ))
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            child: CustomButton(
+                              onPressed: () {
+                                if (ExpensesCubit.get(context).image != null) {
+                                  AddExpensesRequests addExpensesRequests =
+                                      AddExpensesRequests(
+                                          image:
+                                              ExpensesCubit.get(context).image,
+                                          currencyId: ExpensesCubit.get(context)
+                                              .currencyId,
+                                          count:
+                                              ExpensesCubit.get(context).count,
+                                          price:
+                                              ExpensesCubit.get(context).price,
+                                          reasonExpenseId:
+                                              ExpensesCubit.get(context)
+                                                  .reasonExpenseId
+                                                  .toString());
+                                  ExpensesCubit.get(context)
+                                      .addReasonExpenses(addExpensesRequests);
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                          'Please pick an image for the expense.'),
+                                    ),
+                                  );
+                                }
+                              },
+                              buttonText: LocaleKeys.add.tr(),
+                            ),
+                          ),
                         ],
                       ),
                     ),

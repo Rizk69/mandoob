@@ -19,15 +19,24 @@ class ExpensesCubit extends Cubit<ExpensesState> {
   final AddGetExpensesReasonsUseCase _addExpensesReasonsUseCase;
 
   ReasonExpensesModel? model;
-   XFile? image;
+  XFile? image;
+  int? reasonExpenseId;
+  String? price;
+  String? currencyId;
+  String? count;
+
   Future<void> pickImage() async {
     final ImagePicker _picker = ImagePicker();
     image = await _picker.pickImage(source: ImageSource.camera);
 
-    if (image != null) {
-      // print('Picked Image Path: ${image.path}');
-    }
+    if (image != null) {}
   }
+
+  void updateReasonExpenseId(int newValue) {
+    reasonExpenseId = newValue;
+    emit(ChoseCurrency());
+  }
+
   getReasonExpenses() async {
     emit(GetExpensesReasonsLoadingState());
     final result = await _getExpensesReasonsUseCase.execute('');

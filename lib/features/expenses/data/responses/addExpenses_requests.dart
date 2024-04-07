@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:image_picker/image_picker.dart'; // Import XFile
 
 part 'addExpenses_requests.g.dart';
 
@@ -19,7 +19,7 @@ class AddExpensesRequests {
     fromJson: _fileFromJson,
     toJson: _fileToJson,
   )
-  File? image;
+  XFile? image; // Use XFile instead of File
 
   @JsonKey(name: "count")
   String? count;
@@ -37,11 +37,11 @@ class AddExpensesRequests {
 
   Map<String, dynamic> toJson() => _$AddExpensesRequestsToJson(this);
 
-  static File? _fileFromJson(String? json) {
-    return json != null ? File(json) : null;
+  static XFile? _fileFromJson(String? json) {
+    return json != null ? XFile(json) : null; // Create XFile instance
   }
 
-  static String? _fileToJson(File? file) {
+  static String? _fileToJson(XFile? file) {
     return file?.path;
   }
 }

@@ -162,7 +162,6 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<EahduhRepository>(
       () => RepositoryEahduhImpl(instance(), instance()));
 
-
   instance.registerLazySingleton<ExpensesRepository>(
       () => ExpensesRepositoryImpl(instance(), instance()));
 }
@@ -305,17 +304,17 @@ initEahduhModule() {
   }
 }
 
-
 void initExpensesModule() {
   if (!GetIt.I.isRegistered<GetExpensesReasonsUseCase>()) {
+    instance.registerLazySingleton<GetExpensesReasonsUseCase>(
+        () => GetExpensesReasonsUseCase(instance()));
+    instance.registerLazySingleton<AddGetExpensesReasonsUseCase>(
+        () => AddGetExpensesReasonsUseCase(instance()));
 
-    instance.registerLazySingleton<GetExpensesReasonsUseCase>(() => GetExpensesReasonsUseCase(instance()));
-    instance.registerLazySingleton<ExpensesCubit>(() => ExpensesCubit(instance(),instance()));
+    instance.registerLazySingleton<ExpensesCubit>(
+        () => ExpensesCubit(instance(), instance()));
   }
 }
-
-
-
 
 resetModules() {
   instance.reset(dispose: false);
