@@ -61,6 +61,7 @@ class RouteGenerator {
         initHomeModule();
         initTalabatModule();
         initFawaterModule();
+        initExpensesModule();
         return MaterialPageRoute(builder: (_) => const HomeController());
       case Routes.homeViewRoute:
         initHomeModule();
@@ -100,6 +101,7 @@ class RouteGenerator {
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => TrafficLines());
       case Routes.expenses:
+        initExpensesModule();
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => ExpensesScreen());
         case Routes.debts:

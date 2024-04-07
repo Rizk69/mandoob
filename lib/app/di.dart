@@ -18,6 +18,11 @@ import 'package:mandoob/features/custody/domain/usecase/get_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/pay_partial_dept_usecases.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_eahduh/eahduh_cubit.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
+import 'package:mandoob/features/expenses/data/data_source/remote_expenses_data_source.dart';
+import 'package:mandoob/features/expenses/data/network/expenses_api.dart';
+import 'package:mandoob/features/expenses/data/repository/expenses_repository_impl.dart';
+import 'package:mandoob/features/expenses/domain/repository/expenses_repository.dart';
+import 'package:mandoob/features/expenses/domain/usecase/get_reason_expenses_usecases.dart';
 import 'package:mandoob/features/home/data/data_source/remote_home_data_source.dart';
 import 'package:mandoob/features/home/data/network/home_api.dart';
 import 'package:mandoob/features/home/data/repository/home_repository_impl.dart';
@@ -108,6 +113,9 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<TalabatServiceClient>(
       () => TalabatServiceClient(dio));
 
+  instance.registerLazySingleton<ExpensesServiceClient>(
+      () => ExpensesServiceClient(dio));
+
   // Local data source
   instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
@@ -130,6 +138,9 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteHomeDataSource>(
       () => RemoteHomeDataSourceImpl(instance()));
 
+  instance.registerLazySingleton<RemoteExpensesDataSource>(
+      () => RemoteExpensesDataSourceImpl(instance()));
+
   // repository
   instance.registerLazySingleton<Repository>(
       () => RepositoryTrafficLineImpl(instance(), instance()));
@@ -149,6 +160,10 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<EahduhRepository>(
       () => RepositoryEahduhImpl(instance(), instance()));
+
+
+  instance.registerLazySingleton<ExpensesRepository>(
+      () => ExpensesRepositoryImpl(instance(), instance()));
 }
 
 initLoginModule() {
@@ -288,6 +303,17 @@ initEahduhModule() {
   }
 }
 
+
+void initExpensesModule() {
+  if (!GetIt.I.isRegistered<GetExpensesReasonsUseCase>()) {
+
+    instance.registerLazySingleton<GetExpensesReasonsUseCase>(() => GetExpensesReasonsUseCase(instance()));
+  }
+}
+
+
+
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -299,4 +325,5 @@ resetModules() {
   initHomeModule();
   initDelivaryLineModule();
   initEahduhModule();
+  initExpensesModule();
 }
