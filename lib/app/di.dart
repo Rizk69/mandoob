@@ -23,6 +23,7 @@ import 'package:mandoob/features/expenses/data/network/expenses_api.dart';
 import 'package:mandoob/features/expenses/data/repository/expenses_repository_impl.dart';
 import 'package:mandoob/features/expenses/domain/repository/expenses_repository.dart';
 import 'package:mandoob/features/expenses/domain/usecase/get_reason_expenses_usecases.dart';
+import 'package:mandoob/features/expenses/presentaton/cubit/expenses_cubit.dart';
 import 'package:mandoob/features/home/data/data_source/remote_home_data_source.dart';
 import 'package:mandoob/features/home/data/network/home_api.dart';
 import 'package:mandoob/features/home/data/repository/home_repository_impl.dart';
@@ -309,6 +310,7 @@ void initExpensesModule() {
   if (!GetIt.I.isRegistered<GetExpensesReasonsUseCase>()) {
 
     instance.registerLazySingleton<GetExpensesReasonsUseCase>(() => GetExpensesReasonsUseCase(instance()));
+    instance.registerLazySingleton<ExpensesCubit>(() => ExpensesCubit(instance()));
   }
 }
 

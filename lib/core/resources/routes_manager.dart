@@ -149,6 +149,7 @@ class RouteGenerator {
       case Routes.newTrader:
         return MaterialPageRoute(builder: (_) => const NewTraderView());
       case Routes.addExpenses:
+        initExpensesModule();
         return MaterialPageRoute(builder: (_) => AddExpensesView());
 
       default:
