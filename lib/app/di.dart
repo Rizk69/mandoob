@@ -310,7 +310,7 @@ void initExpensesModule() {
   if (!GetIt.I.isRegistered<GetExpensesReasonsUseCase>()) {
 
     instance.registerLazySingleton<GetExpensesReasonsUseCase>(() => GetExpensesReasonsUseCase(instance()));
-    instance.registerLazySingleton<ExpensesCubit>(() => ExpensesCubit(instance()));
+    instance.registerLazySingleton<ExpensesCubit>(() => ExpensesCubit(instance(),instance()));
   }
 }
 

@@ -8,6 +8,7 @@ import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
+import 'package:mandoob/features/expenses/data/responses/addExpenses_requests.dart';
 import 'package:mandoob/features/expenses/domain/model/reason_expenses_model.dart';
 import 'package:mandoob/features/expenses/presentaton/cubit/expenses_cubit.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
@@ -158,10 +159,10 @@ class AddExpensesView extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                icon: Icon(Icons.upload_file, color: Theme.of(context).primaryColor),
+                                icon: Icon(Icons.upload_file,
+                                    color: Theme.of(context).primaryColor),
                                 onPressed: () async {
-                                  // Call the method to pick an image
-                                  await _pickImage(context);
+                                  await ExpensesCubit.get(context).pickImage();
                                 },
                               ),
                             ],
@@ -170,7 +171,9 @@ class AddExpensesView extends StatelessWidget {
                           SizedBox(
                               width: MediaQuery.of(context).size.width * 0.9,
                               child: CustomButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  ExpensesCubit.get(context).addReasonExpenses(AddExpensesRequests());
+                                },
                                 buttonText: LocaleKeys.add.tr(),
                               ))
                         ],
@@ -183,16 +186,4 @@ class AddExpensesView extends StatelessWidget {
           )),
     );
   }
-
-
-  Future<void> _pickImage(BuildContext context) async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
-
-    if (image != null) {
-      print('Picked Image Path: ${image.path}');
-    }
-  }
-
-
 }
