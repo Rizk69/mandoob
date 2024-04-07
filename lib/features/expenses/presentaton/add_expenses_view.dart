@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
@@ -143,10 +144,27 @@ class AddExpensesView extends StatelessWidget {
                             context: context,
                           ),
                           SizedBox(height: AppSize.s5.h),
-                          customTextFormFiledInfo(
-                            text: LocaleKeys.invoices.tr(),
-                            onChanged: (phone) {},
-                            context: context,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  LocaleKeys.invoices.tr(),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.upload_file, color: Theme.of(context).primaryColor),
+                                onPressed: () async {
+                                  // Call the method to pick an image
+                                  await _pickImage(context);
+                                },
+                              ),
+                            ],
                           ),
                           SizedBox(height: AppSize.s12.h),
                           SizedBox(
@@ -164,8 +182,17 @@ class AddExpensesView extends StatelessWidget {
             ),
           )),
     );
-    //     },
-    //   ),
-    // );
   }
+
+
+  Future<void> _pickImage(BuildContext context) async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+
+    if (image != null) {
+      print('Picked Image Path: ${image.path}');
+    }
+  }
+
+
 }
