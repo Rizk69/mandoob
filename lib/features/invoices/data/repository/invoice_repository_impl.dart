@@ -67,6 +67,7 @@ class InvoicesRepositoryImpl extends InvoicesRepository {
   @override
   Future<Either<Failure, TraderDetailsInvoiceModel>> getTraderInvoiceDetails(int invoiceId) async {
     if (await _networkInfo.isConnect) {
+      print('invoiceId$invoiceId');
       final response = await _remoteFawaterSource.getTraderInvoiceDetails(invoiceId);
 
       try {
@@ -80,6 +81,7 @@ class InvoicesRepositoryImpl extends InvoicesRepository {
           ));
         }
       } catch (error) {
+        print(error);
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {

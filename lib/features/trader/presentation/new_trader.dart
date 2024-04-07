@@ -28,10 +28,8 @@ class NewTraderView extends StatelessWidget {
         listener: (context, state) {
           if (state is AddTradeLoadedState) {
             Navigator.pushReplacementNamed(context, Routes.sucssufflyAddTrader,
-                arguments: SuccessMessageArguments(
-                  state.message,
-                  LocaleKeys.back.tr(),
-                ));
+                arguments: SuccessMessageArguments(state.message,
+                    LocaleKeys.back.tr(), state.tradeModel.trades!.first.id));
           }
 
           if (state is AddTradeErrorState) {

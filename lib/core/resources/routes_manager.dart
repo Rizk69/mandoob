@@ -11,6 +11,8 @@ import 'package:mandoob/features/debts/presentation/debts/presentation/debts_vie
 import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
+import 'package:mandoob/features/invoices/domain/model/supplier_details_invoice_model.dart';
+import 'package:mandoob/features/invoices/domain/model/trader_details_invoice_model.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_details.dart';
 import 'package:mandoob/features/notfication/presentation/notification/Screen/notification.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
@@ -35,6 +37,7 @@ class Routes {
   static const String newTalab = "/newTalab";
   static const String sucssufflySceen = "/sucssufflySceen";
   static const String fawaterTagerDetails = "/fawaterTagerDetails";
+  static const String fawaterMandobDetailsView = "/fawaterMandobDetailsView";
   static const String trafficLines = "/trafficLines";
   static const String expenses = "/expenses";
   static const String debts = "/debts";
@@ -69,17 +72,21 @@ class RouteGenerator {
       case Routes.elSalah:
         return MaterialPageRoute(builder: (_) => ElSalahView());
 
-        case Routes.talabatOldDetails:
+      case Routes.talabatOldDetails:
+        final args = settings.arguments as OrderArguments;
 
-          final args = settings.arguments as OrderArguments;
+        return MaterialPageRoute(
+            builder: (_) => TalabatOldDetails(
+                  orderId: args.orderId,
+                ));
 
-          return MaterialPageRoute(builder: (_) => TalabatOldDetails(orderId: args.orderId,));
+      case Routes.talabatPresentEdit:
+        final args = settings.arguments as OrderArguments;
 
-
-        case Routes.talabatPresentEdit:
-          final args = settings.arguments as OrderArguments;
-
-          return MaterialPageRoute(builder: (_) => TalabatPresentEdit(orderId: args.orderId,));
+        return MaterialPageRoute(
+            builder: (_) => TalabatPresentEdit(
+                  orderId: args.orderId,
+                ));
       case Routes.elmulakhas:
         return MaterialPageRoute(builder: (_) => ElMulakhas());
       case Routes.elHodaa:
@@ -91,12 +98,18 @@ class RouteGenerator {
       case Routes.sucssufflySceen:
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(
+              id: -1,
                   title: 'تم الصرف بنجاح ',
                   textbutton: 'الفاتورة',
                 ));
       case Routes.fawaterTagerDetails:
+        final args = settings.arguments as int;
         return MaterialPageRoute(
-            builder: (_) => const FawaterTagerDetailsView());
+            builder: (_) => FawaterTagerDetailsView(
+                  id: args,
+                ));
+      case Routes.fawaterMandobDetailsView:
+        return MaterialPageRoute(builder: (_) => FawaterMandobDetailsView());
       case Routes.trafficLines:
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => TrafficLines());
@@ -104,11 +117,11 @@ class RouteGenerator {
         initExpensesModule();
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => ExpensesScreen());
-        case Routes.debts:
+      case Routes.debts:
         return MaterialPageRoute(builder: (_) => DebtsView());
-        case Routes.payingDebts:
+      case Routes.payingDebts:
         return MaterialPageRoute(builder: (_) => PayingDebts());
-        case Routes.notification:
+      case Routes.notification:
         return MaterialPageRoute(builder: (_) => NotificationScreen());
 
       case Routes.addtrafficLines:
@@ -124,6 +137,7 @@ class RouteGenerator {
 
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(
+                  id: args.idInvoice,
                   title: args.message,
                   textbutton: args.actionMessage,
                 ));
@@ -156,11 +170,10 @@ class RouteGenerator {
 class SuccessMessageArguments {
   final String message;
   final String actionMessage;
+  final int idInvoice;
 
-  SuccessMessageArguments(this.message, this.actionMessage);
+  SuccessMessageArguments(this.message, this.actionMessage, this.idInvoice);
 }
-
-
 
 class OrderArguments {
   final int orderId;

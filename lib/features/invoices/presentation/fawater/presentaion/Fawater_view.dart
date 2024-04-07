@@ -7,7 +7,6 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.dart';
-import 'package:mandoob/features/invoices/domain/model/trader_invoice_model.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/traderfawater.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../cubit/fawater_cubit.dart';
@@ -40,6 +39,7 @@ class FawaterViewBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: BlocBuilder<FawaterViewCubit, FawaterViewState>(
               builder: (context, state) {
+
                 if (state == FawaterViewState.loadedSupplierInvoice ||
                     state == FawaterViewState.loadedTraderInvoice) {
                   var supplierInvoiceModel =
@@ -229,8 +229,8 @@ class FawaterViewBody extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 2.1,
                       ),
-                      const Center(
-                        child: Text('Somting Error !'),
+                      Center(
+                        child: Container(),
                       ),
                     ],
                   );

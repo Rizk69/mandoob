@@ -10,25 +10,48 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class SucssufflySceen extends StatelessWidget {
   String title;
   String textbutton;
-  SucssufflySceen({super.key, required this.title,required this.textbutton});
+  int id;
+  SucssufflySceen(
+      {super.key,
+      required this.title,
+      required this.textbutton,
+      required this.id});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,),
-          const Center(child: AnimatedCheck(img: 'assets/images/sucssimage.png')),
-          SizedBox(height: AppSize.s4.h,),
-          Text(title,style: getBoldSegoeStyle(fontSize: 25, color: Theme.of(context).primaryColor),),
-          SizedBox(height: AppSize.s18.h,),
+            height: MediaQuery.of(context).size.height * 0.3,
+          ),
+          const Center(
+              child: AnimatedCheck(img: 'assets/images/sucssimage.png')),
+          SizedBox(
+            height: AppSize.s4.h,
+          ),
+          Text(
+            title,
+            style: getBoldSegoeStyle(
+                fontSize: 25, color: Theme.of(context).primaryColor),
+          ),
+          SizedBox(
+            height: AppSize.s18.h,
+          ),
           SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
-
-              child: CustomButton(onPressed: (){
-                Navigator.pushReplacementNamed(context, Routes.homeRoute);
-              }, buttonText:textbutton ))
-
+              child: CustomButton(
+                  onPressed: () {
+                    if (id == -1) {
+                      Navigator.pushReplacementNamed(
+                          context, Routes.homeViewRoute,
+                          arguments: id);
+                    } else {
+                      Navigator.pushReplacementNamed(
+                          context, Routes.fawaterTagerDetails,
+                          arguments: id);
+                    }
+                  },
+                  buttonText: textbutton))
         ],
       ),
     );

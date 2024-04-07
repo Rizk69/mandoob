@@ -10,8 +10,9 @@ class AddTradeLoadingState extends AddTradeState {}
 
 class AddTradeLoadedState extends AddTradeState {
   final String message;
+  final TradeModel tradeModel;
 
-  AddTradeLoadedState(this.message);
+  AddTradeLoadedState(this.message,this.tradeModel);
 }
 
 class AddTradeErrorState extends AddTradeState {
