@@ -95,7 +95,7 @@ class ExpensesCubit extends Cubit<ExpensesState> {
       (failure) {
         emit(AddingExpensesErrorState(failure.message));
       },
-      (success) => emit(ExpensesAddedLoadedState()),
+      (success) => emit(ExpensesAddedLoadedState(success.message)),
     );
     clearFields();
   }

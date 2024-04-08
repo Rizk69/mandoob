@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/customButton.dart';
 import 'package:mandoob/core/widget/custom_text_form_info.dart';
+import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/expenses/presentaton/cubit/expenses_state.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
@@ -237,7 +239,33 @@ class AddButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ExpensesCubit, ExpensesState>(
       listener: (context, state) {
+
+
+        if (state is AddingExpensesErrorState) {
+
+          final snackBar = defaultSnakeBar(
+            title: LocaleKeys.ERROR.tr(),
+            message: state.message,
+            state: ContentType.failure,
+          );
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackBar);
+        }
+
+
+
         if (state is ExpensesAddedLoadedState) {
+
+            final snackBar = defaultSnakeBar(
+              title: LocaleKeys.SUCCESS.tr(),
+              message: state.message,
+              state: ContentType.success,
+            );
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(snackBar);
+
           Navigator.pushReplacementNamed(context, Routes.homeRoute);
         }
       },

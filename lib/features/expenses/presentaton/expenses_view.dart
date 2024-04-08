@@ -9,6 +9,7 @@ import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/expenses/domain/model/expenses_model.dart';
 import 'package:mandoob/features/expenses/presentaton/cubit/expenses_cubit.dart';
 import 'package:mandoob/features/expenses/presentaton/get_expenses_cubit/get_expenses_cubit.dart';
+import 'package:mandoob/features/expenses/presentaton/widget/build_expense_item.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -16,13 +17,15 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ExpensesScreen extends StatelessWidget {
   ExpensesScreen({Key? key}) : super(key: key);
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => instance<GetExpensesCubit>()..getExpenses(),
-  child: Scaffold(
+  child: BlocBuilder<GetExpensesCubit, GetExpensesState>(
+  builder: (context, state) {
+    return Scaffold(
       drawer: buildDrawer(context),
       key: scaffoldKey,
       body: Padding(
@@ -100,6 +103,7 @@ class ExpensesScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
               BlocConsumer<GetExpensesCubit, GetExpensesState>(
                 listener: (context, state) {},
                 builder: (context, state) {
@@ -113,7 +117,7 @@ class ExpensesScreen extends StatelessWidget {
                       itemCount: expensesModel?.expenses.length ?? 0,
                       itemBuilder: (BuildContext context, int index) {
                         var expense = expensesModel!.expenses[index];
-                        return _buildExpenseItem(context, expense);
+                        return buildExpenseItem(context, expense);
                       },
                     );
                   } else if (state is GetExpensesErrorState) {
@@ -127,59 +131,10 @@ class ExpensesScreen extends StatelessWidget {
           ),
         ),
       ),
-    ),
+    );
+  },
+),
 );
   }
 
-  Widget _buildExpenseItem(BuildContext context, ExpenseDataModel expense) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      decoration: BoxDecoration(
-          color: Theme.of(context).primaryColorDark,
-          borderRadius: BorderRadius.circular(15)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildExpenseDetail('نوع المصروف', expense.reasonExpenseAr, 18, ColorManager.grey3),
-            const SizedBox(height: 12),
-            _buildExpenseDetail('تاريخ الشراء', expense.date, 18, ColorManager.grey3),
-            const SizedBox(height: 12),
-            _buildExpenseDetail('الكمية', '${expense.count} طن', 18, ColorManager.grey3),
-            const SizedBox(height: 12),
-            _buildExpenseDetail('الحالة', expense.statusAr, 18, expense.statusAr == 'مقبول' ? ColorManager.greenLight : ColorManager.red),
-            const SizedBox(height: 12),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildExpenseDetail(String title, String description, double fontSize, Color color) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '$title: ',
-          style: getBoldSegoeStyle(
-            fontSize: fontSize,
-            color: color,
-          ),
-        ),
-        const SizedBox(
-          width: 8,
-        ),
-        Expanded(
-          child: Text(
-            description,
-            style: getBoldSegoeStyle(
-              fontSize: fontSize,
-              color: color,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 }

@@ -308,18 +308,19 @@ initEahduhModule() {
 
 void initExpensesModule() {
   if (!GetIt.I.isRegistered<GetExpensesReasonsUseCase>()) {
-    instance.registerLazySingleton<GetExpensesReasonsUseCase>(
+
+    instance.registerFactory<GetExpensesReasonsUseCase>(
         () => GetExpensesReasonsUseCase(instance()));
-    instance.registerLazySingleton<AddGetExpensesReasonsUseCase>(
+    instance.registerFactory<AddGetExpensesReasonsUseCase>(
         () => AddGetExpensesReasonsUseCase(instance()));
 
-    instance.registerLazySingleton<GetExpensesUseCase>(
+    instance.registerFactory<GetExpensesUseCase>(
         () => GetExpensesUseCase(instance()));
 
-    instance.registerLazySingleton<ExpensesCubit>(
+    instance.registerFactory<ExpensesCubit>(
         () => ExpensesCubit(instance(), instance()));
 
-    instance.registerLazySingleton<GetExpensesCubit>(
+    instance.registerFactory<GetExpensesCubit>(
         () => GetExpensesCubit(instance()));
   }
 }
