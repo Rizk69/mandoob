@@ -21,47 +21,61 @@ class ExpensesCubit extends Cubit<ExpensesState> {
   String? price;
   String? currencyId;
   String? count;
+  bool _isClosed = false;
 
+  // Override the close method to update the _isClosed flag
+  @override
+  Future<void> close() {
+    _isClosed = true;
+    return super.close();
+  }
+
+  // Utility method to safely emit states only if the cubit is not closed
+  void _safeEmit(ExpensesState state) {
+    if (!_isClosed) {
+      emit(state);
+    }
+  }
   Future<void> pickImage() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? selectedImage =
         await _picker.pickImage(source: ImageSource.camera);
     if (selectedImage != null) {
       image = selectedImage;
-      emit(ImagePickedState(imageFile: selectedImage));
+      _safeEmit(ImagePickedState(imageFile: selectedImage));
     }
   }
 
   void setReasonExpenseId(int newValue) {
     reasonExpenseId=newValue;
-    emit(SetReasonExpenseIdState(newValue));
+    _safeEmit(SetReasonExpenseIdState(newValue));
 
   }
   void setPrice(String newPrice) {
     price=newPrice;
-    emit(UpdatedPriceState(newPrice));
+    _safeEmit(UpdatedPriceState(newPrice));
   }
 
   void setCurrencyId(String newCurrencyId) {
     currencyId=newCurrencyId;
-    emit(ChoseCurrency(reasonExpenseId: int.tryParse(newCurrencyId)));
+    _safeEmit(ChoseCurrency(reasonExpenseId: int.tryParse(newCurrencyId)));
   }
 
   void setUpdateCount(String newCount) {
     count=newCount;
-    emit(UpdatedCountState(newCount));
+    _safeEmit(UpdatedCountState(newCount));
   }
 
-  void clearFields() => emit(ClearedFieldsState());
+  void clearFields() => _safeEmit(ClearedFieldsState());
 
   Future<void> getReasonExpenses() async {
-    emit(GetExpensesReasonsLoadingState());
+    _safeEmit(GetExpensesReasonsLoadingState());
     final result = await _getExpensesReasonsUseCase.execute('');
     result
-        .fold((failure) => emit(GetExpensesReasonsErrorState(failure.message)),
+        .fold((failure) => _safeEmit(GetExpensesReasonsErrorState(failure.message)),
             (success) {
       model = success;
-      emit(GetExpensesReasonsLoadedState());
+      _safeEmit(GetExpensesReasonsLoadedState());
     });
   }
 
@@ -72,7 +86,7 @@ class ExpensesCubit extends Cubit<ExpensesState> {
         currencyId == null ||
         count == null) {
       print('All fields must be filled.');
-      emit(AddingExpensesErrorState('All fields must be filled.'));
+      _safeEmit(AddingExpensesErrorState('All fields must be filled.'));
       return;
     }
 
@@ -88,15 +102,16 @@ class ExpensesCubit extends Cubit<ExpensesState> {
 
   Future<void> addReasonExpenses(
       AddExpensesRequests addExpensesRequests) async {
-    emit(AddingExpensesLoadingState());
+    _safeEmit(AddingExpensesLoadingState());
     final result =
         await _addExpensesReasonsUseCase.execute(addExpensesRequests);
     result.fold(
       (failure) {
-        emit(AddingExpensesErrorState(failure.message));
+        _safeEmit(AddingExpensesErrorState(failure.message));
       },
-      (success) => emit(ExpensesAddedLoadedState()),
+      (success) => _safeEmit(ExpensesAddedLoadedState()),
     );
     clearFields();
   }
+
 }
