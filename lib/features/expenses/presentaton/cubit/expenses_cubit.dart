@@ -19,7 +19,7 @@ class ExpensesCubit extends Cubit<ExpensesState> {
   XFile? image;
   int? reasonExpenseId;
   String? price;
-  String? currencyId;
+  String? currencyId='1';
   String? count;
 
   Future<void> pickImage() async {
@@ -61,21 +61,22 @@ class ExpensesCubit extends Cubit<ExpensesState> {
         .fold((failure) => emit(GetExpensesReasonsErrorState(failure.message)),
             (success) {
       model = success;
+      reasonExpenseId=model?.reasonExpense.first.id;
+
       emit(GetExpensesReasonsLoadedState());
     });
   }
 
   Future<void> submitExpense() async {
-    if (image == null ||
-        reasonExpenseId == null ||
-        price == null ||
-        currencyId == null ||
-        count == null) {
-      print('All fields must be filled.');
-      emit(AddingExpensesErrorState('All fields must be filled.'));
-      return;
-    }
-
+    // if (image == null ||
+    //     reasonExpenseId == null ||
+    //     price == null ||
+    //     currencyId == null ||
+    //     count == null) {
+    //   print('All fields must be filled.');
+    //   emit(AddingExpensesErrorState('All fields must be filled.'));
+    //   return;
+    // }
     final addExpensesRequests = AddExpensesRequests(
       image: image,
       currencyId: currencyId,
