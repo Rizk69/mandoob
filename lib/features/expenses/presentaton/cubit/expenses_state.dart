@@ -1,4 +1,5 @@
-part of 'expenses_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 @immutable
 abstract class ExpensesState {}
@@ -9,29 +10,28 @@ class GetExpensesReasonsLoadingState extends ExpensesState {}
 
 class GetExpensesReasonsErrorState extends ExpensesState {
   final String message;
-
   GetExpensesReasonsErrorState(this.message);
 }
 
 class GetExpensesReasonsLoadedState extends ExpensesState {}
 
-class ChoseCurrency extends ExpensesState {}
+class ChoseCurrency extends ExpensesState {
+  final int? reasonExpenseId;
+  ChoseCurrency({required this.reasonExpenseId});
+}
 
 class UpdatedPriceState extends ExpensesState {
   final String newPrice;
-
   UpdatedPriceState(this.newPrice);
 }
 
-class UpdatedCurrencyIdState extends ExpensesState {
-  final String newCurrencyId;
-
-  UpdatedCurrencyIdState(this.newCurrencyId);
+class SetReasonExpenseIdState extends ExpensesState {
+  final int newId;
+  SetReasonExpenseIdState(this.newId);
 }
 
 class UpdatedCountState extends ExpensesState {
   final String newCount;
-
   UpdatedCountState(this.newCount);
 }
 
@@ -41,8 +41,12 @@ class AddingExpensesLoadingState extends ExpensesState {}
 
 class AddingExpensesErrorState extends ExpensesState {
   final String message;
-
   AddingExpensesErrorState(this.message);
 }
 
 class ExpensesAddedState extends ExpensesState {}
+
+class ImagePickedState extends ExpensesState {
+  final XFile? imageFile;
+  ImagePickedState({this.imageFile});
+}

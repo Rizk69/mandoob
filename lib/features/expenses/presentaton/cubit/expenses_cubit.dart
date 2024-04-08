@@ -1,23 +1,18 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'expenses_state.dart';
 import 'package:mandoob/features/expenses/data/responses/addExpenses_requests.dart';
 import 'package:mandoob/features/expenses/domain/model/reason_expenses_model.dart';
 import 'package:mandoob/features/expenses/domain/usecase/get_reason_expenses_usecases.dart';
-import 'package:meta/meta.dart';
-
-part 'expenses_state.dart';
 
 class ExpensesCubit extends Cubit<ExpensesState> {
-  ExpensesCubit(
-      this._getExpensesReasonsUseCase,
-      this._addExpensesReasonsUseCase,
-      ) : super(ExpensesInitial());
-
-  static ExpensesCubit get(context) => BlocProvider.of(context);
-
   final GetExpensesReasonsUseCase _getExpensesReasonsUseCase;
   final AddGetExpensesReasonsUseCase _addExpensesReasonsUseCase;
+
+  ExpensesCubit(this._getExpensesReasonsUseCase, this._addExpensesReasonsUseCase)
+      : super(ExpensesInitial());
+
+  static ExpensesCubit get(context) => BlocProvider.of(context);
 
   ReasonExpensesModel? model;
   XFile? image;
@@ -28,63 +23,55 @@ class ExpensesCubit extends Cubit<ExpensesState> {
 
   Future<void> pickImage() async {
     final ImagePicker _picker = ImagePicker();
-    image = await _picker.pickImage(source: ImageSource.camera);
-
-    if (image != null) {}
+    final XFile? selectedImage = await _picker.pickImage(source: ImageSource.camera);
+    if (selectedImage != null) {
+      image = selectedImage;
+      emit(ImagePickedState(imageFile: selectedImage));
+    }
   }
 
-  void setReasonExpenseId(int newValue) {
-    reasonExpenseId = newValue;
-    emit(ChoseCurrency());
-  }
+  void setReasonExpenseId(int newValue) => emit(SetReasonExpenseIdState(newValue));
+  void setPrice(String newPrice) => emit(UpdatedPriceState(newPrice));
+  void setCurrencyId(String newCurrencyId) => emit(ChoseCurrency(reasonExpenseId: int.tryParse(newCurrencyId)));
+  void setUpdateCount(String newCount) => emit(UpdatedCountState(newCount));
+  void clearFields() => emit(ClearedFieldsState());
 
-  void setPrice(String newPrice) {
-    price = newPrice;
-    emit(UpdatedPriceState(newPrice));
-  }
-
-  void setCurrencyId(String newCurrencyId) {
-    currencyId = newCurrencyId;
-    emit(UpdatedCurrencyIdState(newCurrencyId));
-  }
-
-  void setupdateCount(String newCount) {
-    count = newCount;
-    emit(UpdatedCountState(newCount));
-  }
-
-  void clearFields() {
-    image = null;
-    reasonExpenseId = null;
-    price = null;
-    currencyId = null;
-    count = null;
-    emit(ClearedFieldsState());
-  }
-
-  getReasonExpenses() async {
-    if (isClosed) return; // Check if the cubit is closed
+  Future<void> getReasonExpenses() async {
+    if (isClosed) return;
     emit(GetExpensesReasonsLoadingState());
     final result = await _getExpensesReasonsUseCase.execute('');
-    if (isClosed) return; // Check again because the operation is async
+    if (isClosed) return;
     result.fold(
           (failure) => emit(GetExpensesReasonsErrorState(failure.message)),
-          (success) {
-        model = success;
-        emit(GetExpensesReasonsLoadedState());
-      },
+          (success) => emit(GetExpensesReasonsLoadedState()),
     );
   }
 
-  addReasonExpenses(AddExpensesRequests addExpensesRequests) async {
+  Future<void> submitExpense() async {
+    if (image == null || reasonExpenseId == null || price == null || currencyId == null || count == null) {
+
+      emit(AddingExpensesErrorState('All fields must be filled.'));
+      return;
+    }
+
+    final addExpensesRequests = AddExpensesRequests(
+      image: image,
+      currencyId: currencyId,
+      count: count,
+      price: price,
+      reasonExpenseId: reasonExpenseId.toString(),
+    );
+
+    await addReasonExpenses(addExpensesRequests);
+  }
+
+  Future<void> addReasonExpenses(AddExpensesRequests addExpensesRequests) async {
     emit(AddingExpensesLoadingState());
     final result = await _addExpensesReasonsUseCase.execute(addExpensesRequests);
     result.fold(
           (failure) => emit(AddingExpensesErrorState(failure.message)),
-          (success) {
-        emit(ExpensesAddedState());
-        clearFields(); // Clear fields after successful addition
-      },
+          (success) => emit(ExpensesAddedState()),
     );
+    clearFields();
   }
 }
