@@ -100,7 +100,8 @@ class ExpensesScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              BlocBuilder<GetExpensesCubit, GetExpensesState>(
+              BlocConsumer<GetExpensesCubit, GetExpensesState>(
+                listener: (context, state) {},
                 builder: (context, state) {
                   if (state is GetExpensesLoadingState) {
                     return const CircularProgressIndicator();
@@ -116,7 +117,7 @@ class ExpensesScreen extends StatelessWidget {
                       },
                     );
                   } else if (state is GetExpensesErrorState) {
-                    return Text('Error loading expenses');
+                    return const Text('Error loading expenses');
                   } else {
                     return Container(); // Fallback for other states
                   }
@@ -132,7 +133,7 @@ class ExpensesScreen extends StatelessWidget {
 
   Widget _buildExpenseItem(BuildContext context, ExpenseDataModel expense) {
     return Container(
-      margin: EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
           color: Theme.of(context).primaryColorDark,
           borderRadius: BorderRadius.circular(15)),
@@ -142,13 +143,13 @@ class ExpensesScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildExpenseDetail('نوع المصروف', expense.reasonExpenseAr, 18, ColorManager.grey3),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             _buildExpenseDetail('تاريخ الشراء', expense.date, 18, ColorManager.grey3),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             _buildExpenseDetail('الكمية', '${expense.count} طن', 18, ColorManager.grey3),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             _buildExpenseDetail('الحالة', expense.statusAr, 18, expense.statusAr == 'مقبول' ? ColorManager.greenLight : ColorManager.red),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
           ],
         ),
       ),
@@ -166,7 +167,7 @@ class ExpensesScreen extends StatelessWidget {
             color: color,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 8,
         ),
         Expanded(

@@ -66,11 +66,6 @@ class ExpensesCubit extends Cubit<ExpensesState> {
   }
 
   Future<void> submitExpense() async {
-    print(image);
-    print(currencyId);
-    print(count);
-    print(price);
-    print(reasonExpenseId);
     if (image == null ||
         reasonExpenseId == null ||
         price == null ||
@@ -88,11 +83,6 @@ class ExpensesCubit extends Cubit<ExpensesState> {
       price: price,
       reasonExpenseId: reasonExpenseId.toString(),
     );
-    print(image);
-    print(currencyId);
-    print(count);
-    print(price);
-    print(reasonExpenseId);
     await addReasonExpenses(addExpensesRequests);
   }
 
