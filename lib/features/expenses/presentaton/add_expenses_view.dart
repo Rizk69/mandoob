@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/app/functions.dart';
+import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/customButton.dart';
@@ -86,30 +88,76 @@ class TypeExpensesDropdown extends StatelessWidget {
     return BlocBuilder<ExpensesCubit, ExpensesState>(
       builder: (context, state) {
         final cubit = context.read<ExpensesCubit>();
-        if (state is! GetExpensesReasonsLoadedState) {
+
+        if (state is GetExpensesReasonsLoadingState) {
           return const CircularProgressIndicator();
         }
-        return DropdownButtonFormField<int>(
-          decoration: InputDecoration(
-            labelText: LocaleKeys.typeExpenses.tr(),
-          ),
-          value:
-              cubit.reasonExpenseId ?? cubit.model?.reasonExpense.first.id ?? 0,
-          onChanged: (value) => cubit.setReasonExpenseId(value!),
-          items: cubit.model?.reasonExpense
-              .map<DropdownMenuItem<int>>((reasonExpense) {
-            return DropdownMenuItem<int>(
-              value: reasonExpense.id,
-              child: Text(reasonExpense.nameEn),
-            );
-          }).toList(),
+
+        if (cubit.model?.reasonExpense.isEmpty ?? true) {
+          return Container();
+        }
+
+        return Row(
+          children: [
+            Expanded(
+              child: Text(
+                LocaleKeys.typeExpenses.tr(),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              flex: 3,
+              child: buildDropdownButton(cubit, context),
+            ),
+          ],
         );
       },
+    );
+  }
+
+  Widget buildDropdownButton(ExpensesCubit cubit, BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: Theme.of(context).primaryColorDark,
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+      ),
+      child: DropdownButton<int>(
+        value: cubit.reasonExpenseId ?? cubit.model!.reasonExpense.first.id,
+        elevation: 16,
+        style: TextStyle(
+          color: Theme.of(context).primaryColor,
+          fontSize: 18,
+        ),
+        dropdownColor: Theme.of(context).primaryColorDark,
+        onChanged: (value) => cubit.setReasonExpenseId(value!),
+        items: cubit.model!.reasonExpense
+            .map<DropdownMenuItem<int>>((reasonExpense) {
+          return DropdownMenuItem<int>(
+            value: reasonExpense.id,
+            child: Text(
+              translateString(
+                context: context,
+                arString: reasonExpense.nameAr,
+                enString: reasonExpense.nameEn,
+              ),
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 }
 
 class QuantityFormField extends StatelessWidget {
+  const QuantityFormField({super.key});
+
   @override
   Widget build(BuildContext context) {
     return customTextFormFiledInfo(
@@ -121,6 +169,8 @@ class QuantityFormField extends StatelessWidget {
 }
 
 class CostRow extends StatelessWidget {
+  const CostRow({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -144,11 +194,12 @@ class CostRow extends StatelessWidget {
 }
 
 class CurrencyDropdown extends StatelessWidget {
+  const CurrencyDropdown({super.key});
+
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ExpensesCubit>();
     return DropdownButtonFormField<int>(
-
       value:
           cubit.currencyId != null ? int.tryParse(cubit.currencyId!) ?? 0 : 0,
       onChanged: (value) => cubit.setCurrencyId(value.toString()),
@@ -180,11 +231,20 @@ class InvoicesRow extends StatelessWidget {
 }
 
 class AddButton extends StatelessWidget {
+  const AddButton({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      title: LocaleKeys.add.tr(),
-      onPressed: () => context.read<ExpensesCubit>().submitExpense(),
+    return BlocListener<ExpensesCubit, ExpensesState>(
+      listener: (context, state) {
+        if (state is ExpensesAddedLoadedState) {
+          Navigator.pushReplacementNamed(context, Routes.homeRoute);
+        }
+      },
+      child: CustomButton(
+        title: LocaleKeys.add.tr(),
+        onPressed: () => context.read<ExpensesCubit>().submitExpense(),
+      ),
     );
   }
 }

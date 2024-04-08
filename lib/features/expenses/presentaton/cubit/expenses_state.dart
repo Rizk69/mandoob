@@ -44,7 +44,7 @@ class AddingExpensesErrorState extends ExpensesState {
   AddingExpensesErrorState(this.message);
 }
 
-class ExpensesAddedState extends ExpensesState {}
+class ExpensesAddedLoadedState extends ExpensesState {}
 
 class ImagePickedState extends ExpensesState {
   final XFile? imageFile;

@@ -52,7 +52,7 @@ class _ExpensesServiceClient implements ExpensesServiceClient {
     _data.addAll(addExpensesRequests.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ReasonExpensesResponse>(Options(
-      method: 'GET',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
