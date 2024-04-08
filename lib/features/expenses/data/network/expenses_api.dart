@@ -17,7 +17,7 @@ abstract class ExpensesServiceClient {
   Future<ReasonExpensesResponse> getExpensesReasons();
 
 
-  @GET("api/add_expenses")
+  @POST("api/add_expenses")
   Future<ReasonExpensesResponse> addExpensesReasons(@Body() AddExpensesRequests addExpensesRequests);
 
   @GET("api/get_expenses")

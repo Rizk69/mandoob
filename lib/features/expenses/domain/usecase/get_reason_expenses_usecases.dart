@@ -5,7 +5,8 @@ import 'package:mandoob/features/expenses/data/responses/addExpenses_requests.da
 import 'package:mandoob/features/expenses/domain/model/reason_expenses_model.dart';
 import 'package:mandoob/features/expenses/domain/repository/expenses_repository.dart';
 
-class GetExpensesReasonsUseCase implements BaseUseCase<void, ReasonExpensesModel> {
+class GetExpensesReasonsUseCase
+    implements BaseUseCase<void, ReasonExpensesModel> {
   final ExpensesRepository _expensesRepository;
 
   GetExpensesReasonsUseCase(this._expensesRepository);
@@ -16,13 +17,15 @@ class GetExpensesReasonsUseCase implements BaseUseCase<void, ReasonExpensesModel
   }
 }
 
-class AddGetExpensesReasonsUseCase implements BaseUseCase<AddExpensesRequests, ReasonExpensesModel> {
+class AddGetExpensesReasonsUseCase
+    implements BaseUseCase<AddExpensesRequests, ReasonExpensesModel> {
   final ExpensesRepository _expensesRepository;
 
   AddGetExpensesReasonsUseCase(this._expensesRepository);
 
   @override
-  Future<Either<Failure, ReasonExpensesModel>> execute(AddExpensesRequests addExpensesRequests) async {
+  Future<Either<Failure, ReasonExpensesModel>> execute(
+      AddExpensesRequests addExpensesRequests) async {
     return await _expensesRepository.addExpensesReasons(addExpensesRequests);
   }
 }

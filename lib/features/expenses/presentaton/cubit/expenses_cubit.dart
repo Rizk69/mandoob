@@ -9,7 +9,8 @@ class ExpensesCubit extends Cubit<ExpensesState> {
   final GetExpensesReasonsUseCase _getExpensesReasonsUseCase;
   final AddGetExpensesReasonsUseCase _addExpensesReasonsUseCase;
 
-  ExpensesCubit(this._getExpensesReasonsUseCase, this._addExpensesReasonsUseCase)
+  ExpensesCubit(
+      this._getExpensesReasonsUseCase, this._addExpensesReasonsUseCase)
       : super(ExpensesInitial());
 
   static ExpensesCubit get(context) => BlocProvider.of(context);
@@ -23,33 +24,59 @@ class ExpensesCubit extends Cubit<ExpensesState> {
 
   Future<void> pickImage() async {
     final ImagePicker _picker = ImagePicker();
-    final XFile? selectedImage = await _picker.pickImage(source: ImageSource.camera);
+    final XFile? selectedImage =
+        await _picker.pickImage(source: ImageSource.camera);
     if (selectedImage != null) {
       image = selectedImage;
       emit(ImagePickedState(imageFile: selectedImage));
     }
   }
 
-  void setReasonExpenseId(int newValue) => emit(SetReasonExpenseIdState(newValue));
-  void setPrice(String newPrice) => emit(UpdatedPriceState(newPrice));
-  void setCurrencyId(String newCurrencyId) => emit(ChoseCurrency(reasonExpenseId: int.tryParse(newCurrencyId)));
-  void setUpdateCount(String newCount) => emit(UpdatedCountState(newCount));
+  void setReasonExpenseId(int newValue) {
+    reasonExpenseId=newValue;
+    emit(SetReasonExpenseIdState(newValue));
+
+  }
+  void setPrice(String newPrice) {
+    price=newPrice;
+    emit(UpdatedPriceState(newPrice));
+  }
+
+  void setCurrencyId(String newCurrencyId) {
+    currencyId=newCurrencyId;
+    emit(ChoseCurrency(reasonExpenseId: int.tryParse(newCurrencyId)));
+  }
+
+  void setUpdateCount(String newCount) {
+    count=newCount;
+    emit(UpdatedCountState(newCount));
+  }
+
   void clearFields() => emit(ClearedFieldsState());
 
   Future<void> getReasonExpenses() async {
-    if (isClosed) return;
     emit(GetExpensesReasonsLoadingState());
     final result = await _getExpensesReasonsUseCase.execute('');
-    if (isClosed) return;
-    result.fold(
-          (failure) => emit(GetExpensesReasonsErrorState(failure.message)),
-          (success) => emit(GetExpensesReasonsLoadedState()),
-    );
+    result
+        .fold((failure) => emit(GetExpensesReasonsErrorState(failure.message)),
+            (success) {
+      model = success;
+      emit(GetExpensesReasonsLoadedState());
+    });
   }
 
   Future<void> submitExpense() async {
-    if (image == null || reasonExpenseId == null || price == null || currencyId == null || count == null) {
-
+    print(image);
+    print(currencyId);
+    print(count);
+    print(price);
+    print(reasonExpenseId);
+    if (image == null ||
+        reasonExpenseId == null ||
+        price == null ||
+        currencyId == null ||
+        count == null) {
+      print('All fields must be filled.');
       emit(AddingExpensesErrorState('All fields must be filled.'));
       return;
     }
@@ -61,16 +88,24 @@ class ExpensesCubit extends Cubit<ExpensesState> {
       price: price,
       reasonExpenseId: reasonExpenseId.toString(),
     );
-
+    print(image);
+    print(currencyId);
+    print(count);
+    print(price);
+    print(reasonExpenseId);
     await addReasonExpenses(addExpensesRequests);
   }
 
-  Future<void> addReasonExpenses(AddExpensesRequests addExpensesRequests) async {
+  Future<void> addReasonExpenses(
+      AddExpensesRequests addExpensesRequests) async {
     emit(AddingExpensesLoadingState());
-    final result = await _addExpensesReasonsUseCase.execute(addExpensesRequests);
+    final result =
+        await _addExpensesReasonsUseCase.execute(addExpensesRequests);
     result.fold(
-          (failure) => emit(AddingExpensesErrorState(failure.message)),
-          (success) => emit(ExpensesAddedState()),
+      (failure) {
+        emit(AddingExpensesErrorState(failure.message));
+      },
+      (success) => emit(ExpensesAddedLoadedState()),
     );
     clearFields();
   }
