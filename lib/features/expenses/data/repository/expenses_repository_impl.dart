@@ -54,6 +54,7 @@ class ExpensesRepositoryImpl extends ExpensesRepository {
         ));
       }
     } catch (error) {
+      print(error);
       print("catch");
       return Left(ErrorHandler.handle(error).failure);
     }
