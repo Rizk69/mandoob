@@ -5,7 +5,9 @@ import 'package:mandoob/core/netowork_core/failure.dart';
 import 'package:mandoob/core/netowork_core/network_info.dart';
 import 'package:mandoob/features/expenses/data/data_source/remote_expenses_data_source.dart';
 import 'package:mandoob/features/expenses/data/mapper/expenses_mapper.dart';
+import 'package:mandoob/features/expenses/data/mapper/reason_expenses_mapper.dart';
 import 'package:mandoob/features/expenses/data/responses/addExpenses_requests.dart';
+import 'package:mandoob/features/expenses/domain/model/expenses_model.dart';
 import 'package:mandoob/features/expenses/domain/model/reason_expenses_model.dart';
 import 'package:mandoob/features/expenses/domain/repository/expenses_repository.dart';
 
@@ -41,6 +43,26 @@ class ExpensesRepositoryImpl extends ExpensesRepository {
     try {
       final response = await _remoteExpensesDataSource
           .addExpensesReasons(addExpensesRequests);
+
+      if (response.status == true) {
+        print(response.status);
+        return Right(response.toDomain());
+      } else {
+        return Left(Failure(
+          ResponseCode.NOT_FOUND,
+          response.message.orEmpty(),
+        ));
+      }
+    } catch (error) {
+      print("catch");
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, ExpensesModel>> getExpenses() async {
+    try {
+      final response = await _remoteExpensesDataSource.getExpenses();
 
       if (response.status == true) {
         print(response.status);
