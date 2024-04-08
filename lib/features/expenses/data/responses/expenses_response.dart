@@ -39,7 +39,7 @@ class ExpenseDataResponse {
   num? price;
 
   @JsonKey(name: "count")
-  num? count;
+  String? count;
 
   @JsonKey(name: "date")
   String? date;

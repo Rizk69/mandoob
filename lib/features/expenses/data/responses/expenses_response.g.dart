@@ -28,7 +28,7 @@ ExpenseDataResponse _$ExpenseDataResponseFromJson(Map<String, dynamic> json) =>
       reasonExpenseAr: json['reason_expense_ar'] as String?,
       reasonExpenseEn: json['reason_expense_en'] as String?,
       price: json['price'] as num?,
-      count: json['count'] as num?,
+      count: json['count'] as String?,
       date: json['date'] as String?,
       statusAr: json['status_ar'] as String?,
       statusEn: json['status_en'] as String?,

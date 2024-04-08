@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
   String? title;
   final VoidCallback onTap;
 
-  CustomAppBar({this.title,required this.onTap});
+  CustomAppBar({super.key, this.title,required this.onTap});
 
   @override
   Widget build(BuildContext context) {

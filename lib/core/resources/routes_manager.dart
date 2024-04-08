@@ -119,7 +119,6 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => TrafficLines());
       case Routes.expenses:
         initExpensesModule();
-        initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => ExpensesScreen());
       case Routes.debts:
         return MaterialPageRoute(builder: (_) => DebtsView());
