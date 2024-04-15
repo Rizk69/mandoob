@@ -200,15 +200,21 @@ class CurrencyDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<ExpensesCubit>();
-    return DropdownButtonFormField<int>(
-      value:
-          cubit.currencyId != null ? int.tryParse(cubit.currencyId!) ?? 0 : 0,
-      onChanged: (value) => cubit.setCurrencyId(value.toString()),
-      items: const [
-        DropdownMenuItem(value: 0, child: Text("ليره")),
-        DropdownMenuItem(value: 1, child: Text("دولار")),
-      ],
+    return BlocBuilder<ExpensesCubit, ExpensesState>(
+      builder: (context, state) {
+        final cubit = context.read<ExpensesCubit>();
+        int currentValue =
+            cubit.currencyId != null ? int.tryParse(cubit.currencyId!) ?? 1 : 1;
+
+        return DropdownButtonFormField<int>(
+          value: currentValue,
+          onChanged: (value) => cubit.setCurrencyId(value.toString()),
+          items: const [
+            DropdownMenuItem(value: 2, child: Text("ليره")),
+            DropdownMenuItem(value: 1, child: Text("دولار")),
+          ],
+        );
+      },
     );
   }
 }
@@ -239,10 +245,7 @@ class AddButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ExpensesCubit, ExpensesState>(
       listener: (context, state) {
-
-
         if (state is AddingExpensesErrorState) {
-
           final snackBar = defaultSnakeBar(
             title: LocaleKeys.ERROR.tr(),
             message: state.message,
@@ -253,18 +256,15 @@ class AddButton extends StatelessWidget {
             ..showSnackBar(snackBar);
         }
 
-
-
         if (state is ExpensesAddedLoadedState) {
-
-            final snackBar = defaultSnakeBar(
-              title: LocaleKeys.SUCCESS.tr(),
-              message: state.message,
-              state: ContentType.success,
-            );
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(snackBar);
+          final snackBar = defaultSnakeBar(
+            title: LocaleKeys.SUCCESS.tr(),
+            message: state.message,
+            state: ContentType.success,
+          );
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackBar);
 
           Navigator.pushReplacementNamed(context, Routes.homeRoute);
         }
