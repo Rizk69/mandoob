@@ -62,7 +62,7 @@ class RouteGenerator {
       case Routes.loginRoute:
         initLoginModule();
         return MaterialPageRoute(builder: (_) => LoginView());
-        case Routes.splashRoute:
+      case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => SplashScreen());
       case Routes.homeRoute:
         initHomeModule();
@@ -102,7 +102,7 @@ class RouteGenerator {
       case Routes.sucssufflySceen:
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(
-              id: -1,
+                  id: -1,
                   title: 'تم الصرف بنجاح ',
                   textbutton: 'الفاتورة',
                 ));
@@ -127,6 +127,7 @@ class RouteGenerator {
         initDebtModule();
         return MaterialPageRoute(builder: (_) => PayingDebts());
       case Routes.notification:
+        initNotificationModule();
         return MaterialPageRoute(builder: (_) => NotificationScreen());
 
       case Routes.addtrafficLines:

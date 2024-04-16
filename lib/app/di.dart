@@ -44,6 +44,11 @@ import 'package:mandoob/features/invoices/data/repository/invoice_repository_imp
 import 'package:mandoob/features/invoices/domain/repository/invoices_repository.dart';
 import 'package:mandoob/features/invoices/domain/usecase/invoices_usecases.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
+import 'package:mandoob/features/notfication/data/data_source/notifications_data_source.dart';
+import 'package:mandoob/features/notfication/data/network/notification_api.dart';
+import 'package:mandoob/features/notfication/data/repository/repository_notification_impl.dart';
+import 'package:mandoob/features/notfication/domain/repository/notification_repository.dart';
+import 'package:mandoob/features/notfication/domain/usecase/get_notification_usecases.dart';
 import 'package:mandoob/features/orders/data/data_source/remote_talabat_data_source.dart';
 import 'package:mandoob/features/orders/domain/usecase/order_usecases.dart';
 import 'package:mandoob/features/orders/domain/usecase/talabat_usecases.dart';
@@ -124,8 +129,11 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<ExpensesServiceClient>(
       () => ExpensesServiceClient(dio));
 
-  instance.registerLazySingleton<DebtServiceClient>(
-      () => DebtServiceClient(dio));
+  instance
+      .registerLazySingleton<DebtServiceClient>(() => DebtServiceClient(dio));
+
+  instance.registerLazySingleton<NotificationServiceClient>(
+      () => NotificationServiceClient(dio));
 
   // Local data source
   instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
@@ -152,9 +160,11 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteExpensesDataSource>(
       () => RemoteExpensesDataSourceImpl(instance()));
 
-
   instance.registerLazySingleton<RemoteDebtDataSource>(
       () => RemoteDebtDataSourceImpl(instance()));
+
+  instance.registerLazySingleton<RemoteNotificationsDataSource>(
+      () => RemoteNotificationsDataSourceImpl(instance()));
 
   // repository
   instance.registerLazySingleton<Repository>(
@@ -181,6 +191,9 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<DebtRepository>(
       () => RepositoryDebtImpl(instance(), instance()));
+
+  instance.registerLazySingleton<NotificationRepository>(
+      () => NotificationRepositoryImpl(instance(), instance()));
 }
 
 initLoginModule() {
@@ -323,7 +336,6 @@ initEahduhModule() {
 
 void initExpensesModule() {
   if (!GetIt.I.isRegistered<GetExpensesReasonsUseCase>()) {
-
     instance.registerFactory<GetExpensesReasonsUseCase>(
         () => GetExpensesReasonsUseCase(instance()));
     instance.registerFactory<AddGetExpensesReasonsUseCase>(
@@ -335,21 +347,26 @@ void initExpensesModule() {
     instance.registerFactory<ExpensesCubit>(
         () => ExpensesCubit(instance(), instance()));
 
-    instance.registerFactory<GetExpensesCubit>(
-        () => GetExpensesCubit(instance()));
+    instance
+        .registerFactory<GetExpensesCubit>(() => GetExpensesCubit(instance()));
   }
 }
-
-
 
 initDebtModule() {
   if (!GetIt.I.isRegistered<GetTraderDebtsUseCase>()) {
-
     instance.registerFactory<GetTraderDebtsUseCase>(
-            () => GetTraderDebtsUseCase(instance()));
+        () => GetTraderDebtsUseCase(instance()));
   }
 }
 
+
+
+initNotificationModule() {
+  if (!GetIt.I.isRegistered<GetNotificationUseCase>()) {
+    instance.registerFactory<GetNotificationUseCase>(
+            () => GetNotificationUseCase(instance()));
+  }
+}
 
 resetModules() {
   instance.reset(dispose: false);
@@ -364,4 +381,5 @@ resetModules() {
   initEahduhModule();
   initExpensesModule();
   initDebtModule();
+  initNotificationModule();
 }
