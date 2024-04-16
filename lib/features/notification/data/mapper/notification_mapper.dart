@@ -7,13 +7,10 @@ extension NotificationResponseMapper on NotificationResponse? {
   NotificationModel toDomain() {
     return NotificationModel(
       status: this?.status ?? false,
-      message: this?.message?.orEmpty()??Constants.empty,
+      message: this?.message?.orEmpty() ?? Constants.empty,
       notification: this?.notification?.map((n) => n.toDomain()).toList() ?? [],
     );
   }
-
-
-
 }
 
 extension NotificationDetailResponseMapper on NotificationDetailResponse? {
@@ -27,7 +24,7 @@ extension NotificationDetailResponseMapper on NotificationDetailResponse? {
       descriptionAr: this?.descriptionAr?.orEmpty() ?? Constants.empty,
       descriptionEn: this?.descriptionEn?.orEmpty() ?? Constants.empty,
       read: this?.read?.orZero() ?? Constants.zero,
-      type: this?.type?.orZero() ?? Constants.zero,
+      type: this?.type?.orEmpty() ?? Constants.empty,
       date: this?.date?.orEmpty() ?? Constants.empty,
     );
   }

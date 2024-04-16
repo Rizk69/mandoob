@@ -49,6 +49,7 @@ import 'package:mandoob/features/notification/data/network/notification_api.dart
 import 'package:mandoob/features/notification/data/repository/repository_notification_impl.dart';
 import 'package:mandoob/features/notification/domain/repository/notification_repository.dart';
 import 'package:mandoob/features/notification/domain/usecase/get_notification_usecases.dart';
+import 'package:mandoob/features/notification/presentation/cubit/notification_cubit.dart';
 import 'package:mandoob/features/orders/data/data_source/remote_talabat_data_source.dart';
 import 'package:mandoob/features/orders/domain/usecase/order_usecases.dart';
 import 'package:mandoob/features/orders/domain/usecase/talabat_usecases.dart';
@@ -365,6 +366,9 @@ initNotificationModule() {
   if (!GetIt.I.isRegistered<GetNotificationUseCase>()) {
     instance.registerFactory<GetNotificationUseCase>(
             () => GetNotificationUseCase(instance()));
+
+    instance.registerFactory<NotificationCubit>(
+            () => NotificationCubit(instance()));
   }
 }
 

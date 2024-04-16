@@ -36,7 +36,7 @@ NotificationDetailResponse _$NotificationDetailResponseFromJson(
       descriptionAr: json['description_ar'] as String?,
       descriptionEn: json['description_en'] as String?,
       read: json['read'] as int?,
-      type: json['type'] as int?,
+      type: json['type'] as String?,
       date: json['date'] as String?,
     );
 

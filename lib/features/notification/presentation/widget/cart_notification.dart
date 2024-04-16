@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/features/notification/domain/model/notification_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import '../../../../../app/functions.dart';
 import '../../../../../core/resources/color_manager.dart';
-import '../../../../../core/resources/values_manager.dart';
 
 class CartNotification extends StatelessWidget {
-  const CartNotification({Key? key}) : super(key: key);
+  final NotificationDataModel model;
+
+  const CartNotification({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,33 +33,6 @@ class CartNotification extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              border: Border.all(
-                color: Colors.blue,
-                width: 2,
-              ),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
-              child: Image.network(
-                '',
-                height: AppSize.s8.h,
-                width: AppSize.s8.h,
-                fit: BoxFit.cover,
-
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.asset(
-                    'assets/images/product.png',
-                    height: AppSize.s8.h,
-                    width: AppSize.s8.h,
-                    fit: BoxFit.cover,
-                  );
-                },
-              ),
-            ),
-          ),
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,11 +42,26 @@ class CartNotification extends StatelessWidget {
                 child: Text(
                   translateString(
                       context: context,
-                      enString: 'يصادف اليوم موعد تسديد دين التاجر احمد ',
-                      arString: 'يصادف اليوم موعد تسديد دين التاجر احمد '),
+                      enString: model.titleEn,
+                      arString: model.titleAr),
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: AppSize.s18.sp,
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: Text(
+                  translateString(
+                      context: context,
+                      arString: model.descriptionAr,
+                      enString : model.descriptionEn),
+                  style: TextStyle(
+                    fontSize: AppSize.s16.sp,
+                    fontWeight: FontWeight.normal,
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
@@ -79,10 +69,7 @@ class CartNotification extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 12),
                 child: Text(
-                  translateString(
-                      context: context,
-                      enString: '23/10/2022',
-                      arString: '23/10/2022'),
+                  model.date,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -92,7 +79,6 @@ class CartNotification extends StatelessWidget {
               ),
             ],
           ),
-
         ],
       ),
     );

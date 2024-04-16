@@ -22,7 +22,7 @@ class NotificationDataModel {
   String descriptionAr;
   String descriptionEn;
   int read;
-  int type;
+  String type;
   String date;
 
   NotificationDataModel({

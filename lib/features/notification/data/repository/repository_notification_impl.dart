@@ -24,6 +24,7 @@ class NotificationRepositoryImpl extends NotificationRepository {
         print(response.status);
         return Right(response.toDomain());
       } else {
+        print(response.message);
         return Left(Failure(
           ResponseCode.UNAUTHORIZED,
           response.message ?? LocaleKeys.ERROR.tr(),

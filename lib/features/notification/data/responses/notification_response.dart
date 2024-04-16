@@ -42,7 +42,7 @@ class NotificationDetailResponse {
   @JsonKey(name: "read")
   int? read;
   @JsonKey(name: "type")
-  int? type;
+  String? type;
   @JsonKey(name: "date")
   String? date;
 
