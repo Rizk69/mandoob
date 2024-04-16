@@ -1,7 +1,5 @@
-import 'package:mandoob/features/debts/data/network/debt_api.dart';
-import 'package:mandoob/features/debts/data/responses/debt_trader_response.dart';
-import 'package:mandoob/features/notfication/data/network/notification_api.dart';
-import 'package:mandoob/features/notfication/data/responses/notification_response.dart';
+import 'package:mandoob/features/notification/data/network/notification_api.dart';
+import 'package:mandoob/features/notification/data/responses/notification_response.dart';
 
 abstract class RemoteNotificationsDataSource {
   Future<NotificationResponse> getNotification();

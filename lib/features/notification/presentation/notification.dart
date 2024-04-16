@@ -4,10 +4,10 @@ import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
-import 'package:mandoob/features/notfication/presentation/notification/widget/cart_notification.dart';
+import 'package:mandoob/features/notification/presentation/widget/cart_notification.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../../../generated/locale_keys.g.dart';
+import '../../../generated/locale_keys.g.dart';
 
 class NotificationScreen extends StatelessWidget {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();

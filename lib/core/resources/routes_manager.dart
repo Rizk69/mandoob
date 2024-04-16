@@ -11,10 +11,8 @@ import 'package:mandoob/features/debts/presentation/debts/presentation/debts_vie
 import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
-import 'package:mandoob/features/invoices/domain/model/supplier_details_invoice_model.dart';
-import 'package:mandoob/features/invoices/domain/model/trader_details_invoice_model.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_details.dart';
-import 'package:mandoob/features/notfication/presentation/notification/Screen/notification.dart';
+import 'package:mandoob/features/notification/presentation/notification.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_old_details.dart';
 import 'package:mandoob/features/splash_screen/Splash_View.dart';

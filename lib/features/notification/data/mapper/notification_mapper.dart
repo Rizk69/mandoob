@@ -1,7 +1,7 @@
 import 'package:mandoob/app/constants.dart';
 import 'package:mandoob/app/extension.dart';
-import 'package:mandoob/features/notfication/data/responses/notification_response.dart';
-import 'package:mandoob/features/notfication/domain/model/notification_model.dart';
+import 'package:mandoob/features/notification/data/responses/notification_response.dart';
+import 'package:mandoob/features/notification/domain/model/notification_model.dart';
 
 extension NotificationResponseMapper on NotificationResponse? {
   NotificationModel toDomain() {

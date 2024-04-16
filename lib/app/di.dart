@@ -44,11 +44,11 @@ import 'package:mandoob/features/invoices/data/repository/invoice_repository_imp
 import 'package:mandoob/features/invoices/domain/repository/invoices_repository.dart';
 import 'package:mandoob/features/invoices/domain/usecase/invoices_usecases.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
-import 'package:mandoob/features/notfication/data/data_source/notifications_data_source.dart';
-import 'package:mandoob/features/notfication/data/network/notification_api.dart';
-import 'package:mandoob/features/notfication/data/repository/repository_notification_impl.dart';
-import 'package:mandoob/features/notfication/domain/repository/notification_repository.dart';
-import 'package:mandoob/features/notfication/domain/usecase/get_notification_usecases.dart';
+import 'package:mandoob/features/notification/data/data_source/notifications_data_source.dart';
+import 'package:mandoob/features/notification/data/network/notification_api.dart';
+import 'package:mandoob/features/notification/data/repository/repository_notification_impl.dart';
+import 'package:mandoob/features/notification/domain/repository/notification_repository.dart';
+import 'package:mandoob/features/notification/domain/usecase/get_notification_usecases.dart';
 import 'package:mandoob/features/orders/data/data_source/remote_talabat_data_source.dart';
 import 'package:mandoob/features/orders/domain/usecase/order_usecases.dart';
 import 'package:mandoob/features/orders/domain/usecase/talabat_usecases.dart';

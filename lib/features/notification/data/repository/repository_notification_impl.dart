@@ -3,10 +3,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:mandoob/core/netowork_core/error_handler.dart';
 import 'package:mandoob/core/netowork_core/failure.dart';
 import 'package:mandoob/core/netowork_core/network_info.dart';
-import 'package:mandoob/features/notfication/data/data_source/notifications_data_source.dart';
-import 'package:mandoob/features/notfication/data/mapper/notification_mapper.dart';
-import 'package:mandoob/features/notfication/domain/model/notification_model.dart';
-import 'package:mandoob/features/notfication/domain/repository/notification_repository.dart';
+import 'package:mandoob/features/notification/data/data_source/notifications_data_source.dart';
+import 'package:mandoob/features/notification/data/mapper/notification_mapper.dart';
+import 'package:mandoob/features/notification/domain/model/notification_model.dart';
+import 'package:mandoob/features/notification/domain/repository/notification_repository.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
 class NotificationRepositoryImpl extends NotificationRepository {
