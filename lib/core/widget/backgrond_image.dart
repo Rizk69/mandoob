@@ -6,7 +6,7 @@ Widget imageBackground(context){
     padding:  EdgeInsets.all(3.pt),
     child: Center(
       child: Opacity(
-        opacity: 0.5,
+        opacity: 0.2,
         child: Image.asset(
           'assets/images/img.png',
           fit: BoxFit.fill,
