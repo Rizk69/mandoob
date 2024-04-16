@@ -59,88 +59,82 @@ class PayPartialInvoice extends StatelessWidget {
         builder: (context, state) {
           return SafeArea(
               top: false,
-              child: Container(
-                color:
-                Theme
-                    .of(context)
-                    .scaffoldBackgroundColor
-                    .withOpacity(0.5),
-                child: Stack(
+              child: Scaffold(
+                body: Stack(
                   children: [
-                    imageBackground(context),
-                    Scaffold(
-                      body: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 18),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: AppSize.s6.h,
-                              ),
-                              HeaderScreen(
-                                  title: LocaleKeys.payDept.tr(),
-                                  functionIcon: () {
-                                    Navigator.pop(context);
-                                  }),
-                              SizedBox(height: AppSize.s5.h),
-                              customTextFormFiledInfo(
-                                text: LocaleKeys.totalLera.tr(),
-                                enable: false,
-                                onChanged: null,
-                                hint: priceLera.toString(),
-                                context: context,
-                              ),
-                              SizedBox(height: AppSize.s5.h),
-                              customTextFormFiledInfo(
-                                text: LocaleKeys.totalUSD.tr(),
-                                enable: false,
-                                onChanged: null,
-                                hint: priceDoler.toString(),
-                                context: context,
-                              ),
-                              SizedBox(height: AppSize.s5.h),
-                              customTextFormFiledInfo(
-                                text: LocaleKeys.payedTL.tr(),
-                                enable: priceLera == 0 ? false : true,
-                                onChanged: (payTl) {
-                                  ElSalahCubit.get(context).setPayLera(num.parse(payTl));
-                                },
-                                context: context,
-                              ),
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: AppSize.s6.h,
+                            ),
+                            HeaderScreen(
+                                title: LocaleKeys.payDept.tr(),
+                                functionIcon: () {
+                                  Navigator.pop(context);
+                                }),
+                            SizedBox(height: AppSize.s5.h),
+                            customTextFormFiledInfo(
+                              text: LocaleKeys.totalLera.tr(),
+                              enable: false,
+                              onChanged: null,
+                              hint: priceLera.toString(),
+                              context: context,
+                            ),
+                            SizedBox(height: AppSize.s5.h),
+                            customTextFormFiledInfo(
+                              text: LocaleKeys.totalUSD.tr(),
+                              enable: false,
+                              onChanged: null,
+                              hint: priceDoler.toString(),
+                              context: context,
+                            ),
+                            SizedBox(height: AppSize.s5.h),
+                            customTextFormFiledInfo(
+                              text: LocaleKeys.payedTL.tr(),
+                              enable: priceLera == 0 ? false : true,
+                              onChanged: (payTl) {
+                                ElSalahCubit.get(context).setPayLera(num.parse(payTl));
+                              },
+                              context: context,
+                            ),
 
-                              SizedBox(height: AppSize.s5.h),
-                              customTextFormFiledInfo(
-                                text: LocaleKeys.payedUSD.tr(),
-                                enable: priceDoler == 0 ? false : true,
-                                onChanged: (payUsd) {
-                                  ElSalahCubit.get(context).setPayDoler(num.parse(payUsd));
-                                },
-                                context: context,
-                              ),
+                            SizedBox(height: AppSize.s5.h),
+                            customTextFormFiledInfo(
+                              text: LocaleKeys.payedUSD.tr(),
+                              enable: priceDoler == 0 ? false : true,
+                              onChanged: (payUsd) {
+                                ElSalahCubit.get(context).setPayDoler(num.parse(payUsd));
+                              },
+                              context: context,
+                            ),
 
-                              SizedBox(height: AppSize.s12.h),
-                              SizedBox(
-                                  width:
-                                  MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width * 0.9,
-                                  child: CustomButton(
-                                    onPressed: () {
-                                      ElSalahCubit.get(context).payPartialDept(partialDeptRequest: PayPartialDeptRequest(
-                                        invoice_id: invoiceNumber ,
-                                        pay_Doler: ElSalahCubit.get(context).pay_Doler??0,
-                                        pay_Lera: ElSalahCubit.get(context).pay_Lera??0,
-                                      ));
+                            SizedBox(height: AppSize.s12.h),
+                            SizedBox(
+                                width:
+                                MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.9,
+                                child: CustomButton(
+                                  onPressed: () {
+                                    ElSalahCubit.get(context).payPartialDept(partialDeptRequest: PayPartialDeptRequest(
+                                      invoice_id: invoiceNumber ,
+                                      pay_Doler: ElSalahCubit.get(context).pay_Doler??0,
+                                      pay_Lera: ElSalahCubit.get(context).pay_Lera??0,
+                                    ));
 
-                                    },
-                                    buttonText: LocaleKeys.payDept.tr(),
-                                  ))
-                            ],
-                          ),
+                                  },
+                                  buttonText: LocaleKeys.payDept.tr(),
+                                ))
+                          ],
                         ),
                       ),
                     ),
+                    imageBackground(context),
+
                   ],
                 ),
               ));

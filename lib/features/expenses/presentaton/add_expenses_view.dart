@@ -39,15 +39,9 @@ class AddExpensesViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
-      child: Container(
-        color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
-        child: Stack(
-          children: [
-            imageBackground(context),
-            buildScaffold(context),
-          ],
-        ),
-      ),
+      child:
+          buildScaffold(context),
+
     );
   }
 
@@ -55,30 +49,36 @@ class AddExpensesViewBody extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       drawer: buildDrawer(context),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSize.s18),
-          child: Column(
-            children: [
-              SizedBox(height: AppSize.s6.h),
-              HeaderScreen(
-                functionDrawer: () => scaffoldKey.currentState?.openDrawer(),
-                title: LocaleKeys.addNewExpense.tr(),
-                functionIcon: () => Navigator.pop(context),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSize.s18),
+              child: Column(
+                children: [
+                  SizedBox(height: AppSize.s6.h),
+                  HeaderScreen(
+                    functionDrawer: () => scaffoldKey.currentState?.openDrawer(),
+                    title: LocaleKeys.addNewExpense.tr(),
+                    functionIcon: () => Navigator.pop(context),
+                  ),
+                  SizedBox(height: AppSize.s5.h),
+                  TypeExpensesDropdown(),
+                  SizedBox(height: AppSize.s5.h),
+                  QuantityFormField(),
+                  SizedBox(height: AppSize.s5.h),
+                  CostRow(),
+                  SizedBox(height: AppSize.s5.h),
+                  InvoicesRow(),
+                  SizedBox(height: AppSize.s12.h),
+                  AddButton(),
+                ],
               ),
-              SizedBox(height: AppSize.s5.h),
-              TypeExpensesDropdown(),
-              SizedBox(height: AppSize.s5.h),
-              QuantityFormField(),
-              SizedBox(height: AppSize.s5.h),
-              CostRow(),
-              SizedBox(height: AppSize.s5.h),
-              InvoicesRow(),
-              SizedBox(height: AppSize.s12.h),
-              AddButton(),
-            ],
+            ),
           ),
-        ),
+          imageBackground(context),
+
+        ],
       ),
     );
   }

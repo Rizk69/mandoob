@@ -18,43 +18,43 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         top: false,
-        child: Container(
-          color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
-          child: Stack(
-            children: [
-              imageBackground(context),
-              Scaffold(
-                key: scaffoldKey,
-                drawer: buildDrawer(context),
-                body: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: AppSize.s6.h,
-                        ),
-                        HeaderScreen(
-                            functionDrawer: () {
-                              scaffoldKey.currentState?.openDrawer();
-                            },
-                            title: LocaleKeys.notification.tr(),
-                            functionIcon: () {
-                              Navigator.pop(context);
-                            }),
-                        SizedBox(height: AppSize.s5.h),
-                        ListView.builder(itemBuilder: (context, index) => CartNotification(),
-                        shrinkWrap: true,
-                          itemCount: 3,
-                        )
+        child:
+            Scaffold(
+              key: scaffoldKey,
+              drawer: buildDrawer(context),
+              body: Stack(
+                children: [
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: AppSize.s6.h,
+                          ),
+                          HeaderScreen(
+                              functionDrawer: () {
+                                scaffoldKey.currentState?.openDrawer();
+                              },
+                              title: LocaleKeys.notification.tr(),
+                              functionIcon: () {
+                                Navigator.pop(context);
+                              }),
+                          SizedBox(height: AppSize.s5.h),
+                          ListView.builder(itemBuilder: (context, index) => CartNotification(),
+                          shrinkWrap: true,
+                            itemCount: 3,
+                          )
 
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                  imageBackground(context),
+
+                ],
               ),
-            ],
-          ),
-        ));
+            ),
+         );
   }
 }
