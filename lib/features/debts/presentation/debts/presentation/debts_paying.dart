@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mandoob/core/resources/color_manager.dart';
+import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -17,110 +19,127 @@ class PayingDebts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        top: false,
-        child:
-            Scaffold(
-              key: scaffoldKey,
-              drawer: buildDrawer(context),
-              body: Stack(
-                children: [
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
+      top: false,
+      child: Scaffold(
+        key: scaffoldKey,
+        drawer: buildDrawer(context),
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      height: AppSize.s6.h,
+                    ),
+                    HeaderScreen(
+                        functionDrawer: () {
+                          scaffoldKey.currentState?.openDrawer();
+                        },
+                        title: 'المشتريات',
+                        functionIcon: () {
+                          Navigator.pop(context);
+                        }),
+                    SizedBox(height: AppSize.s5.h),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.addPayingDebts);
+
+                      },
                       child: Column(
                         children: [
-                          SizedBox(
-                            height: AppSize.s6.h,
+                          Icon(
+                            Icons.add,
+                            color: Theme.of(context).primaryColor,
                           ),
-                          HeaderScreen(
-                              functionDrawer: () {
-                                scaffoldKey.currentState?.openDrawer();
-                              },
-                              title: 'إضافة مشتريات ',
-                              functionIcon: () {
-                                Navigator.pop(context);
-                              }),
-                          SizedBox(height: AppSize.s5.h),
-                          customTextFormFiledInfo(
-                            text: 'المادة',
-                            enable: true,
-                            onChanged: null,
-                            hint: '',
-                            context: context,
-                          ),
-                          SizedBox(height: AppSize.s5.h),
-                          customTextFormFiledInfo(
-                            text: 'الكمية',
-                            enable: true,
-                            onChanged: null,
-                            hint: '',
-                            context: context,
-                          ),
-                          SizedBox(height: AppSize.s5.h),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'عملة الشراء',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).primaryColor),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: DropdownButtonFormField<String>(
-                                  value: null,
-                                  items: <String>['دولار', 'ليرة']
-                                      .map((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? value) {},
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: AppSize.s5.h),
-                          customTextFormFiledInfo(
-                            text: 'سعر الشراء',
-                            enable: true,
-                            onChanged: (payUsd) {},
-                            context: context,
-                          ),
-                          SizedBox(height: AppSize.s5.h),
-                          customTextFormFiledInfo(
-                            text: 'سعر بيع بالدولار',
-                            enable: true,
-                            onChanged: (payUsd) {},
-                            context: context,
-                          ),
-                          SizedBox(height: AppSize.s5.h),
-                          customTextFormFiledInfo(
-                            text: 'سعر بيع بالليرة',
-                            enable: true,
-                            onChanged: (payUsd) {},
-                            context: context,
-                          ),
-                          SizedBox(height: AppSize.s12.h),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              child: CustomButton(
-                                onPressed: () {},
-                                buttonText: LocaleKeys.add.tr(),
-                              ))
+                          Text(
+                            'إضافة مشتريات ',
+                            style:
+                                TextStyle(color: Theme.of(context).primaryColor),
+                          )
                         ],
                       ),
                     ),
-                  ),
-                  imageBackground(context),
+                    SizedBox(height: 25,),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppPadding.p20, vertical: AppPadding.p18),
+                      decoration: BoxDecoration(
+                          color:Theme.of(context).primaryColorDark,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                                color: ColorManager.greyDark3,
+                                blurRadius: 8,
+                                spreadRadius: 3,
+                            blurStyle: BlurStyle.normal,
+                            offset: const Offset(1, 3)
 
-                ],
+                            )
+                          ]),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text('اسم المادة :',style:
+                                  TextStyle(color: Theme.of(context).primaryColor),),
+                                  SizedBox(width: 8,),
+                                  Text('زيت',style:
+                                  TextStyle(color: Theme.of(context).primaryColor),),
+
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Image.asset('assets/images/send.png',height: 18),
+                                  SizedBox(width: 8,),
+                                  Text('بيع',style:
+                                  TextStyle(color: Theme.of(context).primaryColorLight),),
+
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 7,),
+
+                          Row(
+                            children: [
+                              Text('الكمية :',style:
+                              TextStyle(color: Theme.of(context).primaryColor),),
+                              SizedBox(width: 8,),
+                              Text('10 لتر',style:
+                              TextStyle(color: Theme.of(context).primaryColor),),
+
+                            ],
+                          ),
+                          SizedBox(height: 7,),
+
+                          Row(
+                            children: [
+                              Text('سعر البيع :',style:
+                              TextStyle(color: Theme.of(context).primaryColor),),
+                              SizedBox(width: 8,),
+                              Text('10 دولار',style:
+                              TextStyle(color: Theme.of(context).primaryColor),),
+
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-         );
+            imageBackground(context),
+          ],
+        ),
+      ),
+    );
   }
 }

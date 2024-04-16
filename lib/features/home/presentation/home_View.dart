@@ -75,9 +75,13 @@ class HomeView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           boxShadow: [
                             BoxShadow(
-                                color: ColorManager.shadowColor,
-                                blurRadius: 9,
-                                spreadRadius: 8)
+                                color: ColorManager.greyDark3,
+                                blurRadius: 8,
+                                spreadRadius: 3,
+                                blurStyle: BlurStyle.normal,
+                                offset: const Offset(1, 3)
+
+                            )
                           ]),
                       child: Column(
                         children: [
@@ -180,9 +184,13 @@ class HomeView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: [
                               BoxShadow(
-                                  color: ColorManager.shadowColor,
-                                  blurRadius: 9,
-                                  spreadRadius: 8)
+                                  color: ColorManager.greyDark3,
+                                  blurRadius: 8,
+                                  spreadRadius: 3,
+                                  blurStyle: BlurStyle.normal,
+                                  offset: const Offset(1, 3)
+
+                              )
                             ]),
                         child: Column(
                           children: [
