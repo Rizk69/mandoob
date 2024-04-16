@@ -18,6 +18,11 @@ import 'package:mandoob/features/custody/domain/usecase/get_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/pay_partial_dept_usecases.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_eahduh/eahduh_cubit.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
+import 'package:mandoob/features/debts/data/data_source/debt_data_source.dart';
+import 'package:mandoob/features/debts/data/network/debt_api.dart';
+import 'package:mandoob/features/debts/data/repository/repository_debt_impl.dart';
+import 'package:mandoob/features/debts/domain/repository/debt_repository.dart';
+import 'package:mandoob/features/debts/domain/usecase/get_debt_trader_usecases.dart';
 import 'package:mandoob/features/expenses/data/data_source/remote_expenses_data_source.dart';
 import 'package:mandoob/features/expenses/data/network/expenses_api.dart';
 import 'package:mandoob/features/expenses/data/repository/expenses_repository_impl.dart';
@@ -119,6 +124,9 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<ExpensesServiceClient>(
       () => ExpensesServiceClient(dio));
 
+  instance.registerLazySingleton<DebtServiceClient>(
+      () => DebtServiceClient(dio));
+
   // Local data source
   instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
@@ -144,6 +152,10 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteExpensesDataSource>(
       () => RemoteExpensesDataSourceImpl(instance()));
 
+
+  instance.registerLazySingleton<RemoteDebtDataSource>(
+      () => RemoteDebtDataSourceImpl(instance()));
+
   // repository
   instance.registerLazySingleton<Repository>(
       () => RepositoryTrafficLineImpl(instance(), instance()));
@@ -166,6 +178,9 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<ExpensesRepository>(
       () => ExpensesRepositoryImpl(instance(), instance()));
+
+  instance.registerLazySingleton<DebtRepository>(
+      () => RepositoryDebtImpl(instance(), instance()));
 }
 
 initLoginModule() {
@@ -325,6 +340,17 @@ void initExpensesModule() {
   }
 }
 
+
+
+initDebtModule() {
+  if (!GetIt.I.isRegistered<GetTraderDebtsUseCase>()) {
+
+    instance.registerFactory<GetTraderDebtsUseCase>(
+            () => GetTraderDebtsUseCase(instance()));
+  }
+}
+
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -337,4 +363,5 @@ resetModules() {
   initDelivaryLineModule();
   initEahduhModule();
   initExpensesModule();
+  initDebtModule();
 }

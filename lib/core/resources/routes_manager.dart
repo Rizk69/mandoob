@@ -121,8 +121,10 @@ class RouteGenerator {
         initExpensesModule();
         return MaterialPageRoute(builder: (_) => ExpensesScreen());
       case Routes.debts:
+        initDebtModule();
         return MaterialPageRoute(builder: (_) => DebtsView());
       case Routes.payingDebts:
+        initDebtModule();
         return MaterialPageRoute(builder: (_) => PayingDebts());
       case Routes.notification:
         return MaterialPageRoute(builder: (_) => NotificationScreen());
