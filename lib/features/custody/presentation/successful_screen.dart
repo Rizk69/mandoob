@@ -21,6 +21,7 @@ class ConfirmInvoiceScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          imageBackground(context),
           Column(
             children: [
               SizedBox(
@@ -56,8 +57,6 @@ class ConfirmInvoiceScreen extends StatelessWidget {
 
             ],
           ),
-          imageBackground(context),
-
         ],
       ),
     );

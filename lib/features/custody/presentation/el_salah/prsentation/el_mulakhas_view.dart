@@ -33,6 +33,7 @@ class ElMulakhas extends StatelessWidget {
         key: scaffoldKey,
         body: Stack(
           children: [
+            imageBackground(context),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Column(
@@ -176,8 +177,6 @@ class ElMulakhas extends StatelessWidget {
                 ],
               ),
             ),
-            imageBackground(context),
-
           ],
         ),
       ),

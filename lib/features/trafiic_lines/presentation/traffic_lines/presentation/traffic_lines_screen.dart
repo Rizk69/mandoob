@@ -37,6 +37,7 @@ class TrafficLines extends StatelessWidget {
       key: scaffoldKey,
       body: Stack(
         children: [
+          imageBackground(context),
           BlocProvider(
             create: (context) => instance<TrafficLinesCubit>()..getTrafficLines(),
             child: Padding(
@@ -302,8 +303,6 @@ class TrafficLines extends StatelessWidget {
               ),
             ),
           ),
-          imageBackground(context),
-
         ],
       ),
     );

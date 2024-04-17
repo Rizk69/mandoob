@@ -96,6 +96,7 @@
 
 
   "addNewTrade": "Add New Trader",
+  "selectNewTrade": "Select Trader",
   "TradeName": "Trader Name",
   "TradeAddress": "Address",
   "TradePhone": "Phone Number",

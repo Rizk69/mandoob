@@ -28,6 +28,7 @@ class ElEahduh extends StatelessWidget {
         key: scaffoldKey,
         body: Stack(
           children: [
+            imageBackground(context),
             MultiBlocProvider(
               providers: [
                 BlocProvider(
@@ -218,7 +219,7 @@ class ElEahduh extends StatelessWidget {
                                                 ),
                                                 const SizedBox(width: 8),
                                                 Text(
-                                                  LocaleKeys.addNewTrade.tr(),
+                                                  LocaleKeys.selectNewTrade.tr(),
                                                   style: TextStyle(
                                                     color: Theme.of(context)
                                                         .primaryColor,
@@ -467,7 +468,6 @@ class ElEahduh extends StatelessWidget {
                 ),
               ),
             ),
-            imageBackground(context),
 
           ],
         ));

@@ -90,6 +90,7 @@ abstract class  LocaleKeys {
   static const searchHere = 'searchHere';
   static const newTrade = 'newTrade';
   static const addNewTrade = 'addNewTrade';
+  static const selectNewTrade = 'selectNewTrade';
   static const addNewExpense = 'addNewExpense';
   static const TradeName = 'TradeName';
   static const TradeAddress = 'TradeAddress';

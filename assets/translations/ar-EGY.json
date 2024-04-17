@@ -95,6 +95,7 @@
 
 
   "addNewTrade": "إضافة تاجر جديد",
+  "selectNewTrade": "اختر تاجر ",
   "addNewExpense": "إضافة مصروف جديد",
   "TradeName": "أسم التاجر",
   "TradeAddress": "العنوان",

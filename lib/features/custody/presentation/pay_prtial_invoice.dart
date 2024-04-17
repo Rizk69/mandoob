@@ -62,6 +62,7 @@ class PayPartialInvoice extends StatelessWidget {
               child: Scaffold(
                 body: Stack(
                   children: [
+                    imageBackground(context),
                     SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -133,8 +134,6 @@ class PayPartialInvoice extends StatelessWidget {
                         ),
                       ),
                     ),
-                    imageBackground(context),
-
                   ],
                 ),
               ));

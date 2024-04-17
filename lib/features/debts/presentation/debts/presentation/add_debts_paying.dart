@@ -24,6 +24,7 @@ class AddPayingDebts extends StatelessWidget {
               drawer: buildDrawer(context),
               body: Stack(
                 children: [
+                  imageBackground(context),
                   SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -116,8 +117,6 @@ class AddPayingDebts extends StatelessWidget {
                       ),
                     ),
                   ),
-                  imageBackground(context),
-
                 ],
               ),
             ),

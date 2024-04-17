@@ -44,6 +44,7 @@ class AddTrafficLines extends StatelessWidget {
           key: scaffoldKey,
           body: Stack(
             children: [
+              imageBackground(context),
               MultiBlocProvider(
                 providers: [
                   BlocProvider(create: (context) => instance<TradeCubit>()..getTrade()),
@@ -244,8 +245,6 @@ class AddTrafficLines extends StatelessWidget {
                   ),
                 ),
               ),
-              imageBackground(context),
-
             ],
           )),
     );

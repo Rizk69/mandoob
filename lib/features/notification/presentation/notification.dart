@@ -28,6 +28,7 @@ class NotificationScreen extends StatelessWidget {
           drawer: buildDrawer(context),
           body: Stack(
             children: [
+              imageBackground(context),
               SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -66,7 +67,6 @@ class NotificationScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              imageBackground(context),
             ],
           ),
         ),
