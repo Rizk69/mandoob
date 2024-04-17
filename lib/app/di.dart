@@ -22,7 +22,9 @@ import 'package:mandoob/features/debts/data/data_source/debt_data_source.dart';
 import 'package:mandoob/features/debts/data/network/debt_api.dart';
 import 'package:mandoob/features/debts/data/repository/repository_debt_impl.dart';
 import 'package:mandoob/features/debts/domain/repository/debt_repository.dart';
+import 'package:mandoob/features/debts/domain/usecase/get_debt_delegate_usecases.dart';
 import 'package:mandoob/features/debts/domain/usecase/get_debt_trader_usecases.dart';
+import 'package:mandoob/features/debts/presentation/debts/cubit/debts_cubit.dart';
 import 'package:mandoob/features/expenses/data/data_source/remote_expenses_data_source.dart';
 import 'package:mandoob/features/expenses/data/network/expenses_api.dart';
 import 'package:mandoob/features/expenses/data/repository/expenses_repository_impl.dart';
@@ -357,6 +359,12 @@ initDebtModule() {
   if (!GetIt.I.isRegistered<GetTraderDebtsUseCase>()) {
     instance.registerFactory<GetTraderDebtsUseCase>(
         () => GetTraderDebtsUseCase(instance()));
+
+    instance.registerFactory<GetDelegateDebtsUseCase>(
+        () => GetDelegateDebtsUseCase(instance()));
+
+    instance.registerFactory<DebtsCubit>(
+        () => DebtsCubit(instance(),instance()));
   }
 }
 

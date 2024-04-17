@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/features/debts/presentation/debts/cubit/debts_state.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -27,15 +29,16 @@ class DebtsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-    return BlocProvider<DebtsViewCubit>(
-      create: (context) => DebtsViewCubit(),
+    return BlocProvider<DebtsCubit>(
+      create: (context) => instance<DebtsCubit>(),
+
       child: Scaffold(
         key: scaffoldKey,
         drawer: buildDrawer(context),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18),
-            child: BlocBuilder<DebtsViewCubit, DebtsViewState>(
+            child: BlocBuilder<DebtsCubit, DebtsState>(
               builder: (context, state) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,

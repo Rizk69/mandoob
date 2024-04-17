@@ -10,7 +10,7 @@ class DebtTraderResponse {
   @JsonKey(name: "message")
   String? message;
 
-  @JsonKey(name: "depts")
+  @JsonKey(name: "traders")
   List<DebtDetailResponse>? debts;
 
   DebtTraderResponse({

@@ -10,7 +10,7 @@ DebtTraderResponse _$DebtTraderResponseFromJson(Map<String, dynamic> json) =>
     DebtTraderResponse(
       status: json['status'] as bool?,
       message: json['message'] as String?,
-      debts: (json['depts'] as List<dynamic>?)
+      debts: (json['traders'] as List<dynamic>?)
           ?.map((e) => DebtDetailResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -19,7 +19,7 @@ Map<String, dynamic> _$DebtTraderResponseToJson(DebtTraderResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
-      'depts': instance.debts,
+      'traders': instance.debts,
     };
 
 DebtDetailResponse _$DebtDetailResponseFromJson(Map<String, dynamic> json) =>
