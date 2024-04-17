@@ -30,8 +30,9 @@ class DebtsViewBody extends StatelessWidget {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return BlocProvider<DebtsCubit>(
-      create: (context) => instance<DebtsCubit>(),
-
+      create: (context) => instance<DebtsCubit>()
+        ..getDelegateDebts()
+        ..getTraderDebts(),
       child: Scaffold(
         key: scaffoldKey,
         drawer: buildDrawer(context),
@@ -40,6 +41,17 @@ class DebtsViewBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: BlocBuilder<DebtsCubit, DebtsState>(
               builder: (context, state) {
+                if (state is GetDelegateDebtsLoadingState ||
+                    state is GetTraderDebtsLoadingState) {
+                  return const Column(
+                    children: [
+                      Center(child: CircularProgressIndicator()),
+                    ],
+                  );
+                } else if (state is GetDelegateDebtsErrorState ||
+                    state is GetTraderDebtsErrorState) {
+                  return Center(child: Text('Failed to load data'));
+                }
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -146,89 +158,149 @@ class DebtsViewBody extends StatelessWidget {
                                   child: TabBarView(
                                     children: [
                                       ListView.builder(
-                                          itemBuilder: (context, index) =>
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 8.0,
-                                                        vertical: 15),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        rowCard(
-                                                            title:
-                                                                'رقم الطلبية',
-                                                            colorTitle:
-                                                                ColorManager
-                                                                    .black,
-                                                            colordes:
-                                                                ColorManager
-                                                                    .black,
-                                                            des: '11',
-                                                            context: context),
-                                                        SizedBox(height: 8),
-                                                        InkWell(
-                                                          onTap: () {},
-                                                          child: Align(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            child: Text(
-                                                              'تسديد',
-                                                              style: TextStyle(
-                                                                color:
-                                                                    ColorManager
-                                                                        .babyBlue,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .underline,
-                                                              ),
+                                          itemBuilder: (context, index) {
+                                            var debtsCubit =
+                                                DebtsCubit.get(context)
+                                                    .deptTraderModel;
+                                            if (debtsCubit == null ||
+                                                debtsCubit.debts.isEmpty) {
+                                              return SizedBox();
+                                            }
+
+                                            if (index >=
+                                                debtsCubit.debts.length) {
+                                              return SizedBox();
+                                            }
+
+                                            final debts =
+                                                debtsCubit.debts[index];
+                                            return Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 8.0,
+                                                      vertical: 15),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      rowCard(
+                                                          title: 'اسم التاجر',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des: debts.traderName,
+                                                          context: context),
+                                                      rowCard(
+                                                          title:
+                                                              'مبلغ الدين باالدولار',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des:
+                                                              "${debts.debtDoler}",
+                                                          context: context),
+                                                      rowCard(
+                                                          title:
+                                                              'مبلغ الدين بالليرة',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des:
+                                                              "${debts.debtLera}",
+                                                          context: context),
+                                                      rowCard(
+                                                          title:
+                                                              'تاريخ اخر دفعة',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des:
+                                                              "${debts.lastDate}",
+                                                          context: context),
+                                                      rowCard(
+                                                          title:
+                                                              'تاريخ الدفعة القادمة',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des:
+                                                              "${debts.dueDate}",
+                                                          context: context),
+                                                      SizedBox(height: 8),
+                                                      InkWell(
+                                                        onTap: () {},
+                                                        child: Align(
+                                                          alignment: Alignment
+                                                              .centerLeft,
+                                                          child: Text(
+                                                            'تسديد',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  ColorManager
+                                                                      .babyBlue,
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline,
                                                             ),
                                                           ),
                                                         ),
-                                                        SizedBox(height: 12),
-                                                        Container(
-                                                          width: MediaQuery.of(
-                                                                  context)
-                                                              .size
-                                                              .width,
-                                                          decoration: BoxDecoration(
-                                                              color:
-                                                                  Colors.grey,
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  width: 1)),
-                                                        )
-                                                      ],
-                                                    ),
+                                                      ),
+                                                      SizedBox(height: 12),
+                                                      Container(
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.grey,
+                                                            border: Border.all(
+                                                                color:
+                                                                    Colors.grey,
+                                                                width: 1)),
+                                                      )
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
+                                            );
+                                          },
                                           itemCount: 1),
                                       ListView.builder(
                                         itemBuilder: (context, index) {
-                                          // if (talabatOld == null ||
-                                          //     talabatOld.orders.isEmpty) {
-                                          //   return SizedBox();
-                                          // }
-                                          //
-                                          // if (index >=
-                                          //     talabatOld.orders.length) {
-                                          //   return SizedBox();
-                                          // }
-                                          //
-                                          // final order =
-                                          //     talabatOld.orders[index];
+                                          var debtsCubit =
+                                              DebtsCubit.get(context)
+                                                  .delegateModel;
+                                          if (debtsCubit == null ||
+                                              debtsCubit.debts.isEmpty) {
+                                            return SizedBox();
+                                          }
+
+                                          if (index >=
+                                              debtsCubit.debts.length) {
+                                            return SizedBox();
+                                          }
+
+                                          final delegateModel =
+                                              debtsCubit.debts[index];
                                           return Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -242,61 +314,32 @@ class DebtsViewBody extends StatelessWidget {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          'المبلغ : ',
-                                                          style:
-                                                              getBoldSegoeStyle(
-                                                            fontSize: 18,
-                                                            color: ColorManager
-                                                                .grey3,
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 8),
-                                                          child: Text(
-                                                            "التفاصيل",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  ColorManager
-                                                                      .babyBlue,
-                                                              fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .underline,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                    rowCardDelegateModel(
+                                                        title:
+                                                            "مبلغ الدين باالدولار",
+                                                        context: context,
+                                                        des:
+                                                            "${delegateModel.debtPriceDoler}"),
                                                     SizedBox(height: 8),
-                                                    Text(
-                                                      'المبلغ  : 4545',
-                                                      style: getBoldSegoeStyle(
-                                                        fontSize: 18,
-                                                        color:
-                                                            ColorManager.grey3,
-                                                      ),
-                                                    ),
+                                                    rowCardDelegateModel(
+                                                        title:
+                                                            "مبلغ الدين بالليرة",
+                                                        context: context,
+                                                        des:
+                                                            "${delegateModel.debtPriceLera}"),
                                                     SizedBox(height: 8),
-                                                    Text(
-                                                      'التاريخ :  24-11-2022',
-                                                      style: getBoldSegoeStyle(
-                                                        fontSize: 18,
-                                                        color:
-                                                            ColorManager.grey3,
-                                                      ),
-                                                    ),
+                                                    rowCardDelegateModel(
+                                                        title: "تاريخ الدين",
+                                                        context: context,
+                                                        des:
+                                                            delegateModel.date),
+                                                    SizedBox(height: 8),
+                                                    rowCardDelegateModel(
+                                                        title: "السبب",
+                                                        context: context,
+                                                        des: delegateModel
+                                                            .reasonExpensesNameAr),
+                                                    SizedBox(height: 8),
                                                     SizedBox(height: 12),
                                                     Container(
                                                       width:
@@ -329,22 +372,6 @@ class DebtsViewBody extends StatelessWidget {
                     ),
                   ],
                 );
-                // } else if (state == TalabatViewState.loading) {
-                //   return Column(
-                //     crossAxisAlignment: CrossAxisAlignment.center,
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       SizedBox(
-                //         height: MediaQuery.of(context).size.height / 2.1,
-                //       ),
-                //       const Center(
-                //         child: CircularProgressIndicator.adaptive(),
-                //       ),
-                //     ],
-                //   );
-                // } else {
-                //   return const Text('Somting Error');
-                // }
               },
             ),
           ),
@@ -373,6 +400,30 @@ class DebtsViewBody extends StatelessWidget {
           style: getBoldSegoeStyle(
             fontSize: 18,
             color: Theme.of(context).primaryColor,
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget rowCardDelegateModel(
+      {required String title,
+      required BuildContext context,
+      required String des}) {
+    return Row(
+      children: [
+        Text(
+          "$title :  ",
+          style: getBoldSegoeStyle(
+            fontSize: 18,
+            color: ColorManager.grey3,
+          ),
+        ),
+        Text(
+          des,
+          style: getBoldSegoeStyle(
+            fontSize: 18,
+            color: ColorManager.grey3,
           ),
         )
       ],

@@ -51,6 +51,8 @@ class AddExpensesViewBody extends StatelessWidget {
       drawer: buildDrawer(context),
       body: Stack(
         children: [
+          imageBackground(context),
+
           SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSize.s18),
@@ -76,7 +78,6 @@ class AddExpensesViewBody extends StatelessWidget {
               ),
             ),
           ),
-          imageBackground(context),
 
         ],
       ),
