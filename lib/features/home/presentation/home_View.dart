@@ -174,7 +174,7 @@ class HomeView extends StatelessWidget {
                     if (state is GetHomeLoadingState) {
                       return const Center(
                           child: CircularProgressIndicator.adaptive());
-                    } else if (state is GetHomeLoadedState) {
+                    } else if (state is GetHomeLoadedState || state is EditPriceLoadedState) {
                       return Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p20,
