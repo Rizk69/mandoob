@@ -21,10 +21,13 @@ Widget buildExpenseItem(BuildContext context, ExpenseDataModel expense) {
               18, ColorManager.grey3),
           const SizedBox(height: 12),
           _buildExpenseDetail(
+              'المبلغ', expense.price.toString(), 18, ColorManager.grey3),
+
+          _buildExpenseDetail(
               'تاريخ الشراء', expense.date, 18, ColorManager.grey3),
           const SizedBox(height: 12),
           _buildExpenseDetail(
-              'الكمية', '${expense.count} طن', 18, ColorManager.grey3),
+              'الكمية', '${expense.count}', 18, ColorManager.grey3),
           const SizedBox(height: 12),
           _buildExpenseDetail(
               'الحالة',
