@@ -90,6 +90,8 @@
   "commissionsDoler": "commissions USD",
   "Theme": "Theme",
 
+  "DarkMood": "Dark",
+  "LightMood": "Light",
 
   "searchHere": "Search Here",
   "newTrade": "New Trade",

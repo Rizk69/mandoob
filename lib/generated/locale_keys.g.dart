@@ -87,6 +87,8 @@ abstract class  LocaleKeys {
   static const commissionsLera = 'commissionsLera';
   static const commissionsDoler = 'commissionsDoler';
   static const Theme = 'Theme';
+  static const DarkMood = 'DarkMood';
+  static const LightMood = 'LightMood';
   static const searchHere = 'searchHere';
   static const newTrade = 'newTrade';
   static const addNewTrade = 'addNewTrade';

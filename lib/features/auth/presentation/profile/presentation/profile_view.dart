@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,6 +11,7 @@ import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/auth/presentation/profile/widget/ColorSelectionPage.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../cubit/profile_cubit.dart';
 
@@ -32,11 +34,7 @@ class ProfileView extends StatelessWidget {
                   create: (_) => instance<ProfileCubit>()..getProfile()),
             ],
             child: BlocConsumer<ProfileCubit, ProfileState>(
-              listener: (context, state) {
-                // if (state is changeVisabialtyState){
-                //   Navigator.popAndPushNamed(context, Routes.homeRoute);
-                // }
-              },
+              listener: (context, state) {},
               builder: (context, state) {
                 if (state is ProfileLoadingState ||
                     state is EditProfileColorLoadingState) {
@@ -57,7 +55,7 @@ class ProfileView extends StatelessWidget {
                               functionDrawer: () {
                                 scaffoldKey.currentState?.openDrawer();
                               },
-                              title: 'الحساب',
+                              title: LocaleKeys.account.tr(),
                               functionIcon: () {
                                 Navigator.pop(context);
                               }),
@@ -88,42 +86,37 @@ class ProfileView extends StatelessWidget {
                           SizedBox(height: AppSize.s5.h),
                           customCardProfile(
                               color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
-                              title: 'اسم المستخدم',
+                              title: LocaleKeys.userName.tr(),
                               des: user.email,
                               context: context),
-                          customCardProfilePassword(
-                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2.withOpacity(0.2) ,
-                              title: 'كلمة السر',
-                              des: '#############33',
-                              context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
-                              title: 'الرصيد بالليرة',
+                              color:_appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                              title: LocaleKeys.balanceTL.tr(),
                               des: user.balanceTL.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2.withOpacity(0.2),
-                              title: 'الرصيد بالدولار',
+                              color:_appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
+                              title: LocaleKeys.balanceUsd.tr(),
                               des: user.balanceUsd.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
-                              title: 'اجمالي المبيعات للشهر بالليرة',
+                              color:_appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                              title: LocaleKeys.salseLera.tr(),
                               des: user.salseLera.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2.withOpacity(0.2),
-                              title: 'اجمالي الكميات بالدولار',
+                              color:_appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
+                              title: LocaleKeys.salseDoler.tr(),
                               des: user.salseDoler.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
-                              title: ' عمولات الشهر بالليرة',
+                              color:_appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                              title: LocaleKeys.commissionsLera.tr(),
                               des: user.commissionsLera.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2.withOpacity(0.2),
-                              title: 'عمولات الشهر بالدولار',
+                              color:_appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
+                              title: LocaleKeys.commissionsDoler.tr(),
                               des: user.commissionsDoler.toString(),
                               context: context),
                           Container(
@@ -131,7 +124,7 @@ class ProfileView extends StatelessWidget {
                                 vertical: 20, horizontal: 10),
                             width: double.infinity,
                             decoration: BoxDecoration(
-                                color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
+                                color:_appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,15 +137,15 @@ class ProfileView extends StatelessWidget {
                                     ),
                                     children: [
                                       TextSpan(
-                                          text: 'المظهر \t\t\t\t',
+                                          text: '${LocaleKeys.Theme.tr()} \t\t\t\t',
                                           style: TextStyle(
                                             color:
                                                 Theme.of(context).primaryColor,
                                           )),
                                       TextSpan(
                                         text: _appPreferences.getIsDark()
-                                            ? 'Dark'
-                                            : 'Light',
+                                            ? LocaleKeys.DarkMood.tr()
+                                            : LocaleKeys.LightMood.tr(),
                                         style: getMediumInterStyle(
                                           fontSize: 15,
                                           color: ColorManager.desColor,
