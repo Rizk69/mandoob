@@ -250,8 +250,7 @@ class TrafficLines extends StatelessWidget {
                                                   const BouncingScrollPhysics(),
                                               itemCount: data?.length,
                                               itemBuilder: (context, index) {
-                                                final activeItem =
-                                                    data?[index].active;
+                                                final activeItem = data?[index].active;
                                                 final isFirst = activeItem == 0;
                                                 final isLast = activeItem == 0;
                                                 final isPast = activeItem == 1;

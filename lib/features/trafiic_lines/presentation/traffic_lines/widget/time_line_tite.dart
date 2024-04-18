@@ -40,6 +40,7 @@ class MyTimeLineTitle extends StatelessWidget {
           ),
           endChild: EventCard(isPast: isPast, address: address, traderName: traderName),
         ),
+        if (!isPast)
         Positioned(
           top: AppSize.s2.w,
           left: AppSize.s2.w,
@@ -56,10 +57,34 @@ class MyTimeLineTitle extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 icon: const Icon(Icons.close, color: Colors.white),
                 onPressed: () {
-                  TrafficLinesCubit.get(context).deleteTrafficLine(traderId);
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('تأكيد الحذف'),
+                        content: Text('هل أنت متأكد من أنك تريد حذف هذا الخط؟'),
+                        actions: <Widget>[
+                          TextButton(
+                            child: Text('إلغاء'),
+                            onPressed: () {
+                              Navigator.of(context).pop(); // إغلاق الديالوج
+                            },
+                          ),
+                          TextButton(
+                            child: Text('تأكيد'),
+                            onPressed: () {
+                              Navigator.of(context).pop(); // إغلاق الديالوج
+                              TrafficLinesCubit.get(context).deleteTrafficLine(traderId); // الحذف
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
                 iconSize: 20,
               ),
+
             ),
           ),
         ),
