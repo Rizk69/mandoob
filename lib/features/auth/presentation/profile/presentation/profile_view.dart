@@ -21,7 +21,7 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-    AppPreferences _appPreferences = instance<AppPreferences>();
+    AppPreferences appPreferences = instance<AppPreferences>();
 
     return SafeArea(
       top: false,
@@ -85,37 +85,37 @@ class ProfileView extends StatelessWidget {
                           ColorSelectionPage(colors: user.colors ?? []),
                           SizedBox(height: AppSize.s5.h),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
+                              color:appPreferences.getIsDark() ?   ColorManager.graymahrok :ColorManager.transparent,
                               title: LocaleKeys.userName.tr(),
                               des: user.email,
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                              color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
                               title: LocaleKeys.balanceTL.tr(),
                               des: user.balanceTL.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
+                              color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
                               title: LocaleKeys.balanceUsd.tr(),
                               des: user.balanceUsd.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                              color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
                               title: LocaleKeys.salseLera.tr(),
                               des: user.salseLera.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
+                              color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
                               title: LocaleKeys.salseDoler.tr(),
                               des: user.salseDoler.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                              color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
                               title: LocaleKeys.commissionsLera.tr(),
                               des: user.commissionsLera.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
+                              color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
                               title: LocaleKeys.commissionsDoler.tr(),
                               des: user.commissionsDoler.toString(),
                               context: context),
@@ -124,7 +124,7 @@ class ProfileView extends StatelessWidget {
                                 vertical: 20, horizontal: 10),
                             width: double.infinity,
                             decoration: BoxDecoration(
-                                color:_appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                                color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,7 +143,7 @@ class ProfileView extends StatelessWidget {
                                                 Theme.of(context).primaryColor,
                                           )),
                                       TextSpan(
-                                        text: _appPreferences.getIsDark()
+                                        text: appPreferences.getIsDark()
                                             ? LocaleKeys.DarkMood.tr()
                                             : LocaleKeys.LightMood.tr(),
                                         style: getMediumInterStyle(
@@ -161,7 +161,7 @@ class ProfileView extends StatelessWidget {
                                   trackOutlineColor:
                                       MaterialStateProperty.all<Color>(
                                           ColorManager.baseColorLight),
-                                  value: _appPreferences.getIsDark(),
+                                  value: appPreferences.getIsDark(),
                                   trackColor: MaterialStateProperty.all<Color>(
                                       Colors.white),
                                   onChanged: (bool value) {
@@ -205,7 +205,7 @@ class ProfileView extends StatelessWidget {
           ),
           children: [
             TextSpan(
-              text: '${title} \t\t\t\t',
+              text: '$title \t\t\t\t',
             ),
             TextSpan(
               text: des,
@@ -241,7 +241,7 @@ class ProfileView extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                    text: '${title} \t\t\t\t',
+                    text: '$title \t\t\t\t',
                     style: TextStyle(color: Theme.of(context).primaryColor)),
                 TextSpan(
                   text: des,
@@ -254,7 +254,7 @@ class ProfileView extends StatelessWidget {
             ),
           ),
           IconButton(
-              onPressed: () {}, icon: Icon(Icons.remove_red_eye_outlined))
+              onPressed: () {}, icon: const Icon(Icons.remove_red_eye_outlined))
         ],
       ),
     );
