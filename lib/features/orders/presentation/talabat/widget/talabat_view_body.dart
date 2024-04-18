@@ -197,7 +197,7 @@ class TalabatViewBody extends StatelessWidget {
                                               ? ListView.builder(
                                                   shrinkWrap: true,
                                                   physics:
-                                                      const ClampingScrollPhysics(),
+                                                      const BouncingScrollPhysics(),
                                                   itemBuilder: (context,
                                                           index) =>
                                                       PresentOrder(
@@ -216,7 +216,7 @@ class TalabatViewBody extends StatelessWidget {
                                           ListView.builder(
                                             shrinkWrap: true,
                                             physics:
-                                                const ClampingScrollPhysics(),
+                                                const BouncingScrollPhysics(),
                                             itemBuilder: (context, index) =>
                                                 OldOrder(
                                                     talabatOld: TalabatViewCubit
