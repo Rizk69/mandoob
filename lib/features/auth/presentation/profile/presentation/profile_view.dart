@@ -92,7 +92,7 @@ class ProfileView extends StatelessWidget {
                               des: user.email,
                               context: context),
                           customCardProfilePassword(
-                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2 ,
+                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2.withOpacity(0.2) ,
                               title: 'كلمة السر',
                               des: '#############33',
                               context: context),
@@ -102,7 +102,7 @@ class ProfileView extends StatelessWidget {
                               des: user.balanceTL.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2 ,
+                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2.withOpacity(0.2),
                               title: 'الرصيد بالدولار',
                               des: user.balanceUsd.toString(),
                               context: context),
@@ -112,7 +112,7 @@ class ProfileView extends StatelessWidget {
                               des: user.salseLera.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2 ,
+                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2.withOpacity(0.2),
                               title: 'اجمالي الكميات بالدولار',
                               des: user.salseDoler.toString(),
                               context: context),
@@ -122,7 +122,7 @@ class ProfileView extends StatelessWidget {
                               des: user.commissionsLera.toString(),
                               context: context),
                           customCardProfile(
-                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2 ,
+                              color:_appPreferences.getIsDark() ? ColorManager.transparent: ColorManager.grey2.withOpacity(0.2),
                               title: 'عمولات الشهر بالدولار',
                               des: user.commissionsDoler.toString(),
                               context: context),
