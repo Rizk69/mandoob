@@ -7,6 +7,8 @@ import 'package:mandoob/features/auth/presentation/profile/presentation/profile_
 import 'package:mandoob/features/custody/presentation/el_eahduh/el_eahduh_view.dart';
 import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_mulakhas_view.dart';
 import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_salah_view.dart';
+import 'package:mandoob/features/debts/domain/model/debt_trader_model.dart';
+import 'package:mandoob/features/debts/presentation/debts/presentation/debt_repayment.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debts_paying.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debts_view.dart';
 import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
@@ -44,6 +46,7 @@ class Routes {
   static const String debts = "/debts";
   static const String payingDebts = "/payingDebts";
   static const String addPayingDebts = "/addPayingDebts";
+  static const String debtRepayment = "/debtRepayment";
   static const String notification = "/notification";
   static const String addtrafficLines = "/addtrafficLines";
   static const String profileView = "/profileView";
@@ -126,8 +129,15 @@ class RouteGenerator {
       case Routes.payingDebts:
         initDebtModule();
         return MaterialPageRoute(builder: (_) => PayingDebts());
-        case Routes.addPayingDebts:
+      case Routes.addPayingDebts:
         return MaterialPageRoute(builder: (_) => AddPayingDebts());
+      case Routes.debtRepayment:
+        final args = settings.arguments as DebtDetail;
+
+        return MaterialPageRoute(
+            builder: (_) => DebtRepayment(
+                  debtDetail: args,
+                ));
       case Routes.notification:
         initNotificationModule();
         return MaterialPageRoute(builder: (_) => NotificationScreen());

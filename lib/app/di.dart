@@ -23,7 +23,9 @@ import 'package:mandoob/features/debts/data/network/debt_api.dart';
 import 'package:mandoob/features/debts/data/repository/repository_debt_impl.dart';
 import 'package:mandoob/features/debts/domain/repository/debt_repository.dart';
 import 'package:mandoob/features/debts/domain/usecase/get_debt_delegate_usecases.dart';
+import 'package:mandoob/features/debts/domain/usecase/get_debt_invoice_trader_usecases.dart';
 import 'package:mandoob/features/debts/domain/usecase/get_debt_trader_usecases.dart';
+import 'package:mandoob/features/debts/domain/usecase/pay_debt_trader_usecases.dart';
 import 'package:mandoob/features/debts/presentation/debts/cubit/debts_cubit.dart';
 import 'package:mandoob/features/expenses/data/data_source/remote_expenses_data_source.dart';
 import 'package:mandoob/features/expenses/data/network/expenses_api.dart';
@@ -362,21 +364,27 @@ initDebtModule() {
 
     instance.registerFactory<GetDelegateDebtsUseCase>(
         () => GetDelegateDebtsUseCase(instance()));
+    instance.registerFactory<PayDebtTraderUseCase>(
+        () => PayDebtTraderUseCase(instance()));
+    instance.registerFactory<GetDebtInvoiceTraderUseCase>(
+        () => GetDebtInvoiceTraderUseCase(instance()));
 
-    instance.registerFactory<DebtsCubit>(
-        () => DebtsCubit(instance(),instance()));
+    instance.registerFactory<DebtsCubit>(() => DebtsCubit(
+          instance(),
+          instance(),
+          instance(),
+          instance(),
+        ));
   }
 }
-
-
 
 initNotificationModule() {
   if (!GetIt.I.isRegistered<GetNotificationUseCase>()) {
     instance.registerFactory<GetNotificationUseCase>(
-            () => GetNotificationUseCase(instance()));
+        () => GetNotificationUseCase(instance()));
 
     instance.registerFactory<NotificationCubit>(
-            () => NotificationCubit(instance()));
+        () => NotificationCubit(instance()));
   }
 }
 

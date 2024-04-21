@@ -30,8 +30,9 @@ class DebtsViewBody extends StatelessWidget {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return BlocProvider<DebtsCubit>(
-      create: (context) => instance<DebtsCubit>()..getDelegateDebts()..getTraderDebts(),
-
+      create: (context) => instance<DebtsCubit>()
+        ..getDelegateDebts()
+        ..getTraderDebts(),
       child: Scaffold(
         key: scaffoldKey,
         drawer: buildDrawer(context),
@@ -147,7 +148,9 @@ class DebtsViewBody extends StatelessWidget {
                                     children: [
                                       ListView.builder(
                                           itemBuilder: (context, index) {
-                                            var debtsCubit=  DebtsCubit.get(context).deptTraderModel;
+                                            var debtsCubit =
+                                                DebtsCubit.get(context)
+                                                    .deptTraderModel;
                                             if (debtsCubit == null ||
                                                 debtsCubit.debts.isEmpty) {
                                               return SizedBox();
@@ -159,118 +162,129 @@ class DebtsViewBody extends StatelessWidget {
                                             }
 
                                             final debts =
-                                            debtsCubit.debts[index];
-                                            return  Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 8.0,
-                                                        vertical: 15),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        rowCard(
-                                                            title:
-                                                                'اسم التاجر',
-                                                            colorTitle:
-                                                                ColorManager
-                                                                    .black,
-                                                            colordes:
-                                                                ColorManager
-                                                                    .black,
-                                                            des: debts.traderName,
-                                                            context: context),                                                        rowCard(
-                                                            title:
-                                                                'مبلغ الدين باالدولار',
-                                                            colorTitle:
-                                                                ColorManager
-                                                                    .black,
-                                                            colordes:
-                                                                ColorManager
-                                                                    .black,
-                                                            des: "${debts.debtDoler}",
-                                                            context: context),                                                        rowCard(
-                                                            title:
-                                                                'مبلغ الدين بالليرة',
-                                                            colorTitle:
-                                                                ColorManager
-                                                                    .black,
-                                                            colordes:
-                                                                ColorManager
-                                                                    .black,
-                                                            des: "${debts.debtLera}",
-                                                            context: context),                                                        rowCard(
-                                                            title:
-                                                                'تاريخ اخر دفعة',
-                                                            colorTitle:
-                                                                ColorManager
-                                                                    .black,
-                                                            colordes:
-                                                                ColorManager
-                                                                    .black,
-                                                            des: "${debts.lastDate}",
-                                                            context: context),                                                        rowCard(
-                                                            title:
-                                                                'تاريخ الدفعة القادمة',
-                                                            colorTitle:
-                                                                ColorManager
-                                                                    .black,
-                                                            colordes:
-                                                                ColorManager
-                                                                    .black,
-                                                            des: "${debts.dueDate}",
-                                                            context: context),
-                                                        SizedBox(height: 8),
-                                                        InkWell(
-                                                          onTap: () {},
-                                                          child: Align(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            child: Text(
-                                                              'تسديد',
-                                                              style: TextStyle(
-                                                                color:
-                                                                    ColorManager
-                                                                        .babyBlue,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .underline,
-                                                              ),
+                                                debtsCubit.debts[index];
+                                            return Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 8.0,
+                                                      vertical: 15),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      rowCard(
+                                                          title: 'اسم التاجر',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des: debts.traderName,
+                                                          context: context),
+                                                      rowCard(
+                                                          title:
+                                                              'مبلغ الدين باالدولار',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des:
+                                                              "${debts.debtDoler}",
+                                                          context: context),
+                                                      rowCard(
+                                                          title:
+                                                              'مبلغ الدين بالليرة',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des:
+                                                              "${debts.debtLera}",
+                                                          context: context),
+                                                      rowCard(
+                                                          title:
+                                                              'تاريخ اخر دفعة',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des:
+                                                              "${debts.lastDate}",
+                                                          context: context),
+                                                      rowCard(
+                                                          title:
+                                                              'تاريخ الدفعة القادمة',
+                                                          colorTitle:
+                                                              ColorManager
+                                                                  .black,
+                                                          colordes: ColorManager
+                                                              .black,
+                                                          des:
+                                                              "${debts.dueDate}",
+                                                          context: context),
+                                                      SizedBox(height: 8),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              Routes
+                                                                  .debtRepayment,
+                                                              arguments: debts);
+                                                        },
+                                                        child: Align(
+                                                          alignment: Alignment
+                                                              .centerLeft,
+                                                          child: Text(
+                                                            'تسديد',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  ColorManager
+                                                                      .babyBlue,
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline,
                                                             ),
                                                           ),
                                                         ),
-                                                        SizedBox(height: 12),
-                                                        Container(
-                                                          width: MediaQuery.of(
-                                                                  context)
-                                                              .size
-                                                              .width,
-                                                          decoration: BoxDecoration(
-                                                              color:
-                                                                  Colors.grey,
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  width: 1)),
-                                                        )
-                                                      ],
-                                                    ),
+                                                      ),
+                                                      SizedBox(height: 12),
+                                                      Container(
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.grey,
+                                                            border: Border.all(
+                                                                color:
+                                                                    Colors.grey,
+                                                                width: 1)),
+                                                      )
+                                                    ],
                                                   ),
-                                                ],
-                                              );},
-                                          itemCount: 1),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                          itemCount: DebtsCubit.get(context)
+                                                  .deptTraderModel
+                                                  ?.debts
+                                                  .length ??
+                                              0),
                                       ListView.builder(
                                         itemBuilder: (context, index) {
-
                                           return Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -358,7 +372,11 @@ class DebtsViewBody extends StatelessWidget {
                                             ],
                                           );
                                         },
-                                        itemCount: 1,
+                                        itemCount: DebtsCubit.get(context)
+                                                .delegateModel
+                                                ?.debts
+                                                .length ??
+                                            0,
                                       )
                                     ],
                                   ),
@@ -371,7 +389,6 @@ class DebtsViewBody extends StatelessWidget {
                     ),
                   ],
                 );
-
               },
             ),
           ),
