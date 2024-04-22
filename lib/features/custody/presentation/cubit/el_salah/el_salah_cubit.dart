@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/features/custody/data/network/eahduh_requests.dart';
 import 'package:mandoob/features/custody/domain/model/cart_model.dart';
 import 'package:mandoob/features/custody/domain/model/confirm_model.dart';
+import 'package:mandoob/features/custody/domain/model/invoices_model.dart';
 import 'package:mandoob/features/custody/domain/usecase/add_currency_and_count_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/confirm_invoice_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/delete_all_product_in_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/delete_product_in_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/get_cart_usecases.dart';
+import 'package:mandoob/features/custody/domain/usecase/get_invoice_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/pay_partial_dept_usecases.dart';
 import 'package:meta/meta.dart';
 
@@ -21,6 +23,7 @@ class ElSalahCubit extends Cubit<ElSalahState> {
       this._deleteCartUseCase,
       this._confirmInvoiceUseCase,
       this._payPartialDeptUseCase,
+      this._getInvoicesUseCase,
       this._addCurrencyAndCountUseCase)
       : super(ElSalahInitial());
 
@@ -35,6 +38,7 @@ class ElSalahCubit extends Cubit<ElSalahState> {
   final ConfirmInvoiceUseCase _confirmInvoiceUseCase;
   final AddCurrencyAndCountUseCase _addCurrencyAndCountUseCase;
   final PayPartialDeptUseCase _payPartialDeptUseCase;
+  final GetInvoicesUseCase _getInvoicesUseCase;
 
   getCartOrder() async {
     emit(GetCartLoadingState());
@@ -168,5 +172,16 @@ class ElSalahCubit extends Cubit<ElSalahState> {
   setPayLera(num payLera) {
     pay_Lera = payLera;
     emit(SetPayLeraState());
+  }
+
+
+InvoicesModel? invoicesModel;
+  getInvoice({required int invoiceId }) async {
+    emit(GetInvoiceLoadingState());
+    final result = await _getInvoicesUseCase.execute(invoiceId);
+    result.fold((failure) => emit(GetInvoiceErrorState(failure.message)), (model) {
+      invoicesModel = model;
+      emit(GetInvoiceLoadedState());
+    });
   }
 }

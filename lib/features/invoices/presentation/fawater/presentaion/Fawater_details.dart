@@ -7,6 +7,7 @@ import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
+import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -33,66 +34,17 @@ class FawaterTagerDetailsView extends StatelessWidget {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SvgPicture.asset(
-                              IconAssets.filterIcons,
-                              height: 23,
-                              color: Colors.transparent,
-                            ),
-                            Center(
-                              child: Text(
-                                'فاتورة التاجر ${traderDetailsInvoiceModel.data.customerName}',
-                                style: getBoldSegoeStyle(
-                                  fontSize: 25,
-                                  color: ColorManager.black,
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                showMenu(
-                                  context: context,
-                                  position:
-                                      RelativeRect.fromLTRB(0, 100, 100, 100),
-                                  items: [
-                                    PopupMenuItem(
-                                      child: Text('شامبو'),
-                                    ),
-                                    PopupMenuItem(
-                                      child: Text('شاور'),
-                                    ),
-                                    PopupMenuItem(
-                                      child: Text('صابون'),
-                                    ),
-                                  ],
-                                );
-                              },
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 18),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Column(
-                                    children: [
-                                      SvgPicture.asset(
-                                        IconAssets.filterIcons,
-                                        height: 23,
-                                      ),
-                                      Text(
-                                        'تخصيص',
-                                        style: getBoldSegoeStyle(
-                                          color: ColorManager.babyBlue,
-                                          fontSize: AppSize.s15.sp,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                        SizedBox(
+                          height: AppSize.s6.h,
+                        ),
+                        HeaderScreen(
+                            title: 'فاتورة التاجر ${traderDetailsInvoiceModel.data.customerName}',
+                            functionIcon: () {
+                              Navigator.pop(context);
+                            }),
+
+                        SizedBox(
+                          height: AppSize.s2.h,
                         ),
                         RichText(
                           text: TextSpan(

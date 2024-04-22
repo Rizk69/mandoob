@@ -15,6 +15,7 @@ import 'package:mandoob/features/custody/domain/usecase/delete_all_product_in_ca
 import 'package:mandoob/features/custody/domain/usecase/delete_product_in_cart_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/eahduh_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/get_cart_usecases.dart';
+import 'package:mandoob/features/custody/domain/usecase/get_invoice_usecases.dart';
 import 'package:mandoob/features/custody/domain/usecase/pay_partial_dept_usecases.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_eahduh/eahduh_cubit.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
@@ -315,7 +316,7 @@ initDelivaryLineModule() {
 initEahduhModule() {
   if (!GetIt.I.isRegistered<EahduhUseCase>()) {
     instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(instance(),
-        instance(), instance(), instance(), instance(), instance()));
+        instance(), instance(), instance(), instance(), instance(), instance()));
     instance.registerFactory<GetCartUseCase>(() => GetCartUseCase(instance()));
 
     instance.registerFactory<PayPartialDeptUseCase>(
@@ -324,6 +325,8 @@ initEahduhModule() {
     instance.registerFactory<EahduhCubit>(
         () => EahduhCubit(instance(), instance()));
     instance.registerFactory<EahduhUseCase>(() => EahduhUseCase(instance()));
+
+    instance.registerFactory<GetInvoicesUseCase>(() => GetInvoicesUseCase(instance()));
 
     instance.registerFactory<ConfirmInvoiceUseCase>(
         () => ConfirmInvoiceUseCase(instance()));
