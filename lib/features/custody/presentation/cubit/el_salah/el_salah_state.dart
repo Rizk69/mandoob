@@ -90,3 +90,15 @@ class SetPayDolarState extends ElSalahState {}
 class SetPayLeraState extends ElSalahState {}
 
 class ElSalahCurrencyUpdated extends ElSalahState {}
+
+
+
+class GetInvoiceLoadingState extends ElSalahState {}
+
+class GetInvoiceLoadedState extends ElSalahState {}
+
+class GetInvoiceErrorState extends ElSalahState {
+  final String message;
+
+  GetInvoiceErrorState(this.message);
+}

@@ -35,7 +35,8 @@ class ConfirmInvoiceScreen extends StatelessWidget {
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.9,
                       child: CustomButton(onPressed: (){
-                        Navigator.pushReplacementNamed(context, Routes.homeRoute);
+                        Navigator.pushReplacementNamed(context, Routes.invoiceDetails,
+                            arguments: invoiceNumber);
                       }, buttonText:"الفاتورة" )),
 
                   SizedBox(height: AppSize.s2.h,),

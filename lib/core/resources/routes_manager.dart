@@ -7,6 +7,7 @@ import 'package:mandoob/features/auth/presentation/profile/presentation/profile_
 import 'package:mandoob/features/custody/presentation/el_eahduh/el_eahduh_view.dart';
 import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_mulakhas_view.dart';
 import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_salah_view.dart';
+import 'package:mandoob/features/custody/presentation/invoice_details.dart';
 import 'package:mandoob/features/debts/domain/model/debt_trader_model.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debt_repayment.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debts_paying.dart';
@@ -60,6 +61,7 @@ class Routes {
   static const String addExpenses = "/addExpenses";
   static const String sucssufflyAddTrader = "/sucssufflyAddTrader";
   static const String sucssufflyDebtsTrader = "/sucssufflyDebtsTrader";
+  static const String invoiceDetails = "/invoiceDetails";
 }
 
 class RouteGenerator {
@@ -118,6 +120,15 @@ class RouteGenerator {
             builder: (_) => FawaterTagerDetailsView(
                   id: args,
                 ));
+
+
+      case Routes.invoiceDetails:
+        final args = settings.arguments as int;
+        return MaterialPageRoute(
+            builder: (_) => InvoiceDetailsView(
+              id: args,
+            ));
+
         case Routes.invoiceDebtsTrader:
         final args = settings.arguments as int;
         return MaterialPageRoute(
