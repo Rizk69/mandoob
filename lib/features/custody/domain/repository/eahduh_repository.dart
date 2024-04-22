@@ -3,6 +3,7 @@ import 'package:mandoob/core/netowork_core/failure.dart';
 import 'package:mandoob/features/custody/data/network/eahduh_requests.dart';
 import 'package:mandoob/features/custody/domain/model/cart_model.dart';
 import 'package:mandoob/features/custody/domain/model/confirm_model.dart';
+import 'package:mandoob/features/custody/domain/model/invoices_model.dart';
 
 import '../model/eahduh_order_model.dart';
 
@@ -26,5 +27,8 @@ abstract class EahduhRepository {
 
   Future<Either<Failure, void>> payPartialDept(
       {required PayPartialDeptRequest partialDeptRequest});
+
+
+  Future<Either<Failure, InvoicesModel>> getInvoice({required int invoiceId});
 
 }

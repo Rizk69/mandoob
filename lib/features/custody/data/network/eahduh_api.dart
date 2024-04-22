@@ -3,6 +3,7 @@ import 'package:mandoob/app/constants.dart';
 import 'package:mandoob/features/custody/data/network/eahduh_requests.dart';
 import 'package:mandoob/features/custody/data/responses/cart_response.dart';
 import 'package:mandoob/features/custody/data/responses/confirm_response.dart';
+import 'package:mandoob/features/custody/data/responses/invoices_response.dart';
 import 'package:mandoob/features/custody/data/responses/pay_partial_response.dart';
 import 'package:retrofit/http.dart';
 
@@ -50,5 +51,11 @@ abstract class EahduhServiceClient {
   @POST("api/pay_debt")
   Future<PayPartialResponse> payPartialDept(@Body() PayPartialDeptRequest partialDeptRequest);
 
+
+
+
+
+  @GET("api/get_invoice/{invoiceId}")
+  Future<InvoicesResponse> getInvoice(@Path() int invoiceId);
 
 }

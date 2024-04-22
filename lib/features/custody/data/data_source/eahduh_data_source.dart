@@ -1,6 +1,7 @@
 import 'package:mandoob/features/custody/data/network/eahduh_requests.dart';
 import 'package:mandoob/features/custody/data/responses/cart_response.dart';
 import 'package:mandoob/features/custody/data/responses/confirm_response.dart';
+import 'package:mandoob/features/custody/data/responses/invoices_response.dart';
 import 'package:mandoob/features/custody/data/responses/pay_partial_response.dart';
 
 import '../network/eahduh_api.dart';
@@ -25,6 +26,9 @@ abstract class RemoteEahduhDataSource {
   Future<ConfirmResponse> confirmInvoice({required ConfirmRequest confirmRequest});
 
   Future<PayPartialResponse> payPartialDept({required PayPartialDeptRequest partialDeptRequest});
+
+
+  Future<InvoicesResponse> getInvoice({required int invoiceId});
 
 
 
@@ -85,5 +89,11 @@ class RemoteEahduhDataSourceImpl extends RemoteEahduhDataSource {
   @override
   Future<PayPartialResponse> payPartialDept({required PayPartialDeptRequest partialDeptRequest}) {
     return _appServiceClient.payPartialDept(partialDeptRequest);
+  }
+
+  @override
+  Future<InvoicesResponse> getInvoice({required int invoiceId}) {
+    return _appServiceClient.getInvoice(invoiceId);
+
   }
 }
