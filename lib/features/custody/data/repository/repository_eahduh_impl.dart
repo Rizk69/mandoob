@@ -8,9 +8,11 @@ import 'package:mandoob/features/custody/data/data_source/eahduh_data_source.dar
 import 'package:mandoob/features/custody/data/mapper/cart_mapper.dart';
 import 'package:mandoob/features/custody/data/mapper/confirm_mapper.dart';
 import 'package:mandoob/features/custody/data/mapper/eahduh_mapper.dart';
+import 'package:mandoob/features/custody/data/mapper/invoices_mapper.dart';
 import 'package:mandoob/features/custody/data/network/eahduh_requests.dart';
 import 'package:mandoob/features/custody/domain/model/cart_model.dart';
 import 'package:mandoob/features/custody/domain/model/confirm_model.dart';
+import 'package:mandoob/features/custody/domain/model/invoices_model.dart';
 import 'package:mandoob/features/custody/domain/repository/eahduh_repository.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
@@ -168,6 +170,26 @@ class RepositoryEahduhImpl extends EahduhRepository {
 
     } catch (error) {
       print("catch");
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, InvoicesModel>> getInvoice({required int invoiceId}) async {
+    final response = await _remoteDataSource.getInvoice(invoiceId: invoiceId);
+
+    try {
+      if (response.status == true) {
+        print(response.status);
+        return Right(response.toDomain());
+      } else {
+        return Left(Failure(
+          ResponseCode.UNAUTHORIZED,
+          response.message,
+        ));
+      }
+    } catch (error) {
+      print(error);
       return Left(ErrorHandler.handle(error).failure);
     }
   }

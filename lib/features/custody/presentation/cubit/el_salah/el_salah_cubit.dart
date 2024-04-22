@@ -75,14 +75,11 @@ class ElSalahCubit extends Cubit<ElSalahState> {
         (model) {
       confirmModel = model;
 
-      if (pay ==0){
+      if (pay == 0) {
         emit(ConfirmCashInvoiceLoadedState(model));
-
-      }else {
+      } else {
         emit(ConfirmDeptInvoiceLoadedState(model));
-
       }
-
     });
   }
 
@@ -105,31 +102,26 @@ class ElSalahCubit extends Cubit<ElSalahState> {
 
   payPartialDept({required PayPartialDeptRequest partialDeptRequest}) async {
     emit(PayPartialDeptLoadingState());
-    final result =
-    await _payPartialDeptUseCase.execute(partialDeptRequest);
+    final result = await _payPartialDeptUseCase.execute(partialDeptRequest);
     result.fold(
-          (failure) => emit(PayPartialDeptErrorState(failure.message)),
-          (model) => emit(PayPartialDeptLoadedState()),
+      (failure) => emit(PayPartialDeptErrorState(failure.message)),
+      (model) => emit(PayPartialDeptLoadedState()),
     );
   }
 
-
   int selectedCurrency = 1;
+
   void updateCurrency(int currency) {
     print(currency);
     selectedCurrency = currency;
     emit(ElSalahCurrencyUpdated());
   }
 
-
   void openDrawer(BuildContext context) {
     Scaffold.of(context).openDrawer();
   }
 
-
-
   Map<int, int> itemsCountPerProduct = {};
-
 
   void addItem(int productId) {
     if (itemsCountPerProduct.containsKey(productId)) {
@@ -141,12 +133,12 @@ class ElSalahCubit extends Cubit<ElSalahState> {
   }
 
   void removeItem(int productId) {
-    if (itemsCountPerProduct.containsKey(productId) && itemsCountPerProduct[productId]! > 0) {
+    if (itemsCountPerProduct.containsKey(productId) &&
+        itemsCountPerProduct[productId]! > 0) {
       itemsCountPerProduct[productId] = itemsCountPerProduct[productId]! - 1;
     }
     emit(YourItemRemovedState());
   }
-
 
   bool isExpanded = false;
 
@@ -155,25 +147,26 @@ class ElSalahCubit extends Cubit<ElSalahState> {
     emit(ExpandedState());
   }
 
-
   int? expandedProductId;
+
   void toggleExpanded(int productId) {
     expandedProductId = (expandedProductId == productId) ? null : productId;
     emit(ExpandedState());
   }
 
-int ? invoiceId ;
-num ? pay_Doler ;
-num ? pay_Lera ;
+  int? invoiceId;
 
-setPayDoler(num payDolar){
-  pay_Doler= payDolar;
-  emit(SetPayDolarState());
-}
-setPayLera(num payLera){
-  pay_Lera = payLera;
-  emit(SetPayLeraState());
+  num? pay_Doler;
 
-}
+  num? pay_Lera;
 
+  setPayDoler(num payDolar) {
+    pay_Doler = payDolar;
+    emit(SetPayDolarState());
+  }
+
+  setPayLera(num payLera) {
+    pay_Lera = payLera;
+    emit(SetPayLeraState());
+  }
 }
