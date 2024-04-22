@@ -57,3 +57,56 @@ class SucssufflySceen extends StatelessWidget {
     );
   }
 }
+
+class SucssufflyDebtsSceen extends StatelessWidget {
+  String title;
+  String textbutton;
+  int id;
+  SucssufflyDebtsSceen(
+      {super.key,
+      required this.title,
+      required this.textbutton,
+      required this.id});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.3,
+            ),
+            const Center(
+                child: AnimatedCheck(img: 'assets/images/sucssimage.png')),
+            SizedBox(
+              height: AppSize.s4.h,
+            ),
+            Text(
+              title,
+              style: getBoldSegoeStyle(
+                  fontSize: 25, color: Theme.of(context).primaryColor),
+            ),
+            SizedBox(
+              height: AppSize.s18.h,
+            ),
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: CustomButton(
+                    onPressed: () {
+                      if (id == -1) {
+                        Navigator.pushReplacementNamed(
+                            context, Routes.homeViewRoute,
+                           );
+                      } else {
+                        Navigator.pushReplacementNamed(
+                            context, Routes.invoiceDebtsTrader,
+                            arguments: id);
+                      }
+                    },
+                    buttonText: textbutton))
+          ],
+        ),
+      ),
+    );
+  }
+}

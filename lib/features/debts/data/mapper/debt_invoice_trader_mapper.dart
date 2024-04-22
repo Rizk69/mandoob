@@ -6,7 +6,19 @@ extension DebtInvoiceTraderMapper on DebtInvoiceTraderResponse? {
     return DebtInvoiceTraderModel(
       status: this?.status ?? false,
       message: this?.message ?? '',
-      data: this?.data?.map((item) => item.toDomain()).toList() ?? [],
+      data: this?.data?.toDomain() ??
+          DebtInvoiceTraderDataModel(
+              id: 0,
+              traderName: '',
+              date: '',
+              debtPriceDoler: 0,
+              debtPriceLera: 0,
+              invoiceNo: '',
+              payPriceDoler: 0,
+              payPriceLera: 0,
+              restPriceDoler: 0,
+              restPriceLera: 0,
+              traderPhone: ''),
     );
   }
 }

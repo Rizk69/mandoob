@@ -1,11 +1,15 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
+import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/features/debts/domain/model/debt_trader_model.dart';
 import 'package:mandoob/features/debts/presentation/debts/cubit/debts_cubit.dart';
 import 'package:mandoob/features/debts/presentation/debts/cubit/debts_state.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../../core/resources/values_manager.dart';
@@ -37,7 +41,38 @@ class DebtRepayment extends StatelessWidget {
               SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18),
-                  child: BlocBuilder<DebtsCubit, DebtsState>(
+                  child: BlocConsumer<DebtsCubit, DebtsState>(
+                    listener: (context, state) {
+                      if (state is PayDebtTraderErrorState) {
+                        final snackBar = defaultSnakeBar(
+                          title:  LocaleKeys.ERROR.tr(),
+                          message: LocaleKeys.ERROR.tr(),
+                          state: ContentType.failure,
+                        );
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(snackBar);
+                      }
+
+                      if (state is PayDebtTraderLoadedState) {
+                        final snackBar = defaultSnakeBar(
+                          title: LocaleKeys.SUCCESS.tr(),
+                          message: LocaleKeys.SUCCESS.tr(),
+                          state: ContentType.success,
+                        );
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(snackBar);
+                        Navigator.pushNamed(
+                            context, Routes.sucssufflyDebtsTrader,
+                            arguments: SuccessMessageArguments(
+                                'تم الصرف بنجاح',
+                                'الفاتورة',
+                                DebtsCubit.get(context)
+                                    .payDebtTraderModel!
+                                    .invoiceId));
+                      }
+                    },
                     builder: (context, state) {
                       var debtsCubit = DebtsCubit.get(context);
                       return Column(
@@ -85,7 +120,6 @@ class DebtRepayment extends StatelessWidget {
                                 flex: 1,
                                 child: DropdownButtonFormField<String>(
                                   value: selectedCurrency,
-
                                   items: currencyOptions.map((String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
@@ -93,13 +127,13 @@ class DebtRepayment extends StatelessWidget {
                                     );
                                   }).toList(),
                                   onChanged: (String? value) {
-
-                                      selectedCurrency = value;
+                                    selectedCurrency = value;
                                     int id = _getCurrencyId(value);
                                     debtsCubit.setCurrencyId(id);
                                   },
                                 ),
-                              )                            ],
+                              )
+                            ],
                           ),
                           SizedBox(height: AppSize.s5.h),
                           customTextFormFiledInfo(
@@ -147,8 +181,8 @@ class DebtRepayment extends StatelessWidget {
                                           _dateController.text =
                                               DateFormat('yyyy-MM-dd')
                                                   .format(pickedDate);
-                                          debtsCubit.setDueDate(
-                                              _dateController.text  );
+                                          debtsCubit
+                                              .setDueDate(_dateController.text);
                                         }
                                       },
                                     ),
@@ -180,6 +214,7 @@ class DebtRepayment extends StatelessWidget {
       ),
     );
   }
+
   int _getCurrencyId(String? currencyName) {
     switch (currencyName) {
       case 'دولار':

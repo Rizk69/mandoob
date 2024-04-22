@@ -11,6 +11,7 @@ import 'package:mandoob/features/debts/domain/model/debt_trader_model.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debt_repayment.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debts_paying.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debts_view.dart';
+import 'package:mandoob/features/debts/presentation/debts/presentation/invoice_trader_view.dart';
 import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
@@ -39,6 +40,7 @@ class Routes {
   static const String elmulakhas = "/elmulakhas";
   static const String newTalab = "/newTalab";
   static const String sucssufflySceen = "/sucssufflySceen";
+  static const String invoiceDebtsTrader = "/invoiceDebtsTrader";
   static const String fawaterTagerDetails = "/fawaterTagerDetails";
   static const String fawaterMandobDetailsView = "/fawaterMandobDetailsView";
   static const String trafficLines = "/trafficLines";
@@ -57,6 +59,7 @@ class Routes {
   static const String newTrader = "/newtrader";
   static const String addExpenses = "/addExpenses";
   static const String sucssufflyAddTrader = "/sucssufflyAddTrader";
+  static const String sucssufflyDebtsTrader = "/sucssufflyDebtsTrader";
 }
 
 class RouteGenerator {
@@ -115,6 +118,12 @@ class RouteGenerator {
             builder: (_) => FawaterTagerDetailsView(
                   id: args,
                 ));
+        case Routes.invoiceDebtsTrader:
+        final args = settings.arguments as int;
+        return MaterialPageRoute(
+            builder: (_) => InvoiceTrader(
+                  id: args,
+                ));
       case Routes.fawaterMandobDetailsView:
         return MaterialPageRoute(builder: (_) => FawaterMandobDetailsView());
       case Routes.trafficLines:
@@ -155,6 +164,15 @@ class RouteGenerator {
 
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(
+                  id: args.idInvoice,
+                  title: args.message,
+                  textbutton: args.actionMessage,
+                ));
+        case Routes.sucssufflyDebtsTrader:
+        final args = settings.arguments as SuccessMessageArguments;
+
+        return MaterialPageRoute(
+            builder: (_) => SucssufflyDebtsSceen(
                   id: args.idInvoice,
                   title: args.message,
                   textbutton: args.actionMessage,
