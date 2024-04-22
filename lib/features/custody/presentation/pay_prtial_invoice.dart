@@ -41,7 +41,8 @@ class PayPartialInvoice extends StatelessWidget {
               ..hideCurrentSnackBar()
               ..showSnackBar(snackBar);
 
-            Navigator.pushReplacementNamed(context, Routes.homeRoute);
+            Navigator.pushReplacementNamed(context, Routes.invoiceDetails,
+                arguments: invoiceNumber);
           }
 
           if (state is PayPartialDeptErrorState) {

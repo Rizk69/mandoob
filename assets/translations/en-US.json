@@ -150,6 +150,15 @@
   "CurrentOrders": "Current Orders",
   "PreviousOrders": "Previous Orders",
   "ErrorLoadingData": "Error Loading Data",
-  "SomethingError": "Something Error"
+  "SomethingError": "Something Error",
 
+  "invoiceTrader": "Trader Invoice",
+  "invoiceNumber": "invoice Number",
+  "ProductName": "Product Name",
+  "count": "Count",
+  "priceInLera": "price by Lera",
+  "PriceInUsd": "price In Dolar",
+  "date": "date",
+  "totalPrice": "total Price",
+  "amountPaid": "The amount paid"
 }

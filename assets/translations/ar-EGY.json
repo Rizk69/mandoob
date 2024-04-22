@@ -150,6 +150,17 @@
   "CurrentOrders": "الطلبيات الحالية",
   "PreviousOrders": "الطلبيات السابقة",
   "ErrorLoadingData": "خطأ في تحميل البيانات",
-  "SomethingError": "خطأ ما"
+  "SomethingError": "خطأ ما",
+
+
+  "invoiceTrader": "فاتورة التاجر",
+  "invoiceNumber": "رقم الفاتورة",
+  "ProductName": "اسم المنتج",
+  "count": "الكمية",
+  "priceInLera": "السعر بالليرة",
+  "PriceInUsd": "السعر بالدولار",
+  "date": "التاريخ",
+  "totalPrice": "الأجمالي",
+  "amountPaid": "المبلغ المدفوع"
 
 }

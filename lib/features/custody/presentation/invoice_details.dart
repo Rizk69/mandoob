@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,17 +13,20 @@ import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class InvoiceDetailsView extends StatelessWidget {
   int id;
+
   InvoiceDetailsView({super.key, required this.id});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
-        create: (context) => instance<ElSalahCubit>()
-          ..getInvoice(invoiceId: id),
+        create: (context) =>
+            instance<ElSalahCubit>()..getInvoice(invoiceId: id),
         child: Scaffold(
           backgroundColor: ColorManager.backGround,
           body: Padding(
@@ -30,8 +35,7 @@ class InvoiceDetailsView extends StatelessWidget {
               child: BlocBuilder<ElSalahCubit, ElSalahState>(
                 builder: (context, state) {
                   if (state is GetInvoiceLoadedState) {
-                    var invoiceModel =
-                    ElSalahCubit.get(context).invoicesModel!;
+                    var invoiceModel = ElSalahCubit.get(context).invoicesModel!;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -39,11 +43,29 @@ class InvoiceDetailsView extends StatelessWidget {
                           height: AppSize.s6.h,
                         ),
                         HeaderScreen(
-                            title: 'فاتورة التاجر  ${invoiceModel.invoice?.customerName}',
+                            title:
+                                '${LocaleKeys.invoiceTrader.tr()}${invoiceModel.invoice?.customerName.split(" ")[0]}',
                             functionIcon: () {
-                              Navigator.pushReplacementNamed(context,Routes.homeRoute);
+                              Navigator.pushReplacementNamed(
+                                  context, Routes.homeRoute);
                             }),
-
+                        Center(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(IconAssets.whatsIcons),
+                              SizedBox(width: AppSize.s1.w),
+                              Text(
+                                invoiceModel.invoice!.customerPhone.toString(),
+                                style: getMediumInterStyle(
+                                  fontSize: 20,
+                                  color: ColorManager.gray,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         SizedBox(
                           height: AppSize.s2.h,
                         ),
@@ -54,8 +76,8 @@ class InvoiceDetailsView extends StatelessWidget {
                               color: ColorManager.black,
                             ),
                             children: [
-                              const TextSpan(
-                                text: 'رقم الفاتورة\t\t\t\t',
+                               TextSpan(
+                                text: '${LocaleKeys.invoiceNumber.tr()}\t\t\t\t',
                               ),
                               TextSpan(
                                 text: invoiceModel.invoice?.invoiceNo,
@@ -85,11 +107,12 @@ class InvoiceDetailsView extends StatelessWidget {
                                           color: ColorManager.black,
                                         ),
                                         children: [
-                                          const TextSpan(
-                                            text: 'المواد\t\t\t\t',
+                                           TextSpan(
+                                            text: '${LocaleKeys.ProductName.tr()}\t\t\t\t',
                                           ),
                                           TextSpan(
-                                            text: invoiceModel.invoice?.products[index].nameAr,
+                                            text: invoiceModel.invoice
+                                                ?.products[index].nameAr,
                                             style: getMediumInterStyle(
                                               fontSize: 20,
                                               color: ColorManager.black,
@@ -106,8 +129,8 @@ class InvoiceDetailsView extends StatelessWidget {
                                           color: ColorManager.black,
                                         ),
                                         children: [
-                                          const TextSpan(
-                                            text: 'الكمية\t\t\t\t',
+                                           TextSpan(
+                                            text: '${LocaleKeys.count.tr()}\t\t\t\t',
                                           ),
                                           TextSpan(
                                             text:
@@ -128,58 +151,58 @@ class InvoiceDetailsView extends StatelessWidget {
                                           color: ColorManager.black,
                                         ),
                                         children: [
-                                          const TextSpan(
-                                            text: 'السعر بالليرة \t\t\t\t',
-                                          ),
-                                          TextSpan(
-                                            text: invoiceModel
-                                                .invoice?.products[index].priceLera
-                                                .toString(),
-                                            style: getMediumInterStyle(
-                                              fontSize: 20,
-                                              color: ColorManager.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    RichText(
-                                      text: TextSpan(
-                                        style: getBoldSegoeStyle(
-                                          fontSize: 25,
-                                          color: ColorManager.black,
-                                        ),
-                                        children: [
-                                          const TextSpan(
-                                            text: 'السعر بالدولار\t\t\t\t',
-                                          ),
-                                          TextSpan(
-                                            text: invoiceModel
-                                                .invoice?.products[index].priceDoler
-                                                .toString(),
-                                            style: getMediumInterStyle(
-                                              fontSize: 20,
-                                              color: ColorManager.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    RichText(
-                                      text: TextSpan(
-                                        style: getBoldSegoeStyle(
-                                          fontSize: 25,
-                                          color: ColorManager.black,
-                                        ),
-                                        children: [
-                                          const TextSpan(
-                                            text: 'التاريخ\t\t\t',
+                                           TextSpan(
+                                            text: '${LocaleKeys.priceInLera.tr()} \t\t\t\t',
                                           ),
                                           TextSpan(
                                             text: invoiceModel.invoice
-                                                ?.products[index].date,
+                                                ?.products[index].priceLera
+                                                .toString(),
+                                            style: getMediumInterStyle(
+                                              fontSize: 20,
+                                              color: ColorManager.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    RichText(
+                                      text: TextSpan(
+                                        style: getBoldSegoeStyle(
+                                          fontSize: 25,
+                                          color: ColorManager.black,
+                                        ),
+                                        children: [
+                                           TextSpan(
+                                            text: '${LocaleKeys.PriceInUsd.tr()}\t\t\t\t',
+                                          ),
+                                          TextSpan(
+                                            text: invoiceModel.invoice
+                                                ?.products[index].priceDoler
+                                                .toString(),
+                                            style: getMediumInterStyle(
+                                              fontSize: 20,
+                                              color: ColorManager.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    RichText(
+                                      text: TextSpan(
+                                        style: getBoldSegoeStyle(
+                                          fontSize: 25,
+                                          color: ColorManager.black,
+                                        ),
+                                        children: [
+                                           TextSpan(
+                                            text: '${LocaleKeys.date.tr()}\t\t\t',
+                                          ),
+                                          TextSpan(
+                                            text: invoiceModel
+                                                .invoice?.products[index].date,
                                             style: getMediumInterStyle(
                                               fontSize: 20,
                                               color: ColorManager.black,
@@ -201,8 +224,8 @@ class InvoiceDetailsView extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin:
-                              const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                          margin: const EdgeInsets.only(
+                              left: 10, right: 10, bottom: 10),
                           width: double.infinity,
                           height: 1,
                           color: Colors.grey, // Border color
@@ -214,15 +237,81 @@ class InvoiceDetailsView extends StatelessWidget {
                               color: ColorManager.black,
                             ),
                             children: [
-                              const TextSpan(
-                                text: 'الأجمالي\t\t\t',
+                               TextSpan(
+                                text: '${LocaleKeys.totalPrice.tr()}\t\t\t',
                               ),
                               TextSpan(
-                                text: invoiceModel.invoice?.priceLera
-                                    .toString(),
+                                text:
+                                    "${invoiceModel.invoice?.priceDoler.toString()} \$    ",
                                 style: getBoldSegoeStyle(
-                                  fontSize: 25,
-                                  color: ColorManager.black,
+                                  fontSize: 20,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    "${invoiceModel.invoice?.priceLera.toString()} Tl",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.redAccent,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            style: getBoldSegoeStyle(
+                              fontSize: 28,
+                              color: ColorManager.black,
+                            ),
+                            children: [
+                               TextSpan(
+                                text: '${LocaleKeys.amountPaid.tr()} \t\t\t',
+                              ),
+                              TextSpan(
+                                text:
+                                    "${invoiceModel.invoice?.payPriceDoler.toString()} \$    ",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    "${invoiceModel.invoice?.payPriceLera.toString()} Tl",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.redAccent,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            style: getBoldSegoeStyle(
+                              fontSize: 28,
+                              color: ColorManager.black,
+                            ),
+                            children: [
+                               TextSpan(
+                                text: '${LocaleKeys.RemainingAmount.tr()} \t\t\t',
+                              ),
+                              TextSpan(
+                                text:
+                                    "${invoiceModel.invoice?.restPriceDoler.toString()} \$    ",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    "${invoiceModel.invoice?.restPriceLera.toString()} Tl",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.redAccent,
                                 ),
                               ),
                             ],
@@ -235,8 +324,10 @@ class InvoiceDetailsView extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.9,
                             child: CustomButton(
                                 onPressed: () {
-                                  Navigator.pushReplacementNamed(context,Routes.homeRoute);
-                                }, buttonText: 'صرف'))
+                                  Navigator.pushReplacementNamed(
+                                      context, Routes.homeRoute);
+                                },
+                                buttonText: 'صرف'))
                       ],
                     );
                   } else if (state is GetInvoiceLoadingState) {
@@ -260,4 +351,3 @@ class InvoiceDetailsView extends StatelessWidget {
     );
   }
 }
-
