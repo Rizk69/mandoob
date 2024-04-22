@@ -45,7 +45,7 @@ class DebtRepayment extends StatelessWidget {
                     listener: (context, state) {
                       if (state is PayDebtTraderErrorState) {
                         final snackBar = defaultSnakeBar(
-                          title:  LocaleKeys.ERROR.tr(),
+                          title: LocaleKeys.ERROR.tr(),
                           message: LocaleKeys.ERROR.tr(),
                           state: ContentType.failure,
                         );
@@ -196,9 +196,22 @@ class DebtRepayment extends StatelessWidget {
                               width: MediaQuery.of(context).size.width * 0.9,
                               child: CustomButton(
                                 onPressed: () {
-                                  debtsCubit.setTraderId(debtDetail.id);
+                                  if (debtsCubit.price.toString().isNotEmpty &&
+                                      debtsCubit.currencyId.toString().isNotEmpty  &&
+                                      debtsCubit.dueDate!.isNotEmpty) {
+                                    debtsCubit.setTraderId(debtDetail.id);
 
-                                  debtsCubit.payDebtTrader();
+                                    debtsCubit.payDebtTrader();
+                                  } else {
+                                    final snackBar = defaultSnakeBar(
+                                      title: LocaleKeys.ERROR.tr(),
+                                      message: LocaleKeys.ERROR.tr(),
+                                      state: ContentType.failure,
+                                    );
+                                    ScaffoldMessenger.of(context)
+                                      ..hideCurrentSnackBar()
+                                      ..showSnackBar(snackBar);
+                                  }
                                 },
                                 buttonText: 'تسديد',
                               ))

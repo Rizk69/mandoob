@@ -43,7 +43,7 @@ class SucssufflySceen extends StatelessWidget {
                   onPressed: () {
                     if (id == -1) {
                       Navigator.pushReplacementNamed(
-                          context, Routes.homeViewRoute,
+                          context, Routes.homeRoute,
                           arguments: id);
                     } else {
                       Navigator.pushReplacementNamed(
@@ -95,7 +95,7 @@ class SucssufflyDebtsSceen extends StatelessWidget {
                     onPressed: () {
                       if (id == -1) {
                         Navigator.pushReplacementNamed(
-                            context, Routes.homeViewRoute,
+                            context, Routes.homeRoute,
                            );
                       } else {
                         Navigator.pushReplacementNamed(

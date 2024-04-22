@@ -1,4 +1,8 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/features/debts/data/network/pay_dept_trader_request.dart';
 import 'package:mandoob/features/debts/domain/model/debt_delegate_model.dart';
 import 'package:mandoob/features/debts/domain/model/debt_invoice_trader_model.dart';
@@ -9,6 +13,7 @@ import 'package:mandoob/features/debts/domain/usecase/get_debt_invoice_trader_us
 import 'package:mandoob/features/debts/domain/usecase/get_debt_trader_usecases.dart';
 import 'package:mandoob/features/debts/domain/usecase/pay_debt_trader_usecases.dart';
 import 'package:mandoob/features/debts/presentation/debts/cubit/debts_state.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 
 class DebtsCubit extends Cubit<DebtsState> {
   DebtsCubit(this._getDelegateDebtsUseCase, this._getTraderDebtsUseCase,
@@ -80,7 +85,10 @@ class DebtsCubit extends Cubit<DebtsState> {
         dueDate: dueDate.toString(),
         currencyId: currencyId.toString(),
         price: price.toString()));
-    result.fold((failure) => emit(PayDebtTraderErrorState(failure.message)),
+    result.fold((failure) {
+
+
+      emit(PayDebtTraderErrorState(failure.message));},
         (success) {
       payDebtTraderModel = success;
       emit(PayDebtTraderLoadedState());

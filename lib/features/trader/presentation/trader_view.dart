@@ -88,9 +88,10 @@ class TraderView extends StatelessWidget {
                             },
                             child: Row(
                               children: [
-                                const Icon(
+                                 Icon(
                                   Icons.add,
                                   size: 23,
+                                  color: Theme.of(context).primaryColor,
                                 ),
                                 const SizedBox(
                                   width: 5,
@@ -99,7 +100,7 @@ class TraderView extends StatelessWidget {
                                   LocaleKeys.newTrade.tr(),
                                   style: TextStyle(
                                       fontSize: 16,
-                                      color: ColorManager.black,
+                                      color: Theme.of(context).primaryColor,
                                       fontWeight: FontWeight.w500),
                                 )
                               ],

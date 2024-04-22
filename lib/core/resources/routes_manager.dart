@@ -35,7 +35,7 @@ class Routes {
   static const String loginRoute = "/login";
   static const String splashRoute = "/splashRoute";
   static const String homeRoute = "/home";
-  static const String homeViewRoute = "/homeView";
+  // static const String homeViewRoute = "/homeView";
   static const String elSalah = "/elsalah";
   static const String elHodaa = "/elHodaa";
   static const String elmulakhas = "/elmulakhas";
@@ -78,9 +78,9 @@ class RouteGenerator {
         initFawaterModule();
         initExpensesModule();
         return MaterialPageRoute(builder: (_) => const HomeController());
-      case Routes.homeViewRoute:
-        initHomeModule();
-        return MaterialPageRoute(builder: (_) => HomeView());
+      // case Routes.homeViewRoute:
+      //   initHomeModule();
+      //   return MaterialPageRoute(builder: (_) => HomeView());
       case Routes.elSalah:
         return MaterialPageRoute(builder: (_) => ElSalahView());
 

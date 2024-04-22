@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.dart';
 import 'package:mandoob/features/invoices/domain/model/trader_invoice_model.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
 
 class TraderInvoiceFawater extends StatelessWidget {
   TraderInvoiceModel? traderInvoiceModel;
