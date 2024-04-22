@@ -11,7 +11,7 @@ class DebtInvoiceTraderResponse {
   String? message;
 
   @JsonKey(name: "data")
-  List<DebtInvoiceTraderDataResponse>? data;
+  DebtInvoiceTraderDataResponse? data;
 
   DebtInvoiceTraderResponse({
     this.status,

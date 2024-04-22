@@ -54,7 +54,6 @@ class ElEahduh extends StatelessWidget {
                         EahduhCubit.get(context)..getEahduhOrder();
                       }
 
-
                       if (state is AddProductToCartErrorState) {
                         final snackBar = defaultSnakeBar(
                           title: LocaleKeys.ERROR.tr(),
@@ -67,7 +66,11 @@ class ElEahduh extends StatelessWidget {
                       }
                     },
                     builder: (context, state) {
-                      if (state is GetEahduhLoadedState || state is AddEahduhSuccessState || state is AddProductToCartSuccessState|| state is ActiveTradeErrorState|| state is AddProductToCartErrorState) {
+                      if (state is GetEahduhLoadedState ||
+                          state is AddEahduhSuccessState ||
+                          state is AddProductToCartSuccessState ||
+                          state is ActiveTradeErrorState ||
+                          state is AddProductToCartErrorState) {
                         var cubit = EahduhCubit.get(context);
                         var data = cubit.orderModel;
                         return Column(
@@ -90,7 +93,8 @@ class ElEahduh extends StatelessWidget {
                                     'العهدة',
                                     style: getBoldSegoeStyle(
                                         fontSize: 25,
-                                        color: Theme.of(context).primaryColorLight),
+                                        color: Theme.of(context)
+                                            .primaryColorLight),
                                   ),
                                 ),
                                 IconButton(
@@ -100,7 +104,8 @@ class ElEahduh extends StatelessWidget {
                                     },
                                     icon: Icon(
                                       Icons.arrow_forward,
-                                      color: Theme.of(context).primaryColorLight,
+                                      color:
+                                          Theme.of(context).primaryColorLight,
                                     ))
                               ],
                             ),
@@ -139,12 +144,14 @@ class ElEahduh extends StatelessWidget {
                                 ],
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   columnCard(
                                     title:
-                                        data?.balance.totalDoler.toString() ?? '',
+                                        data?.balance.totalDoler.toString() ??
+                                            '',
                                     colorTitle: ColorManager.greenLight,
                                     des: "دولار",
                                   ),
@@ -154,7 +161,8 @@ class ElEahduh extends StatelessWidget {
                                     color: ColorManager.gray,
                                   ),
                                   columnCard(
-                                    title: data?.balance.totalLera.toString() ?? '',
+                                    title: data?.balance.totalLera.toString() ??
+                                        '',
                                     colorTitle: ColorManager.orangeLight,
                                     des: "لير",
                                   ),
@@ -187,7 +195,6 @@ class ElEahduh extends StatelessWidget {
                                           ScaffoldMessenger.of(context)
                                             ..hideCurrentSnackBar()
                                             ..showSnackBar(snackBar);
-
                                         }
 
                                         if (state is ActiveTradeLoadedState) {
@@ -201,14 +208,12 @@ class ElEahduh extends StatelessWidget {
                                             ..showSnackBar(snackBar);
 
                                           TradeCubit.get(context).getTrade();
-
                                         }
                                       },
                                       builder: (context, state) {
-                                        List<DropdownMenuItem<String>> tradeItems =
-                                            [
+                                        List<DropdownMenuItem<String>>
+                                            tradeItems = [
                                           DropdownMenuItem(
-
                                             value: '-1',
                                             child: Row(
                                               children: [
@@ -219,7 +224,8 @@ class ElEahduh extends StatelessWidget {
                                                 ),
                                                 const SizedBox(width: 8),
                                                 Text(
-                                                  LocaleKeys.selectNewTrade.tr(),
+                                                  LocaleKeys.selectNewTrade
+                                                      .tr(),
                                                   style: TextStyle(
                                                     color: Theme.of(context)
                                                         .primaryColor,
@@ -246,7 +252,8 @@ class ElEahduh extends StatelessWidget {
                                                   children: [
                                                     ClipRRect(
                                                       borderRadius:
-                                                          BorderRadius.circular(50),
+                                                          BorderRadius.circular(
+                                                              50),
                                                       child: Image.network(
                                                         trade.img,
                                                         height: 50,
@@ -276,7 +283,8 @@ class ElEahduh extends StatelessWidget {
                                         return DropdownButtonFormField<String>(
                                           decoration: InputDecoration(
                                             filled: true,
-                                              fillColor:Theme.of(context).primaryColorDark,
+                                            fillColor: Theme.of(context)
+                                                .primaryColorDark,
                                           ),
                                           value: currentDropdownValue,
                                           items: tradeItems,
@@ -287,10 +295,12 @@ class ElEahduh extends StatelessWidget {
                                             } else {
                                               currentDropdownValue = value;
                                               TradeCubit.get(context)
-                                                  .activeTrade(int.parse(value!));
+                                                  .activeTrade(
+                                                      int.parse(value!));
                                             }
                                           },
-                                          hint: Text(LocaleKeys.addNewTrade.tr()),
+                                          hint:
+                                              Text(LocaleKeys.addNewTrade.tr()),
                                         );
                                       },
                                     ))
@@ -301,7 +311,7 @@ class ElEahduh extends StatelessWidget {
                               height: MediaQuery.of(context).size.height / 2,
                               child: GridView.builder(
                                 gridDelegate:
-                                     SliverGridDelegateWithFixedCrossAxisCount(
+                                    SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                   childAspectRatio: 0.75,
                                   mainAxisSpacing: 2.0,
@@ -317,10 +327,12 @@ class ElEahduh extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(25),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Center(
-                                          child: data?.data[index].image != null &&
+                                          child: data?.data[index].image !=
+                                                      null &&
                                                   data?.data[index].image != ''
                                               ? Image.network(
                                                   data?.data[index].image,
@@ -337,7 +349,8 @@ class ElEahduh extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             color: Colors.grey[200],
                                             border: Border.all(
-                                                color: Colors.grey[200]!, width: 1),
+                                                color: Colors.grey[200]!,
+                                                width: 1),
                                           ),
                                         ),
                                         Padding(
@@ -352,16 +365,19 @@ class ElEahduh extends StatelessWidget {
                                               Column(
                                                 children: [
                                                   Text(
-
-                                                    translateString(context: context,
-                                                    enString: data?.data[index].nameEn,
-                                                      arString:data?.data[index].nameAr ,
+                                                    translateString(
+                                                      context: context,
+                                                      enString: data
+                                                          ?.data[index].nameEn,
+                                                      arString: data
+                                                          ?.data[index].nameAr,
                                                     ),
                                                     style: TextStyle(
                                                       fontSize: AppSize.s20.sp,
                                                       color: Theme.of(context)
                                                           .primaryColor,
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                     ),
                                                     maxLines: 1,
                                                   ),
@@ -384,11 +400,14 @@ class ElEahduh extends StatelessWidget {
                                               ),
                                               IconButton(
                                                 onPressed: () {
-                                                  data.data[index].favoriteProduct
+                                                  data.data[index]
+                                                          .favoriteProduct
                                                       ? cubit.deleteFavorite(
-                                                          id: data.data[index].id)
+                                                          id: data
+                                                              .data[index].id)
                                                       : cubit.addFavorite(
-                                                          id: data.data[index].id);
+                                                          id: data
+                                                              .data[index].id);
                                                 },
                                                 icon: Icon(
                                                   Icons.star,
@@ -405,10 +424,13 @@ class ElEahduh extends StatelessWidget {
                                         GestureDetector(
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              color: Theme.of(context).hoverColor,
-                                              borderRadius: const BorderRadius.only(
+                                              color:
+                                                  Theme.of(context).hoverColor,
+                                              borderRadius:
+                                                  const BorderRadius.only(
                                                 bottomLeft: Radius.circular(15),
-                                                bottomRight: Radius.circular(15),
+                                                bottomRight:
+                                                    Radius.circular(15),
                                               ),
                                             ),
                                             child: const Row(
@@ -431,8 +453,10 @@ class ElEahduh extends StatelessWidget {
                                               ],
                                             ),
                                           ),
-                                          onTap: (){
-                                            EahduhCubit.get(context).addProductToCart( data.data[index].id);
+                                          onTap: () {
+                                            EahduhCubit.get(context)
+                                                .addProductToCart(
+                                                    data.data[index].id);
                                           },
                                         )
                                       ],
@@ -468,7 +492,6 @@ class ElEahduh extends StatelessWidget {
                 ),
               ),
             ),
-
           ],
         ));
   }

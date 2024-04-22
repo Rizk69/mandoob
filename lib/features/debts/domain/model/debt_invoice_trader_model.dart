@@ -1,18 +1,15 @@
-
-
 class DebtInvoiceTraderModel {
   bool status;
 
   String message;
 
-  List<DebtInvoiceTraderDataModel> data;
+  DebtInvoiceTraderDataModel data;
 
   DebtInvoiceTraderModel({
     required this.status,
-    required  this.message,
+    required this.message,
     required this.data,
   });
-
 }
 
 class DebtInvoiceTraderDataModel {
@@ -51,6 +48,4 @@ class DebtInvoiceTraderDataModel {
     required this.restPriceDoler,
     required this.restPriceLera,
   });
-
-
 }
