@@ -11,6 +11,7 @@ class NewTalabatFailure extends NewTalabatState {
 
   NewTalabatFailure(this.massage);
 }
+
 class AddTalabatLoading extends NewTalabatState {}
 
 class AddTalabatSuccess extends NewTalabatState {}
@@ -40,4 +41,3 @@ class ProductFilterChanged extends NewTalabatState {
 
   ProductFilterChanged(this.filter);
 }
-

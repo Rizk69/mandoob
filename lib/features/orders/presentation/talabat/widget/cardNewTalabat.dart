@@ -1,11 +1,14 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/functions.dart';
-import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/features/orders/data/network/order_requests.dart';
 import 'package:mandoob/features/orders/domain/model/company_products_model.dart';
 import 'package:mandoob/features/orders/presentation/talabat/cubit/add_order_cubit/new_talabat_state.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../cubit/add_order_cubit/new_talabat_cubit.dart';
@@ -172,21 +175,30 @@ class CardNewOrder extends StatelessWidget {
                         type: '',
                         product_id: product.id.toString(),
                         unit_id: product.unit?.id.toString(),
-                      ));
+                      ),context);
                     } else if (selectedUnit.type == 1 && productCount != 0) {
                       NewTalabatCubit.get(context).addOrderList(AddOrderRequest(
                         count: productCount.toString(),
                         product_id: product.id.toString(),
                         unit_category_id: product.unitCategory?.id.toString(),
-                      ));
+                      ),context);
                     } else if (selectedUnit.type == 2 && productCount != 0) {
                       NewTalabatCubit.get(context).addOrderList(AddOrderRequest(
                         count: productCount.toString(),
                         product_id: product.id.toString(),
                         unit_sub_categories_id:
                             product.unitSubCategory?.id.toString(),
-                      ));
+                      ),context);
                     }
+                  }else{
+                    final snackBar = defaultSnakeBar(
+                      title: LocaleKeys.ERROR.tr(),
+                      message: LocaleKeys.ERROR.tr(),
+                      state: ContentType.failure,
+                    );
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(snackBar);
                   }
                 },
                 icon: Icon(Icons.add),

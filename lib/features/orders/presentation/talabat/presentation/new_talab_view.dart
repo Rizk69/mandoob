@@ -238,7 +238,7 @@ class NewTalabatViewBody extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 1.5,
                           child: CustomButton(
                             onPressed: () {
-                              NewTalabatCubit.get(context).sendProducts();
+                              NewTalabatCubit.get(context).sendProducts(context);
                             },
                             buttonText: LocaleKeys.add.tr(),
                           ))
