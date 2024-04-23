@@ -19,8 +19,8 @@ extension DebtDetailResponseMapper on DebtDetailResponse? {
     return DebtDetail(
       id: this?.id?.orZero()??Constants.zero,
       traderName: this?.traderName?.orEmpty()??Constants.empty,
-      debtDoler: this?.debtDoler?.orZero()??Constants.zero,
-      debtLera: this?.debtLera?.orZero()??Constants.zero,
+      debtDoler: this?.debtDoler?.orEmpty()??Constants.empty,
+      debtLera: this?.debtLera?.orEmpty()??Constants.empty,
       lastDate: this?.lastDate?.orEmpty()??Constants.empty,
       dueDate: this?.dueDate?.orEmpty()??Constants.empty,
     );

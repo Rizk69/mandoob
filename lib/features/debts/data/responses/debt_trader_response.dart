@@ -32,10 +32,10 @@ class DebtDetailResponse {
   String? traderName;
 
   @JsonKey(name: "debt_Doler")
-  num? debtDoler;
+  String? debtDoler;
 
   @JsonKey(name: "debt_Lera")
-  num? debtLera;
+  String? debtLera;
 
   @JsonKey(name: "last_date")
   String? lastDate;

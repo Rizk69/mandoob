@@ -41,22 +41,22 @@ class DebtInvoiceTraderDataResponse {
   String? invoiceNo;
 
   @JsonKey(name: "debt_price_Doler")
-  num? debtPriceDoler;
+  String? debtPriceDoler;
 
   @JsonKey(name: "debt_price_Lera")
-  num? debtPriceLera;
+  String? debtPriceLera;
 
   @JsonKey(name: "pay_price_Doler")
-  num? payPriceDoler;
+  String? payPriceDoler;
 
   @JsonKey(name: "pay_price_Lera")
-  num? payPriceLera;
+  String? payPriceLera;
 
   @JsonKey(name: "rest_price_Doler")
-  num? restPriceDoler;
+  String? restPriceDoler;
 
   @JsonKey(name: "rest_price_Lera")
-  num? restPriceLera;
+  String? restPriceLera;
 
   DebtInvoiceTraderDataResponse({
     this.id,

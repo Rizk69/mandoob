@@ -30,9 +30,9 @@ class DebtDelegateDataResponse {
   @JsonKey(name: "id")
   int? id;
   @JsonKey(name: "debt_price_Doler")
-  num? debtPriceDoler;
+  String? debtPriceDoler;
   @JsonKey(name: "debt_price_Lera")
-  num? debtPriceLera;
+  String? debtPriceLera;
   @JsonKey(name: "date")
   String? date;
   @JsonKey(name: "reason_expenses_name_ar")

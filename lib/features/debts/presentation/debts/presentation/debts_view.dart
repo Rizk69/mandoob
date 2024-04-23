@@ -143,7 +143,7 @@ class DebtsViewBody extends StatelessWidget {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: AppSize.s64.h,
+                                  height: AppSize.s80.h,
                                   child: TabBarView(
                                     children: [
                                       ListView.builder(

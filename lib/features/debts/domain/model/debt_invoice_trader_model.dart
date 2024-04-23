@@ -3,7 +3,7 @@ class DebtInvoiceTraderModel {
 
   String message;
 
-  DebtInvoiceTraderDataModel data;
+  DebtInvoiceTraderDataModel? data;
 
   DebtInvoiceTraderModel({
     required this.status,
@@ -23,17 +23,17 @@ class DebtInvoiceTraderDataModel {
 
   String invoiceNo;
 
-  num debtPriceDoler;
+  String debtPriceDoler;
 
-  num debtPriceLera;
+  String debtPriceLera;
 
-  num payPriceDoler;
+  String payPriceDoler;
 
-  num payPriceLera;
+  String payPriceLera;
 
-  num restPriceDoler;
+  String restPriceDoler;
 
-  num restPriceLera;
+  String restPriceLera;
 
   DebtInvoiceTraderDataModel({
     required this.id,

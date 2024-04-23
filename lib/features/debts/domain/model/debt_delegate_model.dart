@@ -13,8 +13,8 @@ class DebtDelegateModel {
 
 class DebtDelegateDataModel {
   int id;
-  num debtPriceDoler;
-  num debtPriceLera;
+  String debtPriceDoler;
+  String debtPriceLera;
   String date;
   String reasonExpensesNameAr;
   String reasonExpensesNameEn;

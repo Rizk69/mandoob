@@ -22,8 +22,8 @@ extension DebtDelegateMapper on DebtDelegateDataResponse {
   DebtDelegateDataModel toDomain() {
     return DebtDelegateDataModel(
       id: id?.orZero()??Constants.zero,
-      debtPriceDoler: debtPriceDoler?.orZero()??Constants.zero,
-      debtPriceLera: debtPriceLera?.orZero()??Constants.zero,
+      debtPriceDoler: debtPriceDoler?.orEmpty()??Constants.empty,
+      debtPriceLera: debtPriceLera?.orEmpty()??Constants.empty,
       date: date?.orEmpty()??Constants.empty,
       reasonExpensesNameAr: reasonExpensesNameAr?.orEmpty()??Constants.empty,
       reasonExpensesNameEn: reasonExpensesNameEn?.orEmpty()??Constants.empty,

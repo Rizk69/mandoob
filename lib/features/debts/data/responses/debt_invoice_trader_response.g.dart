@@ -33,12 +33,12 @@ DebtInvoiceTraderDataResponse _$DebtInvoiceTraderDataResponseFromJson(
       traderPhone: json['trader_phone'] as String?,
       date: json['date'] as String?,
       invoiceNo: json['invoice_no'] as String?,
-      debtPriceDoler: json['debt_price_Doler'] as num?,
-      debtPriceLera: json['debt_price_Lera'] as num?,
-      payPriceDoler: json['pay_price_Doler'] as num?,
-      payPriceLera: json['pay_price_Lera'] as num?,
-      restPriceDoler: json['rest_price_Doler'] as num?,
-      restPriceLera: json['rest_price_Lera'] as num?,
+      debtPriceDoler: json['debt_price_Doler'] as String?,
+      debtPriceLera: json['debt_price_Lera'] as String?,
+      payPriceDoler: json['pay_price_Doler'] as String?,
+      payPriceLera: json['pay_price_Lera'] as String?,
+      restPriceDoler: json['rest_price_Doler'] as String?,
+      restPriceLera: json['rest_price_Lera'] as String?,
     );
 
 Map<String, dynamic> _$DebtInvoiceTraderDataResponseToJson(

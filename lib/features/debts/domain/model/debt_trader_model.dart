@@ -13,8 +13,8 @@ class DeptTraderModel {
 class DebtDetail {
   int id;
   String traderName;
-  num debtDoler;
-  num debtLera;
+  String debtDoler;
+  String debtLera;
   String lastDate;
   String dueDate;
 

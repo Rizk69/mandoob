@@ -26,8 +26,8 @@ DebtDetailResponse _$DebtDetailResponseFromJson(Map<String, dynamic> json) =>
     DebtDetailResponse(
       id: json['id'] as int?,
       traderName: json['trader_name'] as String?,
-      debtDoler: json['debt_Doler'] as num?,
-      debtLera: json['debt_Lera'] as num?,
+      debtDoler: json['debt_Doler'] as String?,
+      debtLera: json['debt_Lera'] as String?,
       lastDate: json['last_date'] as String?,
       dueDate: json['due_date'] as String?,
     );

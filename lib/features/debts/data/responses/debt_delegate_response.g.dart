@@ -29,8 +29,8 @@ DebtDelegateDataResponse _$DebtDelegateDataResponseFromJson(
         Map<String, dynamic> json) =>
     DebtDelegateDataResponse(
       id: json['id'] as int?,
-      debtPriceDoler: json['debt_price_Doler'] as num?,
-      debtPriceLera: json['debt_price_Lera'] as num?,
+      debtPriceDoler: json['debt_price_Doler'] as String?,
+      debtPriceLera: json['debt_price_Lera'] as String?,
       date: json['date'] as String?,
       reasonExpensesNameAr: json['reason_expenses_name_ar'] as String?,
       reasonExpensesNameEn: json['reason_expenses_name_en'] as String?,
