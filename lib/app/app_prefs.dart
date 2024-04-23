@@ -25,6 +25,28 @@ class AppPreferences {
   final SharedPreferences _sharedPreferences;
 
   AppPreferences(this._sharedPreferences);
+  Future<void> setRememberMe(bool value) async {
+    await _sharedPreferences.setBool("REMEMBER_ME", value);
+  }
+
+  Future<bool> getRememberMe() async {
+    return _sharedPreferences.getBool("REMEMBER_ME") ?? false;
+  }
+
+  Future<void> setRememberMeEmail(String email) async {
+    await _sharedPreferences.setString("REMEMBER_ME_EMAIL", email);
+  }
+  Future<void> setRememberMePassword(String email) async {
+    await _sharedPreferences.setString("REMEMBER_ME_PASSWORD", email);
+  }
+
+  Future<String> getRememberMeEmail() async {
+    return _sharedPreferences.getString("REMEMBER_ME_EMAIL") ?? "";
+  }
+
+  Future<String> getRememberMePassword() async {
+    return _sharedPreferences.getString("REMEMBER_ME_PASSWORD") ?? "";
+  }
 
   Future<String> getAppLanguage() async {
     String? language = _sharedPreferences.getString(PREFS_KEY_LANG);
@@ -51,6 +73,7 @@ class AppPreferences {
       );
     }
   }
+
   Future<bool> getThemePreference() async {
     return _sharedPreferences.getBool("showRow") ?? false;
   }
@@ -97,7 +120,6 @@ class AppPreferences {
     return _sharedPreferences.getString(USER_AR_NAME) ?? "";
   }
 
-
   Future<void> setUserEmail(String userEmail) async {
     _sharedPreferences.setString(USER_EMAIL, userEmail);
   }
@@ -105,7 +127,6 @@ class AppPreferences {
   Future<String> getUserEmail() async {
     return _sharedPreferences.getString(USER_EMAIL) ?? "";
   }
-
 
   Future<void> setUserPicture(String userPicture) async {
     _sharedPreferences.setString(USER_PICTURE, userPicture);

@@ -104,7 +104,7 @@ class HomeView extends StatelessWidget {
                               PopupMenuButton<int>(
                                 onSelected: (value) {
                                   cubit.editPrice(
-                                      value); // تعديل القيمة بناءً على الاختيار
+                                      value);
                                 },
                                 itemBuilder: (BuildContext context) => [
                                   PopupMenuItem<int>(

@@ -17,9 +17,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -75,7 +72,7 @@ class LoginView extends StatelessWidget {
                   SizedBox(height: AppSize.s10.h),
                   TextField(
                     keyboardType: TextInputType.emailAddress,
-                    controller: _emailController,
+                    controller:context.read<LoginCubit>().emailController,
                     textInputAction: TextInputAction.next,
                     style: TextStyle(color: Theme.of(context).primaryColor),
                     autofillHints: const [AutofillHints.email],
@@ -91,18 +88,16 @@ class LoginView extends StatelessWidget {
                   ),
                   SizedBox(height: AppSize.s3.h),
                   TextField(
-
                     keyboardType: TextInputType.visiblePassword,
-                    controller: _passwordController,
+                    controller: context.read<LoginCubit>().passwordController,
                     obscureText: context.read<LoginCubit>().isPassword,
                     textInputAction: TextInputAction.done,
-                    style:TextStyle(color: Theme.of(context).primaryColor),
+                    style: TextStyle(color: Theme.of(context).primaryColor),
                     autofillHints: const [AutofillHints.password],
                     onChanged: (password) {
                       context.read<LoginCubit>().setPassword(password);
                     },
                     decoration: InputDecoration(
-
                       hintText: LocaleKeys.password.tr(),
                       labelText: LocaleKeys.password.tr(),
                       prefixIcon: Icon(Icons.lock, color: ColorManager.grey3),
@@ -120,8 +115,6 @@ class LoginView extends StatelessWidget {
                   Row(
                     children: [
                       Checkbox(
-                        side: BorderSide(
-                            color: ColorManager.baseColorLight, width: 2),
                         value: checkValue,
                         onChanged: (newValue) {
                           context
@@ -156,12 +149,12 @@ class LoginView extends StatelessWidget {
                       ),
                       onPressed: context.read<LoginCubit>().isDataValid
                           ? () {
-                              context.read<LoginCubit>().login(
-                                    context: context,
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  );
-                            }
+                        context.read<LoginCubit>().login(
+                            context: context,
+                            email: context.read<LoginCubit>().emailController.text,
+                            password: context.read<LoginCubit>().passwordController.text,
+                            rememberMe: checkValue);
+                      }
                           : null,
                       child: Text(
                         LocaleKeys.signIn.tr(),

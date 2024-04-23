@@ -13,15 +13,39 @@ import 'package:mandoob/app/di.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  void toggleCheckbox(bool checkValue) => emit(CheckValueState(checkValue));
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  String _email = '';
+  String _password = '';
+  bool isDataValid = false;
+
+  void toggleCheckbox(bool checkValue) {
+    emit(CheckValueState(checkValue));
+  }
 
   final LoginUseCase _loginUseCase;
   var loginObject = LoginObject("", "");
 
-  LoginCubit(this._loginUseCase) : super(LoginInitialState());
+  LoginCubit(this._loginUseCase) : super(LoginInitialState()) {
+    checkRememberMe();
+  }
 
-  String _email = '';
-  String _password = '';
+  Future<void> checkRememberMe() async {
+    AppPreferences _appPreferences = instance<AppPreferences>();
+
+    bool rememberMe = await _appPreferences.getRememberMe();
+    print("rememberMe :$rememberMe");
+    if (rememberMe) {
+      _email = await _appPreferences.getRememberMeEmail();
+      _password = await _appPreferences.getRememberMePassword();
+      emailController.text = _email;
+      passwordController.text = _password;
+      isDataValid = true;
+
+      emit(RestoreEmailState(_email));
+      emit(RestorePasswordState(_password));
+    }
+  }
 
   void setEmail(String email) {
     _email = email;
@@ -35,8 +59,6 @@ class LoginCubit extends Cubit<LoginState> {
 
     _checkDataValidity();
   }
-
-  bool isDataValid = false;
 
   void _checkDataValidity() {
     isDataValid = _email.isNotEmpty && _password.isNotEmpty;
@@ -53,12 +75,29 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> login(
       {required BuildContext context,
       required String email,
-      required String password}) async {
+      required String password,
+      required bool rememberMe}) async {
+    AppPreferences _appPreferences = instance<AppPreferences>();
+
     emit(LoginLoadingState());
-    loginObject = loginObject.copyWith(email: email, password: password);
-    final result = await _loginUseCase.execute(LoginRequest(
-        email: loginObject.email, accountPassword: loginObject.password));
-    emit(_failureOrLoginToState(result));
+    final result = await _loginUseCase
+        .execute(LoginRequest(email: email, accountPassword: password));
+
+    result.fold(
+      (failure) => emit(LoginFailureState(failure.message)),
+      (data) async {
+        await _saveUserDataLocal(data);
+        if (rememberMe) {
+          await _appPreferences.setRememberMe(true);
+          await _appPreferences.setRememberMeEmail(email);
+          await _appPreferences.setRememberMePassword(password);
+        } else {
+          await _appPreferences.setRememberMe(false);
+          await _appPreferences.setRememberMeEmail("");
+        }
+        emit(LoginSuccessState());
+      },
+    );
   }
 
   LoginState _failureOrLoginToState(Either<Failure, LoginModel> either) {

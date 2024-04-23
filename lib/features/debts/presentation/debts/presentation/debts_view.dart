@@ -180,20 +180,16 @@ class DebtsViewBody extends StatelessWidget {
                                                       rowCard(
                                                           title: 'اسم التاجر',
                                                           colorTitle:
-                                                              ColorManager
-                                                                  .black,
-                                                          colordes: ColorManager
-                                                              .black,
+                                                          Theme.of(context).primaryColor,
+                                                          colordes: Theme.of(context).primaryColor,
                                                           des: debts.traderName,
                                                           context: context),
                                                       rowCard(
                                                           title:
                                                               'مبلغ الدين باالدولار',
                                                           colorTitle:
-                                                              ColorManager
-                                                                  .black,
-                                                          colordes: ColorManager
-                                                              .black,
+                                                          Theme.of(context).primaryColor,
+                                                          colordes: Theme.of(context).primaryColor,
                                                           des:
                                                               "${debts.debtDoler}",
                                                           context: context),
@@ -201,10 +197,8 @@ class DebtsViewBody extends StatelessWidget {
                                                           title:
                                                               'مبلغ الدين بالليرة',
                                                           colorTitle:
-                                                              ColorManager
-                                                                  .black,
-                                                          colordes: ColorManager
-                                                              .black,
+                                                          Theme.of(context).primaryColor,
+                                                          colordes: Theme.of(context).primaryColor,
                                                           des:
                                                               "${debts.debtLera}",
                                                           context: context),
@@ -212,10 +206,8 @@ class DebtsViewBody extends StatelessWidget {
                                                           title:
                                                               'تاريخ اخر دفعة',
                                                           colorTitle:
-                                                              ColorManager
-                                                                  .black,
-                                                          colordes: ColorManager
-                                                              .black,
+                                                          Theme.of(context).primaryColor,
+                                                          colordes: Theme.of(context).primaryColor,
                                                           des:
                                                               "${debts.lastDate}",
                                                           context: context),
@@ -223,10 +215,8 @@ class DebtsViewBody extends StatelessWidget {
                                                           title:
                                                               'تاريخ الدفعة القادمة',
                                                           colorTitle:
-                                                              ColorManager
-                                                                  .black,
-                                                          colordes: ColorManager
-                                                              .black,
+                                                          Theme.of(context).primaryColor,
+                                                          colordes: Theme.of(context).primaryColor,
                                                           des:
                                                               "${debts.dueDate}",
                                                           context: context),
@@ -285,6 +275,22 @@ class DebtsViewBody extends StatelessWidget {
                                               0),
                                       ListView.builder(
                                         itemBuilder: (context, index) {
+                                          var delegateDebtsCubit =
+                                              DebtsCubit.get(context)
+                                                  .delegateModel;
+                                          if (delegateDebtsCubit == null ||
+                                              delegateDebtsCubit
+                                                  .debts.isEmpty) {
+                                            return SizedBox();
+                                          }
+
+                                          if (index >=
+                                              delegateDebtsCubit.debts.length) {
+                                            return SizedBox();
+                                          }
+
+                                          final debts =
+                                              delegateDebtsCubit.debts[index];
                                           return Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -298,73 +304,62 @@ class DebtsViewBody extends StatelessWidget {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          'المبلغ : ',
-                                                          style:
-                                                              getBoldSegoeStyle(
-                                                            fontSize: 18,
-                                                            color: ColorManager
-                                                                .grey3,
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 8),
-                                                          child: Text(
-                                                            "التفاصيل",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  ColorManager
-                                                                      .babyBlue,
-                                                              fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .underline,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(height: 8),
-                                                    Text(
-                                                      'المبلغ  : 4545',
-                                                      style: getBoldSegoeStyle(
-                                                        fontSize: 18,
-                                                        color:
+                                                    rowCard(
+                                                        title:
+                                                            'مبلغ الدين باالدولار',
+                                                        colorTitle:
                                                             ColorManager.grey3,
-                                                      ),
-                                                    ),
-                                                    SizedBox(height: 8),
-                                                    Text(
-                                                      'التاريخ :  24-11-2022',
-                                                      style: getBoldSegoeStyle(
-                                                        fontSize: 18,
-                                                        color:
+                                                        colordes:
                                                             ColorManager.grey3,
-                                                      ),
-                                                    ),
+                                                        des: debts
+                                                            .debtPriceDoler
+                                                            .toString(),
+                                                        context: context),
+                                                    rowCard(
+                                                        title:
+                                                            'مبلغ الدين بالليرة',
+                                                        colorTitle:
+                                                            ColorManager.grey3,
+                                                        colordes:
+                                                            ColorManager.grey3,
+                                                        des: debts
+                                                            .debtPriceLera
+                                                            .toString(),
+                                                        context: context),
+                                                    rowCard(
+                                                        title:
+                                                            'تاريخ الدين',
+                                                        colorTitle:
+                                                            ColorManager.grey3,
+                                                        colordes:
+                                                            ColorManager.grey3,
+                                                        des: debts
+                                                            .date
+                                                            .toString(),
+                                                        context: context),
+                                                    rowCard(
+                                                        title:
+                                                            'السبب',
+                                                        colorTitle:
+                                                            ColorManager.grey3,
+                                                        colordes:
+                                                            ColorManager.grey3,
+                                                        des: debts
+                                                            .reasonExpensesNameAr
+                                                            .toString(),
+                                                        context: context),
                                                     SizedBox(height: 12),
                                                     Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
+                                                      width: MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .width,
                                                       decoration: BoxDecoration(
-                                                        color: Colors.grey,
-                                                        border: Border.all(
-                                                            color: Colors.grey,
-                                                            width: 1),
-                                                      ),
+                                                          color: Colors.grey,
+                                                          border: Border.all(
+                                                              color:
+                                                              Colors.grey,
+                                                              width: 1)),
                                                     )
                                                   ],
                                                 ),
@@ -409,14 +404,14 @@ class DebtsViewBody extends StatelessWidget {
           "$title :  ",
           style: getBoldSegoeStyle(
             fontSize: 18,
-            color: Theme.of(context).primaryColor,
+            color: colorTitle,
           ),
         ),
         Text(
           des,
           style: getBoldSegoeStyle(
             fontSize: 18,
-            color: Theme.of(context).primaryColor,
+            color: colordes ,
           ),
         )
       ],

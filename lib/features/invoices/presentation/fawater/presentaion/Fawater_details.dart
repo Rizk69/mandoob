@@ -7,6 +7,7 @@ import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
+import 'package:mandoob/core/widget/empty_screen.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -558,18 +559,11 @@ class FawaterMandobDetailsView extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Column(
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 2,
-                          ),
-                          Center(child: Text('No Data available.')),
-                        ],
-                      );
+                      return EmptyScreen(title: 'خطأ في البيانات', textbutton: 'العودة');
                     }
                   } else if (state ==
                       FawaterViewState.loadingSupplierInvoiceDetails) {
-                    return Scaffold(
+                    return const Scaffold(
                       body: Column(
                         children: [
                           Center(
