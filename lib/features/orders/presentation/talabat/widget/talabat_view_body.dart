@@ -22,6 +22,7 @@ class TalabatViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    final TextEditingController _dateController = TextEditingController();
 
     return BlocProvider(
       create: (context) => instance<TalabatViewCubit>()
@@ -101,6 +102,7 @@ class TalabatViewBody extends StatelessWidget {
                       ),
                       SizedBox(height: AppSize.s4.h),
                       TextFormField(
+                        controller: _dateController,  // Use the controller here
                         scribbleEnabled: true,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
@@ -111,6 +113,28 @@ class TalabatViewBody extends StatelessWidget {
                         },
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.search),
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.date_range),
+                            onPressed: () async {
+                              final pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2101),
+                              );
+
+                              if (pickedDate != null) {
+                                // Format the picked date
+                                final formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                                // Update the text field with the selected date
+                                _dateController.text = formattedDate;
+
+                                // Perform search with the selected date
+                                TalabatViewCubit.get(context).searchTalabat(formattedDate);
+                              }
+                            },
+                          ),
                           hintText: LocaleKeys.SearchHere.tr(),
                           filled: true,
                           hintStyle: TextStyle(
@@ -189,8 +213,7 @@ class TalabatViewBody extends StatelessWidget {
                                     ],
                                   ),
                                   SizedBox(
-                                      height:
-                                          MediaQuery.sizeOf(context).height / 2,
+                                      height: AppSize.s45.h,
                                       child: TabBarView(
                                         children: [
                                           talabatPresent.orders.isNotEmpty

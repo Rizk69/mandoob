@@ -56,20 +56,31 @@ class TalabatViewCubit extends Cubit<TalabatViewState> {
   List<OrdersTalabat> filteredOldOrders = [];
 
   void searchTalabat(String query) {
-    // يمكنك إضافة هذا الشرط لتحسين الأداء إذا كان الاستعلام فارغًا
-    if(query.isEmpty) {
+    // If the query is empty, use the full list
+    if (query.isEmpty) {
       filteredPresentOrders = List.from(talabatPresentModel!.orders);
       filteredOldOrders = List.from(talabatOldModel!.orders);
     } else {
-      filteredPresentOrders = talabatPresentModel!.orders.where((order) =>
-      order.orderNo.contains(query) || order.date.contains(query) || order.status_ar.toString().contains(query)|| order.status_en.toString().contains(query)).toList();
-      filteredOldOrders = talabatOldModel!.orders.where((order) =>
-      order.orderNo.contains(query) || order.date.contains(query) || order.status_ar.toString().contains(query)|| order.status_en.toString().contains(query)).toList();
+      // Filter based on the date or other fields
+      filteredPresentOrders = talabatPresentModel!.orders
+          .where((order) => order.date == query ||
+          order.orderNo.contains(query) ||
+          order.status_ar.toString().contains(query) ||
+          order.status_en.toString().contains(query))
+          .toList();
+
+      filteredOldOrders = talabatOldModel!.orders
+          .where((order) => order.date == query ||
+          order.orderNo.contains(query) ||
+          order.status_ar.toString().contains(query) ||
+          order.status_en.toString().contains(query))
+          .toList();
     }
 
     emit(LoadedPresentState(talabatPresentModel!.copyWith(orders: filteredPresentOrders)));
     emit(LoadedOldState(talabatOldModel!.copyWith(orders: filteredOldOrders)));
   }
+
 
 
 
