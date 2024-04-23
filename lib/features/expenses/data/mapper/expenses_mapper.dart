@@ -19,7 +19,7 @@ extension ExpenseResponseMapper on ExpenseDataResponse? {
       id: this?.id.orZero()?? Constants.zero,
       reasonExpenseAr: this?.reasonExpenseAr.orEmpty() ?? Constants.empty,
       reasonExpenseEn: this?.reasonExpenseEn.orEmpty() ?? Constants.empty,
-      price: this?.price.orZero()?? Constants.zero,
+      price: this?.price.orEmpty()?? Constants.empty,
       count:this?.count.orEmpty() ?? Constants.empty,
       date: this?.date.orEmpty() ?? Constants.empty,
       statusAr: this?.statusAr.orEmpty() ?? Constants.empty,

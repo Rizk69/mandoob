@@ -14,7 +14,7 @@ class ExpenseDataModel {
   int id;
   String reasonExpenseAr;
   String reasonExpenseEn;
-  num price;
+  String price;
   String count;
   String date;
   String statusAr;
