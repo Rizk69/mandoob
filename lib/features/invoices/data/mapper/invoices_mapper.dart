@@ -20,8 +20,8 @@ extension TraderInvoiceDataResponseMapper on TraderInvoiceDataResponse? {
     return TraderInvoiceDataModel(
       id: this?.id ?? 0,
       invoiceNo: this?.invoiceNo.orEmpty() ?? Constants.empty,
-      priceDoler: this?.priceDoler.orZero()?? Constants.zero,
-      priceLera: this?.priceLera.orZero()  ?? Constants.zero,
+      priceDoler: this?.priceDoler.orEmpty()?? Constants.empty,
+      priceLera: this?.priceLera.orEmpty()  ?? Constants.empty,
       customerName: this?.customerName.orEmpty() ?? Constants.empty,
       date: this?.date.orEmpty() ?? Constants.empty,
     );
@@ -32,11 +32,7 @@ extension SupplierInvoiceResponseMapper on SupplierInvoiceResponse? {
     return SupplierInvoiceModel(
       status: this?.status ?? false,
       message: this?.message.orEmpty() ?? Constants.empty,
-      data: this?.data?.toDomain() ?? SupplierInvoiceDataModel(
-        totalDoler: Constants.zero,
-        totalLera: Constants.zero,
-        date: Constants.empty,
-      ),
+      data: this?.data?.toDomain(),
     );
   }
 }
@@ -44,8 +40,8 @@ extension SupplierInvoiceResponseMapper on SupplierInvoiceResponse? {
 extension DataSupplierInvoiceResponseMapper on DataSupplierInvoiceResponse? {
   SupplierInvoiceDataModel toDomain() {
     return SupplierInvoiceDataModel(
-      totalDoler: this?.totalDoler?.orZero() ?? Constants.zero,
-      totalLera: this?.totalLera?.orZero() ?? Constants.zero,
+      totalDoler: this?.totalDoler?.orEmpty() ?? Constants.empty,
+      totalLera: this?.totalLera?.orEmpty() ?? Constants.empty,
       date: this?.date.orEmpty() ?? Constants.empty,
     );
   }

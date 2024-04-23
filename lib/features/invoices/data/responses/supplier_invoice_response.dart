@@ -26,9 +26,9 @@ class SupplierInvoiceResponse  {
 @JsonSerializable()
 class DataSupplierInvoiceResponse {
   @JsonKey(name: "total_Doler")
-  num? totalDoler;
+  String? totalDoler;
   @JsonKey(name: "total_Lera")
-  num? totalLera;
+  String? totalLera;
   @JsonKey(name: "date")
   String? date;
 

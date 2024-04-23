@@ -29,10 +29,10 @@ class TraderInvoiceDataResponse {
   String? invoiceNo;
 
   @JsonKey(name: "price_Doler")
-  num? priceDoler;
+  String? priceDoler;
 
   @JsonKey(name: "price_Lera")
-  num? priceLera;
+  String? priceLera;
 
   @JsonKey(name: "customerName")
   String? customerName;

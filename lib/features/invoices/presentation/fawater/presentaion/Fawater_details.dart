@@ -10,11 +10,14 @@ import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:mandoob/core/widget/empty_screen.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
+import 'package:mandoob/features/invoices/presentation/fawater/cubit/invoice_state.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class FawaterTagerDetailsView extends StatelessWidget {
   int id;
+
   FawaterTagerDetailsView({super.key, required this.id});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,7 +31,7 @@ class FawaterTagerDetailsView extends StatelessWidget {
             child: SingleChildScrollView(
               child: BlocBuilder<FawaterViewCubit, FawaterViewState>(
                 builder: (context, state) {
-                  if (state == FawaterViewState.loadedTraderInvoiceDetails) {
+                  if (state is LoadedTraderInvoiceDetailsState) {
                     var traderDetailsInvoiceModel =
                         FawaterViewCubit.get(context)
                             .traderDetailsInvoiceModel!;
@@ -238,8 +241,7 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                 onPressed: () {}, buttonText: 'صرف'))
                       ],
                     );
-                  } else if (state ==
-                      FawaterViewState.loadingTraderInvoiceDetails) {
+                  } else if (state is LoadingTraderInvoiceDetailsState) {
                     return Scaffold(
                       body: Column(
                         children: [
@@ -265,6 +267,7 @@ class FawaterMandobDetailsView extends StatelessWidget {
   const FawaterMandobDetailsView({
     super.key,
   });
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -278,7 +281,7 @@ class FawaterMandobDetailsView extends StatelessWidget {
             child: SingleChildScrollView(
               child: BlocBuilder<FawaterViewCubit, FawaterViewState>(
                 builder: (context, state) {
-                  if (state == FawaterViewState.loadedSupplierInvoiceDetails) {
+                  if (state is LoadedSupplierInvoiceDetailsState) {
                     var supplierDetailsInvoiceModel =
                         FawaterViewCubit.get(context)
                             .supplierDetailsInvoiceModel;
@@ -559,10 +562,10 @@ class FawaterMandobDetailsView extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return EmptyScreen(title: 'خطأ في البيانات', textbutton: 'العودة');
+                      return EmptyScreen(
+                          title: 'خطأ في البيانات', textbutton: 'العودة');
                     }
-                  } else if (state ==
-                      FawaterViewState.loadingSupplierInvoiceDetails) {
+                  } else if (state is LoadingSupplierInvoiceDetailsState) {
                     return const Scaffold(
                       body: Column(
                         children: [

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
@@ -7,7 +8,9 @@ import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/traderfawater.dart';
+import 'package:mandoob/features/invoices/presentation/fawater/cubit/invoice_state.dart';
+import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/supplier_invoice.dart';
+import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/trader_invoice.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../cubit/fawater_cubit.dart';
 
@@ -23,6 +26,8 @@ class FawaterView extends StatelessWidget {
 class FawaterViewBody extends StatelessWidget {
   FawaterViewBody({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final TextEditingController _textEditingController =
+      TextEditingController(); // Create a text editing controller
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +44,17 @@ class FawaterViewBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: BlocBuilder<FawaterViewCubit, FawaterViewState>(
               builder: (context, state) {
-
-                if (state == FawaterViewState.loadedSupplierInvoice ||
-                    state == FawaterViewState.loadedTraderInvoice) {
+                if (state is LoadedSupplierInvoiceState ||
+                    state is LoadedTraderInvoiceState) {
                   var supplierInvoiceModel =
-                      FawaterViewCubit.get(context).supplierInvoiceModel ??
-                          SupplierInvoiceModel(
-                              status: false,
-                              message: '',
-                              data: SupplierInvoiceDataModel(
-                                  totalDoler: 0, totalLera: 0, date: ''));
+                      FawaterViewCubit.get(context).supplierInvoiceModel;
                   var traderInvoiceModel =
-                      FawaterViewCubit.get(context).traderInvoiceModel;
-                  final int count = traderInvoiceModel?.data.length ?? 0;
+                      FawaterViewCubit.get(context).filteredTraderInvoices;
+
+                  if (supplierInvoiceModel == null) {
+                    return const Center(child: Text("No data available"));
+                  }
+
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -82,45 +85,42 @@ class FawaterViewBody extends StatelessWidget {
                       ),
                       SizedBox(height: AppSize.s4.h),
                       TextFormField(
-                        scribbleEnabled: true,
-                        cursorHeight: 30,
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                        ),
+                        controller: _textEditingController,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.search),
                           suffixIcon: IconButton(
-                            icon: Icon(
-                              Icons.date_range,
-                              color: ColorManager.grey2,
-                            ),
-                            onPressed: () {
-                              showDatePicker(
+                            icon: Icon(Icons.date_range),
+                            onPressed: () async {
+                              final pickedDate = await showDatePicker(
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(2000),
                                 lastDate: DateTime(2100),
-                                builder: (BuildContext context, Widget? child) {
-                                  return Theme(
-                                    data: ThemeData.light().copyWith(
-                                      primaryColor: ColorManager.babyBlue,
-                                      hintColor: ColorManager.babyBlue,
-                                      colorScheme: ColorScheme.light(
-                                          primary: ColorManager.babyBlue),
-                                    ),
-                                    child: child!,
-                                  );
-                                },
                               );
+
+                              if (pickedDate != null) {
+                                final formattedDate =
+                                    DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                                _textEditingController.text = formattedDate;
+
+                                FawaterViewCubit.get(context)
+                                    .searchInvoicesByQuery(
+                                        formattedDate); // Correct search call
+                              }
                             },
                           ),
-                          hintText: 'ابحث هنا',
+                          hintText: 'Search by date or keyword',
                           filled: true,
+                          fillColor: Theme.of(context).primaryColorDark,
                           hintStyle: TextStyle(
                             color: Theme.of(context).primaryColor,
                           ),
-                          fillColor: Theme.of(context).primaryColorDark,
                         ),
+                        onChanged: (value) {
+                          FawaterViewCubit.get(context).searchInvoicesByQuery(
+                              value); // Correct trigger on text change
+                        },
                       ),
                       SizedBox(height: AppSize.s6.h),
                       Container(
@@ -137,78 +137,74 @@ class FawaterViewBody extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            BlocBuilder<FawaterViewCubit, FawaterViewState>(
-                              builder: (context, state) {
-                                return DefaultTabController(
-                                  length: 2,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      TabBar(
-                                        indicatorColor: Colors.black,
-                                        tabs: [
-                                          Tab(
-                                            child: Text(
-                                              'فواتير التجار ',
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Theme.of(context)
-                                                    .primaryColor, // Change this to your desired text color
-                                              ),
-                                            ),
+                            DefaultTabController(
+                              length: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  TabBar(
+                                    indicatorColor: Colors.black,
+                                    tabs: [
+                                      Tab(
+                                        child: Text(
+                                          'فواتير التجار ',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .primaryColor, // Change this to your desired text color
                                           ),
-                                          Tab(
-                                            child: Text(
-                                              'فواتير الموردين ',
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Theme.of(context)
-                                                    .primaryColor, // Change this to your desired text color
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                        ),
                                       ),
-                                      SizedBox(
-                                        height: AppSize.s70.h,
-                                        child: TabBarView(
-                                          children: [
-                                            ListView.builder(
-                                                shrinkWrap: true,
-                                                physics:
-                                                    const ClampingScrollPhysics(),
-                                                itemBuilder: (context, index) {
-                                                  return TraderInvoiceFawater(
-                                                      traderInvoiceModel:
-                                                          traderInvoiceModel,
-                                                      index: index);
-                                                },
-                                                itemCount: count),
-                                            ListView.builder(
-                                                itemBuilder: (context, index) =>
-                                                    SupplierInvoiceFawater(
-                                                        supplierInvoiceModel:
-                                                            supplierInvoiceModel,
-                                                        index: index),
-                                                itemCount: 1)
-                                          ],
+                                      Tab(
+                                        child: Text(
+                                          'فواتير الموردين ',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .primaryColor, // Change this to your desired text color
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                );
-                              },
+                                  SizedBox(
+                                    height: AppSize.s70.h,
+                                    child: TabBarView(
+                                      children: [
+                                        ListView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                                const ClampingScrollPhysics(),
+                                            itemBuilder: (context, index) {
+                                              return TraderInvoice(
+                                                  traderInvoiceModel:
+                                                      traderInvoiceModel,
+                                                  index: index);
+                                            },
+                                            itemCount:
+                                                traderInvoiceModel.length ?? 0),
+                                        ListView.builder(
+                                            itemBuilder: (context, index) =>
+                                                SupplierInvoice(
+                                                  supplierInvoiceModel:
+                                                      supplierInvoiceModel,
+                                                ),
+                                            itemCount: 1)
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ],
                   );
-                } else if (state == FawaterViewState.loadingSupplierInvoice ||
-                    state == FawaterViewState.loadingTraderInvoice) {
+                } else if (state is LoadingSupplierInvoiceState ||
+                    state is LoadingTraderInvoiceState) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,

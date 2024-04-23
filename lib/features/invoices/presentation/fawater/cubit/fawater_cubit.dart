@@ -4,90 +4,88 @@ import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.da
 import 'package:mandoob/features/invoices/domain/model/trader_details_invoice_model.dart';
 import 'package:mandoob/features/invoices/domain/model/trader_invoice_model.dart';
 import 'package:mandoob/features/invoices/domain/usecase/invoices_usecases.dart';
-
-enum FawaterViewState {
-  currentOrdersExpanded,
-  previousOrdersExpanded,
-  loadingTraderInvoice,
-  errorTraderInvoice,
-  loadedTraderInvoice,
-  loadingSupplierInvoice,
-  errorSupplierInvoice,
-  loadedSupplierInvoice,
-  loadingTraderInvoiceDetails,
-  errorTraderInvoiceDetails,
-  loadedTraderInvoiceDetails,
-  loadingSupplierInvoiceDetails,
-  errorSupplierInvoiceDetails,
-  loadedSupplierInvoiceDetails
-}
+import 'package:mandoob/features/invoices/presentation/fawater/cubit/invoice_state.dart';
 
 class FawaterViewCubit extends Cubit<FawaterViewState> {
   GetInvoicesTraderInvoiceUseCase _getFawaterTraderInvoiceUseCase;
   GetInvoicesSupplierInvoiceUseCase _getFawaterSupplierInvoiceUseCase;
   GetTraderInvoiceDetailsUseCase _getTraderInvoiceDetailsUseCase;
   GetSupplierInvoiceDetailsUseCase _getSupplierInvoiceDetailsUseCase;
+
   FawaterViewCubit(
       this._getFawaterTraderInvoiceUseCase,
       this._getFawaterSupplierInvoiceUseCase,
       this._getTraderInvoiceDetailsUseCase,
       this._getSupplierInvoiceDetailsUseCase)
-      : super(FawaterViewState.currentOrdersExpanded);
+      : super(InvoiceInitState());
   TraderInvoiceModel? traderInvoiceModel;
   SupplierInvoiceModel? supplierInvoiceModel;
   SupplierDetailsInvoiceModel? supplierDetailsInvoiceModel;
   TraderDetailsInvoiceModel? traderDetailsInvoiceModel;
+
   static FawaterViewCubit get(context) => BlocProvider.of(context);
 
-  void toggleCurrentOrdersExpansion() {
-    emit(FawaterViewState.currentOrdersExpanded);
-  }
-
-  void togglePreviousOrdersExpansion() {
-    emit(FawaterViewState.previousOrdersExpanded);
-  }
-
   void getFawaterTraderInvoice() async {
-    emit(FawaterViewState.loadingTraderInvoice);
+    emit(LoadingTraderInvoiceState());
     final result = await _getFawaterTraderInvoiceUseCase.execute("");
-    result.fold((failure) => emit(FawaterViewState.errorTraderInvoice),
+    result.fold((failure) => emit(ErrorTraderInvoiceState(failure.message)),
         (success) {
       traderInvoiceModel = success;
-      emit(FawaterViewState.loadedTraderInvoice);
+      filteredTraderInvoices = List.from(success.data);
+      emit(LoadedTraderInvoiceState(filteredTraderInvoices));
     });
   }
 
   void getFawaterSupplierInvoice() async {
-    emit(FawaterViewState.loadingSupplierInvoice); // Emit loading state
+    emit(LoadingSupplierInvoiceState()); // Emit loading state
     final result = await _getFawaterSupplierInvoiceUseCase.execute("");
-    result.fold(
-        (failure) =>
-            emit(FawaterViewState.errorSupplierInvoice), // Emit error state
+    result.fold((failure) => emit(ErrorSupplierInvoiceState(failure.message)),
+        // Emit error state
         (success) {
       supplierInvoiceModel = success;
-      emit(FawaterViewState.loadedSupplierInvoice);
+      emit(LoadedSupplierInvoiceState(success));
     });
   }
 
   void getFawaterTraderInvoiceDetails({required int invoiceId}) async {
-    emit(FawaterViewState.loadingTraderInvoiceDetails);
+    emit(LoadingTraderInvoiceDetailsState());
     final result = await _getTraderInvoiceDetailsUseCase.execute(invoiceId);
-    result.fold((failure) => emit(FawaterViewState.errorTraderInvoiceDetails),
+    result.fold(
+        (failure) => emit(ErrorTraderInvoiceDetailsState(failure.message)),
         (success) {
       traderDetailsInvoiceModel = success;
-      emit(FawaterViewState.loadedTraderInvoiceDetails);
+      emit(LoadedTraderInvoiceDetailsState(success));
     });
   }
 
   void getFawaterSupplierInvoiceDetails() async {
-    emit(FawaterViewState.loadingSupplierInvoiceDetails); // Emit loading state
+    emit(LoadingSupplierInvoiceDetailsState()); // Emit loading state
     final result = await _getSupplierInvoiceDetailsUseCase.execute("");
     result.fold(
-        (failure) => emit(
-            FawaterViewState.errorSupplierInvoiceDetails), // Emit error state
+        (failure) => emit(ErrorSupplierInvoiceDetailsState(failure.message)),
+        // Emit error state
         (success) {
       supplierDetailsInvoiceModel = success;
-      emit(FawaterViewState.loadedSupplierInvoiceDetails);
+      emit(LoadedSupplierInvoiceDetailsState(success));
     });
+  }
+
+  List<TraderInvoiceDataModel> filteredTraderInvoices = [];
+
+  void searchInvoicesByQuery(String query) {
+    if (query.isEmpty) {
+      filteredTraderInvoices = traderInvoiceModel?.data ?? [];
+      emit(LoadedTraderInvoiceState(filteredTraderInvoices));
+    } else {
+      filteredTraderInvoices = traderInvoiceModel?.data
+              .where((invoice) =>
+                  invoice.invoiceNo.contains(query) ||
+                  invoice.customerName.contains(query) ||
+                  invoice.date.contains(query))
+              .toList() ??
+          [];
+
+      emit(LoadedTraderInvoiceState(filteredTraderInvoices));
+    }
   }
 }

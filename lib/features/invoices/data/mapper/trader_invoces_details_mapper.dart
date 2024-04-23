@@ -18,8 +18,8 @@ extension InvoiceDataResponseMapper on InvoiceDataResponse? {
     return InvoiceData(
       id: this?.id ?? 0,
       invoiceNo: this?.invoiceNo ?? Constants.empty,
-      priceDoler: this?.priceDoler ?? Constants.zero,
-      priceLera: this?.priceLera ?? Constants.zero,
+      priceDoler: this?.priceDoler ?? Constants.empty,
+      priceLera: this?.priceLera ?? Constants.empty,
       customerName: this?.customerName ?? Constants.empty,
       date: this?.date ?? Constants.empty,
     );

@@ -15,8 +15,8 @@ class TraderDetailsInvoiceModel {
 class InvoiceData {
   int id;
   String invoiceNo;
-  int priceDoler;
-  int priceLera;
+  String priceDoler;
+  String priceLera;
   String customerName;
   String date;
 

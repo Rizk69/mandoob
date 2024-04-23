@@ -28,8 +28,8 @@ Map<String, dynamic> _$SupplierInvoiceResponseToJson(
 DataSupplierInvoiceResponse _$DataSupplierInvoiceResponseFromJson(
         Map<String, dynamic> json) =>
     DataSupplierInvoiceResponse(
-      totalDoler: json['total_Doler'] as num?,
-      totalLera: json['total_Lera'] as num?,
+      totalDoler: json['total_Doler'] as String?,
+      totalLera: json['total_Lera'] as String?,
       date: json['date'] as String?,
     );
 

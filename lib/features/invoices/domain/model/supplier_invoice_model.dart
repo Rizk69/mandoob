@@ -1,7 +1,7 @@
 class SupplierInvoiceModel {
   bool status;
   String message;
-  SupplierInvoiceDataModel data;
+  SupplierInvoiceDataModel? data;
 
   SupplierInvoiceModel({
     required this.status,
@@ -13,8 +13,8 @@ class SupplierInvoiceModel {
 }
 
 class SupplierInvoiceDataModel {
-  num totalDoler;
-  num totalLera;
+  String totalDoler;
+  String totalLera;
   String date;
 
   SupplierInvoiceDataModel({

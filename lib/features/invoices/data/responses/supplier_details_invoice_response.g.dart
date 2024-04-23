@@ -28,8 +28,8 @@ InvoiceResponse _$InvoiceResponseFromJson(Map<String, dynamic> json) =>
     InvoiceResponse(
       id: json['id'] as int?,
       invoiceNo: json['invoiceNo'] as String?,
-      priceDoler: json['price_Doler'] as num?,
-      priceLera: json['price_Lera'] as num?,
+      priceDoler: json['price_Doler'] as String?,
+      priceLera: json['price_Lera'] as String?,
       customerName: json['customerName'] as String?,
       date: json['date'] as String?,
       products: (json['products'] as List<dynamic>?)

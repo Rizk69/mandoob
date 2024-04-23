@@ -13,8 +13,8 @@ class SupplierDetailsInvoiceModel {
 class Invoice {
   int id;
   String invoiceNo;
-  num priceDoler;
-  num priceLera;
+  String priceDoler;
+  String priceLera;
   String customerName;
   String date;
   List<Product> products;
