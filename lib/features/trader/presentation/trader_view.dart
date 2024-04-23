@@ -145,6 +145,9 @@ class TraderView extends StatelessWidget {
                                                 imageUrl: trade.img,
                                                 traderName: trade.customerName,
                                                 phone: trade.phone,
+                                                address: trade.address,
+                                                priceEn: trade.priceEn,
+                                                priceAr: trade.priceAr,
                                               );
                                             },
                                           ),

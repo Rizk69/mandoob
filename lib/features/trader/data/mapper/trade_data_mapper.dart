@@ -11,6 +11,9 @@ extension TradeDataResponseMapper on TradesDataResponse? {
       img: this?.img?.orEmpty() ?? Constants.empty,
       phone: this?.phone?.orEmpty() ?? Constants.empty,
       selectCustomer: this?.selectCustomer?? false,
+      address: this?.address?.orEmpty() ?? Constants.empty,
+      priceAr: this?.priceAr?.orEmpty() ?? Constants.empty,
+      priceEn: this?.priceEn?.orEmpty() ?? Constants.empty,
     );
   }
 }

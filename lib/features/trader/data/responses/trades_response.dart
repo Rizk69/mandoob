@@ -40,6 +40,15 @@ class TradesDataResponse {
   @JsonKey(name: "phone")
   String? phone;
 
+
+  @JsonKey(name: "price_ar")
+  String? priceAr;
+  @JsonKey(name: "price_en")
+  String? priceEn;
+  @JsonKey(name: "address")
+  String? address;
+
+
   @JsonKey(name: "select_custoomer")
   bool? selectCustomer;
 
@@ -49,6 +58,9 @@ class TradesDataResponse {
     this.customer_name,
     this.phone,
     this.selectCustomer,
+    this.address,
+    this.priceEn,
+    this.priceAr,
   });
 
   factory TradesDataResponse.fromJson(Map<String, dynamic> json) => _$TradesDataResponseFromJson(json);
