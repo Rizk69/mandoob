@@ -9,6 +9,7 @@ import 'package:mandoob/features/trafiic_lines/domain/model/traffic_line_model.d
 abstract class Repository {
   Future<Either<Failure, TrafficModel>> getDelivaryLine();
   Future<Either<Failure, void>> deleteDelivaryLine({required int id});
+  Future<Either<Failure, void>> closeDelivaryLine({required int id});
   Future<Either<Failure, TrafficModel>> searchDelivaryLine({required SearchLineRequest searchLineRequest});
 
   Future<Either<Failure, void>> addDelivaryLine({required AddLineRequest addLineRequest});

@@ -39,7 +39,8 @@ class TrafficLines extends StatelessWidget {
         children: [
           imageBackground(context),
           BlocProvider(
-            create: (context) => instance<TrafficLinesCubit>()..getTrafficLines(),
+            create: (context) =>
+                instance<TrafficLinesCubit>()..getTrafficLines(),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: SingleChildScrollView(
@@ -71,8 +72,30 @@ class TrafficLines extends StatelessWidget {
 
                           Navigator.popAndPushNamed(context, Routes.homeRoute);
                         }
+                        if (state is CloseTrafficLinesLoaded) {
+                          final snackBar = defaultSnakeBar(
+                            title: LocaleKeys.SUCCESS.tr(),
+                            message: LocaleKeys.SUCCESS.tr(),
+                            state: ContentType.success,
+                          );
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                          TrafficLinesCubit.get(context).getTrafficLines();
+
+                        }
 
                         if (state is DeleteTrafficLinesError) {
+                          final snackBar = defaultSnakeBar(
+                            title: LocaleKeys.ERROR.tr(),
+                            message: state.message,
+                            state: ContentType.failure,
+                          );
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        }
+                        if (state is CloseTrafficLinesError) {
                           final snackBar = defaultSnakeBar(
                             title: LocaleKeys.ERROR.tr(),
                             message: state.message,
@@ -161,24 +184,27 @@ class TrafficLines extends StatelessWidget {
                                 child: EasyDateTimeLine(
                                   activeColor: Theme.of(context).primaryColor,
                                   initialDate: DateTime.now(),
-                                  locale:
-                                      isCurrentLanguageEn(context) ? "en" : 'ar',
+                                  locale: isCurrentLanguageEn(context)
+                                      ? "en"
+                                      : 'ar',
                                   onDateChange: (selectedDate) {
                                     cubit.selectTime(selectedDate);
                                     cubit.getTrafficLinesForDate(selectedDate);
                                   },
                                   headerProps: EasyHeaderProps(
                                       monthPickerType: MonthPickerType.switcher,
-                                      dateFormatter: DateFormatter.fullDateDMY(),
+                                      dateFormatter:
+                                          DateFormatter.fullDateDMY(),
                                       monthStyle: TextStyle(
-                                          color: Theme.of(context).primaryColor)),
+                                          color:
+                                              Theme.of(context).primaryColor)),
                                   dayProps: EasyDayProps(
                                       dayStructure: DayStructure.dayStrDayNum,
                                       activeDayStyle: DayStyle(
                                         decoration: BoxDecoration(
                                           color: Theme.of(context).primaryColor,
-                                          borderRadius:
-                                              BorderRadius.all(Radius.circular(8)),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(8)),
                                           gradient: LinearGradient(
                                             begin: Alignment.topCenter,
                                             end: Alignment.bottomCenter,
@@ -190,11 +216,12 @@ class TrafficLines extends StatelessWidget {
                                         ),
                                         // Set the text color here
                                       ),
-                                      borderColor: Theme.of(context).primaryColor,
+                                      borderColor:
+                                          Theme.of(context).primaryColor,
                                       todayStyle: DayStyle(
                                           dayStrStyle: TextStyle(
-                                              color:
-                                                  Theme.of(context).primaryColor))),
+                                              color: Theme.of(context)
+                                                  .primaryColor))),
                                 )),
                             SizedBox(height: AppSize.s1.h),
                             ConditionalBuilder(
@@ -203,7 +230,7 @@ class TrafficLines extends StatelessWidget {
                                       state is SearchTrafficSuccessState) &&
                                   hasData,
                               builder: (context) {
-                                return cubit.trafficModel?.data!=0
+                                return cubit.trafficModel?.data != 0
                                     ? Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 20),
@@ -233,8 +260,10 @@ class TrafficLines extends StatelessWidget {
                                                 IconButton(
                                                     padding: EdgeInsets.zero,
                                                     onPressed: () {
-                                                      Navigator.pushNamed(context,
-                                                          Routes.addtrafficLines);
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          Routes
+                                                              .addtrafficLines);
                                                     },
                                                     icon: Icon(
                                                       Icons.add,
@@ -250,7 +279,8 @@ class TrafficLines extends StatelessWidget {
                                                   const BouncingScrollPhysics(),
                                               itemCount: data?.length,
                                               itemBuilder: (context, index) {
-                                                final activeItem = data?[index].active;
+                                                final activeItem =
+                                                    data?[index].active;
                                                 final isFirst = activeItem == 0;
                                                 final isLast = activeItem == 0;
                                                 final isPast = activeItem == 1;
@@ -260,10 +290,14 @@ class TrafficLines extends StatelessWidget {
                                                       isFirst: isFirst,
                                                       isLast: isLast,
                                                       isPast: isPast,
-                                                      traderName:
-                                                          data![index].customerName,
-                                                      address: data[index].address,
+                                                      traderName: data![index]
+                                                          .customerName,
+                                                      address:
+                                                          data[index].address,
                                                       traderId: data[index].id,
+                                                      cubit:
+                                                          TrafficLinesCubit.get(
+                                                              context),
                                                     ),
                                                   ],
                                                 );
@@ -276,8 +310,8 @@ class TrafficLines extends StatelessWidget {
                                         child: Text(
                                           LocaleKeys.NO_CONTENT.tr(),
                                           style: TextStyle(
-                                              color:
-                                                  Theme.of(context).primaryColor),
+                                              color: Theme.of(context)
+                                                  .primaryColor),
                                         ),
                                       );
                               },
@@ -288,7 +322,8 @@ class TrafficLines extends StatelessWidget {
                                       child: Text(
                                         LocaleKeys.NO_CONTENT.tr(),
                                         style: TextStyle(
-                                            color: Theme.of(context).primaryColor),
+                                            color:
+                                                Theme.of(context).primaryColor),
                                       ),
                                     )
                                   : const CircularProgressIndicator(),

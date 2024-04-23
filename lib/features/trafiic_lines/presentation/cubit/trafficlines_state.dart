@@ -41,6 +41,11 @@ class DeleteTrafficLinesLoading extends TrafficLinesState {}
 class DeleteTrafficLinesError extends TrafficLinesState {
   final String message;
   DeleteTrafficLinesError(this.message);
+}class CloseTrafficLinesLoaded extends TrafficLinesState {}
+class CloseTrafficLinesLoading extends TrafficLinesState {}
+class CloseTrafficLinesError extends TrafficLinesState {
+  final String message;
+  CloseTrafficLinesError(this.message);
 }
 
 

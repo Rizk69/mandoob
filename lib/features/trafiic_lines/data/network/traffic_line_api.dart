@@ -13,8 +13,12 @@ abstract class TrafficLineServiceClient {
 
   @GET("api/delivary_line")
   Future<TrafficResponse> getDelivaryLine();
+
   @GET("api/delete_delivary_line/{id}")
   Future<void> deleteDelivaryLine(@Path() int id);
+
+  @GET("api/close_delivary_line/{id}")
+  Future<void> closeDelivaryLine(@Path() int id);
 
   @POST("api/search_delivary_line")
   Future<TrafficResponse> searchDelivaryLine(@Body() SearchLineRequest searchLineRequest);

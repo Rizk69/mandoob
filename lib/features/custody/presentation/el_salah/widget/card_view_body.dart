@@ -4,13 +4,13 @@ import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/core/widget/empty_screen.dart';
 import 'package:mandoob/features/custody/domain/model/cart_model.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
 import 'package:mandoob/features/custody/presentation/el_salah/widget/card.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 
 class CartViewBody extends StatelessWidget {
   final List<ProductModel> cartItems;
@@ -23,107 +23,113 @@ class CartViewBody extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       drawer: buildDrawer(context),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: AppSize.s8.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      ElSalahCubit.get(context).openDrawer(context);
-                    },
-                    icon: Icon(
-                      Icons.menu,
-                      color: Theme.of(context).primaryColorLight,
+      body: cartItems.isNotEmpty
+          ? SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: AppSize.s8.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            ElSalahCubit.get(context).openDrawer(context);
+                          },
+                          icon: Icon(
+                            Icons.menu,
+                            color: Theme.of(context).primaryColorLight,
+                          ),
+                        ),
+                        Center(
+                          child: Text(
+                            'السلة',
+                            style: getBoldSegoeStyle(
+                                fontSize: 25,
+                                color: Theme.of(context).primaryColorLight),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, Routes.homeRoute);
+                          },
+                          icon: Icon(
+                            Icons.arrow_forward,
+                            color: Theme.of(context).primaryColorLight,
+                          ),
+                        )
+                      ],
                     ),
-                  ),
-                  Center(
-                    child: Text(
-                      'السلة',
-                      style: getBoldSegoeStyle(
-                          fontSize: 25,
-                          color: Theme.of(context).primaryColorLight),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.homeRoute);
-                    },
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: Theme.of(context).primaryColorLight,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: AppSize.s4.h),
-              GestureDetector(
-                onTap: () {
-                  ElSalahCubit.get(context).deleteCart();
-                },
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Text(
-                      LocaleKeys.deleteAll.tr(),
-                      style: TextStyle(
-                        color: ColorManager.babyBlue,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        decoration: TextDecoration.underline,
+                    SizedBox(height: AppSize.s4.h),
+                    GestureDetector(
+                      onTap: () {
+                        ElSalahCubit.get(context).deleteCart();
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            LocaleKeys.deleteAll.tr(),
+                            style: TextStyle(
+                              color: ColorManager.babyBlue,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: cartItems.length,
-                itemBuilder: (context, index) {
-                  return CardExpandedItem(product: cartItems[index],index: index,);
-                },
-              ),
-              SizedBox(height: AppSize.s10.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                      EdgeInsets.all(10.0),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: cartItems.length,
+                      itemBuilder: (context, index) {
+                        return CardExpandedItem(
+                          product: cartItems[index],
+                          index: index,
+                        );
+                      },
                     ),
-                    backgroundColor: MaterialStatePropertyAll<Color>(
-                        Theme.of(context).hoverColor),
-                    shape: MaterialStatePropertyAll<OutlinedBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppSize.s40),
-                      ),
-                    ),
-                  ),
-                  onPressed: () {
-                    // showContainerDialog(context);
+                    SizedBox(height: AppSize.s10.h),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 60),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          padding:
+                              MaterialStateProperty.all<EdgeInsetsGeometry>(
+                            EdgeInsets.all(10.0),
+                          ),
+                          backgroundColor: MaterialStatePropertyAll<Color>(
+                              Theme.of(context).hoverColor),
+                          shape: MaterialStatePropertyAll<OutlinedBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(AppSize.s40),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          // showContainerDialog(context);
 
-                    Navigator.pushNamed(context, Routes.elmulakhas);
-                  },
-                  child: Text(
-                    LocaleKeys.next.tr(),
-                    style: getBoldSegoeStyle(
-                      color: ColorManager.black,
-                      fontSize: AppSize.s20.sp,
-                    ),
-                  ),
+                          Navigator.pushNamed(context, Routes.elmulakhas);
+                        },
+                        child: Text(
+                          LocaleKeys.next.tr(),
+                          style: getBoldSegoeStyle(
+                            color: ColorManager.black,
+                            fontSize: AppSize.s20.sp,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
+              ),
+            )
+          : EmptyScreen(title: 'عذرآ لا يوجد بيانات', textbutton: 'عوده'),
     );
   }
 }

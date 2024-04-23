@@ -74,4 +74,14 @@ class RepositoryTrafficLineImpl extends Repository {
     }
   }
 
+  @override
+  Future<Either<Failure, void>> closeDelivaryLine({required int id})async {
+    try {
+      final response = await _remoteDataSource.closeDelivaryLine(id: id);
+      return Right(response);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
 }

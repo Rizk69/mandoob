@@ -82,6 +82,7 @@ import 'package:mandoob/features/auth/domain/usecase/login_usecase.dart';
 import 'package:mandoob/features/auth/presentation/login/manger/login_cubit.dart';
 import 'package:mandoob/features/auth/presentation/profile/cubit/profile_cubit.dart';
 import 'package:mandoob/features/trafiic_lines/domain/usecase/add_dlivary_usecase.dart';
+import 'package:mandoob/features/trafiic_lines/domain/usecase/close_dlivary_usecase.dart';
 import 'package:mandoob/features/trafiic_lines/domain/usecase/delete_dlivary_usecase.dart';
 import 'package:mandoob/features/trafiic_lines/domain/usecase/search_dlivary_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -298,12 +299,14 @@ initFawaterModule() {
 initDelivaryLineModule() {
   if (!GetIt.I.isRegistered<DelivaryLineUseCase>()) {
     instance.registerFactory<TrafficLinesCubit>(() =>
-        TrafficLinesCubit(instance(), instance(), instance(), instance()));
+        TrafficLinesCubit(instance(), instance(), instance(), instance(),instance()));
     instance.registerFactory<DelivaryLineUseCase>(
         () => DelivaryLineUseCase(instance()));
 
     instance.registerFactory<DeleteDeliveryLineUseCase>(
         () => DeleteDeliveryLineUseCase(instance()));
+    instance.registerFactory<CloseDeliveryLineUseCase>(
+        () => CloseDeliveryLineUseCase(instance()));
 
     instance.registerFactory<AddDeliveryLineUseCase>(
         () => AddDeliveryLineUseCase(instance()));
@@ -315,8 +318,14 @@ initDelivaryLineModule() {
 
 initEahduhModule() {
   if (!GetIt.I.isRegistered<EahduhUseCase>()) {
-    instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(instance(),
-        instance(), instance(), instance(), instance(), instance(), instance()));
+    instance.registerFactory<ElSalahCubit>(() => ElSalahCubit(
+        instance(),
+        instance(),
+        instance(),
+        instance(),
+        instance(),
+        instance(),
+        instance()));
     instance.registerFactory<GetCartUseCase>(() => GetCartUseCase(instance()));
 
     instance.registerFactory<PayPartialDeptUseCase>(
@@ -326,7 +335,8 @@ initEahduhModule() {
         () => EahduhCubit(instance(), instance()));
     instance.registerFactory<EahduhUseCase>(() => EahduhUseCase(instance()));
 
-    instance.registerFactory<GetInvoicesUseCase>(() => GetInvoicesUseCase(instance()));
+    instance.registerFactory<GetInvoicesUseCase>(
+        () => GetInvoicesUseCase(instance()));
 
     instance.registerFactory<ConfirmInvoiceUseCase>(
         () => ConfirmInvoiceUseCase(instance()));

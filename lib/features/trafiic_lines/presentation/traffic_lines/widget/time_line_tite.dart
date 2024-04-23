@@ -12,7 +12,8 @@ class MyTimeLineTitle extends StatelessWidget {
   final int traderId;
   final String traderName;
   final String address;
-  const MyTimeLineTitle({
+  TrafficLinesCubit cubit;
+   MyTimeLineTitle({
     super.key,
     required this.isFirst,
     required this.isLast,
@@ -20,6 +21,7 @@ class MyTimeLineTitle extends StatelessWidget {
     required this.traderName,
     required this.traderId,
     required this.address,
+    required this.cubit,
   });
 
   @override
@@ -61,20 +63,22 @@ class MyTimeLineTitle extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('تأكيد الحذف'),
-                        content: Text('هل أنت متأكد من أنك تريد حذف هذا الخط؟'),
+                        title: const Text('تأكيد الحذف'),
+                        content: const Text(' هل أنت متأكد من أنك تريد حذف هذا الخط؟,او التخطى'),
                         actions: <Widget>[
                           TextButton(
-                            child: Text('إلغاء'),
+                            child: const Text('تخطى'),
                             onPressed: () {
-                              Navigator.of(context).pop(); // إغلاق الديالوج
+                              Navigator.of(context).pop();
+                              cubit.closeTrafficLine(traderId);
+
                             },
                           ),
                           TextButton(
-                            child: Text('تأكيد'),
+                            child: const Text('حذف'),
                             onPressed: () {
-                              Navigator.of(context).pop(); // إغلاق الديالوج
-                              TrafficLinesCubit.get(context).deleteTrafficLine(traderId); // الحذف
+                              Navigator.of(context).pop();
+                              cubit.deleteTrafficLine(traderId);
                             },
                           ),
                         ],

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/features/trafiic_lines/data/network/add_requests.dart';
 import 'package:mandoob/features/trafiic_lines/data/network/search_requests.dart';
 import 'package:mandoob/features/trafiic_lines/domain/usecase/add_dlivary_usecase.dart';
+import 'package:mandoob/features/trafiic_lines/domain/usecase/close_dlivary_usecase.dart';
 import 'package:mandoob/features/trafiic_lines/domain/usecase/delete_dlivary_usecase.dart';
 import 'package:mandoob/features/trafiic_lines/domain/usecase/search_dlivary_usecase.dart';
 
@@ -17,9 +18,15 @@ class TrafficLinesCubit extends Cubit<TrafficLinesState> {
   final DelivaryLineUseCase _delivaryLineUseCase;
   final SearchDeliveryLineUseCase _searchDeliveryLineUseCase;
   final DeleteDeliveryLineUseCase _deleteDeliveryLineUseCase;
+  final CloseDeliveryLineUseCase _closeDeliveryLineUseCase;
   final AddDeliveryLineUseCase _addDeliveryLineUseCase;
 
-  TrafficLinesCubit(this._delivaryLineUseCase, this._searchDeliveryLineUseCase, this._deleteDeliveryLineUseCase, this._addDeliveryLineUseCase)
+  TrafficLinesCubit(
+      this._delivaryLineUseCase,
+      this._searchDeliveryLineUseCase,
+      this._deleteDeliveryLineUseCase,
+      this._addDeliveryLineUseCase,
+      this._closeDeliveryLineUseCase)
       : super(TrafficLinesInitial());
 
   TrafficModel? trafficModel;
@@ -98,9 +105,8 @@ class TrafficLinesCubit extends Cubit<TrafficLinesState> {
 
     final dateString = DateFormat('yyyy-MM-dd').format(selectedDate);
 
-    final result = await _searchDeliveryLineUseCase.execute(SearchLineRequest(
-      dateString.toString()
-    ));
+    final result = await _searchDeliveryLineUseCase
+        .execute(SearchLineRequest(dateString.toString()));
     result.fold((failure) => emit(GetTrafficLinesError(failure.message)),
         (model) {
       trafficModel = model;
@@ -108,25 +114,31 @@ class TrafficLinesCubit extends Cubit<TrafficLinesState> {
     });
   }
 
-
   deleteTrafficLine(int id) async {
     emit(DeleteTrafficLinesLoading());
     final result = await _deleteDeliveryLineUseCase.execute(id);
     result.fold((failure) => emit(DeleteTrafficLinesError(failure.message)),
-            (success) {
-          emit(DeleteTrafficLinesLoaded());
-        });
+        (success) {
+      emit(DeleteTrafficLinesLoaded());
+    });
   }
 
+  closeTrafficLine(int id) async {
+    emit(CloseTrafficLinesLoaded());
+    final result = await _closeDeliveryLineUseCase.execute(id);
+    result.fold((failure) => emit(CloseTrafficLinesError(failure.message)),
+        (success) {
+      emit(CloseTrafficLinesLoaded());
+    });
+  }
 
-  addTrafficLine({required String customerId,required String date}) async {
+  addTrafficLine({required String customerId, required String date}) async {
     emit(AddTrafficLinesLoading());
-    final result = await _addDeliveryLineUseCase.execute(AddLineRequest(customerId, date));
+    final result =
+        await _addDeliveryLineUseCase.execute(AddLineRequest(customerId, date));
     result.fold((failure) => emit(AddTrafficLinesError(failure.message)),
-            (success) {
-          emit(AddTrafficLinesLoaded());
-        });
+        (success) {
+      emit(AddTrafficLinesLoaded());
+    });
   }
-
-
 }

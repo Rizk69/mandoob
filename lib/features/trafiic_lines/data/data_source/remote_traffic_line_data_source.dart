@@ -6,6 +6,7 @@ import 'package:mandoob/features/trafiic_lines/data/responses/traffic_line_respo
 abstract class RemoteTrafficLineDataSource {
   Future<TrafficResponse> getDelivaryLine();
   Future<void> deleteDelivaryLine({required int id});
+  Future<void> closeDelivaryLine({required int id});
   Future<TrafficResponse> searchDelivaryLine({required SearchLineRequest searchLineRequest});
 
   Future<void> addDelivaryLine({required AddLineRequest addLineRequest});
@@ -24,6 +25,10 @@ class RemoteTrafficLinesDataSourceImpl extends RemoteTrafficLineDataSource {
   @override
   Future<void> deleteDelivaryLine({required int id}) {
     return _appServiceClient.deleteDelivaryLine(id);
+  }
+  @override
+  Future<void> closeDelivaryLine({required int id}) {
+    return _appServiceClient.closeDelivaryLine(id);
   }
 
   @override

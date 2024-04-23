@@ -36,6 +36,7 @@ UserDataResponse _$UserDataResponseFromJson(Map<String, dynamic> json) =>
       salse_Doler: json['salse_Doler'] as num?,
       commissions_Lera: json['commissions_Lera'] as num?,
       commissions_Doler: json['commissions_Doler'] as num?,
+      companyName: json['companyName'] as String?,
     );
 
 Map<String, dynamic> _$UserDataResponseToJson(UserDataResponse instance) =>
@@ -51,6 +52,7 @@ Map<String, dynamic> _$UserDataResponseToJson(UserDataResponse instance) =>
       'salse_Doler': instance.salse_Doler,
       'commissions_Lera': instance.commissions_Lera,
       'commissions_Doler': instance.commissions_Doler,
+      'companyName': instance.companyName,
     };
 
 ColorItem _$ColorItemFromJson(Map<String, dynamic> json) => ColorItem(
