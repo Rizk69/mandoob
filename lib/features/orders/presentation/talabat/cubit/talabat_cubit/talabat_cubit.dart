@@ -9,7 +9,7 @@ class TalabatViewCubit extends Cubit<TalabatViewState> {
   final GetPresentTalabatUseCase _getPresentTalabatUseCase;
 
   TalabatViewCubit(this._getOldTalabatUseCase, this._getPresentTalabatUseCase)
-      : super(CurrentOrdersExpandedState());
+      : super(OrderInitialStateState());
 
   static TalabatViewCubit get(context) => BlocProvider.of<TalabatViewCubit>(context);
 

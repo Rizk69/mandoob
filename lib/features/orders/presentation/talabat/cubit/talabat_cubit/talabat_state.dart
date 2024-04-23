@@ -2,6 +2,8 @@ import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
 
 abstract class TalabatViewState {}
 
+class OrderInitialStateState extends TalabatViewState {}
+
 class CurrentOrdersExpandedState extends TalabatViewState {}
 
 class PreviousOrdersExpandedState extends TalabatViewState {}
