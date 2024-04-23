@@ -145,8 +145,8 @@ class ElMulakhas extends StatelessWidget {
                                           context: context,
                                           builder: (BuildContext context) {
                                             return ConfirmInvoiceAlertDialog(
-                                              priceTL: cart.total?.priceLera ??0,
-                                              priceUSD:cart.total?.priceDoler ??0,
+                                              priceTL: cart.total!.priceLera,
+                                              priceUSD:cart.total!.priceDoler,
                                             );
                                           },
                                         );

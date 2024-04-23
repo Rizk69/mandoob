@@ -55,10 +55,10 @@ class TraderDataResponse {
 @JsonSerializable()
 class TotalDataResponse {
   @JsonKey(name: "price_Doler")
-  num? priceDoler;
+  String? priceDoler;
 
   @JsonKey(name: "price_Lera")
-  num? priceLera;
+  String? priceLera;
 
   TotalDataResponse({
     this.priceDoler,
@@ -77,7 +77,7 @@ class ProductDataResponse {
   int? id;
 
   @JsonKey(name: "img")
-  String? image; // Adjusted to match your structure where "img" might be null
+  String? image;
 
   @JsonKey(name: "name_ar")
   String? nameAr;
@@ -95,19 +95,19 @@ class ProductDataResponse {
   String? unitEn;
 
   @JsonKey(name: "price_unit_Doler")
-  num? priceDoler;
+  String? priceDoler;
 
   @JsonKey(name: "price_unit_Lera")
-  num? priceLera;
+  String? priceLera;
 
   @JsonKey(name: "quantity")
   int? quantity;
 
   @JsonKey(name: "Tprice_Doler")
-  num? totalPriceDoler;
+  String? totalPriceDoler;
 
   @JsonKey(name: "Tprice_Lera")
-  num? totalPriceLera;
+  String? totalPriceLera;
 
   ProductDataResponse({
     this.id,

@@ -18,8 +18,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class PayPartialInvoice extends StatelessWidget {
   final num invoiceNumber;
-  final num priceDoler;
-  final num priceLera;
+  final String priceDoler;
+  final String priceLera;
 
   PayPartialInvoice(
       {required this.invoiceNumber, required this.priceDoler, required this.priceLera});

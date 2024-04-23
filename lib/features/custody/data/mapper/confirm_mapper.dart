@@ -10,8 +10,8 @@ extension ConfirmResponseMapper on ConfirmResponse {
       status: status?? false,
       message: message.orEmpty(),
       invoiceId: invoiceId.orZero(),
-      priceDoler: priceDoler.orZero(),
-      priceLera: priceLera.orZero(),
+      priceDoler: priceDoler.orEmpty(),
+      priceLera: priceLera.orEmpty(),
     );
   }
 }

@@ -22,8 +22,8 @@ class TraderModel {
 }
 
 class TotalModel {
-  num priceDoler;
-  num priceLera;
+  String priceDoler;
+  String priceLera;
 
   TotalModel({required this.priceDoler, required this.priceLera});
 }
@@ -36,11 +36,11 @@ class ProductModel {
   int count;
   String realCountAr;
   String realCountEn;
-  num priceUnitDoler;
-  num priceUnitLera;
+  String priceUnitDoler;
+  String priceUnitLera;
   int quantity;
-  num tpriceDoler;
-  num tpriceLera;
+  String tpriceDoler;
+  String tpriceLera;
 
   ProductModel({
     required this.id,

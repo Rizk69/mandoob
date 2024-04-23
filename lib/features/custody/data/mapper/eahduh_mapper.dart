@@ -1,4 +1,5 @@
 import 'package:mandoob/app/constants.dart';
+import 'package:mandoob/app/extension.dart';
 import '../../domain/model/eahduh_order_model.dart';
 import '../responses/eahduh_response.dart';
 
@@ -7,7 +8,7 @@ extension EahduhResponseMapper on EahduhResponse? {
     return EahduhOrderModel(
       status: this?.status ?? false,
       message: this?.message ?? Constants.empty,
-      balance: this?.balance?.toDomain() ?? Balance(totalDoler: Constants.zero, totalLera: Constants.zero),
+      balance: this?.balance?.toDomain() ?? Balance(totalDoler: Constants.empty, totalLera: Constants.empty),
       data: this?.data?.map((product) => product.toDomain()).toList() ?? [],
     );
   }
@@ -16,8 +17,8 @@ extension EahduhResponseMapper on EahduhResponse? {
 extension BalanceDataMapper on BalanceData? {
   Balance toDomain() {
     return Balance(
-      totalDoler: this?.totalDoler?.toInt() ?? Constants.zero,
-      totalLera: this?.totalLera?.toInt() ?? Constants.zero,
+      totalDoler: this?.totalDoler?.orEmpty() ?? Constants.empty,
+      totalLera: this?.totalLera?.orEmpty() ?? Constants.empty,
     );
   }
 }
@@ -36,8 +37,8 @@ extension ProductDataMapper on ProductData {
       favoriteProduct: favoriteProduct ?? false,
       nameAr: nameAr ?? Constants.empty,
       nameEn: nameEn ?? Constants.empty,
-      priceDoler: priceDoler?.toInt() ?? Constants.zero,
-      priceLera: priceLera?.toInt() ?? Constants.zero,
+      priceDoler: priceDoler?.orEmpty() ?? Constants.empty,
+      priceLera: priceLera?.orEmpty() ?? Constants.empty,
       unitAr: unitAr ?? Constants.empty,
       unitEn: unitEn ?? Constants.empty,
       image: image ?? Constants.empty,

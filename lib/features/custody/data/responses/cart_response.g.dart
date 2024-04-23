@@ -43,8 +43,8 @@ Map<String, dynamic> _$TraderDataResponseToJson(TraderDataResponse instance) =>
 
 TotalDataResponse _$TotalDataResponseFromJson(Map<String, dynamic> json) =>
     TotalDataResponse(
-      priceDoler: json['price_Doler'] as num?,
-      priceLera: json['price_Lera'] as num?,
+      priceDoler: json['price_Doler'] as String?,
+      priceLera: json['price_Lera'] as String?,
     );
 
 Map<String, dynamic> _$TotalDataResponseToJson(TotalDataResponse instance) =>
@@ -62,11 +62,11 @@ ProductDataResponse _$ProductDataResponseFromJson(Map<String, dynamic> json) =>
       count: json['count'] as int?,
       unitAr: json['real_count_ar'] as String?,
       unitEn: json['real_count_en'] as String?,
-      priceDoler: json['price_unit_Doler'] as num?,
-      priceLera: json['price_unit_Lera'] as num?,
+      priceDoler: json['price_unit_Doler'] as String?,
+      priceLera: json['price_unit_Lera'] as String?,
       quantity: json['quantity'] as int?,
-      totalPriceDoler: json['Tprice_Doler'] as num?,
-      totalPriceLera: json['Tprice_Lera'] as num?,
+      totalPriceDoler: json['Tprice_Doler'] as String?,
+      totalPriceLera: json['Tprice_Lera'] as String?,
     );
 
 Map<String, dynamic> _$ProductDataResponseToJson(

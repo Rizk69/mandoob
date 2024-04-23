@@ -27,8 +27,8 @@ extension TraderDataMapper on TraderDataResponse? {
 extension TotalDataMapper on TotalDataResponse? {
   TotalModel toDomain() {
     return TotalModel(
-      priceDoler: this?.priceDoler.orZero()??Constants.zero,
-      priceLera: this?.priceLera.orZero()??Constants.zero,
+      priceDoler: this?.priceDoler.orEmpty()??Constants.empty,
+      priceLera: this?.priceLera.orEmpty()??Constants.empty,
     );
   }
 }
@@ -49,11 +49,11 @@ extension ProductDataMapper on ProductDataResponse {
       count: count.orZero(),
       realCountAr: unitAr.orEmpty(),
       realCountEn: unitEn.orEmpty(),
-      priceUnitDoler: priceDoler.orZero(),
-      priceUnitLera: priceLera.orZero(),
+      priceUnitDoler: priceDoler.orEmpty(),
+      priceUnitLera: priceLera.orEmpty(),
       quantity: quantity.orZero(),
-      tpriceDoler: totalPriceDoler.orZero(),
-      tpriceLera: totalPriceLera.orZero(),
+      tpriceDoler: totalPriceDoler.orEmpty(),
+      tpriceLera: totalPriceLera.orEmpty(),
     );
   }
 }

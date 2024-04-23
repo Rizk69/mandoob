@@ -11,8 +11,8 @@ ConfirmResponse _$ConfirmResponseFromJson(Map<String, dynamic> json) =>
       status: json['status'] as bool?,
       message: json['message'] as String?,
       invoiceId: json['invoice_id'] as num?,
-      priceDoler: json['price_Doler'] as num?,
-      priceLera: json['price_Lera'] as num?,
+      priceDoler: json['price_Doler'] as String?,
+      priceLera: json['price_Lera'] as String?,
     );
 
 Map<String, dynamic> _$ConfirmResponseToJson(ConfirmResponse instance) =>

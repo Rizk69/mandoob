@@ -13,12 +13,12 @@ class InvoicesModel {
 class InvoiceModel {
   int id;
   String invoiceNo;
-  num priceDoler;
-  num priceLera;
-  num payPriceDoler;
-  num payPriceLera;
-  num restPriceDoler;
-  num restPriceLera;
+  String priceDoler;
+  String priceLera;
+  String payPriceDoler;
+  String payPriceLera;
+  String restPriceDoler;
+  String restPriceLera;
   String customerName;
   String customerPhone;
   String paymentMethodAr;
@@ -51,8 +51,8 @@ class ProductModel {
   int count;
   String unitAr;
   String unitEn;
-  num priceDoler;
-  num priceLera;
+  String priceDoler;
+  String priceLera;
   String date;
 
   ProductModel({

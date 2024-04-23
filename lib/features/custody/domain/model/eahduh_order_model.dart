@@ -14,8 +14,8 @@ class EahduhOrderModel {
 
 
 class Balance {
-  int totalDoler;
-  int totalLera;
+  String totalDoler;
+  String totalLera;
 
   Balance({
     required this.totalDoler,
@@ -32,8 +32,8 @@ class Data {
   int count;
   String unitAr;
   String unitEn;
-  int priceLera;
-  int priceDoler;
+  String priceLera;
+  String priceDoler;
   bool favoriteProduct;
 
   Data({

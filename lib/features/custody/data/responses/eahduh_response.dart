@@ -32,10 +32,10 @@ class EahduhResponse {
 @JsonSerializable()
 class BalanceData {
   @JsonKey(name: "total_Doler")
-  num? totalDoler;
+  String? totalDoler;
 
   @JsonKey(name: "total_Lera")
-  num? totalLera;
+  String? totalLera;
 
   BalanceData({
     this.totalDoler,
@@ -72,10 +72,10 @@ class ProductData {
   String? unitEn;
 
   @JsonKey(name: "price_Lera")
-  num? priceLera;
+  String? priceLera;
 
   @JsonKey(name: "price_Doler")
-  num? priceDoler;
+  String? priceDoler;
 
   @JsonKey(name: "favorite_product")
   bool? favoriteProduct;

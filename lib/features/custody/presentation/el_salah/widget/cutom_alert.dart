@@ -15,8 +15,8 @@ import '../../../../../core/resources/styles_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
 
 class ConfirmInvoiceAlertDialog extends StatelessWidget {
-  final num priceUSD;
-  final num priceTL;
+  final String priceUSD;
+  final String priceTL;
 
   ConfirmInvoiceAlertDialog({
     super.key,

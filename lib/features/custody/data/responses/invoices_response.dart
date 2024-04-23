@@ -34,22 +34,22 @@ class InvoiceDataResponse {
   String invoiceNo;
 
   @JsonKey(name: "price_Doler")
-  num priceDoler;
+  String priceDoler;
 
   @JsonKey(name: "price_Lera")
-  num priceLera;
+  String priceLera;
 
   @JsonKey(name: "pay_price_Doler")
-  num payPriceDoler;
+  String payPriceDoler;
 
   @JsonKey(name: "pay_price_Lera")
-  num payPriceLera;
+  String payPriceLera;
 
   @JsonKey(name: "rest_price_Doler")
-  num restPriceDoler;
+  String restPriceDoler;
 
   @JsonKey(name: "rest_price_Lera")
-  num restPriceLera;
+  String restPriceLera;
 
   @JsonKey(name: "customerName")
   String customerName;
@@ -113,10 +113,10 @@ class ProductDataResponse {
   String unitEn;
 
   @JsonKey(name: "price_Doler")
-  num priceDoler;
+  String priceDoler;
 
   @JsonKey(name: "price_Lera")
-  num priceLera;
+  String priceLera;
 
   @JsonKey(name: "date")
   String date;

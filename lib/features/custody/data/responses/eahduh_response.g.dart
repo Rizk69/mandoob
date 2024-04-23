@@ -27,8 +27,8 @@ Map<String, dynamic> _$EahduhResponseToJson(EahduhResponse instance) =>
     };
 
 BalanceData _$BalanceDataFromJson(Map<String, dynamic> json) => BalanceData(
-      totalDoler: json['total_Doler'] as num?,
-      totalLera: json['total_Lera'] as num?,
+      totalDoler: json['total_Doler'] as String?,
+      totalLera: json['total_Lera'] as String?,
     );
 
 Map<String, dynamic> _$BalanceDataToJson(BalanceData instance) =>
@@ -45,8 +45,8 @@ ProductData _$ProductDataFromJson(Map<String, dynamic> json) => ProductData(
       count: json['count'] as int?,
       unitAr: json['unit_ar'] as String?,
       unitEn: json['unit_en'] as String?,
-      priceLera: json['price_Lera'] as num?,
-      priceDoler: json['price_Doler'] as num?,
+      priceLera: json['price_Lera'] as String?,
+      priceDoler: json['price_Doler'] as String?,
       favoriteProduct: json['favorite_product'] as bool?,
     );
 

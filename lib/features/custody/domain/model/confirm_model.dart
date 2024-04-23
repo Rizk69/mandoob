@@ -2,8 +2,8 @@ class ConfirmModel {
   final bool status;
   final String message;
   final num invoiceId;
-  final num priceDoler;
-  final num priceLera;
+  final String priceDoler;
+  final String priceLera;
 
   ConfirmModel({
     required this.status,

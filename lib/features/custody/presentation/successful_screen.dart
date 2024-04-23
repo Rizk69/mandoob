@@ -13,8 +13,8 @@ class ConfirmInvoiceScreen extends StatelessWidget {
   String title;
   num invoiceNumber;
   bool isCash;
-  num priceDoler;
-  num priceLera;
+  String priceDoler;
+  String priceLera;
   ConfirmInvoiceScreen({super.key, required this.title,required this.invoiceNumber,required this.priceDoler,required this.priceLera,required this.isCash});
   @override
   Widget build(BuildContext context) {
