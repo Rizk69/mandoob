@@ -61,7 +61,7 @@ class ProfileView extends StatelessWidget {
                               }),
                           SizedBox(height: AppSize.s5.h),
                           Container(
-                            padding: EdgeInsets.all(AppPadding.p45),
+                            padding: const EdgeInsets.all(AppPadding.p45),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
                                 color: ColorManager.baseColorLight,
@@ -89,33 +89,40 @@ class ProfileView extends StatelessWidget {
                               title: LocaleKeys.userName.tr(),
                               des: user.email,
                               context: context),
+
                           customCardProfile(
                               color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                              title: LocaleKeys.companyName.tr(),
+                              des: user.companyName,
+                              context: context),
+
+                          customCardProfile(
+                              color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
                               title: LocaleKeys.balanceTL.tr(),
                               des: user.balanceTL.toString(),
                               context: context),
                           customCardProfile(
-                              color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
+                              color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
                               title: LocaleKeys.balanceUsd.tr(),
                               des: user.balanceUsd.toString(),
                               context: context),
                           customCardProfile(
-                              color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                              color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
                               title: LocaleKeys.salseLera.tr(),
                               des: user.salseLera.toString(),
                               context: context),
                           customCardProfile(
-                              color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
+                              color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
                               title: LocaleKeys.salseDoler.tr(),
                               des: user.salseDoler.toString(),
                               context: context),
                           customCardProfile(
-                              color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                              color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
                               title: LocaleKeys.commissionsLera.tr(),
                               des: user.commissionsLera.toString(),
                               context: context),
                           customCardProfile(
-                              color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
+                              color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
                               title: LocaleKeys.commissionsDoler.tr(),
                               des: user.commissionsDoler.toString(),
                               context: context),
@@ -124,7 +131,7 @@ class ProfileView extends StatelessWidget {
                                 vertical: 20, horizontal: 10),
                             width: double.infinity,
                             decoration: BoxDecoration(
-                                color:appPreferences.getIsDark() ?   ColorManager.transparent :ColorManager.grey2.withOpacity(0.2),
+                                color:appPreferences.getIsDark() ? ColorManager.graymahrok: ColorManager.transparent,
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

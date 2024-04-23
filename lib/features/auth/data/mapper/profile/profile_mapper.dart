@@ -28,6 +28,7 @@ extension UserDataResponseMapper on UserDataResponse? {
       salseDoler: this?.salse_Doler?.orZero() ?? Constants.zero,
       commissionsLera: this?.commissions_Lera?.orZero() ?? Constants.zero,
       commissionsDoler: this?.commissions_Doler?.orZero() ?? Constants.zero,
+      companyName: this?.companyName?.orEmpty() ?? Constants.empty,
     );
   }
 }

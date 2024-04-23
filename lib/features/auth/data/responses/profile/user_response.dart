@@ -46,6 +46,9 @@ class UserDataResponse {
   @JsonKey(name: "commissions_Doler")
   num? commissions_Doler;
 
+  @JsonKey(name: "companyName")
+  String? companyName;
+
   UserDataResponse({
     this.name,
     this.color,
@@ -58,6 +61,7 @@ class UserDataResponse {
     this.salse_Doler,
     this.commissions_Lera,
     this.commissions_Doler,
+    this.companyName,
   });
 
   factory UserDataResponse.fromJson(Map<String, dynamic> json) =>

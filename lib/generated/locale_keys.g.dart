@@ -80,6 +80,7 @@ abstract class  LocaleKeys {
   static const clients = 'clients';
   static const trafficLines = 'trafficLines';
   static const account = 'account';
+  static const companyName = 'companyName';
   static const balanceTL = 'balanceTL';
   static const balanceUsd = 'balanceUsd';
   static const salseLera = 'salseLera';
