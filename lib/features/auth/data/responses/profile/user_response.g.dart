@@ -30,12 +30,12 @@ UserDataResponse _$UserDataResponseFromJson(Map<String, dynamic> json) =>
           .toList(),
       email: json['email'] as String?,
       phone: json['phone'] as String?,
-      balanceTL: json['balanceTL'] as num?,
-      balanceUsd: json['balanceUsd'] as num?,
-      salse_Lera: json['salse_Lera'] as num?,
-      salse_Doler: json['salse_Doler'] as num?,
-      commissions_Lera: json['commissions_Lera'] as num?,
-      commissions_Doler: json['commissions_Doler'] as num?,
+      balanceTL: json['balanceTL'] as String?,
+      balanceUsd: json['balanceUsd'] as String?,
+      salse_Lera: json['salse_Lera'] as String?,
+      salse_Doler: json['salse_Doler'] as String?,
+      commissions_Lera: json['commissions_Lera'] as String?,
+      commissions_Doler: json['commissions_Doler'] as String?,
       companyName: json['companyName'] as String?,
     );
 

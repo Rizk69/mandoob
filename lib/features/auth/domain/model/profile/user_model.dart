@@ -14,12 +14,12 @@ class UserDataModel {
   List<ColorsModel>? colors;
   String email;
   String phone;
-  num balanceTL;
-  num balanceUsd;
-  num salseLera;
-  num salseDoler;
-  num commissionsLera;
-  num commissionsDoler;
+  String balanceTL;
+  String balanceUsd;
+  String salseLera;
+  String salseDoler;
+  String commissionsLera;
+  String commissionsDoler;
   String companyName;
 
   UserDataModel(

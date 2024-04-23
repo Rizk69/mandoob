@@ -34,17 +34,17 @@ class UserDataResponse {
   @JsonKey(name: "phone")
   String? phone;
   @JsonKey(name: "balanceTL")
-  num? balanceTL;
+  String? balanceTL;
   @JsonKey(name: "balanceUsd")
-  num? balanceUsd;
+  String? balanceUsd;
   @JsonKey(name: "salse_Lera")
-  num? salse_Lera;
+  String? salse_Lera;
   @JsonKey(name: "salse_Doler")
-  num? salse_Doler;
+  String? salse_Doler;
   @JsonKey(name: "commissions_Lera")
-  num? commissions_Lera;
+  String? commissions_Lera;
   @JsonKey(name: "commissions_Doler")
-  num? commissions_Doler;
+  String? commissions_Doler;
 
   @JsonKey(name: "companyName")
   String? companyName;

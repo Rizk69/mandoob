@@ -22,12 +22,12 @@ extension UserDataResponseMapper on UserDataResponse? {
       colors: this?.colors?.map((color) => color.toDomain()).toList()??[],
       email: this?.email?.orEmpty() ?? Constants.empty,
       phone: this?.phone?.orEmpty() ?? Constants.empty,
-      balanceTL: this?.balanceTL?.orZero() ?? Constants.zero,
-      balanceUsd: this?.balanceUsd?.orZero() ?? Constants.zero,
-      salseLera: this?.salse_Lera?.orZero() ?? Constants.zero,
-      salseDoler: this?.salse_Doler?.orZero() ?? Constants.zero,
-      commissionsLera: this?.commissions_Lera?.orZero() ?? Constants.zero,
-      commissionsDoler: this?.commissions_Doler?.orZero() ?? Constants.zero,
+      balanceTL: this?.balanceTL?.orEmpty() ?? Constants.empty,
+      balanceUsd: this?.balanceUsd?.orEmpty() ?? Constants.empty,
+      salseLera: this?.salse_Lera?.orEmpty() ?? Constants.empty,
+      salseDoler: this?.salse_Doler?.orEmpty() ?? Constants.empty,
+      commissionsLera: this?.commissions_Lera?.orEmpty() ?? Constants.empty,
+      commissionsDoler: this?.commissions_Doler?.orEmpty() ?? Constants.empty,
       companyName: this?.companyName?.orEmpty() ?? Constants.empty,
     );
   }
