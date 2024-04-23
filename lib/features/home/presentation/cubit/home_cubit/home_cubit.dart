@@ -17,8 +17,8 @@ HomeModel? homeModel;
   static HomeCubit get(context) => BlocProvider.of(context);
 
   int selectPrice = 0;
-  num ? dolarPrice ;
-  num ? tlPrice ;
+  String ? dolarPrice ;
+  String ? tlPrice ;
 
   getHome() async {
     emit(GetHomeLoadingState());

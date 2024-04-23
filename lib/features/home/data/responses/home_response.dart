@@ -33,10 +33,10 @@ class HomeResponse {
 @JsonSerializable()
 class BalanceDataResponse {
   @JsonKey(name: "total_Doler")
-  num? totalDoler;
+  String? totalDoler;
 
   @JsonKey(name: "total_Lera")
-  num? totalLera;
+  String? totalLera;
 
   BalanceDataResponse({
     this.totalDoler,

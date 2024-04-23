@@ -32,8 +32,8 @@ Map<String, dynamic> _$HomeResponseToJson(HomeResponse instance) =>
 
 BalanceDataResponse _$BalanceDataResponseFromJson(Map<String, dynamic> json) =>
     BalanceDataResponse(
-      totalDoler: json['total_Doler'] as num?,
-      totalLera: json['total_Lera'] as num?,
+      totalDoler: json['total_Doler'] as String?,
+      totalLera: json['total_Lera'] as String?,
     );
 
 Map<String, dynamic> _$BalanceDataResponseToJson(

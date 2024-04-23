@@ -19,8 +19,8 @@ extension HomeResponseMapper on HomeResponse? {
 extension BalanceDataMapper on BalanceDataResponse? {
   BalanceDataModel toDomain() {
     return BalanceDataModel(
-      totalDoler: this?.totalDoler ?? Constants.zero,
-      totalLera: this?.totalLera ?? Constants.zero,
+      totalDoler: this?.totalDoler.orEmpty() ?? Constants.empty,
+      totalLera: this?.totalLera.orEmpty() ?? Constants.empty,
     );
   }
 }

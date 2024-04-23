@@ -18,8 +18,8 @@ class HomeModel {
 
 class BalanceDataModel {
 
-  num totalDoler;
-  num totalLera;
+  String totalDoler;
+  String totalLera;
 
   BalanceDataModel({
     required this.totalDoler,
