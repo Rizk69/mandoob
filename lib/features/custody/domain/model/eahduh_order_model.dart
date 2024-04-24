@@ -2,7 +2,7 @@ class EahduhOrderModel {
   bool status;
   String message;
   Balance balance;
-  List<Data> data;
+  List<EahduhOrderDataModel> data;
 
   EahduhOrderModel({
     required this.status,
@@ -24,7 +24,7 @@ class Balance {
 
 }
 
-class Data {
+class EahduhOrderDataModel {
   int id;
   String nameAr;
   String nameEn;
@@ -36,7 +36,7 @@ class Data {
   String priceDoler;
   bool favoriteProduct;
 
-  Data({
+  EahduhOrderDataModel({
     required this.id,
     required this.nameAr,
     required this.nameEn,

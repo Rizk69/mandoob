@@ -72,7 +72,8 @@ class ElEahduh extends StatelessWidget {
                           state is ActiveTradeErrorState ||
                           state is AddProductToCartErrorState) {
                         var cubit = EahduhCubit.get(context);
-                        var data = cubit.orderModel;
+                        var data = cubit.filteredEahduh;
+                        var balanceData = cubit.orderModel;
                         return Column(
                           children: [
                             SizedBox(height: AppSize.s8.h),
@@ -116,6 +117,9 @@ class ElEahduh extends StatelessWidget {
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                               ),
+                              onChanged: (value) {
+                                EahduhCubit.get(context).searchProducts(value);
+                              },
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(Icons.search),
                                 hintText: 'ابحث هنا',
@@ -150,7 +154,7 @@ class ElEahduh extends StatelessWidget {
                                 children: [
                                   columnCard(
                                     title:
-                                        data?.balance.totalDoler.toString() ??
+                                    balanceData?.balance.totalDoler.toString() ??
                                             '',
                                     colorTitle: ColorManager.greenLight,
                                     des: "دولار",
@@ -161,7 +165,7 @@ class ElEahduh extends StatelessWidget {
                                     color: ColorManager.gray,
                                   ),
                                   columnCard(
-                                    title: data?.balance.totalLera.toString() ??
+                                    title: balanceData?.balance.totalLera.toString() ??
                                         '',
                                     colorTitle: ColorManager.orangeLight,
                                     des: "لير",
@@ -317,7 +321,7 @@ class ElEahduh extends StatelessWidget {
                                   mainAxisSpacing: 2.0,
                                   crossAxisSpacing: AppSize.s2.w,
                                 ),
-                                itemCount: data?.data.length ??
+                                itemCount: data.length ??
                                     0, // Ensure data is not null
                                 itemBuilder: (BuildContext context, int index) {
                                   return Container(
@@ -331,11 +335,11 @@ class ElEahduh extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Center(
-                                          child: data?.data[index].image !=
+                                          child: data[index].image !=
                                                       null &&
-                                                  data?.data[index].image != ''
+                                                  data[index].image != ''
                                               ? Image.network(
-                                                  data?.data[index].image,
+                                                  data[index].image,
                                                   height: AppSize.s13.h,
                                                 )
                                               : Image.asset(
@@ -368,9 +372,9 @@ class ElEahduh extends StatelessWidget {
                                                     translateString(
                                                       context: context,
                                                       enString: data
-                                                          ?.data[index].nameEn,
+                                                          [index].nameEn,
                                                       arString: data
-                                                          ?.data[index].nameAr,
+                                                          [index].nameAr,
                                                     ),
                                                     style: TextStyle(
                                                       fontSize: AppSize.s20.sp,
@@ -382,7 +386,7 @@ class ElEahduh extends StatelessWidget {
                                                     maxLines: 1,
                                                   ),
                                                   Text(
-                                                    '${data?.data[index].count} عبوة ',
+                                                    '${data[index].count} عبوة ',
                                                     style: TextStyle(
                                                       fontSize: 18,
                                                       color: Theme.of(context)
@@ -390,7 +394,7 @@ class ElEahduh extends StatelessWidget {
                                                     ),
                                                   ),
                                                   Text(
-                                                    '${data?.data[index].priceLera} ليررة',
+                                                    '${data[index].priceLera} ليررة',
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.green,
@@ -400,18 +404,18 @@ class ElEahduh extends StatelessWidget {
                                               ),
                                               IconButton(
                                                 onPressed: () {
-                                                  data.data[index]
+                                                  data[index]
                                                           .favoriteProduct
                                                       ? cubit.deleteFavorite(
                                                           id: data
-                                                              .data[index].id)
+                                                              [index].id)
                                                       : cubit.addFavorite(
                                                           id: data
-                                                              .data[index].id);
+                                                              [index].id);
                                                 },
                                                 icon: Icon(
                                                   Icons.star,
-                                                  color: data!.data[index]
+                                                  color: data[index]
                                                           .favoriteProduct
                                                       ? Colors.orange
                                                       : Colors.grey,
@@ -456,7 +460,7 @@ class ElEahduh extends StatelessWidget {
                                           onTap: () {
                                             EahduhCubit.get(context)
                                                 .addProductToCart(
-                                                    data.data[index].id);
+                                                    data[index].id);
                                           },
                                         )
                                       ],
