@@ -42,8 +42,8 @@ class GetExpensesCubit extends Cubit<GetExpensesState> {
       filteredExpenses = expensesModel?.expenses
               .where((expense) =>
                   expense.reasonExpenseAr.contains(query) ||
-                  expense.reasonExpenseEn.contains(query) ||
-                  expense.statusEn.contains(query) ||
+                  expense.reasonExpenseEn.toLowerCase().contains(query.toLowerCase()) ||
+                  expense.statusEn.toLowerCase().contains(query.toLowerCase()) ||
                   expense.statusAr.contains(query) ||
                   expense.date.contains(query))
               .toList() ??
