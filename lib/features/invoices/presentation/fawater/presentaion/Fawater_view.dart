@@ -11,6 +11,7 @@ import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.da
 import 'package:mandoob/features/invoices/presentation/fawater/cubit/invoice_state.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/supplier_invoice.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/trader_invoice.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../cubit/fawater_cubit.dart';
 
@@ -110,7 +111,7 @@ class FawaterViewBody extends StatelessWidget {
                               }
                             },
                           ),
-                          hintText: 'Search by date or keyword',
+                          hintText: LocaleKeys.searchHere.tr(),
                           filled: true,
                           fillColor: Theme.of(context).primaryColorDark,
                           hintStyle: TextStyle(
