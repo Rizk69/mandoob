@@ -28,6 +28,7 @@ class DebtsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    final TextEditingController _dateController = TextEditingController();
 
     return BlocProvider<DebtsCubit>(
       create: (context) => instance<DebtsCubit>()
@@ -80,14 +81,40 @@ class DebtsViewBody extends StatelessWidget {
                     ),
                     SizedBox(height: AppSize.s4.h),
                     TextFormField(
+                      controller: _dateController,  // Use the controller here
                       scribbleEnabled: true,
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
                       ),
                       cursorHeight: 30,
+                      onChanged: (value) {
+                        DebtsCubit.get(context).searchDebts(value);
+                      },
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
-                        hintText: 'ابحث هنا',
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.date_range),
+                          onPressed: () async {
+                            final pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2101),
+                            );
+
+                            if (pickedDate != null) {
+                              // Format the picked date
+                              final formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                              // Update the text field with the selected date
+                              _dateController.text = formattedDate;
+
+                              // Perform search with the selected date
+                              DebtsCubit.get(context).searchDebts(formattedDate);
+                            }
+                          },
+                        ),
+                        hintText: LocaleKeys.SearchHere.tr(),
                         filled: true,
                         hintStyle: TextStyle(
                           color: Theme.of(context).primaryColor,
@@ -150,19 +177,19 @@ class DebtsViewBody extends StatelessWidget {
                                           itemBuilder: (context, index) {
                                             var debtsCubit =
                                                 DebtsCubit.get(context)
-                                                    .deptTraderModel;
+                                                    .filteredTraderData;
                                             if (debtsCubit == null ||
-                                                debtsCubit.debts.isEmpty) {
+                                                debtsCubit.isEmpty) {
                                               return SizedBox();
                                             }
 
                                             if (index >=
-                                                debtsCubit.debts.length) {
+                                                debtsCubit.length) {
                                               return SizedBox();
                                             }
 
                                             final debts =
-                                                debtsCubit.debts[index];
+                                                debtsCubit[index];
                                             return Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -277,20 +304,20 @@ class DebtsViewBody extends StatelessWidget {
                                         itemBuilder: (context, index) {
                                           var delegateDebtsCubit =
                                               DebtsCubit.get(context)
-                                                  .delegateModel;
+                                                  .filterDelegateData;
                                           if (delegateDebtsCubit == null ||
                                               delegateDebtsCubit
-                                                  .debts.isEmpty) {
+                                                  .isEmpty) {
                                             return SizedBox();
                                           }
 
                                           if (index >=
-                                              delegateDebtsCubit.debts.length) {
+                                              delegateDebtsCubit.length) {
                                             return SizedBox();
                                           }
 
                                           final debts =
-                                              delegateDebtsCubit.debts[index];
+                                              delegateDebtsCubit[index];
                                           return Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
