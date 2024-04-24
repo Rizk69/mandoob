@@ -37,7 +37,7 @@ class EahduhCubit extends Cubit<EahduhState> {
       filteredEahduh = orderModel!.data
           .where((order) =>
           order.nameAr.contains(query) ||
-          order.nameEn.toString().contains(query))
+          order.nameEn.toString().toLowerCase().contains(query.toLowerCase()))
           .toList();
 
     }
