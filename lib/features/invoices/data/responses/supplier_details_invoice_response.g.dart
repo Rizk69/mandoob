@@ -56,8 +56,8 @@ ProductResponse _$ProductResponseFromJson(Map<String, dynamic> json) =>
       count: json['count'] as num?,
       unitAr: json['unit_ar'] as String?,
       unitEn: json['unit_en'] as String?,
-      priceDoler: json['price_Doler'] as num?,
-      priceLera: json['price_Lera'] as num?,
+      priceDoler: json['price_Doler'] as String?,
+      priceLera: json['price_Lera'] as String?,
       date: json['date'] as String?,
     );
 
