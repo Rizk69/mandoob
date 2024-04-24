@@ -32,10 +32,10 @@ class DebtsCubit extends Cubit<DebtsState> {
   DebtInvoiceTraderModel? debtInvoiceTraderModel;
   PayDebtTraderModel? payDebtTraderModel;
 
-  num? traderId;
-  num? price;
-  num? currencyId;
-  String? dueDate;
+  num traderId=0;
+   num price=0;
+   num currencyId=0;
+   String dueDate='';
 
   setTraderId(num id) {
     traderId = id;
@@ -43,9 +43,16 @@ class DebtsCubit extends Cubit<DebtsState> {
   }
 
   setPrice(String price) {
-    this.price = num.tryParse(price) ?? 0;
+    final parsedPrice = num.tryParse(price);
+    if (parsedPrice == null) {
+      print("Failed to parse price: $price");
+      this.price = 0;
+    } else {
+      this.price = parsedPrice;
+    }
     emit(SetPriceState());
   }
+
 
   setCurrencyId(num id) {
     currencyId = id;

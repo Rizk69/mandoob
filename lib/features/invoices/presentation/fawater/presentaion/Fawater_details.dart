@@ -563,7 +563,7 @@ class FawaterMandobDetailsView extends StatelessWidget {
                       );
                     } else {
                       return EmptyScreen(
-                          title: 'خطأ في البيانات', textbutton: 'العودة');
+                          title: 'خطأ في البيانات', textbutton: 'العودة',viewButtom: true);
                     }
                   } else if (state is LoadingSupplierInvoiceDetailsState) {
                     return const Scaffold(

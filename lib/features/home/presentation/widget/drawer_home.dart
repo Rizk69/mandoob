@@ -106,7 +106,7 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                 InkWell(
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.pushNamed(context, Routes.payingDebts);
+                    Navigator.pushNamed(context, Routes.purchase);
                   },
                   child: rowDrawer(
                       title: LocaleKeys.addPurchases.tr(),

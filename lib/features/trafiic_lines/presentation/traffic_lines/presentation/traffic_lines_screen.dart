@@ -82,7 +82,6 @@ class TrafficLines extends StatelessWidget {
                             ..hideCurrentSnackBar()
                             ..showSnackBar(snackBar);
                           TrafficLinesCubit.get(context).getTrafficLines();
-
                         }
 
                         if (state is DeleteTrafficLinesError) {

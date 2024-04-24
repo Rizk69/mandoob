@@ -42,7 +42,7 @@ class HomeController extends StatelessWidget {
         margin: EdgeInsets.all(AppMargin.m3.pt),
         child: FloatingActionButton(
           isExtended: true,
-          backgroundColor: Theme.of(context).hoverColor ,
+          backgroundColor: Theme.of(context).hoverColor,
           onPressed: () {
             Navigator.pushNamed(context, Routes.elHodaa);
           },
@@ -60,8 +60,8 @@ class HomeController extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         height: AppPadding.p14.h,
-        color:Theme.of(context).primaryColorDark ,
-        surfaceTintColor:Theme.of(context).primaryColorDark,
+        color: Theme.of(context).primaryColorDark,
+        surfaceTintColor: Theme.of(context).primaryColorDark,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         notchMargin: 3,
         shape: const CircularNotchedRectangle(),
@@ -132,7 +132,10 @@ class HomeController extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SvgPicture.asset(img,color: Theme.of(context).hoverColor,),
+          SvgPicture.asset(
+            img,
+            color: Theme.of(context).hoverColor,
+          ),
           SizedBox(
             height: AppSize.s1.h,
           ),

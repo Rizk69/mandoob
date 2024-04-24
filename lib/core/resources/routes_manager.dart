@@ -10,7 +10,7 @@ import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_sa
 import 'package:mandoob/features/custody/presentation/invoice_details.dart';
 import 'package:mandoob/features/debts/domain/model/debt_trader_model.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debt_repayment.dart';
-import 'package:mandoob/features/debts/presentation/debts/presentation/debts_paying.dart';
+import 'package:mandoob/features/purchase/presentation/purchase_view.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debts_view.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/invoice_trader_view.dart';
 import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
@@ -27,7 +27,7 @@ import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presen
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/traffic_lines_screen.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 
-import '../../features/debts/presentation/debts/presentation/add_debts_paying.dart';
+import '../../features/purchase/presentation/add_purchase_paying.dart';
 import '../../features/expenses/presentaton/expenses_view.dart';
 import '../../features/orders/presentation/talabat/presentation/talabat_peresent_edit.dart';
 
@@ -47,7 +47,7 @@ class Routes {
   static const String trafficLines = "/trafficLines";
   static const String expenses = "/expenses";
   static const String debts = "/debts";
-  static const String payingDebts = "/payingDebts";
+  static const String purchase = "/purchase";
   static const String addPayingDebts = "/addPayingDebts";
   static const String debtRepayment = "/debtRepayment";
   static const String notification = "/notification";
@@ -146,11 +146,11 @@ class RouteGenerator {
       case Routes.debts:
         initDebtModule();
         return MaterialPageRoute(builder: (_) => DebtsView());
-      case Routes.payingDebts:
-        initDebtModule();
-        return MaterialPageRoute(builder: (_) => PayingDebts());
+      case Routes.purchase:
+        initPurchaseModule();
+        return MaterialPageRoute(builder: (_) => Purchase());
       case Routes.addPayingDebts:
-        return MaterialPageRoute(builder: (_) => AddPayingDebts());
+        return MaterialPageRoute(builder: (_) => AddPurchase());
       case Routes.debtRepayment:
         final args = settings.arguments as DebtDetail;
 
