@@ -327,7 +327,7 @@ class InvoiceDetailsView extends StatelessWidget {
                                   Navigator.pushReplacementNamed(
                                       context, Routes.homeRoute);
                                 },
-                                buttonText: 'صرف'))
+                                buttonText: LocaleKeys.Cashing.tr()))
                       ],
                     );
                   } else if (state is GetInvoiceLoadingState) {
