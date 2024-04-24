@@ -131,14 +131,14 @@ class DebtsCubit extends Cubit<DebtsState> {
       filterDelegateData = delegateModel!.debts
           .where((order) => order.date == query ||
           order.reasonExpensesNameAr.contains(query) ||
-          order.reasonExpensesNameEn.toString().contains(query) ||
+          order.reasonExpensesNameEn.toString().toLowerCase().contains(query.toLowerCase()) ||
           order.date.toString().contains(query))
           .toList();
 
       filteredTraderData = deptTraderModel!.debts
           .where((order) => order.dueDate == query ||
           order.lastDate.contains(query) ||
-          order.traderName.contains(query))
+          order.traderName.toLowerCase().contains(query.toLowerCase()))
           .toList();
     }
 
