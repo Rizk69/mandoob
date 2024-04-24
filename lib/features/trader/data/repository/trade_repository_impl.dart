@@ -41,9 +41,10 @@ class TradeRepositoryImpl extends TradeRepository {
 
   @override
   Future<Either<Failure, TradeModel>> addTrades(TradeRequest tradeRequest) async {
+    final response = await _remoteTradeDataSource.addTrade(tradeRequest);
+
     if (await _networkInfo.isConnect) {
       try {
-        final response = await _remoteTradeDataSource.addTrade(tradeRequest);
         if (response.status == true) {
           print(response.status);
           return Right(response.toDomain());

@@ -35,7 +35,7 @@ class NewTraderView extends StatelessWidget {
           if (state is AddTradeErrorState) {
             final snackBar = defaultSnakeBar(
               title: LocaleKeys.ERROR.tr(),
-              message: "خطأ في الاضافة تأكد من المعلومات",
+              message: state.message,
               state: ContentType.failure,
             );
             ScaffoldMessenger.of(context)
