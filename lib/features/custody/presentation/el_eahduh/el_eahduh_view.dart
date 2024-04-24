@@ -19,13 +19,13 @@ import '../cubit/el_eahduh/eahduh_cubit.dart';
 
 class ElEahduh extends StatelessWidget {
   ElEahduh({Key? key}) : super(key: key);
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: buildDrawer(context),
         key: scaffoldKey,
+        drawer: buildDrawer(context),
         body: Stack(
           children: [
             imageBackground(context),
@@ -52,9 +52,7 @@ class ElEahduh extends StatelessWidget {
                           ..hideCurrentSnackBar()
                           ..showSnackBar(snackBar);
                         EahduhCubit.get(context)..getEahduhOrder();
-                      }
-
-                      if (state is AddProductToCartErrorState) {
+                      } else if (state is AddProductToCartErrorState) {
                         final snackBar = defaultSnakeBar(
                           title: LocaleKeys.ERROR.tr(),
                           message: "يجب اضافة تاجر اولا",
@@ -71,9 +69,10 @@ class ElEahduh extends StatelessWidget {
                           state is AddProductToCartSuccessState ||
                           state is ActiveTradeErrorState ||
                           state is AddProductToCartErrorState) {
-                        var cubit = EahduhCubit.get(context);
-                        var data = cubit.filteredEahduh;
-                        var balanceData = cubit.orderModel;
+                        final cubit = EahduhCubit.get(context);
+                        final data = cubit.filteredEahduh;
+                        final balanceData = cubit.orderModel;
+
                         return Column(
                           children: [
                             SizedBox(height: AppSize.s8.h),
@@ -94,8 +93,7 @@ class ElEahduh extends StatelessWidget {
                                     'العهدة',
                                     style: getBoldSegoeStyle(
                                         fontSize: 25,
-                                        color: Theme.of(context)
-                                            .primaryColorLight),
+                                        color: Theme.of(context).primaryColorLight),
                                   ),
                                 ),
                                 IconButton(
@@ -106,13 +104,12 @@ class ElEahduh extends StatelessWidget {
                                     icon: Icon(
                                       Icons.arrow_forward,
                                       color:
-                                          Theme.of(context).primaryColorLight,
-                                    ))
+                                      Theme.of(context).primaryColorLight,
+                                    )),
                               ],
                             ),
                             SizedBox(height: AppSize.s4.h),
                             TextFormField(
-                              scribbleEnabled: true,
                               cursorHeight: 30,
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
@@ -144,18 +141,18 @@ class ElEahduh extends StatelessWidget {
                                     color: ColorManager.shadowColor,
                                     blurRadius: 4,
                                     spreadRadius: 2,
-                                  )
+                                  ),
                                 ],
                               ),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                                MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.center,
                                 children: [
                                   columnCard(
-                                    title:
-                                    balanceData?.balance.totalDoler.toString() ??
-                                            '',
+                                    title: balanceData?.balance.totalDoler
+                                        .toString() ?? '',
                                     colorTitle: ColorManager.greenLight,
                                     des: "دولار",
                                   ),
@@ -165,8 +162,8 @@ class ElEahduh extends StatelessWidget {
                                     color: ColorManager.gray,
                                   ),
                                   columnCard(
-                                    title: balanceData?.balance.totalLera.toString() ??
-                                        '',
+                                    title: balanceData?.balance.totalLera
+                                        .toString() ?? '',
                                     colorTitle: ColorManager.orangeLight,
                                     des: "لير",
                                   ),
@@ -215,24 +212,20 @@ class ElEahduh extends StatelessWidget {
                                         }
                                       },
                                       builder: (context, state) {
-                                        List<DropdownMenuItem<String>>
-                                            tradeItems = [
+                                        List<DropdownMenuItem<String>> tradeItems = [
                                           DropdownMenuItem(
                                             value: '-1',
                                             child: Row(
                                               children: [
                                                 Icon(
                                                   Icons.add,
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
+                                                  color: Theme.of(context).primaryColor,
                                                 ),
                                                 const SizedBox(width: 8),
                                                 Text(
-                                                  LocaleKeys.selectNewTrade
-                                                      .tr(),
+                                                  TradeCubit.get(context).selectedTraderName,
                                                   style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
+                                                    color: Theme.of(context).primaryColor,
                                                   ),
                                                 ),
                                               ],
@@ -256,8 +249,7 @@ class ElEahduh extends StatelessWidget {
                                                   children: [
                                                     ClipRRect(
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              50),
+                                                      BorderRadius.circular(50),
                                                       child: Image.network(
                                                         trade.img,
                                                         height: 50,
@@ -278,46 +270,41 @@ class ElEahduh extends StatelessWidget {
                                               );
                                             }).toList(),
                                           );
-                                          currentDropdownValue =
-                                              currentDropdownValue ??
-                                                  tradeItems.first.value;
+                                          currentDropdownValue = currentDropdownValue ?? tradeItems.first.value;
                                         }
 
                                         // DropdownButtonFormField with updated logic
                                         return DropdownButtonFormField<String>(
                                           decoration: InputDecoration(
                                             filled: true,
-                                            fillColor: Theme.of(context)
-                                                .primaryColorDark,
+                                            fillColor: Theme.of(context).primaryColorDark,
                                           ),
                                           value: currentDropdownValue,
                                           items: tradeItems,
                                           onChanged: (value) {
                                             if (value == '-1') {
-                                              Navigator.pushNamed(
-                                                  context, Routes.newTrader);
+                                              Navigator.pushNamed(context, Routes.newTrader);
                                             } else {
                                               currentDropdownValue = value;
-                                              TradeCubit.get(context)
-                                                  .activeTrade(
-                                                      int.parse(value!));
+                                              TradeCubit.get(context).setTraderName(value);
+
+                                              TradeCubit.get(context).activeTrade(int.parse(value!));
                                             }
                                           },
-                                          hint:
-                                              Text(LocaleKeys.addNewTrade.tr()),
+                                          hint: Text(LocaleKeys.addNewTrade.tr()),
                                         );
                                       },
-                                    ))
+                                    )),
                               ],
                             ),
                             SizedBox(height: AppSize.s6.h),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height / 2,
+                              height: AppSize.s50.h,
                               child: GridView.builder(
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
-                                  childAspectRatio: 0.75,
+                                  childAspectRatio: 0.68,
                                   mainAxisSpacing: 2.0,
                                   crossAxisSpacing: AppSize.s2.w,
                                 ),
@@ -386,20 +373,28 @@ class ElEahduh extends StatelessWidget {
                                                     maxLines: 1,
                                                   ),
                                                   Text(
-                                                    '${data[index].count} عبوة ',
+                                                    '${data[index].count} ${translateString(context: context ,arString:data[index].unitAr ,enString: data[index].unitEn)} ',
                                                     style: TextStyle(
                                                       fontSize: 18,
                                                       color: Theme.of(context)
                                                           .primaryColor,
                                                     ),
                                                   ),
+                                                  SizedBox(height: AppSize.s1.h,),
                                                   Text(
-                                                    '${data[index].priceLera} ليررة',
+                                                    '${data[index].priceDoler} \$',
+                                                    style: const TextStyle(
+                                                      fontSize: 18,
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    '${data[index].priceLera} TL',
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.green,
                                                     ),
-                                                  )
+                                                  ),
                                                 ],
                                               ),
                                               IconButton(

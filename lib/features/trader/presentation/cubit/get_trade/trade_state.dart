@@ -46,3 +46,6 @@ class ActiveTradeErrorState extends TradeState {
 
   ActiveTradeErrorState(this.message);
 }
+
+
+class SelectTradeLoadedState extends TradeState {}
