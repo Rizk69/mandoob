@@ -77,7 +77,7 @@ class RouteGenerator {
         initTalabatModule();
         initFawaterModule();
         initExpensesModule();
-        return MaterialPageRoute(builder: (_) => const HomeController());
+        return MaterialPageRoute(builder: (_) =>  HomeController());
       // case Routes.homeViewRoute:
       //   initHomeModule();
       //   return MaterialPageRoute(builder: (_) => HomeView());

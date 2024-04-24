@@ -2,14 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mandoob/core/resources/theme_manager.dart';
+import 'package:mandoob/features/custody/presentation/el_eahduh/el_eahduh_view.dart';
 import 'package:mandoob/features/home/presentation/cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_view.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:mandoob/core/resources/assets_manager.dart';
-import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
@@ -26,9 +25,9 @@ class HomeController extends StatelessWidget {
             case BottomNavBarItem.home:
               return HomeView();
             case BottomNavBarItem.talabat:
-              return TalabatView();
-            // case BottomNavBarItem.bugs:
-            //   return  ElSalahView();
+              return const TalabatView();
+            case BottomNavBarItem.bugs:
+              return  ElEahduh();
             case BottomNavBarItem.fawater:
               return FawaterView();
             default:
@@ -44,13 +43,14 @@ class HomeController extends StatelessWidget {
           isExtended: true,
           backgroundColor: Theme.of(context).hoverColor ,
           onPressed: () {
-            Navigator.pushNamed(context, Routes.elHodaa);
+            Navigator.pushNamed(context, Routes.elSalah);
+            // Navigator.pushNamed(context, Routes.elHodaa);
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSize.s50),
           ),
           child: SvgPicture.asset(
-            IconAssets.shopfloatIcon,
+            IconAssets.bagIcon,
             color: Colors.white,
             fit: BoxFit.contain,
             height: AppSize.s30,
@@ -81,14 +81,14 @@ class HomeController extends StatelessWidget {
             ),
             buttomNavBar(
               context: context,
-              img: IconAssets.bagIcon,
-              title: LocaleKeys.cart.tr(),
+              img: IconAssets.shopfloatIcon,
+              title: LocaleKeys.elaohda.tr(),
               function: () {
-                Navigator.pushNamed(context, Routes.elSalah);
+                // Navigator.pushNamed(context, Routes.elHodaa);
 
-                // context
-                //     .read<BottomNavBarCubit>()
-                //     .selectItem(BottomNavBarItem.bugs);
+                context
+                    .read<BottomNavBarCubit>()
+                    .selectItem(BottomNavBarItem.bugs);
               },
             ),
             SizedBox(
