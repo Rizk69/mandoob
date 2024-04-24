@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/features/trader/domain/model/trades_model.dart';
 import 'package:mandoob/features/trader/domain/usecase/active_trade_usecase.dart';
-import 'package:mandoob/features/trader/domain/usecase/add_trade_usecase.dart';
 import 'package:mandoob/features/trader/domain/usecase/get_trade_usecase.dart';
 import 'package:meta/meta.dart';
 
@@ -39,10 +38,11 @@ class TradeCubit extends Cubit<TradeState> {
 
     // تصفية البيانات بناءً على الاستعلام
     final filteredTrades = model?.trades?.where((trade) {
-          return trade.customerName
-                  .toLowerCase()
-                  .contains(query.toLowerCase()) ||
-              trade.phone.contains(query);
+          return trade.customerName.toLowerCase().contains(query.toLowerCase())
+              || trade.phone.contains(query)
+              || trade.address.toLowerCase().contains(query)
+              || trade.priceAr.contains(query)
+              || trade.priceEn.toLowerCase().contains(query);
         }).toList() ??
         [];
 
