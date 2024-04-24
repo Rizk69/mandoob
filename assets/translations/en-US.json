@@ -161,5 +161,6 @@
   "PriceInUsd": "price In Dolar",
   "date": "date",
   "totalPrice": "total Price",
-  "amountPaid": "The amount paid"
+  "amountPaid": "The amount paid",
+  "elaohda": "custody"
 }

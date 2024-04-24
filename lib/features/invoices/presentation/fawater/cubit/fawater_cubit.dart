@@ -79,8 +79,8 @@ class FawaterViewCubit extends Cubit<FawaterViewState> {
     } else {
       filteredTraderInvoices = traderInvoiceModel?.data
               .where((invoice) =>
-                  invoice.invoiceNo.contains(query) ||
-                  invoice.customerName.contains(query) ||
+                  invoice.invoiceNo.toLowerCase().contains(query.toLowerCase()) ||
+                  invoice.customerName.toLowerCase().contains(query.toLowerCase()) ||
                   invoice.date.contains(query))
               .toList() ??
           [];

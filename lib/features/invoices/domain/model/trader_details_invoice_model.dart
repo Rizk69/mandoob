@@ -37,8 +37,8 @@ class Product {
   num count;
   String unitAr;
   String unitEn;
-  num priceDoler;
-  num priceLera;
+  String priceDoler;
+  String priceLera;
   String date;
 
   Product({

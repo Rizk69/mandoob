@@ -35,8 +35,8 @@ extension ProductResponseMapper on ProductResponse? {
       count: this?.count ?? Constants.zero,
       unitAr: this?.unitAr ?? Constants.empty,
       unitEn: this?.unitEn ?? Constants.empty,
-      priceDoler: this?.priceDoler ?? Constants.zero,
-      priceLera: this?.priceLera ?? Constants.zero,
+      priceDoler: this?.priceDoler ?? Constants.empty,
+      priceLera: this?.priceLera ?? Constants.empty,
       date: this?.date ?? Constants.empty,
     );
   }

@@ -70,6 +70,7 @@ class DebtsCubit extends Cubit<DebtsState> {
     result.fold((failure) => emit(GetDelegateDebtsErrorState(failure.message)),
         (success) {
       delegateModel = success;
+      filterDelegateData = List.from(success.debts);
 
       emit(GetDelegateDebtsLoadedState());
     });
@@ -81,6 +82,8 @@ class DebtsCubit extends Cubit<DebtsState> {
     result.fold((failure) => emit(GetTraderDebtsErrorState(failure.message)),
         (success) {
       deptTraderModel = success;
+      filteredTraderData = List.from(success.debts);
+
       emit(GetTraderDebtsLoadedState());
     });
   }
@@ -120,4 +123,36 @@ class DebtsCubit extends Cubit<DebtsState> {
   void togglePreviousOrdersExpansion() {
     emit(PreviousOrdersExpanded());
   }
+
+
+  List<DebtDelegateDataModel> filterDelegateData = [];
+  List<DebtDetail> filteredTraderData = [];
+
+  void searchDebts(String query) {
+    // If the query is empty, use the full list
+    if (query.isEmpty) {
+      filterDelegateData = List.from(delegateModel!.debts);
+      filteredTraderData = List.from(deptTraderModel!.debts);
+    } else {
+      // Filter based on the date or other fields
+      filterDelegateData = delegateModel!.debts
+          .where((order) => order.date == query ||
+          order.reasonExpensesNameAr.contains(query) ||
+          order.reasonExpensesNameEn.toString().toLowerCase().contains(query.toLowerCase()) ||
+          order.date.toString().contains(query))
+          .toList();
+
+      filteredTraderData = deptTraderModel!.debts
+          .where((order) => order.dueDate == query ||
+          order.lastDate.contains(query) ||
+          order.traderName.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+
+    emit(GetTraderDebtsLoadedState());
+    emit(GetTraderDebtsLoadedState());
+  }
+
+
+
 }

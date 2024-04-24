@@ -19,14 +19,38 @@ class GetExpensesCubit extends Cubit<GetExpensesState> {
     emit(GetExpensesLoadingState());
     final result = await _getExpensesUseCase.execute('');
     result.fold(
-          (failure) {
+      (failure) {
         emit(GetExpensesErrorState(failure.message));
       },
-          (success) {
+      (success) {
         expensesModel = success;
+        filteredExpenses = List.from(success.expenses);
+
         emit(GetExpensesLoadedState());
       },
     );
+  }
+
+  List<ExpenseDataModel> filteredExpenses = [];
+
+  void searchExpenses(String query) {
+    if (query.isEmpty) {
+      // Reset to the full list if the query is empty
+      filteredExpenses = expensesModel?.expenses ?? [];
+    } else {
+      // Filter by the reason (Arabic or English) or date
+      filteredExpenses = expensesModel?.expenses
+              .where((expense) =>
+                  expense.reasonExpenseAr.contains(query) ||
+                  expense.reasonExpenseEn.toLowerCase().contains(query.toLowerCase()) ||
+                  expense.statusEn.toLowerCase().contains(query.toLowerCase()) ||
+                  expense.statusAr.contains(query) ||
+                  expense.date.contains(query))
+              .toList() ??
+          [];
+    }
+
+    emit(GetExpensesLoadedState());
   }
 
 

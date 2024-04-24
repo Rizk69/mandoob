@@ -24,14 +24,14 @@ extension BalanceDataMapper on BalanceData? {
 }
 
 extension ProductDataListMapper on List<ProductData>? {
-  List<Data> toDomain() {
+  List<EahduhOrderDataModel> toDomain() {
     return this?.map((productData) => productData.toDomain()).toList() ?? [];
   }
 }
 
 extension ProductDataMapper on ProductData {
-  Data toDomain() {
-    return Data(
+  EahduhOrderDataModel toDomain() {
+    return EahduhOrderDataModel(
       id: id ?? Constants.zero,
       count: count ?? Constants.zero,
       favoriteProduct: favoriteProduct ?? false,

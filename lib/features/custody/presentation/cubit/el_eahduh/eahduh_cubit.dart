@@ -21,9 +21,31 @@ class EahduhCubit extends Cubit<EahduhState> {
     result.fold((failure) => emit(GetEahduhErrorState(failure.message)),
         (success) {
       orderModel = success;
+      filteredEahduh = List.from(orderModel!.data);
       emit(GetEahduhLoadedState());
     });
   }
+
+
+
+  List<EahduhOrderDataModel> filteredEahduh = [];
+
+  void searchProducts(String query) {
+    if (query.isEmpty) {
+      filteredEahduh = List.from(orderModel!.data);
+    } else {
+      filteredEahduh = orderModel!.data
+          .where((order) =>
+          order.nameAr.contains(query) ||
+          order.nameEn.toString().toLowerCase().contains(query.toLowerCase()))
+          .toList();
+
+    }
+
+    emit(GetEahduhLoadedState());
+  }
+
+
 
   Future<void> addFavorite({required int id}) async {
     emit(AddEahduhLoadingState());

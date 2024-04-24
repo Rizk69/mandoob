@@ -2,12 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
-import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
-import 'package:mandoob/features/expenses/domain/model/expenses_model.dart';
-import 'package:mandoob/features/expenses/presentaton/cubit/expenses_cubit.dart';
 import 'package:mandoob/features/expenses/presentaton/get_expenses_cubit/get_expenses_cubit.dart';
 import 'package:mandoob/features/expenses/presentaton/widget/build_expense_item.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
@@ -17,6 +14,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class ExpensesScreen extends StatelessWidget {
   ExpensesScreen({Key? key}) : super(key: key);
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final TextEditingController _dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,13 +63,40 @@ class ExpensesScreen extends StatelessWidget {
                     ),
                     SizedBox(height: AppSize.s4.h),
                     TextFormField(
-                      cursorHeight: 30,
+                      controller: _dateController,  // Use the controller here
+                      scribbleEnabled: true,
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
                       ),
+                      cursorHeight: 30,
+                      onChanged: (value) {
+                        GetExpensesCubit.get(context).searchExpenses(value);
+                      },
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),
-                        hintText: 'ابحث هنا',
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.date_range),
+                          onPressed: () async {
+                            final pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2101),
+                            );
+
+                            if (pickedDate != null) {
+                              // Format the picked date
+                              final formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                              // Update the text field with the selected date
+                              _dateController.text = formattedDate;
+
+                              // Perform search with the selected date
+                              GetExpensesCubit.get(context).searchExpenses(formattedDate);
+                            }
+                          },
+                        ),
+                        hintText: LocaleKeys.SearchHere.tr(),
                         filled: true,
                         hintStyle: TextStyle(
                           color: Theme.of(context).primaryColor,
@@ -79,6 +104,7 @@ class ExpensesScreen extends StatelessWidget {
                         fillColor: Theme.of(context).primaryColorDark,
                       ),
                     ),
+
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15.0),
                       child: GestureDetector(
@@ -108,13 +134,13 @@ class ExpensesScreen extends StatelessWidget {
                           return const CircularProgressIndicator();
                         } else if (state is GetExpensesLoadedState) {
                           var expensesModel =
-                              GetExpensesCubit.get(context).expensesModel;
+                              GetExpensesCubit.get(context).filteredExpenses;
                           return ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount: expensesModel?.expenses.length ?? 0,
+                            itemCount: expensesModel.length ?? 0,
                             itemBuilder: (BuildContext context, int index) {
-                              var expense = expensesModel!.expenses[index];
+                              var expense = expensesModel[index];
                               return buildExpenseItem(context, expense);
                             },
                           );

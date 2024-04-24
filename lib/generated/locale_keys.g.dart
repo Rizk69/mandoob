@@ -149,5 +149,6 @@ abstract class  LocaleKeys {
   static const date = 'date';
   static const totalPrice = 'totalPrice';
   static const amountPaid = 'amountPaid';
+  static const elaohda = 'elaohda';
 
 }
