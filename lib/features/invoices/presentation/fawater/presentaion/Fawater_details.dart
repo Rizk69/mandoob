@@ -30,14 +30,13 @@ class FawaterTagerDetailsView extends StatelessWidget {
           backgroundColor: ColorManager.backGround,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18),
-            child: SingleChildScrollView(
-              child: BlocBuilder<FawaterViewCubit, FawaterViewState>(
-                builder: (context, state) {
-                  if (state is LoadedTraderInvoiceDetailsState) {
-                    var traderDetailsInvoiceModel =
-                        FawaterViewCubit.get(context)
-                            .traderDetailsInvoiceModel!;
-                    return Column(
+            child: BlocBuilder<FawaterViewCubit, FawaterViewState>(
+              builder: (context, state) {
+                if (state is LoadedTraderInvoiceDetailsState) {
+                  var traderDetailsInvoiceModel =
+                      FawaterViewCubit.get(context).traderDetailsInvoiceModel!;
+                  return SingleChildScrollView(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
@@ -45,7 +44,7 @@ class FawaterTagerDetailsView extends StatelessWidget {
                         ),
                         HeaderScreen(
                             title:
-                            '${LocaleKeys.invoiceTrader.tr()}${traderDetailsInvoiceModel.data.customerName.split(" ")[0]}',
+                                '${LocaleKeys.invoiceTrader.tr()}${traderDetailsInvoiceModel.data.customerName.split(" ")[0]}',
                             functionIcon: () {
                               Navigator.pop(context);
                             }),
@@ -59,8 +58,9 @@ class FawaterTagerDetailsView extends StatelessWidget {
                               color: ColorManager.black,
                             ),
                             children: [
-                               TextSpan(
-                                text: '${LocaleKeys.invoiceNumber.tr()}\t\t\t\t',
+                              TextSpan(
+                                text:
+                                    '${LocaleKeys.invoiceNumber.tr()}\t\t\t\t',
                               ),
                               TextSpan(
                                 text: traderDetailsInvoiceModel.data.invoiceNo,
@@ -90,8 +90,9 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                           color: ColorManager.black,
                                         ),
                                         children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.ProductName.tr()}\t\t\t\t',
+                                          TextSpan(
+                                            text:
+                                                '${LocaleKeys.ProductName.tr()}\t\t\t\t',
                                           ),
                                           TextSpan(
                                             text: traderDetailsInvoiceModel
@@ -112,8 +113,9 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                           color: ColorManager.black,
                                         ),
                                         children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.count.tr()}\t\t\t\t',
+                                          TextSpan(
+                                            text:
+                                                '${LocaleKeys.count.tr()}\t\t\t\t',
                                           ),
                                           TextSpan(
                                             text:
@@ -134,8 +136,9 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                           color: ColorManager.black,
                                         ),
                                         children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.priceInLera.tr()} \t\t\t\t',
+                                          TextSpan(
+                                            text:
+                                                '${LocaleKeys.priceInLera.tr()} \t\t\t\t',
                                           ),
                                           TextSpan(
                                             text: traderDetailsInvoiceModel
@@ -157,8 +160,9 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                           color: ColorManager.black,
                                         ),
                                         children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.PriceInUsd.tr()}\t\t\t\t',
+                                          TextSpan(
+                                            text:
+                                                '${LocaleKeys.PriceInUsd.tr()}\t\t\t\t',
                                           ),
                                           TextSpan(
                                             text: traderDetailsInvoiceModel
@@ -180,8 +184,9 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                           color: ColorManager.black,
                                         ),
                                         children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.date.tr()}\t\t\t',
+                                          TextSpan(
+                                            text:
+                                                '${LocaleKeys.date.tr()}\t\t\t',
                                           ),
                                           TextSpan(
                                             text: traderDetailsInvoiceModel
@@ -203,11 +208,9 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                   ],
                                 ),
                               ),
-
-
                               Container(
-                                margin:
-                                const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                                margin: const EdgeInsets.only(
+                                    left: 10, right: 10, bottom: 10),
                                 width: double.infinity,
                                 height: 1,
                                 color: Colors.grey, // Border color
@@ -220,11 +223,12 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                   ),
                                   children: [
                                     TextSpan(
-                                      text: '${LocaleKeys.totalPrice.tr()}\t\t\t',
+                                      text:
+                                          '${LocaleKeys.totalPrice.tr()}\t\t\t',
                                     ),
                                     TextSpan(
                                       text:
-                                      "${traderDetailsInvoiceModel.products[index].priceDoler.toString()} \$    ",
+                                          "${traderDetailsInvoiceModel.products[index].priceDoler.toString()} \$    ",
                                       style: getBoldSegoeStyle(
                                         fontSize: 20,
                                         color: Colors.green,
@@ -232,7 +236,7 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                     ),
                                     TextSpan(
                                       text:
-                                      "${traderDetailsInvoiceModel.products[index].priceLera.toString()} Tl",
+                                          "${traderDetailsInvoiceModel.products[index].priceLera.toString()} Tl",
                                       style: getBoldSegoeStyle(
                                         fontSize: 20,
                                         color: Colors.redAccent,
@@ -241,27 +245,25 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                   ],
                                 ),
                               ),
-
                             ],
                           ),
                         ),
-
                       ],
-                    );
-                  } else if (state is LoadingTraderInvoiceDetailsState) {
-                    return const Scaffold(
-                      body: Column(
-                        children: [
-                          Center(
-                            child: CircularProgressIndicator.adaptive(),
-                          )
-                        ],
-                      ),
-                    );
-                  }
-                  return Container();
-                },
-              ),
+                    ),
+                  );
+                } else if (state is LoadingTraderInvoiceDetailsState) {
+                  return const Scaffold(
+                    body: Column(
+                      children: [
+                        Center(
+                          child: CircularProgressIndicator.adaptive(),
+                        )
+                      ],
+                    ),
+                  );
+                }
+                return Container();
+              },
             ),
           ),
         ),
@@ -321,8 +323,8 @@ class FawaterMandobDetailsView extends StatelessWidget {
                                 onTap: () {
                                   showMenu(
                                     context: context,
-                                    position:
-                                        const RelativeRect.fromLTRB(0, 100, 100, 100),
+                                    position: const RelativeRect.fromLTRB(
+                                        0, 100, 100, 100),
                                     items: [
                                       const PopupMenuItem(
                                         child: Text('شامبو'),
@@ -570,7 +572,9 @@ class FawaterMandobDetailsView extends StatelessWidget {
                       );
                     } else {
                       return EmptyScreen(
-                          title: 'خطأ في البيانات', textbutton: 'العودة',viewButtom: true);
+                          title: 'خطأ في البيانات',
+                          textbutton: 'العودة',
+                          viewButtom: true);
                     }
                   } else if (state is LoadingSupplierInvoiceDetailsState) {
                     return const Scaffold(

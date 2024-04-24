@@ -15,7 +15,7 @@ import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class LoginView extends StatelessWidget {
-  LoginView({Key? key}) : super(key: key);
+  const LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

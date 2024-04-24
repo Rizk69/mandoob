@@ -179,11 +179,14 @@ Widget rowDrawer(
         const SizedBox(
           width: AppSize.s8,
         ),
-        Text(
-          title,
-          style: getBoldSegoeStyle(
-            color: Theme.of(context).primaryColor,
-            fontSize: AppSize.s20.sp,
+        Expanded(
+          child: Text(
+            title,
+            maxLines: 2,
+            style: getBoldSegoeStyle(
+              color: Theme.of(context).primaryColor,
+              fontSize: AppSize.s20.sp,
+            ),
           ),
         )
       ],
