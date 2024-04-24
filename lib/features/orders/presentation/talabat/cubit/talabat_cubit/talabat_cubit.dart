@@ -66,14 +66,14 @@ class TalabatViewCubit extends Cubit<TalabatViewState> {
           .where((order) => order.date == query ||
           order.orderNo.contains(query) ||
           order.status_ar.toString().contains(query) ||
-          order.status_en.toString().contains(query))
+          order.status_en.toString().toLowerCase().contains(query))
           .toList();
 
       filteredOldOrders = talabatOldModel!.orders
           .where((order) => order.date == query ||
           order.orderNo.contains(query) ||
           order.status_ar.toString().contains(query) ||
-          order.status_en.toString().contains(query))
+          order.status_en.toString().toLowerCase().contains(query))
           .toList();
     }
 
