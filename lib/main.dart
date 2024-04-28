@@ -6,13 +6,25 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:mandoob/app/app.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/netowork_core/bloc_observer.dart';
+import 'package:mandoob/core/netowork_core/firebase_notification.dart';
 import 'package:mandoob/core/resources/language_manager.dart';
+import 'package:mandoob/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
 
+
+  await initAppModule();
+
+
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseNotification().initNotification();
   /// transparent status bar
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -21,7 +33,6 @@ void main() async {
       statusBarBrightness: Brightness.light,
     ),
   );
-  await initAppModule();
   initProfileModule();
   runApp(
     EasyLocalization(
