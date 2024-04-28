@@ -233,18 +233,14 @@ class ElEahduh extends StatelessWidget {
                                           ),
                                         ];
 
-                                        // Variable to hold the current selected value for the dropdown
                                         String? currentDropdownValue;
 
-                                        // Check if the state has loaded and there are trades to display
                                         if (state is GetTradeLoadedState &&
                                             state.model?.trades != null) {
-                                          // Extend the tradeItems list with items from the trades list
                                           tradeItems.addAll(
                                             state.model!.trades!.map((trade) {
                                               return DropdownMenuItem(
                                                 value: trade.id.toString(),
-                                                // Ensure each trade has a unique id value
                                                 child: Row(
                                                   children: [
                                                     ClipRRect(
@@ -273,7 +269,6 @@ class ElEahduh extends StatelessWidget {
                                           currentDropdownValue = currentDropdownValue ?? tradeItems.first.value;
                                         }
 
-                                        // DropdownButtonFormField with updated logic
                                         return DropdownButtonFormField<String>(
                                           decoration: InputDecoration(
                                             filled: true,
@@ -286,9 +281,9 @@ class ElEahduh extends StatelessWidget {
                                               Navigator.pushNamed(context, Routes.newTrader);
                                             } else {
                                               currentDropdownValue = value;
-                                              TradeCubit.get(context).setTraderName(value);
+                                              TradeCubit.get(context).setTraderName(int.parse(value!));
 
-                                              TradeCubit.get(context).activeTrade(int.parse(value!));
+                                              TradeCubit.get(context).activeTrade(int.parse(value));
                                             }
                                           },
                                           hint: Text(LocaleKeys.addNewTrade.tr()),

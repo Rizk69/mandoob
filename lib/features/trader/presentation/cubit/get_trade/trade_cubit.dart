@@ -18,15 +18,30 @@ class TradeCubit extends Cubit<TradeState> {
   TradeCubit(this._tradesUseCase, this._activeTradesUseCase)
       : super(TradeInitial());
 
-
-  String selectedTraderName = LocaleKeys.selectNewTrade.tr(); // Default text for the Text widget
-setTraderName(name){
-  selectedTraderName = name;
-  emit(SelectTradeLoadedState());
-}
-
+  String selectedTraderName = LocaleKeys.selectNewTrade.tr();
 
   TradeModel? model;
+  void setTraderName(int id) {
+    print("ID received: $id");
+
+    var trade = model?.trades?.firstWhere(
+            (tradeDataModel) => tradeDataModel.id == id,
+    );
+
+    if (trade != null) {
+      selectedTraderName = trade.customerName;
+      print("Selected Trader Name: ${trade.customerName}");
+      emit(SelectTradeLoadedState());
+    } else {
+
+      print("No trade found with ID $id");
+      selectedTraderName = "Trade not found";
+      emit(SelectTradeLoadedState());
+
+    }
+  }
+
+
 
   Future<void> getTrade() async {
     emit(GetTradeLoadingState());
@@ -48,16 +63,17 @@ setTraderName(name){
 
     // تصفية البيانات بناءً على الاستعلام
     final filteredTrades = model?.trades?.where((trade) {
-          return trade.customerName.toLowerCase().contains(query.toLowerCase())
-              || trade.phone.contains(query)
-              || trade.address.toLowerCase().contains(query)
-              || trade.priceAr.contains(query)
-              || trade.priceEn.toLowerCase().contains(query);
+          return trade.customerName
+                  .toLowerCase()
+                  .contains(query.toLowerCase()) ||
+              trade.phone.contains(query) ||
+              trade.address.toLowerCase().contains(query) ||
+              trade.priceAr.contains(query) ||
+              trade.priceEn.toLowerCase().contains(query);
         }).toList() ??
         [];
 
     if (filteredTrades.isNotEmpty) {
-      // إنشاء نموذج جديد بالنتائج المصفاة
       final resultModel = TradeModel(
         status: model?.status ?? false,
         message: "نتائج البحث",
