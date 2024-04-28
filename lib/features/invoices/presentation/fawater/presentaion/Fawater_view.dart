@@ -159,7 +159,7 @@ class FawaterViewBody extends StatelessWidget {
                                       ),
                                       Tab(
                                         child: Text(
-                                          'فواتير الموردين ',
+                                          'فواتير اليوم',
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,

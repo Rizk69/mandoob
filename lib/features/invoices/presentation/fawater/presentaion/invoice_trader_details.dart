@@ -145,6 +145,31 @@ class FawaterTagerDetailsView extends StatelessWidget {
                             ],
                           ),
                         ),
+
+                        SizedBox(
+                          height: AppSize.s2.h,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            style: getBoldSegoeStyle(
+                              fontSize: AppSize.s22.sp,
+                              color: ColorManager.black,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: '${LocaleKeys.date.tr()}\t\t\t\t',
+                              ),
+                              TextSpan(
+                                text:
+                                    "${traderDetailsInvoiceModel.data.date.toString()}",
+                                style: getBoldSegoeStyle(
+                                  fontSize: AppSize.s20.sp,
+                                  color: ColorManager.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         SizedBox(height: AppSize.s3.h,),
                         Center(
                           child: Text(LocaleKeys.products.tr(),
@@ -163,6 +188,8 @@ class FawaterTagerDetailsView extends StatelessWidget {
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: DataTable(
+                                  columnSpacing: AppSize.s5.w,
+
                                   columns: [
                                     DataColumn(
                                       label: Text(
@@ -194,15 +221,6 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                     DataColumn(
                                       label: Text(
                                         LocaleKeys.PriceInUsd.tr(),
-                                        style: getBoldSegoeStyle(
-                                          fontSize: AppSize.s20.sp,
-                                          color: ColorManager.black,
-                                        ),
-                                      ),
-                                    ),
-                                    DataColumn(
-                                      label: Text(
-                                        LocaleKeys.date.tr(),
                                         style: getBoldSegoeStyle(
                                           fontSize: AppSize.s20.sp,
                                           color: ColorManager.black,
@@ -249,16 +267,6 @@ class FawaterTagerDetailsView extends StatelessWidget {
                                             traderDetailsInvoiceModel
                                                 .products[index].priceDoler
                                                 .toString(),
-                                            style: getMediumInterStyle(
-                                              fontSize: AppSize.s20.sp,
-                                              color: ColorManager.black,
-                                            ),
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Text(
-                                            traderDetailsInvoiceModel
-                                                .products[index].date,
                                             style: getMediumInterStyle(
                                               fontSize: AppSize.s20.sp,
                                               color: ColorManager.black,

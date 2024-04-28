@@ -88,4 +88,13 @@ class FawaterViewCubit extends Cubit<FawaterViewState> {
       emit(LoadedTraderInvoiceState(filteredTraderInvoices));
     }
   }
+
+
+  Invoice? selectedInvoice; // New field to track the selected invoice
+
+  void selectInvoice(int index) {
+    selectedInvoice = supplierDetailsInvoiceModel?.invoices[index];
+    emit(InvoiceSelectedState(selectedInvoice!));
+  }
+
 }

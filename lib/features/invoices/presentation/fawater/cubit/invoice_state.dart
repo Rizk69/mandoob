@@ -64,3 +64,9 @@ class LoadedSupplierInvoiceDetailsState extends FawaterViewState {
 
   LoadedSupplierInvoiceDetailsState(this.supplierDetailsInvoiceModel);
 }
+
+class InvoiceSelectedState extends FawaterViewState {
+  final Invoice selectedInvoice;
+
+  InvoiceSelectedState(this.selectedInvoice);
+}
