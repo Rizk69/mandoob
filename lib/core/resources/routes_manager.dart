@@ -17,7 +17,7 @@ import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/fawater/presentaion/invoice_trader_details.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/invoice_delegate_details.dart';
+import 'package:mandoob/features/invoices/presentation/fawater/presentaion/invoice_delegate_details.dart';
 import 'package:mandoob/features/notification/presentation/notification.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_old_details.dart';
