@@ -141,14 +141,20 @@ abstract class  LocaleKeys {
   static const ErrorLoadingData = 'ErrorLoadingData';
   static const SomethingError = 'SomethingError';
   static const invoiceTrader = 'invoiceTrader';
+  static const TraderName = 'TraderName';
   static const invoiceNumber = 'invoiceNumber';
   static const ProductName = 'ProductName';
   static const count = 'count';
   static const priceInLera = 'priceInLera';
   static const PriceInUsd = 'PriceInUsd';
   static const date = 'date';
-  static const totalPrice = 'totalPrice';
+  static const products = 'products';
+  static const Invoices = 'Invoices';
+  static const totalPriceUSD = 'totalPriceUSD';
+  static const totalPriceTL = 'totalPriceTL';
   static const amountPaid = 'amountPaid';
   static const elaohda = 'elaohda';
+  static const invoiceDelegate = 'invoiceDelegate';
+  static const DelegateName = 'DelegateName';
 
 }

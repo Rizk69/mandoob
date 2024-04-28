@@ -6,7 +6,7 @@
   "becomeReady": "Become Ready",
   "copyRight": "Copyright ©",
   "startDesc": "Welcome, Let's get started",
-  "userName": "User Name",
+  "userName": "Trader Name",
   "signIn": "Sign In",
   "signUp": "Sign Up",
   "mobile": "Mobile",
@@ -154,13 +154,21 @@
   "SomethingError": "Something Error",
 
   "invoiceTrader": "Trader Invoice",
+  "TraderName": "Trader Name",
   "invoiceNumber": "invoice Number",
   "ProductName": "Product Name",
   "count": "Count",
   "priceInLera": "price by Lera",
   "PriceInUsd": "price In Dolar",
   "date": "date",
-  "totalPrice": "total Price",
+  "products": "products",
+  "Invoices": "Invoices",
+
+  "totalPriceUSD": "total Price USD",
+  "totalPriceTL": "total Price TL",
   "amountPaid": "The amount paid",
-  "elaohda": "custody"
+  "elaohda": "custody",
+  "invoiceDelegate": "Invoice Delegate",
+  "DelegateName": "Delegate Name"
+
 }

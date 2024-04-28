@@ -6,7 +6,7 @@
   "noRouteFound": "لا توجد شاشة",
   "copyRight": "حقوق الملكية©",
   "startDesc": "مرحبًا ، فلنبدأ",
-  "userName": "اسم المستخدم",
+  "userName": "اسم التاجر",
   "signIn": "تسجيل الدخول",
   "signUp": "تسجيل",
   "mobile": "الهاتف",
@@ -155,15 +155,21 @@
 
 
   "invoiceTrader": "فاتورة التاجر",
+  "TraderName": "اسم التاجر",
   "invoiceNumber": "رقم الفاتورة",
   "ProductName": "اسم المنتج",
   "count": "الكمية",
   "priceInLera": "السعر بالليرة",
   "PriceInUsd": "السعر بالدولار",
   "date": "التاريخ",
-  "totalPrice": "الأجمالي",
+  "products": "المنتجات",
+  "Invoices": "الفواتير",
+
+  "totalPriceUSD": "الأجمالي بالدولار",
+  "totalPriceTL": "الأجمالي بالليرة",
   "amountPaid": "المبلغ المدفوع",
-  "elaohda": "العهده"
+  "elaohda": "العهده",
 
-
+  "invoiceDelegate": "فاتورة المندوب",
+  "DelegateName": "اسم المندوب"
 }

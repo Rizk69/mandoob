@@ -89,138 +89,207 @@ class InvoiceDetailsView extends StatelessWidget {
                             ],
                           ),
                         ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: invoiceModel.invoice?.products.length,
-                          itemBuilder: (context, index) => Column(
+                        SizedBox(height: AppSize.s2.h,),
+                        RichText(
+                          text: TextSpan(
+                            style: getBoldSegoeStyle(
+                              fontSize: 28,
+                              color: ColorManager.black,
+                            ),
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 15),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                        style: getBoldSegoeStyle(
-                                          fontSize: 25,
-                                          color: ColorManager.black,
-                                        ),
-                                        children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.ProductName.tr()}\t\t\t\t',
-                                          ),
-                                          TextSpan(
-                                            text: invoiceModel.invoice
-                                                ?.products[index].nameAr,
-                                            style: getMediumInterStyle(
-                                              fontSize: 20,
-                                              color: ColorManager.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    RichText(
-                                      text: TextSpan(
-                                        style: getBoldSegoeStyle(
-                                          fontSize: 25,
-                                          color: ColorManager.black,
-                                        ),
-                                        children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.count.tr()}\t\t\t\t',
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                "${invoiceModel.invoice?.products[index].count} ${invoiceModel.invoice?.products[index].unitAr} ",
-                                            style: getMediumInterStyle(
-                                              fontSize: 20,
-                                              color: ColorManager.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    RichText(
-                                      text: TextSpan(
-                                        style: getBoldSegoeStyle(
-                                          fontSize: 25,
-                                          color: ColorManager.black,
-                                        ),
-                                        children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.priceInLera.tr()} \t\t\t\t',
-                                          ),
-                                          TextSpan(
-                                            text: invoiceModel.invoice
-                                                ?.products[index].priceLera
-                                                .toString(),
-                                            style: getMediumInterStyle(
-                                              fontSize: 20,
-                                              color: ColorManager.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    RichText(
-                                      text: TextSpan(
-                                        style: getBoldSegoeStyle(
-                                          fontSize: 25,
-                                          color: ColorManager.black,
-                                        ),
-                                        children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.PriceInUsd.tr()}\t\t\t\t',
-                                          ),
-                                          TextSpan(
-                                            text: invoiceModel.invoice
-                                                ?.products[index].priceDoler
-                                                .toString(),
-                                            style: getMediumInterStyle(
-                                              fontSize: 20,
-                                              color: ColorManager.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    RichText(
-                                      text: TextSpan(
-                                        style: getBoldSegoeStyle(
-                                          fontSize: 25,
-                                          color: ColorManager.black,
-                                        ),
-                                        children: [
-                                           TextSpan(
-                                            text: '${LocaleKeys.date.tr()}\t\t\t',
-                                          ),
-                                          TextSpan(
-                                            text: invoiceModel
-                                                .invoice?.products[index].date,
-                                            style: getMediumInterStyle(
-                                              fontSize: 20,
-                                              color: ColorManager.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 12),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 1,
-                                      color: Colors.grey, // Border color
-                                    ),
-                                  ],
+                              TextSpan(
+                                text: '${LocaleKeys.totalPriceTL.tr()}\t\t\t',
+                              ),
+                              TextSpan(
+                                text:
+                                "${invoiceModel.invoice?.priceDoler.toString()} \$    ",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                "${invoiceModel.invoice?.priceLera.toString()} Tl",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.redAccent,
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                        SizedBox(height: AppSize.s2.h,),
+
+                        RichText(
+                          text: TextSpan(
+                            style: getBoldSegoeStyle(
+                              fontSize: 28,
+                              color: ColorManager.black,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: '${LocaleKeys.amountPaid.tr()} \t\t\t',
+                              ),
+                              TextSpan(
+                                text:
+                                "${invoiceModel.invoice?.payPriceDoler.toString()} \$    ",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                "${invoiceModel.invoice?.payPriceLera.toString()} Tl",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.redAccent,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: AppSize.s2.h,),
+
+                        RichText(
+                          text: TextSpan(
+                            style: getBoldSegoeStyle(
+                              fontSize: 28,
+                              color: ColorManager.black,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: '${LocaleKeys.RemainingAmount.tr()} \t\t\t',
+                              ),
+                              TextSpan(
+                                text:
+                                "${invoiceModel.invoice?.restPriceDoler.toString()} \$    ",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                "${invoiceModel.invoice?.restPriceLera.toString()} Tl",
+                                style: getBoldSegoeStyle(
+                                  fontSize: 20,
+                                  color: Colors.redAccent,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: AppSize.s4.h,
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal, // For horizontal scrolling
+                          child: DataTable(
+                            columns: [
+                              DataColumn(
+                                label: Text(
+                                  LocaleKeys.ProductName.tr(), // Column for date
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorManager.black,
+                                  ),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  LocaleKeys.count.tr(), // Column for date
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorManager.black,
+                                  ),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  LocaleKeys.priceInLera.tr(), // Column for date
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorManager.black,
+                                  ),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  LocaleKeys.PriceInUsd.tr(), // Column for date
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorManager.black,
+                                  ),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                 LocaleKeys.date.tr(), // Column for date
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorManager.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            rows: invoiceModel.invoice?.products.map((product) {
+                              return DataRow(
+                                cells: [
+                                  DataCell(
+                                    Text(
+                                      product.nameAr, // Product name in Arabic
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: ColorManager.black,
+                                      ),
+                                    ),
+                                  ),
+                                  DataCell(
+                                    Text(
+                                      "${product.count} ${product.unitAr}", // Product count and unit
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: ColorManager.black,
+                                      ),
+                                    ),
+                                  ),
+                                  DataCell(
+                                    Text(
+                                      product.priceLera.toString(), // Price in Lera
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: ColorManager.black,
+                                      ),
+                                    ),
+                                  ),
+                                  DataCell(
+                                    Text(
+                                      product.priceDoler.toString(), // Price in USD
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: ColorManager.black,
+                                      ),
+                                    ),
+                                  ),
+                                  DataCell(
+                                    Text(
+                                      product.date, // Date of product
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: ColorManager.black,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }).toList() ?? [], // Convert product list to rows
                           ),
                         ),
                         Container(
@@ -229,93 +298,6 @@ class InvoiceDetailsView extends StatelessWidget {
                           width: double.infinity,
                           height: 1,
                           color: Colors.grey, // Border color
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            style: getBoldSegoeStyle(
-                              fontSize: 28,
-                              color: ColorManager.black,
-                            ),
-                            children: [
-                               TextSpan(
-                                text: '${LocaleKeys.totalPrice.tr()}\t\t\t',
-                              ),
-                              TextSpan(
-                                text:
-                                    "${invoiceModel.invoice?.priceDoler.toString()} \$    ",
-                                style: getBoldSegoeStyle(
-                                  fontSize: 20,
-                                  color: Colors.green,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    "${invoiceModel.invoice?.priceLera.toString()} Tl",
-                                style: getBoldSegoeStyle(
-                                  fontSize: 20,
-                                  color: Colors.redAccent,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            style: getBoldSegoeStyle(
-                              fontSize: 28,
-                              color: ColorManager.black,
-                            ),
-                            children: [
-                               TextSpan(
-                                text: '${LocaleKeys.amountPaid.tr()} \t\t\t',
-                              ),
-                              TextSpan(
-                                text:
-                                    "${invoiceModel.invoice?.payPriceDoler.toString()} \$    ",
-                                style: getBoldSegoeStyle(
-                                  fontSize: 20,
-                                  color: Colors.green,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    "${invoiceModel.invoice?.payPriceLera.toString()} Tl",
-                                style: getBoldSegoeStyle(
-                                  fontSize: 20,
-                                  color: Colors.redAccent,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            style: getBoldSegoeStyle(
-                              fontSize: 28,
-                              color: ColorManager.black,
-                            ),
-                            children: [
-                               TextSpan(
-                                text: '${LocaleKeys.RemainingAmount.tr()} \t\t\t',
-                              ),
-                              TextSpan(
-                                text:
-                                    "${invoiceModel.invoice?.restPriceDoler.toString()} \$    ",
-                                style: getBoldSegoeStyle(
-                                  fontSize: 20,
-                                  color: Colors.green,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    "${invoiceModel.invoice?.restPriceLera.toString()} Tl",
-                                style: getBoldSegoeStyle(
-                                  fontSize: 20,
-                                  color: Colors.redAccent,
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
                         SizedBox(
                           height: AppSize.s4.h,
