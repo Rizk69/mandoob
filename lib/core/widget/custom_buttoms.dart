@@ -19,31 +19,44 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppPreferences _appPreferences = instance<AppPreferences>();
-    _appPreferences.getPrimaryColor();
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 60),
-      child: ElevatedButton(
-        style: ButtonStyle(
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-            EdgeInsets.all(10.0),
-          ),
-          backgroundColor:
-              MaterialStateProperty.all<Color>(Theme.of(context).hoverColor),
-          shape: MaterialStateProperty.all<OutlinedBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                  AppSize.s40), // Adjust the radius as needed
+      padding: const EdgeInsets.symmetric(horizontal: AppSize.s40),
+      child: FutureBuilder<String>(
+        future: _appPreferences.getPrimaryColor(),
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          Color buttonColor = Theme.of(context).hoverColor; // Default color
+          if (snapshot.hasData) {
+            String colorValue = snapshot.data!;
+            if (colorValue.startsWith('#')) {
+              colorValue = '0xff' + colorValue.substring(1);
+            }
+            try {
+              buttonColor = Color(int.parse(colorValue));
+            } catch (e) {
+              print('Error parsing color: $e');
+            }
+          }
+          return ElevatedButton(
+            onPressed: onPressed,
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(EdgeInsets.all(10.0)),
+              backgroundColor: MaterialStateProperty.all(buttonColor),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppSize.s40),
+                ),
+              ),
             ),
-          ),
-        ),
-        onPressed: onPressed,
-        child: Text(
-          buttonText,
-          style: getBoldSegoeStyle(
-            color: ColorManager.black,
-            fontSize: AppSize.s20.sp,
-          ),
-        ),
+            child: Text(
+              buttonText,
+              style: getBoldSegoeStyle(
+                color: ColorManager.black,
+                fontSize: AppSize.s20.sp,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

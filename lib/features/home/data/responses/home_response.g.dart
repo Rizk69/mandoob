@@ -9,6 +9,7 @@ part of 'home_response.dart';
 HomeResponse _$HomeResponseFromJson(Map<String, dynamic> json) => HomeResponse(
       status: json['status'] as bool?,
       message: json['message'] as String?,
+      color: json['color'] as String?,
       balance: json['balance'] == null
           ? null
           : BalanceDataResponse.fromJson(
@@ -25,6 +26,7 @@ Map<String, dynamic> _$HomeResponseToJson(HomeResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
+      'color': instance.color,
       'balance': instance.balance,
       'count': instance.countDataResponse,
       'delivary_Line': instance.deliveryLine,
