@@ -2,6 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
@@ -13,6 +14,8 @@ import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 BlocProvider<dynamic> buildDrawer(BuildContext context) {
+  AppPreferences _appPreferences = instance<AppPreferences>();
+
   return BlocProvider<LoginCubit>(
       create: (_) => instance<LoginCubit>(),
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -129,12 +132,29 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 8,
                 ),
-                Padding(
+              FutureBuilder<String>(
+
+                future: _appPreferences.getPrimaryColor(),
+                builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+
+                  Color buttonColor = Theme.of(context).hoverColor; // Default color
+                  if (snapshot.hasData) {
+                    String colorValue = snapshot.data!;
+                    if (colorValue.startsWith('#')) {
+                      colorValue = '0xff' + colorValue.substring(1);
+                    }
+                    try {
+                      buttonColor = Color(int.parse(colorValue));
+                    } catch (e) {
+                      print('Error parsing color: $e');
+                    }
+                  }
+                  return  Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll<Color>(
-                          ColorManager.baseColorLight),
+                          buttonColor),
                       shape: MaterialStatePropertyAll<OutlinedBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
@@ -153,7 +173,8 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                       ),
                     ),
                   ),
-                )
+                );},
+              )
               ],
             ),
           );
