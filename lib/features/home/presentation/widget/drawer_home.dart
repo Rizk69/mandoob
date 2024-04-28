@@ -106,7 +106,7 @@ BlocProvider<dynamic> buildDrawer(BuildContext context) {
                 InkWell(
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.pushNamed(context, Routes.payingDebts);
+                    Navigator.pushNamed(context, Routes.purchase);
                   },
                   child: rowDrawer(
                       title: LocaleKeys.addPurchases.tr(),
@@ -179,11 +179,14 @@ Widget rowDrawer(
         const SizedBox(
           width: AppSize.s8,
         ),
-        Text(
-          title,
-          style: getBoldSegoeStyle(
-            color: Theme.of(context).primaryColor,
-            fontSize: AppSize.s20.sp,
+        Expanded(
+          child: Text(
+            title,
+            maxLines: 2,
+            style: getBoldSegoeStyle(
+              color: Theme.of(context).primaryColor,
+              fontSize: AppSize.s20.sp,
+            ),
           ),
         )
       ],

@@ -59,6 +59,15 @@ import 'package:mandoob/features/orders/data/data_source/remote_talabat_data_sou
 import 'package:mandoob/features/orders/domain/usecase/order_usecases.dart';
 import 'package:mandoob/features/orders/domain/usecase/talabat_usecases.dart';
 import 'package:mandoob/features/orders/presentation/talabat/cubit/order_cubit/order_cubit.dart';
+import 'package:mandoob/features/purchase/data/data_source/purchase_data_source.dart';
+import 'package:mandoob/features/purchase/data/network/purchase_api.dart';
+import 'package:mandoob/features/purchase/data/repository/repository_purchase_impl.dart';
+import 'package:mandoob/features/purchase/domain/repository/purchase_repository.dart';
+import 'package:mandoob/features/purchase/domain/usecase/add_purchase_usecases.dart';
+import 'package:mandoob/features/purchase/domain/usecase/add_salse_purchase_usecases.dart';
+import 'package:mandoob/features/purchase/domain/usecase/get_purchase_usecases.dart';
+import 'package:mandoob/features/purchase/presentation/cubit/purchase_cubit.dart';
+import 'package:mandoob/features/purchase/presentation/purchase_view.dart';
 import 'package:mandoob/features/trader/data/data_source/remote_trade_data_source.dart';
 import 'package:mandoob/features/trader/data/network/trade_api.dart';
 import 'package:mandoob/features/trader/domain/repository/trade_repository.dart';
@@ -142,6 +151,9 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<NotificationServiceClient>(
       () => NotificationServiceClient(dio));
 
+  instance.registerLazySingleton<PurchaseServiceClient>(
+      () => PurchaseServiceClient(dio));
+
   // Local data source
   instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
@@ -173,6 +185,9 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteNotificationsDataSource>(
       () => RemoteNotificationsDataSourceImpl(instance()));
 
+  instance.registerLazySingleton<RemotePurchaseDataSource>(
+      () => RemotePurchaseDataSourceImpl(instance()));
+
   // repository
   instance.registerLazySingleton<Repository>(
       () => RepositoryTrafficLineImpl(instance(), instance()));
@@ -201,6 +216,9 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<NotificationRepository>(
       () => NotificationRepositoryImpl(instance(), instance()));
+
+  instance.registerLazySingleton<PurchaseRepository>(
+      () => PurchaseRepositoryImpl(instance(), instance()));
 }
 
 initLoginModule() {
@@ -298,8 +316,8 @@ initFawaterModule() {
 
 initDelivaryLineModule() {
   if (!GetIt.I.isRegistered<DelivaryLineUseCase>()) {
-    instance.registerFactory<TrafficLinesCubit>(() =>
-        TrafficLinesCubit(instance(), instance(), instance(), instance(),instance()));
+    instance.registerFactory<TrafficLinesCubit>(() => TrafficLinesCubit(
+        instance(), instance(), instance(), instance(), instance()));
     instance.registerFactory<DelivaryLineUseCase>(
         () => DelivaryLineUseCase(instance()));
 
@@ -401,6 +419,20 @@ initNotificationModule() {
   }
 }
 
+initPurchaseModule() {
+  if (!GetIt.I.isRegistered<GetPurchaseUseCase>()) {
+    instance.registerFactory<GetPurchaseUseCase>(
+        () => GetPurchaseUseCase(instance()));
+    instance.registerFactory<AddPurchaseUseCase>(
+        () => AddPurchaseUseCase(instance()));
+    instance.registerFactory<AddSalsePurchaseUseCase>(
+        () => AddSalsePurchaseUseCase(instance()));
+
+    instance.registerFactory<PurchaseCubit>(
+        () => PurchaseCubit(instance(), instance(), instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -415,4 +447,5 @@ resetModules() {
   initExpensesModule();
   initDebtModule();
   initNotificationModule();
+  initPurchaseModule();
 }

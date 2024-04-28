@@ -46,7 +46,7 @@ class DebtRepayment extends StatelessWidget {
                       if (state is PayDebtTraderErrorState) {
                         final snackBar = defaultSnakeBar(
                           title: LocaleKeys.ERROR.tr(),
-                          message: LocaleKeys.ERROR.tr(),
+                          message:state.message,
                           state: ContentType.failure,
                         );
                         ScaffoldMessenger.of(context)
@@ -197,8 +197,10 @@ class DebtRepayment extends StatelessWidget {
                               child: CustomButton(
                                 onPressed: () {
                                   if (debtsCubit.price.toString().isNotEmpty &&
-                                      debtsCubit.currencyId.toString().isNotEmpty  &&
-                                      debtsCubit.dueDate!.isNotEmpty) {
+                                      debtsCubit.currencyId
+                                          .toString()
+                                          .isNotEmpty &&
+                                      debtsCubit.dueDate.isNotEmpty ) {
                                     debtsCubit.setTraderId(debtDetail.id);
 
                                     debtsCubit.payDebtTrader();
@@ -233,7 +235,7 @@ class DebtRepayment extends StatelessWidget {
       case 'دولار':
         return 1;
       case 'ليرة':
-        return 0;
+        return 2;
       default:
         return -1;
     }

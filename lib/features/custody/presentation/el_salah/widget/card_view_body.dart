@@ -129,7 +129,7 @@ class CartViewBody extends StatelessWidget {
                 ),
               ),
             )
-          : EmptyScreen(title: 'عذرآ لا يوجد بيانات', textbutton: 'عوده'),
+          : EmptyScreen(title: 'عذرآ لا يوجد بيانات', textbutton: 'عوده',viewButtom: true),
     );
   }
 }

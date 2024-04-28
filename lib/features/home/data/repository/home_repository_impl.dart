@@ -59,6 +59,7 @@ class HomeRepositoryImpl extends HomeRepository {
           ));
         }
       } catch (error) {
+        print(error);
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {

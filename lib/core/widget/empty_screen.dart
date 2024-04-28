@@ -10,21 +10,30 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class EmptyScreen extends StatelessWidget {
   String title;
   String textbutton;
-  EmptyScreen({super.key, required this.title, required this.textbutton});
+  bool viewButtom;
+  EmptyScreen(
+      {super.key,
+      required this.title,
+      required this.textbutton,
+      required this.viewButtom});
 
   @override
   Widget build(BuildContext context) {
-    return  Stack(
+    return Stack(
       alignment: Alignment.center,
       children: [
-        imageBackground(context),
+        if (viewButtom) imageBackground(context),
         Column(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.3,
-            ),
-            const Center(
-                child: AnimatedCheck(img: 'assets/images/error.png')),
+            if (viewButtom)
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.3,
+              ),
+            if (viewButtom == false)
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+            const Center(child: AnimatedCheck(img: 'assets/images/error.png')),
             SizedBox(
               height: AppSize.s4.h,
             ),
@@ -36,16 +45,17 @@ class EmptyScreen extends StatelessWidget {
             SizedBox(
               height: AppSize.s5.h,
             ),
-            SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: CustomButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        Routes.homeRoute,
-                      );
-                    },
-                    buttonText: textbutton))
+            if (viewButtom)
+              SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: CustomButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          Routes.homeRoute,
+                        );
+                      },
+                      buttonText: textbutton))
           ],
         )
       ],
