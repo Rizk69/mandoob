@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1041381962651",
+    "project_id": "mandoob-b6b24",
+    "storage_bucket": "mandoob-b6b24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041381962651:android:f88cf14b6f5cb415f5673e",
+        "android_client_info": {
+          "package_name": "com.example.mandoob_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5LsvenE0zM_teM2Bk1zSZAXvzAL2hZLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

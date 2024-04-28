@@ -9,6 +9,7 @@ const String PREFS_KEY_ONBOARDONG_VIEWED = "PREFS_KEY_ONBOARDONG_VIEWED";
 
 // User Data
 const String TOKEN = 'TOKEN';
+const String DEVICE_TOKEN = 'DEVICE_TOKEN';
 const String USER_ID = 'USER_ID';
 const String YEAR_ID = 'YEAR_ID';
 const String STUDENT_ID = 'STUDENT_ID';
@@ -119,6 +120,14 @@ class AppPreferences {
 
   Future<String> getUserToken() async {
     return _sharedPreferences.getString(TOKEN) ?? "";
+  }
+
+  Future<void> setUserDeviceToken(String deviceToken) async {
+    _sharedPreferences.setString(DEVICE_TOKEN, deviceToken);
+  }
+
+  String getUserDeviceToken()  {
+    return _sharedPreferences.getString(DEVICE_TOKEN) ?? "";
   }
 
   Future<void> setUserArName(String userArName) async {
