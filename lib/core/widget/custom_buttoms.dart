@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mandoob/app/app_prefs.dart';
+import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 
 class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -17,6 +18,8 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppPreferences _appPreferences = instance<AppPreferences>();
+    _appPreferences.getPrimaryColor();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 60),
       child: ElevatedButton(
@@ -25,7 +28,7 @@ class CustomButton extends StatelessWidget {
             EdgeInsets.all(10.0),
           ),
           backgroundColor:
-          MaterialStateProperty.all<Color>(Theme.of(context).hoverColor),
+              MaterialStateProperty.all<Color>(Theme.of(context).hoverColor),
           shape: MaterialStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(

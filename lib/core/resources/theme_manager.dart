@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:mandoob/core/resources/color_manager.dart';
 
 ThemeData lightTheme = ThemeData(
@@ -8,7 +9,7 @@ ThemeData lightTheme = ThemeData(
     disabledColor: ColorManager.black,
     cardColor: Colors.black87,
     drawerTheme: const DrawerThemeData(backgroundColor: Colors.white),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       centerTitle: true,
       backgroundColor: Colors.white,
       elevation: 0,
@@ -21,10 +22,8 @@ ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: Color(0XFF0E0E0E),
   primaryColor: Colors.white,
   cardColor: Colors.grey,
-
   hoverColor: ColorManager.baseColorDark,
-  disabledColor:  ColorManager.baseColorDark,
-
+  disabledColor: ColorManager.baseColorDark,
   primaryColorLight: ColorManager.darkbabyBlue,
   primaryColorDark: Colors.black,
   canvasColor: Colors.black,

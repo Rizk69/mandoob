@@ -9,6 +9,8 @@ class HomeResponse {
 
   @JsonKey(name: "message")
   String? message;
+  @JsonKey(name: "color")
+  String? color;
 
   @JsonKey(name: "balance")
   BalanceDataResponse? balance;
@@ -21,6 +23,7 @@ class HomeResponse {
   HomeResponse({
     this.status,
     this.message,
+    this.color,
     this.balance,
     this.deliveryLine,
   });

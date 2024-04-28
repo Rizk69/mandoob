@@ -8,6 +8,7 @@ extension HomeResponseMapper on HomeResponse? {
     return HomeModel(
       status: this?.status ?? false,
       message: this?.message.orEmpty() ?? Constants.empty,
+      color: this?.color.orEmpty() ?? Constants.empty,
       balance: this!.balance.toDomain(),
       deliveryLine:
           this?.deliveryLine?.map((line) => line.toDomain()).toList() ?? [],

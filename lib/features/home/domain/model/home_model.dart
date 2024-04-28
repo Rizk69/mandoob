@@ -2,6 +2,7 @@
 class HomeModel {
   bool status;
   String message;
+  String color;
   BalanceDataModel balance;
   CountDataModel countDataModel;
   List<DeliveryLineDataModel> ? deliveryLine;
@@ -9,6 +10,7 @@ class HomeModel {
   HomeModel({
     required this.status,
     required this.message,
+    required this.color,
     required this.balance,
     required this.countDataModel,
     required this.deliveryLine,

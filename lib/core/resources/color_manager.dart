@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorManager {
+
   static Color blue2 = const Color(0xFF269fb3);
   static Color graymahrok = const Color(0xFF171717);
   static Color shadowColor = const Color(0XFF969FEE).withAlpha(40);

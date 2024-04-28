@@ -13,7 +13,6 @@ class ColorSelectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
-
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

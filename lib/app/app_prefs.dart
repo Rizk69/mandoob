@@ -33,9 +33,18 @@ class AppPreferences {
     return _sharedPreferences.getBool("REMEMBER_ME") ?? false;
   }
 
+  Future<void> setPrimaryColor(String color) async {
+    await _sharedPreferences.setString("Primary_Color", color);
+  }
+
+  Future<String> getPrimaryColor() async {
+    return _sharedPreferences.getString("Primary_Color") ?? '';
+  }
+
   Future<void> setRememberMeEmail(String email) async {
     await _sharedPreferences.setString("REMEMBER_ME_EMAIL", email);
   }
+
   Future<void> setRememberMePassword(String email) async {
     await _sharedPreferences.setString("REMEMBER_ME_PASSWORD", email);
   }

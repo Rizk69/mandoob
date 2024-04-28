@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mandoob/app/app_prefs.dart';
+import 'package:mandoob/app/di.dart';
 import 'package:mandoob/features/auth/data/network/auth_requests.dart';
 import 'package:mandoob/features/auth/domain/model/profile/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,11 +14,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   static ProfileCubit get(context) => BlocProvider.of(context);
   final ProfileUseCase _profileUseCase;
   final ProfileEditColorUseCase _profileEditColorUseCase;
+  AppPreferences _appPreferences = instance<AppPreferences>();
 
   ProfileCubit(this._profileUseCase, this._profileEditColorUseCase)
-      : super(ProfileInitial()) {
-  }
+      : super(ProfileInitial()) {}
   UserModel? userModel;
+  String? primaryColor;
 
   Future<void> getProfile() async {
     try {
@@ -42,6 +45,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       result
           .fold((failure) => emit(EditProfileColorErrorState(failure.message)),
               (user) {
+        primaryColor = color;
+        _appPreferences.setPrimaryColor(color);
         emit(EditProfileColorLoadedState());
       });
     } catch (e) {
