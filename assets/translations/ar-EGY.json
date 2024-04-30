@@ -187,5 +187,15 @@
   "OrderNumber": "رقم الطلبية",
   "OrderEdit": "تعديل الطلبية",
   "edit": "تعديل",
-  "Details": "تفاصيل"
+  "Details": "تفاصيل",
+
+  "Unit": "الوحدة",
+  "product": "المنتج",
+  "PurchasingPrice": "سعر الشراء",
+  "CompleteData": "برجاء اكمال البيانات المطلوبه",
+  "Purchases": "المشتريات",
+  "sell": "بيع",
+  "PurchasingEmpty": "عذرآ لا يوجد مشتريات"
+
+
 }

@@ -190,5 +190,12 @@ abstract class  LocaleKeys {
   static const OrderEdit = 'OrderEdit';
   static const edit = 'edit';
   static const Details = 'Details';
+  static const Unit = 'Unit';
+  static const product = 'product';
+  static const PurchasingPrice = 'PurchasingPrice';
+  static const CompleteData = 'CompleteData';
+  static const Purchases = 'Purchases';
+  static const sell = 'sell';
+  static const PurchasingEmpty = 'PurchasingEmpty';
 
 }

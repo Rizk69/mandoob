@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
@@ -5,6 +6,7 @@ import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/widget/empty_screen.dart';
 import 'package:mandoob/features/purchase/presentation/cubit/purchase_cubit.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/resources/values_manager.dart';
@@ -41,7 +43,7 @@ class Purchase extends StatelessWidget {
                           functionDrawer: () {
                             scaffoldKey.currentState?.openDrawer();
                           },
-                          title: 'المشتريات',
+                          title: LocaleKeys.Purchases.tr(),
                           functionIcon: () {
                             Navigator.pop(context);
                           }),
@@ -57,14 +59,14 @@ class Purchase extends StatelessWidget {
                               color: Theme.of(context).primaryColor,
                             ),
                             Text(
-                              'إضافة مشتريات ',
+                              LocaleKeys.addPurchases.tr(),
                               style: TextStyle(
                                   color: Theme.of(context).primaryColor),
                             )
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       BlocBuilder<PurchaseCubit, PurchaseState>(
@@ -120,13 +122,13 @@ class Purchase extends StatelessWidget {
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        'اسم المادة :',
+                                                        LocaleKeys.ProductName.tr(),
                                                         style: TextStyle(
                                                             color: Theme.of(
                                                                     context)
                                                                 .primaryColor),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 8,
                                                       ),
                                                       Text(
@@ -144,11 +146,11 @@ class Purchase extends StatelessWidget {
                                                       Image.asset(
                                                           'assets/images/send.png',
                                                           height: 18),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 8,
                                                       ),
                                                       Text(
-                                                        'بيع',
+                                                        LocaleKeys.sell.tr(),
                                                         style: TextStyle(
                                                             color: Theme.of(
                                                                     context)
@@ -158,18 +160,18 @@ class Purchase extends StatelessWidget {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 7,
                                               ),
                                               Row(
                                                 children: [
                                                   Text(
-                                                    'الكمية :',
+                                                    LocaleKeys.quantity.tr(),
                                                     style: TextStyle(
                                                         color: Theme.of(context)
                                                             .primaryColor),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 8,
                                                   ),
                                                   Text(
@@ -180,18 +182,18 @@ class Purchase extends StatelessWidget {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 7,
                                               ),
                                               Row(
                                                 children: [
                                                   Text(
-                                                    'سعر البيع :',
+                                                    "${LocaleKeys.TradePrice.tr()} : ",
                                                     style: TextStyle(
                                                         color: Theme.of(context)
                                                             .primaryColor),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 8,
                                                   ),
                                                   Text(
@@ -209,12 +211,13 @@ class Purchase extends StatelessWidget {
                                     ),
                                   )
                                 : EmptyScreen(
-                                    title: 'عذرآ لا يوجد مشتريات',
+
+                                    title: LocaleKeys.PurchasingEmpty.tr(),
                                     textbutton: '',
                                     viewButtom: false,
                                   );
                           }
-                          return SizedBox();
+                          return const SizedBox();
                         },
                       )
                     ],

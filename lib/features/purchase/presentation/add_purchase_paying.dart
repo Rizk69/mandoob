@@ -19,7 +19,10 @@ import '../../home/presentation/widget/drawer_home.dart';
 class AddPurchase extends StatelessWidget {
   AddPurchase({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  final List<String> currencyOptions = ['دولار', 'ليرة'];
+  final List<String> currencyOptions = [
+    LocaleKeys.usd.tr(),
+    LocaleKeys.lera.tr()
+  ];
   String? selectedCurrency;
 
   @override
@@ -39,7 +42,7 @@ class AddPurchase extends StatelessWidget {
                   if (state is AddPurchaseErrorState) {
                     final snackBar = defaultSnakeBar(
                       title: LocaleKeys.ERROR.tr(),
-                      message:state.error,
+                      message: state.error,
                       state: ContentType.failure,
                     );
                     ScaffoldMessenger.of(context)
@@ -57,7 +60,7 @@ class AddPurchase extends StatelessWidget {
                       ..hideCurrentSnackBar()
                       ..showSnackBar(snackBar);
                     Navigator.pushReplacementNamed(
-                        context, Routes.purchase,
+                      context, Routes.purchase,
                     );
                   }
                 },
@@ -76,15 +79,15 @@ class AddPurchase extends StatelessWidget {
                               functionDrawer: () {
                                 scaffoldKey.currentState?.openDrawer();
                               },
-                              title: 'إضافة مشتريات ',
+                              title: LocaleKeys.addPurchases.tr(),
                               functionIcon: () {
                                 Navigator.pop(context);
                               }),
                           SizedBox(height: AppSize.s5.h),
                           customTextFormFiledInfo(
-                            text: 'المادة',
+                            text: LocaleKeys.product.tr(),
                             enable: true,
-                            onChanged: (String productName){
+                            onChanged: (String productName) {
                               purchaseCubit.setProductName(productName);
                             },
 
@@ -96,10 +99,10 @@ class AddPurchase extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: customTextFormFiledInfo(
-inputType: TextInputType.number,
-                                  text: 'الكمية',
+                                  inputType: TextInputType.number,
+                                  text: LocaleKeys.quantity.tr(),
                                   enable: true,
-                                  onChanged: (String count){
+                                  onChanged: (String count) {
                                     purchaseCubit.setCount(count);
                                   },
                                   hint: '',
@@ -109,9 +112,9 @@ inputType: TextInputType.number,
                               SizedBox(width: AppSize.s10.w),
                               Expanded(
                                 child: customTextFormFiledInfo(
-                                  text: 'الوحده',
+                                  text: LocaleKeys.Unit.tr(),
                                   enable: true,
-                                  onChanged: (String unit){
+                                  onChanged: (String unit) {
                                     purchaseCubit.setUnit(unit);
                                   },
                                   hint: '',
@@ -126,11 +129,13 @@ inputType: TextInputType.number,
                             children: [
                               Expanded(
                                 child: Text(
-                                  'العملة',
+                                  LocaleKeys.Currency.tr(),
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).primaryColor),
+                                      color: Theme
+                                          .of(context)
+                                          .primaryColor),
                                 ),
                               ),
                               Expanded(
@@ -155,34 +160,37 @@ inputType: TextInputType.number,
                           SizedBox(height: AppSize.s5.h),
                           customTextFormFiledInfo(
                             inputType: TextInputType.number,
-                            text: 'سعر الشراء',
+                            text: LocaleKeys.PurchasingPrice.tr(),
                             enable: true,
                             onChanged: (payUsd) {
                               purchaseCubit.setPrice(payUsd);
-
                             },
                             context: context,
                           ),
 
                           SizedBox(height: AppSize.s20.h),
                           SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.9,
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.9,
                               child: CustomButton(
                                 onPressed: () {
-                                  if (purchaseCubit.price.toString().isNotEmpty &&
+                                  if (purchaseCubit.price
+                                      .toString()
+                                      .isNotEmpty &&
                                       purchaseCubit.currencyId
                                           .toString()
                                           .isNotEmpty &&
-                                      purchaseCubit.productName.isNotEmpty&&
-                                      purchaseCubit.count.isNotEmpty&&
+                                      purchaseCubit.productName.isNotEmpty &&
+                                      purchaseCubit.count.isNotEmpty &&
                                       purchaseCubit.unit.isNotEmpty
                                   ) {
-
                                     purchaseCubit.addPurchase();
                                   } else {
                                     final snackBar = defaultSnakeBar(
                                       title: LocaleKeys.ERROR.tr(),
-                                      message: 'برجاء اكمال البيانات المطلوبه',
+                                      message: LocaleKeys.CompleteData.tr(),
                                       state: ContentType.failure,
                                     );
                                     ScaffoldMessenger.of(context)
@@ -206,13 +214,12 @@ inputType: TextInputType.number,
   }
 
   int _getCurrencyId(String? currencyName) {
-    switch (currencyName) {
-      case 'دولار':
-        return 1;
-      case 'ليرة':
-        return 2;
-      default:
-        return -1;
+    if (currencyName == LocaleKeys.usd.tr()) {
+      return 1;
+    } else if (currencyName == LocaleKeys.lera.tr()) {
+      return 2;
+    } else {
+      return -1;
     }
   }
 }

@@ -187,5 +187,13 @@
   "OrderNumber": "Order Number",
   "OrderEdit": "Edit Order",
   "edit": "Edit",
-  "Details": "Details"
+  "Details": "Details",
+  "Unit": "Unit",
+  "product": "product",
+  "PurchasingPrice": "Purchasing price",
+  "CompleteData": "Please Complete Required Data",
+  "Purchases": "Purchases",
+  "sell": "sell",
+  "PurchasingEmpty": "Sorry No Purchase Found"
+
 }
