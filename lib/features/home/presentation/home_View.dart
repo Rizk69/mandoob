@@ -51,7 +51,7 @@ class HomeView extends StatelessWidget {
                     ),
                     Center(
                       child: Text(
-                        'الصفحة الرئيسية',
+                          LocaleKeys.home.tr(),
                         style: getBoldSegoeStyle(
                             fontSize: 25, color: Theme.of(context).primaryColorLight),
                       ),
@@ -94,7 +94,7 @@ class HomeView extends StatelessWidget {
                                 width: 12,
                               ),
                               Text(
-                                'العهده الحاليه',
+                                LocaleKeys.currentCustody.tr(),
                                 style: getBold(
                                   color: Theme.of(context).disabledColor,
                                   fontSize: 25,
@@ -127,7 +127,7 @@ class HomeView extends StatelessWidget {
                                       color: Theme.of(context).hoverColor,
                                     ),
                                     Text(
-                                      "تخصيص",
+                                      LocaleKeys.Customize.tr(),
                                       style: getSemiBoldInterStyle(
                                         color: Theme.of(context).hoverColor,
                                         fontSize: AppSize.s13,
@@ -148,7 +148,8 @@ class HomeView extends StatelessWidget {
                               columnCard(
                                   title: cubit.dolarPrice.toString(),
                                   colorTitle: ColorManager.greenLight,
-                                  des: "السعر دولار"),
+                                  des:
+                                  LocaleKeys.PriceInUsd.tr()),
                               Container(
                                 height: AppSize.s98,
                                 width: 2,
@@ -157,7 +158,7 @@ class HomeView extends StatelessWidget {
                               columnCard(
                                   title: cubit.tlPrice.toString(),
                                   colorTitle: ColorManager.orangeLight,
-                                  des: "السعر بالليرة"),
+                                  des: LocaleKeys.priceInLera.tr()),
                             ],
                           ),
                         ],
@@ -203,7 +204,7 @@ class HomeView extends StatelessWidget {
                                   width: 12,
                                 ),
                                 Text(
-                                  'خط سير اليوم',
+                                  LocaleKeys.TodayItinerary.tr(),
                                   style: getBold(
                                     color: Theme.of(context).disabledColor,
                                     fontSize: 25,
@@ -253,7 +254,7 @@ class HomeView extends StatelessWidget {
                                       context, Routes.trafficLines);
                                 },
                                 child:  Text(
-                                  'عرض التفاصيل',
+                                  LocaleKeys.ViewDetails.tr(),
                                   style: TextStyle(
                                     color: Theme.of(context).disabledColor,
                                     fontSize: 18,

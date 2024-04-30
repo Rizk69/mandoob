@@ -67,10 +67,8 @@
 
   "ERROR": "خطأ!",
   "welcome": "مرحبا",
-  "myTeachers": "أساتذتي",
   "viewAll": "عرض المزيد",
   "others": "أخرون",
-  "canVerifyEmailCode": "لا يمكن التحقق من رمز البريد الإلكتروني",
   "rememberMe": "تذكرني",
   "orders": "الطلبيات",
   "invoices": "الفواتير",
@@ -195,6 +193,14 @@
 
   "amount": "المبلغ",
   "purchaseDate": "تاريخ الشراء",
-  "status": "الحالة"
+  "status": "الحالة",
+
+
+  "currentCustody": "العهده الحاليه",
+  "Customize": "تخصيص",
+  "TodayItinerary": "خط سير اليوم",
+  "ViewDetails": "عرض التفاصيل"
+
+
 
 }

@@ -68,10 +68,8 @@ abstract class  LocaleKeys {
   static const home = 'home';
   static const ERROR = 'ERROR';
   static const welcome = 'welcome';
-  static const myTeachers = 'myTeachers';
   static const viewAll = 'viewAll';
   static const others = 'others';
-  static const canVerifyEmailCode = 'canVerifyEmailCode';
   static const rememberMe = 'rememberMe';
   static const orders = 'orders';
   static const invoices = 'invoices';
@@ -174,5 +172,12 @@ abstract class  LocaleKeys {
   static const RemainingAmountLira = 'RemainingAmountLira';
   static const RemainingAmountDollar = 'RemainingAmountDollar';
   static const Print = 'Print';
+  static const amount = 'amount';
+  static const purchaseDate = 'purchaseDate';
+  static const status = 'status';
+  static const currentCustody = 'currentCustody';
+  static const Customize = 'Customize';
+  static const TodayItinerary = 'TodayItinerary';
+  static const ViewDetails = 'ViewDetails';
 
 }

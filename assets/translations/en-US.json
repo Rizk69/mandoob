@@ -67,10 +67,8 @@
   "home": "home",
   "ERROR": "ERROR",
   "welcome": "Welcome",
-  "myTeachers": "My Teachers",
   "viewAll": "view all",
   "others": "Others",
-  "canVerifyEmailCode": "can Verify Email Code",
   "rememberMe": "remember Me",
   "orders": "orders",
   "invoices": "invoices",
@@ -193,6 +191,11 @@
 
   "amount": "amount",
   "purchaseDate": "The date of purchase",
-  "status": "status"
+  "status": "status",
+
+  "currentCustody": "Current Custody",
+  "Customize": "Customize",
+  "TodayItinerary": "Today's Itinerary",
+  "ViewDetails": "View Details"
 
 }
