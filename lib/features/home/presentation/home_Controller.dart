@@ -6,7 +6,7 @@ import 'package:mandoob/features/custody/presentation/el_eahduh/el_eahduh_view.d
 import 'package:mandoob/features/home/presentation/cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
 import 'package:mandoob/features/invoices/presentation/invoice_view.dart';
-import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_view.dart';
+import 'package:mandoob/features/orders/presentation/talabat/presentation/order_view.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:mandoob/core/resources/assets_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
@@ -25,7 +25,7 @@ class HomeController extends StatelessWidget {
             case BottomNavBarItem.home:
               return HomeView();
             case BottomNavBarItem.talabat:
-              return const TalabatView();
+              return const OrderView();
             case BottomNavBarItem.bugs:
               return  ElEahduh();
             case BottomNavBarItem.fawater:

@@ -1,20 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/features/orders/domain/model/order_details_model.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 
 class BuildOrderDetails extends StatelessWidget {
-
   final Order order;
-
 
   const BuildOrderDetails({super.key, required this.order});
 
   @override
   Widget build(BuildContext context) {
-
-
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 15),
       width: double.infinity,
@@ -26,7 +24,7 @@ class BuildOrderDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'رقم الطلبية : ${order.orderNo}',
+            ' ${LocaleKeys.OrderNumber.tr()} : ${order.orderNo}',
             style: getBoldSegoeStyle(
               fontSize: 18,
               color: Theme.of(context).primaryColor,
@@ -35,7 +33,7 @@ class BuildOrderDetails extends StatelessWidget {
           const SizedBox(height: 8),
           Text.rich(
             TextSpan(
-              text: 'الحالة : ',
+              text: '${LocaleKeys.status.tr()} : ',
               style: getBoldSegoeStyle(
                 fontSize: 18,
                 color: Theme.of(context).primaryColor,
@@ -57,7 +55,7 @@ class BuildOrderDetails extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'التاريخ : ${order.date}',
+            '${LocaleKeys.date.tr()} : ${order.date}',
             style: getBoldSegoeStyle(
               fontSize: 18,
               color: Theme.of(context).primaryColor,

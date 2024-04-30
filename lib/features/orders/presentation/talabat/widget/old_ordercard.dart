@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 
 class OldOrder extends StatelessWidget {
   final OrdersTalabat talabatOld;
@@ -21,7 +23,7 @@ class OldOrder extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'رقم الطلبية :  ${order.orderNo}',
+                '${LocaleKeys.OrderNumber.tr()} : ${order.orderNo}',
                 style: getBoldSegoeStyle(
                   fontSize: 18,
                   color: ColorManager.grey3,
@@ -31,7 +33,7 @@ class OldOrder extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'المبلغ بالدولار : ${order.priceDoler}',
+                    '${LocaleKeys.AmountUSD.tr()} : ${order.priceDoler}',
                     style: getBoldSegoeStyle(
                       fontSize: 18,
                       color: ColorManager.grey3,
@@ -45,7 +47,7 @@ class OldOrder extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: Text(
-                        "التفاصيل",
+                        LocaleKeys.Details.tr(),
                         style: TextStyle(
                           color: ColorManager.babyBlue,
                           fontSize: 20,
@@ -59,7 +61,7 @@ class OldOrder extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'المبلغ بالليرة : ${order.priceLera}',
+                '${LocaleKeys.AmountLira.tr()} : ${order.priceLera}',
                 style: getBoldSegoeStyle(
                   fontSize: 18,
                   color: ColorManager.grey3,
@@ -67,7 +69,7 @@ class OldOrder extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'التاريخ :  ${order.date}',
+                '${LocaleKeys.date.tr()} : ${order.date}',
                 style: getBoldSegoeStyle(
                   fontSize: 18,
                   color: ColorManager.grey3,

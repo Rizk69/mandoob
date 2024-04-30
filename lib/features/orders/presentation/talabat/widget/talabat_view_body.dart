@@ -11,13 +11,13 @@ import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
 import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
 import 'package:mandoob/features/orders/presentation/talabat/cubit/talabat_cubit/talabat_cubit.dart';
 import 'package:mandoob/features/orders/presentation/talabat/cubit/talabat_cubit/talabat_state.dart';
-import 'package:mandoob/features/orders/presentation/talabat/widget/talabat_old_card.dart';
-import 'package:mandoob/features/orders/presentation/talabat/widget/talabat_persent_card.dart';
+import 'package:mandoob/features/orders/presentation/talabat/widget/old_ordercard.dart';
+import 'package:mandoob/features/orders/presentation/talabat/widget/persent_order_card.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class TalabatViewBody extends StatelessWidget {
-  TalabatViewBody({Key? key}) : super(key: key);
+class OrderViewBody extends StatelessWidget {
+  const OrderViewBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

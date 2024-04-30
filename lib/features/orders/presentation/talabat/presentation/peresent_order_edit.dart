@@ -14,11 +14,11 @@ import 'package:mandoob/features/orders/presentation/talabat/cubit/order_cubit/o
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class TalabatPresentEdit extends StatelessWidget {
+class PresentOrderEdit extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final int orderId;
 
-  TalabatPresentEdit({Key? key, required this.orderId}) : super(key: key);
+  PresentOrderEdit({Key? key, required this.orderId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class TalabatPresentEdit extends StatelessWidget {
                               SizedBox(height: 6.h),
                               HeaderScreen(
                                   functionDrawer: () => scaffoldKey.currentState?.openDrawer(),
-                                  title: 'تعديل الطلبية ${order!.orderNo}',
+                                  title: '${LocaleKeys.OrderEdit.tr()} ${order!.orderNo}',
                                   functionIcon: () => Navigator.pop(context)),
                               SizedBox(height: 5.h),
                               Container(
@@ -85,13 +85,13 @@ class TalabatPresentEdit extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('رقم الطلبية : ${order.orderNo}',
+                                    Text('${LocaleKeys.OrderNumber.tr()} : ${order.orderNo}',
                                         style: getBoldSegoeStyle(fontSize: 18, color: Theme.of(context).primaryColor)),
                                     const SizedBox(height: 8),
-                                    Text('الحالة : ${translateString(context: context , arString: order.status_ar,enString:order.status_en )}',
+                                    Text('${LocaleKeys.status.tr()} : ${translateString(context: context , arString: order.status_ar,enString:order.status_en )}',
                                         style: getBoldSegoeStyle(fontSize: 18, color: Theme.of(context).primaryColor)),
                                     const SizedBox(height: 8),
-                                    Text('التاريخ : ${order.date}',
+                                    Text('${LocaleKeys.date.tr()} : ${order.date}',
                                         style: getBoldSegoeStyle(fontSize: 18, color: Theme.of(context).primaryColor)),
                                   ],
                                 ),
@@ -197,7 +197,7 @@ class TalabatPresentEdit extends StatelessWidget {
                         } else if (state is GetOrderFailure) {
                           return Center(child: Text(state.massage));
                         } else {
-                          return const Center(child: Text('No order details available.'));
+                          return  Center(child: Text(LocaleKeys.EMPTY_LIST.tr()));
                         }
                       },
                     ),

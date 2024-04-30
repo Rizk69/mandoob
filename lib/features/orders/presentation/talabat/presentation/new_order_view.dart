@@ -17,17 +17,17 @@ import 'package:mandoob/features/orders/presentation/talabat/widget/cardNewTalab
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class NewTalabat extends StatelessWidget {
-  const NewTalabat({Key? key}) : super(key: key);
+class NewOrder extends StatelessWidget {
+  const NewOrder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return NewTalabatViewBody();
+    return NewOrderViewBody();
   }
 }
 
-class NewTalabatViewBody extends StatelessWidget {
-  NewTalabatViewBody({Key? key}) : super(key: key);
+class NewOrderViewBody extends StatelessWidget {
+  NewOrderViewBody({Key? key}) : super(key: key);
   final TextEditingController _searchController = TextEditingController();
 
   Set<String> getProductNamesSet(BuildContext context) {
@@ -90,7 +90,7 @@ class NewTalabatViewBody extends StatelessWidget {
                           ),
                           Center(
                             child: Text(
-                              'طلبية جديدة',
+                              LocaleKeys.NewOrder.tr(),
                               style: getBoldSegoeStyle(
                                 fontSize: 25,
                                 color: Theme.of(context).primaryColorLight,
@@ -121,7 +121,7 @@ class NewTalabatViewBody extends StatelessWidget {
                               ),
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(Icons.search),
-                                hintText: 'ابحث هنا',
+                                hintText: LocaleKeys.searchHere.tr(),
                                 filled: true,
                                 hintStyle: TextStyle(
                                   color: Theme.of(context).primaryColor,
@@ -155,9 +155,9 @@ class NewTalabatViewBody extends StatelessWidget {
                                     );
                                   }).toList(),
                                   PopupMenuItem(
-                                    value: 'remove_filters',
+                                    value: LocaleKeys.removeFilters.tr(),
                                     child: Text(
-                                      'إزالة جميع الفلاتر',
+                              LocaleKeys.removeFilters.tr(),
                                       style: TextStyle(
                                         color: Theme.of(context).primaryColor,
                                       ),
@@ -166,7 +166,7 @@ class NewTalabatViewBody extends StatelessWidget {
                                 ],
                               ).then((selectedValue) {
                                 if (selectedValue != null) {
-                                  if (selectedValue == 'remove_filters') {
+                                  if (selectedValue == LocaleKeys.removeFilters.tr()) {
                                     context
                                         .read<NewTalabatCubit>()
                                         .setSelectedProductName(null);
@@ -189,7 +189,7 @@ class NewTalabatViewBody extends StatelessWidget {
                                       height: 23,
                                     ),
                                     Text(
-                                      'تخصيص',
+                                      LocaleKeys.Customize.tr(),
                                       style: getBoldSegoeStyle(
                                         color: ColorManager.babyBlue,
                                         fontSize: AppSize.s15.sp,

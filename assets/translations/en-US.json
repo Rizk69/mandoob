@@ -21,7 +21,6 @@
   "passwordError": "Please enter your password",
   "save": "Save",
   "logout": "Logout",
-
   "SUCCESS": "success",
   "NO_CONTENT": "No content",
   "BAD_REQUEST": "Bad request, Try again later",
@@ -74,28 +73,21 @@
   "invoices": "invoices",
   "covenant": "covenant",
   "cart": "cart",
-
   "clients": "Clients",
   "trafficLines": "Traffic Lines",
   "account": "account",
-
-
   "balanceTL": "balance TL",
   "companyName": "Company Name",
   "balanceUsd": "balance Usd",
   "salseLera": "sales Lera",
-  "salseDoler": "sales USD" ,
+  "salseDoler": "sales USD",
   "commissionsLera": "commissions Lera",
   "commissionsDoler": "commissions USD",
   "Theme": "Theme",
-
   "DarkMood": "Dark",
   "LightMood": "Light",
-
   "searchHere": "Search Here",
   "newTrade": "New Trade",
-
-
   "addNewTrade": "Add New Trader",
   "selectNewTrade": "Select Trader",
   "TradeName": "Trader Name",
@@ -106,8 +98,6 @@
   "wholesale": "Wholesale",
   "factoryPrice": "Factory Price",
   "add": "ADD",
-
-
   "trafficLine": "Traffic Line",
   "expenses": "Expenses",
   "addExpenses": "New expense",
@@ -116,7 +106,6 @@
   "deleteAll": "Delete All",
   "debts": "Debts",
   "addPurchases": "Add Purchases",
-
   "typeExpenses": "Type Expenses",
   "quantity": "Quantity",
   "invoice": "Invoice",
@@ -127,8 +116,6 @@
   "selectTrader": "Select Trader",
   "Cashing": "Cashing",
   "notification": "Notification",
-
-
   "payDept": "Deferred Payment",
   "totalLera": "Total Amount in Lira",
   "totalUSD": "Total Amount in USD",
@@ -136,7 +123,6 @@
   "payedUSD": "Amount Paid in USD",
   "remainingAmount": "Remaining Amount",
   "payDate": "Payment Due Date",
-
   "Orders": "Orders",
   "NewOrder": "New Order",
   "SearchHere": "Search Here",
@@ -150,7 +136,8 @@
   "PreviousOrders": "Previous Orders",
   "ErrorLoadingData": "Error Loading Data",
   "SomethingError": "Something Error",
-
+  "AmountLira": "Amount in Lira",
+  "AmountUSD": "Amount in USD",
   "invoiceTrader": "Trader Invoice",
   "TraderName": "Trader Name",
   "invoiceNumber": "invoice Number",
@@ -161,7 +148,6 @@
   "date": "date",
   "products": "products",
   "Invoices": "Invoices",
-
   "totalPriceUSD": "total Price USD",
   "totalPriceTL": "total Price TL",
   "amountPaid": "The amount paid",
@@ -171,7 +157,6 @@
   "payPartInvoice": "Pay part of the bill",
   "lera": "Lera",
   "usd": "USD",
-
   "SuccessfulDisbursement": "Disbursement Successful",
   "DebtRepayment": "Debt Repayment",
   "DebtAmountLira": "Debt Amount in Lira",
@@ -184,25 +169,23 @@
   "LastPaymentDate": "Last Payment Date",
   "PaymentDate": "Payment Date",
   "Reason": "Reason",
-
   "RemainingAmountLira": "Remaining Amount in Lira",
   "RemainingAmountDollar": "Remaining Amount in Dollar",
   "Print": "Print",
-
   "amount": "amount",
   "purchaseDate": "The date of purchase",
   "status": "status",
-
   "currentCustody": "Current Custody",
   "Customize": "Customize",
   "TodayItinerary": "Today's Itinerary",
   "ViewDetails": "View Details",
-
   "todayInvoice": "Today's Invoices",
   "traderInvoices": "Trader's Invoices",
-
-  "ProductsForInvoice": "Products for Invoice"
-
-
-
+  "ProductsForInvoice": "Products for Invoice",
+  "removeFilters": "remove filters",
+  "OrderDetails": "Order Details",
+  "OrderNumber": "Order Number",
+  "OrderEdit": "Edit Order",
+  "edit": "Edit",
+  "Details": "Details"
 }

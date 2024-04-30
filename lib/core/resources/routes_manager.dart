@@ -18,8 +18,8 @@ import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
 import 'package:mandoob/features/invoices/presentation/invoice_delegate_details.dart';
 import 'package:mandoob/features/notification/presentation/notification.dart';
-import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
-import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_old_details.dart';
+import 'package:mandoob/features/orders/presentation/talabat/presentation/new_order_view.dart';
+import 'package:mandoob/features/orders/presentation/talabat/presentation/old_order_details.dart';
 import 'package:mandoob/features/splash_screen/Splash_View.dart';
 import 'package:mandoob/features/trader/presentation/new_trader.dart';
 import 'package:mandoob/features/trader/presentation/trader_view.dart';
@@ -28,7 +28,7 @@ import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presen
 import 'package:mandoob/generated/locale_keys.g.dart';
 import '../../features/purchase/presentation/add_purchase_paying.dart';
 import '../../features/expenses/presentaton/expenses_view.dart';
-import '../../features/orders/presentation/talabat/presentation/talabat_peresent_edit.dart';
+import '../../features/orders/presentation/talabat/presentation/peresent_order_edit.dart';
 
 class Routes {
   static const String loginRoute = "/login";
@@ -87,7 +87,7 @@ class RouteGenerator {
         final args = settings.arguments as OrderArguments;
 
         return MaterialPageRoute(
-            builder: (_) => TalabatOldDetails(
+            builder: (_) => OldOrderDetails(
                   orderId: args.orderId,
                 ));
 
@@ -95,7 +95,7 @@ class RouteGenerator {
         final args = settings.arguments as OrderArguments;
 
         return MaterialPageRoute(
-            builder: (_) => TalabatPresentEdit(
+            builder: (_) => PresentOrderEdit(
                   orderId: args.orderId,
                 ));
       case Routes.elmulakhas:
@@ -105,7 +105,7 @@ class RouteGenerator {
         initTradeModule();
         return MaterialPageRoute(builder: (_) => ElEahduh());
       case Routes.newTalab:
-        return MaterialPageRoute(builder: (_) => const NewTalabat());
+        return MaterialPageRoute(builder: (_) => const NewOrder());
       case Routes.sucssufflySceen:
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(

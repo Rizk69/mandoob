@@ -44,19 +44,19 @@
   "onBoardingBody1": "تطبيق مصري متخصص في الحلول التعليمية الإلكترونية من خلال مجموعه من امهر المدرسين",
   "onBoardingTitle2": "فيديوهات شرح",
   "onBoardingBody2": "يقدم التطبيق شروحات فيديو للدروس والوحدات والمراجعات النهائية لمجموعة من المدرسين",
-  "onBoardingTitle3":"اختبارات دورية",
+  "onBoardingTitle3": "اختبارات دورية",
   "onBoardingBody3": "امتحانات على المواد والدروس والوحدات لكل المواد متضمنه اسئلة مقالية ويتم تصحيحها من خلال مدرسينا",
   "onBoardingTitle4": "تقارير المستوى",
   "onBoardingBody4": "يقدم التطبيق خدمة متابعة المستوى والتقييم الدورى",
   "userNameError": "الرجاء إدخال رقم هاتفك الاسم",
   "confirmNewPasswordError": "الرجاء ادخال الرقم السرى او الرقم السرى لا يطابق رقمك السرى الجديد",
-  "doYouHaveAccount" : "لديك حساب بالفعل؟ ",
+  "doYouHaveAccount": "لديك حساب بالفعل؟ ",
   "back": "الرجوع",
-  "forgetPassword" : "نسيت كلمة المرور؟",
-  "forgetPasswordBody": "لا تقلق  أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة مرورك." ,
-  "enterVerifyCode" : "ادخل كود التحقق",
+  "forgetPassword": "نسيت كلمة المرور؟",
+  "forgetPasswordBody": "لا تقلق  أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة مرورك.",
+  "enterVerifyCode": "ادخل كود التحقق",
   "verify": "تحقق ",
-  "codeSentToEmail":"تم ارسال كود التحقق الى البريد الالكترونى",
+  "codeSentToEmail": "تم ارسال كود التحقق الى البريد الالكترونى",
   "checkYourInbox": "يمكنك التحقق من بريدك الوارد",
   "haveNotCode": "نا لم استلم الكود ؟ ",
   "sendAgain": "اعادة ارساله",
@@ -64,7 +64,6 @@
   "logIn": "تسجيل الدخول",
   "dontHaveAcc": "ليس لديك حساب حتى الآن؟",
   "home": "الرئيسية",
-
   "ERROR": "خطأ!",
   "welcome": "مرحبا",
   "viewAll": "عرض المزيد",
@@ -74,28 +73,21 @@
   "invoices": "الفواتير",
   "covenant": "العهد",
   "cart": "السلة",
-
   "clients": "التجار",
   "trafficLines": "خطوط السير",
   "account": "الحساب",
-
   "companyName": "اسم الشركة",
   "balanceTL": "الرصيد بالليرة",
   "balanceUsd": "الرصيد بالدولار",
   "salseLera": "اجمالي المبيعات للشهر بالليرة",
-  "salseDoler": "اجمالي المبيعات للشهر بالدولار" ,
+  "salseDoler": "اجمالي المبيعات للشهر بالدولار",
   "commissionsLera": "عمولات الشهر بالليرة",
   "commissionsDoler": "عمولات الشهر بالدولار",
   "Theme": "المظهر",
-
   "DarkMood": "ليلي",
   "LightMood": "صباحي",
-
-
   "searchHere": "ابحث هنا",
   "newTrade": "تاجر جديد",
-
-
   "addNewTrade": "إضافة تاجر جديد",
   "selectNewTrade": "اختر تاجر ",
   "addNewExpense": "إضافة مصروف جديد",
@@ -111,8 +103,6 @@
   "confirm": "تاكيد",
   "deleteAll": "حذف الكل",
   "addPurchases": "إضافة مشتريات",
-
-
   "trafficLine": "خطوط السير",
   "expenses": "المصروفات",
   "quantity": "الكمية",
@@ -121,13 +111,11 @@
   "addExpenses": "مصروف جديد",
   "typeExpenses": "نوع المصروف",
   "notification": "الإشعارات",
-
   "addTrafficLine": "اضافة خطوط السير",
   "Trader": "التاجر",
   "departureDate": "تاريخ الذهاب",
   "selectTrader": "اختر تاجر",
   "Cashing": "صرف",
-
   "payDept": "الدفع الأجل",
   "totalLera": "اجمالي المبلغ باللليرة",
   "totalUSD": "اجمالي المبلغ بالدولار",
@@ -135,8 +123,6 @@
   "payedUSD": "المبلغ المدفوع بالدولار",
   "remainingAmount": "المبلغ المتبقي",
   "payDate": "تاريخ استحقاق الدفع",
-
-
   "Orders": "الطلبيات",
   "NewOrder": "طلبية جديدة",
   "SearchHere": "ابحث هنا",
@@ -150,8 +136,8 @@
   "PreviousOrders": "الطلبيات السابقة",
   "ErrorLoadingData": "خطأ في تحميل البيانات",
   "SomethingError": "خطأ ما",
-
-
+  "AmountLira": " المبلغ بالليرة",
+  "AmountUSD": " المبلغ بالدولار",
   "invoiceTrader": "فاتورة التاجر",
   "TraderName": "اسم التاجر",
   "invoiceNumber": "رقم الفاتورة",
@@ -162,19 +148,15 @@
   "date": "التاريخ",
   "products": "المنتجات",
   "Invoices": "الفواتير",
-
   "totalPriceUSD": "الأجمالي بالدولار",
   "totalPriceTL": "الأجمالي بالليرة",
   "amountPaid": "المبلغ المدفوع",
   "elaohda": "العهده",
-
   "invoiceDelegate": "فاتورة المندوب",
   "DelegateName": "اسم المندوب",
-
   "payPartInvoice": "دفع جزء من الفاتورة",
   "lera": "ليرة",
   "usd": "دولار",
-
   "SuccessfulDisbursement": "تم الصرف بنجاح",
   "DebtRepayment": "تسديد الديون",
   "DebtAmountLira": "مبلغ الدين ليرة",
@@ -190,19 +172,20 @@
   "RemainingAmountLira": "المبلغ المتبقي بالليرة",
   "RemainingAmountDollar": "المبلغ المتبقي بالدولار",
   "Print": "طباعة",
-
   "amount": "المبلغ",
   "purchaseDate": "تاريخ الشراء",
   "status": "الحالة",
-
-
   "currentCustody": "العهده الحاليه",
   "Customize": "تخصيص",
   "TodayItinerary": "خط سير اليوم",
   "ViewDetails": "عرض التفاصيل",
-
-
   "todayInvoice": "فواتير اليوم",
   "traderInvoices": "فواتير التجار",
-  "ProductsForInvoice": "منتجات الفاتوره :"
+  "ProductsForInvoice": "منتجات الفاتوره :",
+  "removeFilters": "مسح الفلاتر",
+  "OrderDetails": "تفاصيل الطلبية",
+  "OrderNumber": "رقم الطلبية",
+  "OrderEdit": "تعديل الطلبية",
+  "edit": "تعديل",
+  "Details": "تفاصيل"
 }

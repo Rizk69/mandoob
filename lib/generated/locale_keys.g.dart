@@ -138,6 +138,8 @@ abstract class  LocaleKeys {
   static const PreviousOrders = 'PreviousOrders';
   static const ErrorLoadingData = 'ErrorLoadingData';
   static const SomethingError = 'SomethingError';
+  static const AmountLira = 'AmountLira';
+  static const AmountUSD = 'AmountUSD';
   static const invoiceTrader = 'invoiceTrader';
   static const TraderName = 'TraderName';
   static const invoiceNumber = 'invoiceNumber';
@@ -182,5 +184,11 @@ abstract class  LocaleKeys {
   static const todayInvoice = 'todayInvoice';
   static const traderInvoices = 'traderInvoices';
   static const ProductsForInvoice = 'ProductsForInvoice';
+  static const removeFilters = 'removeFilters';
+  static const OrderDetails = 'OrderDetails';
+  static const OrderNumber = 'OrderNumber';
+  static const OrderEdit = 'OrderEdit';
+  static const edit = 'edit';
+  static const Details = 'Details';
 
 }

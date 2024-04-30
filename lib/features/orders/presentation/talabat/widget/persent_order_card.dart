@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/features/orders/domain/model/talabat_model.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 
 class PresentOrder extends StatelessWidget {
   final OrdersTalabat talabatPresent ;
@@ -26,7 +28,7 @@ class PresentOrder extends StatelessWidget {
                 .start,
             children: [
               Text(
-                'رقم الطلبية :  ${talabatPresent.orderNo}',
+                '${LocaleKeys.OrderNumber.tr()} : ${talabatPresent.orderNo}',
                 style:
                 getBoldSegoeStyle(
                   fontSize: 18,
@@ -38,7 +40,7 @@ class PresentOrder extends StatelessWidget {
               SizedBox(height: 8),
               Text.rich(
                 TextSpan(
-                  text: 'الحالة : ',
+                  text: '${LocaleKeys.status.tr()} : ',
                   style:
                   getBoldSegoeStyle(
                     fontSize: 18,
@@ -69,7 +71,7 @@ class PresentOrder extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'التاريخ : ${talabatPresent.date} ',
+                '${LocaleKeys.date.tr()} : ${talabatPresent.date} ',
                 style:
                 getBoldSegoeStyle(
                   fontSize: 18,
@@ -92,7 +94,7 @@ class PresentOrder extends StatelessWidget {
                   alignment: Alignment
                       .centerLeft,
                   child: Text(
-                    'تعديل',
+                    LocaleKeys.edit.tr(),
                     style: TextStyle(
                       color:
                       ColorManager
