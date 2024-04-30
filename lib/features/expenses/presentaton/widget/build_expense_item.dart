@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/features/expenses/domain/model/expenses_model.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 
 Widget buildExpenseItem(BuildContext context, ExpenseDataModel expense) {
   return Container(
@@ -16,21 +18,24 @@ Widget buildExpenseItem(BuildContext context, ExpenseDataModel expense) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildExpenseDetail(
-              'نوع المصروف',
+              LocaleKeys.typeExpenses.tr(),
               translateString(context: context,arString:expense.reasonExpenseAr ,enString:expense.reasonExpenseEn ,),
               18, ColorManager.grey3),
           const SizedBox(height: 12),
           _buildExpenseDetail(
-              'المبلغ', expense.price.toString(), 18, ColorManager.grey3),
+              LocaleKeys.amount.tr(),
+              expense.price.toString(), 18, ColorManager.grey3),
 
           _buildExpenseDetail(
-              'تاريخ الشراء', expense.date, 18, ColorManager.grey3),
+              LocaleKeys.purchaseDate.tr(),
+              expense.date, 18, ColorManager.grey3),
           const SizedBox(height: 12),
           _buildExpenseDetail(
-              'الكمية', '${expense.count}', 18, ColorManager.grey3),
+              LocaleKeys.quantity.tr(),
+              '${expense.count}', 18, ColorManager.grey3),
           const SizedBox(height: 12),
           _buildExpenseDetail(
-              'الحالة',
+            LocaleKeys.status.tr(),
               translateString(context: context,arString:expense.statusAr ,enString:expense.statusEn ,),
               18,
               expense.statusAr == 'مقبول'

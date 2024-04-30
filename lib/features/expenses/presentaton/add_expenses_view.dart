@@ -210,9 +210,9 @@ class CurrencyDropdown extends StatelessWidget {
         return DropdownButtonFormField<int>(
           value: currentValue,
           onChanged: (value) => cubit.setCurrencyId(value.toString()),
-          items: const [
-            DropdownMenuItem(value: 2, child: Text("ليره")),
-            DropdownMenuItem(value: 1, child: Text("دولار")),
+          items:  [
+            DropdownMenuItem(value: 2, child: Text(LocaleKeys.lera.tr())),
+            DropdownMenuItem(value: 1, child: Text(LocaleKeys.usd.tr())),
           ],
         );
       },

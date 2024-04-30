@@ -145,7 +145,7 @@ class ExpensesScreen extends StatelessWidget {
                             },
                           );
                         } else if (state is GetExpensesErrorState) {
-                          return const Text('Error loading expenses');
+                          return  Text(LocaleKeys.EMPTY_LIST.tr());
                         } else {
                           return Container(); // Fallback for other states
                         }

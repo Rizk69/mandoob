@@ -189,5 +189,10 @@
 
   "RemainingAmountLira": "Remaining Amount in Lira",
   "RemainingAmountDollar": "Remaining Amount in Dollar",
-  "Print": "Print"
+  "Print": "Print",
+
+  "amount": "amount",
+  "purchaseDate": "The date of purchase",
+  "status": "status"
+
 }

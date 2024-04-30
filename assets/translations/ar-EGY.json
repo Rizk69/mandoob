@@ -191,5 +191,10 @@
   "Reason": "السبب",
   "RemainingAmountLira": "المبلغ المتبقي بالليرة",
   "RemainingAmountDollar": "المبلغ المتبقي بالدولار",
-  "Print": "طباعة"
+  "Print": "طباعة",
+
+  "amount": "المبلغ",
+  "purchaseDate": "تاريخ الشراء",
+  "status": "الحالة"
+
 }
