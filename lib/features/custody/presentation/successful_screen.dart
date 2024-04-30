@@ -1,5 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:mandoob/core/resources/color_manager.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
@@ -37,7 +38,7 @@ class ConfirmInvoiceScreen extends StatelessWidget {
                       child: CustomButton(onPressed: (){
                         Navigator.pushReplacementNamed(context, Routes.invoiceDetails,
                             arguments: invoiceNumber);
-                      }, buttonText:"الفاتورة" )),
+                      }, buttonText: LocaleKeys.invoice.tr(),)),
 
                   SizedBox(height: AppSize.s2.h,),
                   if (isCash==false)
@@ -52,7 +53,7 @@ class ConfirmInvoiceScreen extends StatelessWidget {
                               priceLera: priceLera,
                             )));
 
-                      }, buttonText:"دفع جزء من الفاتورة" )),
+                      }, buttonText:LocaleKeys.payPartInvoice.tr())),
                 ],
               )
 

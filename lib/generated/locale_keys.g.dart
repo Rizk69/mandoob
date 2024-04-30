@@ -156,5 +156,6 @@ abstract class  LocaleKeys {
   static const elaohda = 'elaohda';
   static const invoiceDelegate = 'invoiceDelegate';
   static const DelegateName = 'DelegateName';
+  static const payPartInvoice = 'payPartInvoice';
 
 }

@@ -171,5 +171,8 @@
   "elaohda": "العهده",
 
   "invoiceDelegate": "فاتورة المندوب",
-  "DelegateName": "اسم المندوب"
+  "DelegateName": "اسم المندوب",
+
+  "payPartInvoice": "دفع جزء من الفاتورة"
+
 }

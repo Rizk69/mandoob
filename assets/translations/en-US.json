@@ -169,6 +169,7 @@
   "amountPaid": "The amount paid",
   "elaohda": "custody",
   "invoiceDelegate": "Invoice Delegate",
-  "DelegateName": "Delegate Name"
+  "DelegateName": "Delegate Name",
+  "payPartInvoice": "Pay part of the bill"
 
 }
