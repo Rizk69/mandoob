@@ -49,6 +49,13 @@ class TradeItem extends StatelessWidget {
                 height: 50,
                 width: 50,
                 fit: BoxFit.fitHeight,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    'assets/images/product.png',
+                    height: 50,
+                    width: 50,
+                  );
+                },
               ),
             ),
             const SizedBox(width: 10),

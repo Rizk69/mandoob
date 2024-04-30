@@ -251,6 +251,13 @@ class ElEahduh extends StatelessWidget {
                                                         height: 50,
                                                         width: 50,
                                                         fit: BoxFit.fitHeight,
+                                                        errorBuilder: (context, error, stackTrace) {
+                                                          return Image.asset(
+                                                            'assets/images/product.png',
+                                                            height: 50,
+                                                            width: 50,
+                                                          );
+                                                        },
                                                       ),
                                                     ),
                                                     const SizedBox(width: 8),
@@ -323,10 +330,22 @@ class ElEahduh extends StatelessWidget {
                                               ? Image.network(
                                                   data[index].image,
                                                   height: AppSize.s13.h,
+                                            errorBuilder: (context, error, stackTrace) {
+                                              return Image.asset(
+                                                'assets/images/product.png',
+                                                height: AppSize.s13.h,
+                                              );
+                                            },
                                                 )
                                               : Image.asset(
                                                   'assets/images/product.png',
                                                   height: AppSize.s13.h,
+                                            errorBuilder: (context, error, stackTrace) {
+                                              return Image.asset(
+                                                'assets/images/product.png',
+                                                height: AppSize.s13.h,
+                                              );
+                                            },
                                                 ),
                                         ),
                                         Container(

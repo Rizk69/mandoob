@@ -4,7 +4,7 @@ Widget customTextFormFiledInfo(
     {required String text,
     bool? enable,
     String? hint,
-      TextInputType? inputType,
+      TextInputType inputType = TextInputType.text,
     required void Function(String)? onChanged,
     required BuildContext context}) {
   return Row(

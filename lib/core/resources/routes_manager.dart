@@ -109,7 +109,6 @@ class RouteGenerator {
       case Routes.sucssufflySceen:
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(
-                  id: -1,
                   title: 'تم الصرف بنجاح ',
                   textbutton: 'الفاتورة',
                 ));
@@ -174,7 +173,6 @@ class RouteGenerator {
 
         return MaterialPageRoute(
             builder: (_) => SucssufflySceen(
-                  id: args.idInvoice,
                   title: args.message,
                   textbutton: args.actionMessage,
                 ));

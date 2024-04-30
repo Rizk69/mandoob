@@ -26,10 +26,11 @@ class NewTraderView extends StatelessWidget {
       create: (_) => instance<AddTradeCubit>(),
       child: BlocConsumer<AddTradeCubit, AddTradeState>(
         listener: (context, state) {
+
           if (state is AddTradeLoadedState) {
             Navigator.pushReplacementNamed(context, Routes.sucssufflyAddTrader,
                 arguments: SuccessMessageArguments(state.message,
-                    LocaleKeys.back.tr(), state.tradeModel.trades!.first.id));
+                    LocaleKeys.back.tr(), 0));
           }
 
           if (state is AddTradeErrorState) {
@@ -90,6 +91,7 @@ class NewTraderView extends StatelessWidget {
                               ),
                               SizedBox(height: AppSize.s5.h),
                               customTextFormFiledInfo(
+                                inputType: TextInputType.phone,
                                 text: LocaleKeys.TradePhone.tr(),
                                 onChanged: (phone) {
                                   cubit.setPhone(phone);

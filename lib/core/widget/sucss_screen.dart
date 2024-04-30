@@ -10,12 +10,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class SucssufflySceen extends StatelessWidget {
   String title;
   String textbutton;
-  int id;
   SucssufflySceen(
       {super.key,
       required this.title,
-      required this.textbutton,
-      required this.id});
+      required this.textbutton,});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,15 +39,10 @@ class SucssufflySceen extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.9,
               child: CustomButton(
                   onPressed: () {
-                    if (id == -1) {
                       Navigator.pushReplacementNamed(
                           context, Routes.homeRoute,
-                          arguments: id);
-                    } else {
-                      Navigator.pushReplacementNamed(
-                          context, Routes.fawaterTagerDetails,
-                          arguments: id);
-                    }
+                         );
+
                   },
                   buttonText: textbutton))
         ],
