@@ -1,25 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:mandoob/app/di.dart';
-import 'package:mandoob/core/resources/assets_manager.dart';
-import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
-import 'package:mandoob/core/widget/custom_buttoms.dart';
-import 'package:mandoob/core/widget/empty_screen.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/cubit/invoice_state.dart';
+import 'package:mandoob/features/invoices/presentation/cubit/fawater_cubit.dart';
+import 'package:mandoob/features/invoices/presentation/cubit/invoice_state.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class FawaterTagerDetailsView extends StatelessWidget {
+class TraderInvoiceDetailsView extends StatelessWidget {
   int id;
 
-  FawaterTagerDetailsView({super.key, required this.id});
+  TraderInvoiceDetailsView({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {

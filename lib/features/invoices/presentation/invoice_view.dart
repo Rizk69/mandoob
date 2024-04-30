@@ -3,29 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
-import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/home/presentation/widget/drawer_home.dart';
-import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/cubit/invoice_state.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/supplier_invoice.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/presentaion/widget/trader_invoice.dart';
+import 'package:mandoob/features/invoices/presentation/cubit/fawater_cubit.dart';
+import 'package:mandoob/features/invoices/presentation/cubit/invoice_state.dart';
+import 'package:mandoob/features/invoices/presentation/widget/supplier_invoice.dart';
+import 'package:mandoob/features/invoices/presentation/widget/trader_invoice.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../cubit/fawater_cubit.dart';
 
-class FawaterView extends StatelessWidget {
-  FawaterView({Key? key}) : super(key: key);
+class InvoiceView extends StatelessWidget {
+  const InvoiceView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FawaterViewBody();
+    return InvoiceViewBody();
   }
 }
 
-class FawaterViewBody extends StatelessWidget {
-  FawaterViewBody({Key? key}) : super(key: key);
+class InvoiceViewBody extends StatelessWidget {
+  InvoiceViewBody({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final TextEditingController _textEditingController =
       TextEditingController(); // Create a text editing controller
@@ -53,7 +51,7 @@ class FawaterViewBody extends StatelessWidget {
                       FawaterViewCubit.get(context).filteredTraderInvoices;
 
                   if (supplierInvoiceModel == null) {
-                    return const Center(child: Text("No data available"));
+                    return  Center(child: Text(LocaleKeys.EMPTY_LIST.tr(),));
                   }
 
                   return Column(
@@ -74,7 +72,7 @@ class FawaterViewBody extends StatelessWidget {
                           ),
                           Center(
                             child: Text(
-                              'الفواتير',
+                              LocaleKeys.invoices.tr(),
                               style: getBoldSegoeStyle(
                                 fontSize: 25,
                                 color: Theme.of(context).primaryColorLight,
@@ -148,7 +146,7 @@ class FawaterViewBody extends StatelessWidget {
                                     tabs: [
                                       Tab(
                                         child: Text(
-                                          'فواتير التجار ',
+                                          LocaleKeys.traderInvoices.tr(),
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -159,7 +157,7 @@ class FawaterViewBody extends StatelessWidget {
                                       ),
                                       Tab(
                                         child: Text(
-                                          'فواتير اليوم',
+                                          LocaleKeys.todayInvoice.tr(),
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,

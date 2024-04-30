@@ -196,6 +196,13 @@
   "currentCustody": "Current Custody",
   "Customize": "Customize",
   "TodayItinerary": "Today's Itinerary",
-  "ViewDetails": "View Details"
+  "ViewDetails": "View Details",
+
+  "todayInvoice": "Today's Invoices",
+  "traderInvoices": "Trader's Invoices",
+
+  "ProductsForInvoice": "Products for Invoice"
+
+
 
 }

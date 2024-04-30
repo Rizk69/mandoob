@@ -10,14 +10,13 @@ import 'package:mandoob/features/custody/presentation/el_salah/prsentation/el_sa
 import 'package:mandoob/features/custody/presentation/invoice_details.dart';
 import 'package:mandoob/features/debts/domain/model/debt_trader_model.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debt_repayment.dart';
+import 'package:mandoob/features/invoices/presentation/invoice_trader_details.dart';
 import 'package:mandoob/features/purchase/presentation/purchase_view.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debts_view.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/invoice_trader_view.dart';
 import 'package:mandoob/features/expenses/presentaton/add_expenses_view.dart';
 import 'package:mandoob/features/home/presentation/home_Controller.dart';
-import 'package:mandoob/features/home/presentation/home_View.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/presentaion/invoice_trader_details.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/presentaion/invoice_delegate_details.dart';
+import 'package:mandoob/features/invoices/presentation/invoice_delegate_details.dart';
 import 'package:mandoob/features/notification/presentation/notification.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_talab_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_old_details.dart';
@@ -27,7 +26,6 @@ import 'package:mandoob/features/trader/presentation/trader_view.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/add_traffic_lines_screen.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/presentation/traffic_lines_screen.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
-
 import '../../features/purchase/presentation/add_purchase_paying.dart';
 import '../../features/expenses/presentaton/expenses_view.dart';
 import '../../features/orders/presentation/talabat/presentation/talabat_peresent_edit.dart';
@@ -118,7 +116,7 @@ class RouteGenerator {
       case Routes.fawaterTagerDetails:
         final args = settings.arguments as int;
         return MaterialPageRoute(
-            builder: (_) => FawaterTagerDetailsView(
+            builder: (_) => TraderInvoiceDetailsView(
                   id: args,
                 ));
 
@@ -137,7 +135,7 @@ class RouteGenerator {
                   id: args,
                 ));
       case Routes.fawaterMandobDetailsView:
-        return MaterialPageRoute(builder: (_) => FawaterMandobDetailsView());
+        return MaterialPageRoute(builder: (_) => DelegateInvoiceDetailsView());
       case Routes.trafficLines:
         initDelivaryLineModule();
         return MaterialPageRoute(builder: (_) => TrafficLines());

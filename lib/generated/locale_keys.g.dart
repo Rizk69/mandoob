@@ -179,5 +179,8 @@ abstract class  LocaleKeys {
   static const Customize = 'Customize';
   static const TodayItinerary = 'TodayItinerary';
   static const ViewDetails = 'ViewDetails';
+  static const todayInvoice = 'todayInvoice';
+  static const traderInvoices = 'traderInvoices';
+  static const ProductsForInvoice = 'ProductsForInvoice';
 
 }

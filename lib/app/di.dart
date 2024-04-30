@@ -48,7 +48,7 @@ import 'package:mandoob/features/invoices/data/network/fawater_api.dart';
 import 'package:mandoob/features/invoices/data/repository/invoice_repository_impl.dart';
 import 'package:mandoob/features/invoices/domain/repository/invoices_repository.dart';
 import 'package:mandoob/features/invoices/domain/usecase/invoices_usecases.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
+import 'package:mandoob/features/invoices/presentation/cubit/fawater_cubit.dart';
 import 'package:mandoob/features/notification/data/data_source/notifications_data_source.dart';
 import 'package:mandoob/features/notification/data/network/notification_api.dart';
 import 'package:mandoob/features/notification/data/repository/repository_notification_impl.dart';
@@ -67,7 +67,6 @@ import 'package:mandoob/features/purchase/domain/usecase/add_purchase_usecases.d
 import 'package:mandoob/features/purchase/domain/usecase/add_salse_purchase_usecases.dart';
 import 'package:mandoob/features/purchase/domain/usecase/get_purchase_usecases.dart';
 import 'package:mandoob/features/purchase/presentation/cubit/purchase_cubit.dart';
-import 'package:mandoob/features/purchase/presentation/purchase_view.dart';
 import 'package:mandoob/features/trader/data/data_source/remote_trade_data_source.dart';
 import 'package:mandoob/features/trader/data/network/trade_api.dart';
 import 'package:mandoob/features/trader/domain/repository/trade_repository.dart';

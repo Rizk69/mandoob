@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mandoob/features/custody/presentation/el_eahduh/el_eahduh_view.dart';
 import 'package:mandoob/features/home/presentation/cubit/bottomNavBar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:mandoob/features/home/presentation/home_View.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/presentaion/Fawater_view.dart';
+import 'package:mandoob/features/invoices/presentation/invoice_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/talabat_view.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:mandoob/core/resources/assets_manager.dart';
@@ -29,7 +29,7 @@ class HomeController extends StatelessWidget {
             case BottomNavBarItem.bugs:
               return  ElEahduh();
             case BottomNavBarItem.fawater:
-              return FawaterView();
+              return InvoiceView();
             default:
               return Container();
           }

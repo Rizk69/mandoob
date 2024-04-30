@@ -199,8 +199,10 @@
   "currentCustody": "العهده الحاليه",
   "Customize": "تخصيص",
   "TodayItinerary": "خط سير اليوم",
-  "ViewDetails": "عرض التفاصيل"
+  "ViewDetails": "عرض التفاصيل",
 
 
-
+  "todayInvoice": "فواتير اليوم",
+  "traderInvoices": "فواتير التجار",
+  "ProductsForInvoice": "منتجات الفاتوره :"
 }

@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mandoob/app/di.dart';
-import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/cubit/invoice_state.dart';
+import 'package:mandoob/features/invoices/presentation/cubit/fawater_cubit.dart';
+import 'package:mandoob/features/invoices/presentation/cubit/invoice_state.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class FawaterMandobDetailsView extends StatelessWidget {
+class DelegateInvoiceDetailsView extends StatelessWidget {
+  const DelegateInvoiceDetailsView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -124,7 +125,7 @@ class FawaterMandobDetailsView extends StatelessWidget {
                               SizedBox(height: AppSize.s6.h),
                               Center(
                                 child: Text(
-                                  'Products for Invoice: ${selectedInvoice.invoiceNo}',
+                                  '${LocaleKeys.ProductsForInvoice.tr()} ${selectedInvoice.invoiceNo}',
                                   style: getBoldSegoeStyle(
                                     fontSize: AppSize.s20.sp,
                                     color: Theme.of(context).primaryColor,
@@ -228,10 +229,10 @@ class FawaterMandobDetailsView extends StatelessWidget {
                     }
 
                     if (state is LoadingSupplierInvoiceDetailsState) {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
 
-                    return Center(child: Text('Error occurred'));
+                    return Center(child: Text(LocaleKeys.ERROR.tr()));
                   },
                 ),
               ),

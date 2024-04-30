@@ -12,7 +12,6 @@ import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/cubit/fawater_cubit.dart';
 import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

@@ -4,7 +4,7 @@ import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.da
 import 'package:mandoob/features/invoices/domain/model/trader_details_invoice_model.dart';
 import 'package:mandoob/features/invoices/domain/model/trader_invoice_model.dart';
 import 'package:mandoob/features/invoices/domain/usecase/invoices_usecases.dart';
-import 'package:mandoob/features/invoices/presentation/fawater/cubit/invoice_state.dart';
+import 'package:mandoob/features/invoices/presentation/cubit/invoice_state.dart';
 
 class FawaterViewCubit extends Cubit<FawaterViewState> {
   GetInvoicesTraderInvoiceUseCase _getFawaterTraderInvoiceUseCase;
