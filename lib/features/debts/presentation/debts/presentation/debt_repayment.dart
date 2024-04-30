@@ -24,8 +24,12 @@ class DebtRepayment extends StatelessWidget {
   final DebtDetail debtDetail;
 
   final _dateController = TextEditingController();
-  final List<String> currencyOptions = ['دولار', 'ليرة'];
+  final List<String> currencyOptions = [
+    LocaleKeys.lera.tr(),
+    LocaleKeys.usd.tr()
+  ];
   String? selectedCurrency;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,7 +50,7 @@ class DebtRepayment extends StatelessWidget {
                       if (state is PayDebtTraderErrorState) {
                         final snackBar = defaultSnakeBar(
                           title: LocaleKeys.ERROR.tr(),
-                          message:state.message,
+                          message: state.message,
                           state: ContentType.failure,
                         );
                         ScaffoldMessenger.of(context)
@@ -66,8 +70,8 @@ class DebtRepayment extends StatelessWidget {
                         Navigator.pushNamed(
                             context, Routes.sucssufflyDebtsTrader,
                             arguments: SuccessMessageArguments(
-                                'تم الصرف بنجاح',
-                                'الفاتورة',
+                                LocaleKeys.SuccessfulDisbursement.tr(),
+                                LocaleKeys.invoice.tr(),
                                 DebtsCubit.get(context)
                                     .payDebtTraderModel!
                                     .invoiceId));
@@ -84,13 +88,13 @@ class DebtRepayment extends StatelessWidget {
                               functionDrawer: () {
                                 scaffoldKey.currentState?.openDrawer();
                               },
-                              title: 'تسديد الديون',
+                              title: LocaleKeys.DebtRepayment.tr(),
                               functionIcon: () {
                                 Navigator.pop(context);
                               }),
                           SizedBox(height: AppSize.s5.h),
                           customTextFormFiledInfo(
-                            text: 'مبلغ الدين ليرة',
+                            text: LocaleKeys.DebtAmountLira.tr(),
                             enable: false,
                             onChanged: null,
                             hint: "${debtDetail.debtLera}",
@@ -98,7 +102,7 @@ class DebtRepayment extends StatelessWidget {
                           ),
                           SizedBox(height: AppSize.s5.h),
                           customTextFormFiledInfo(
-                            text: 'مبلغ الدين دولار',
+                            text: LocaleKeys.DebtAmountDollar.tr(),
                             enable: false,
                             onChanged: null,
                             hint: "${debtDetail.debtDoler}",
@@ -109,7 +113,7 @@ class DebtRepayment extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'العملة',
+                                  LocaleKeys.Currency.tr(),
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -137,7 +141,7 @@ class DebtRepayment extends StatelessWidget {
                           ),
                           SizedBox(height: AppSize.s5.h),
                           customTextFormFiledInfo(
-                            text: 'المبلغ المدفوع',
+                            text: LocaleKeys.amountPaid.tr(),
                             enable: true,
                             onChanged: (pay) {
                               debtsCubit.setPrice(pay);
@@ -149,7 +153,7 @@ class DebtRepayment extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'تاريخ الدفع القادم',
+                                  LocaleKeys.NextPaymentDate.tr(),
                                   style: TextStyle(
                                     fontSize: AppSize.s20.sp,
                                     fontWeight: FontWeight.bold,
@@ -200,7 +204,7 @@ class DebtRepayment extends StatelessWidget {
                                       debtsCubit.currencyId
                                           .toString()
                                           .isNotEmpty &&
-                                      debtsCubit.dueDate.isNotEmpty ) {
+                                      debtsCubit.dueDate.isNotEmpty) {
                                     debtsCubit.setTraderId(debtDetail.id);
 
                                     debtsCubit.payDebtTrader();
@@ -215,7 +219,7 @@ class DebtRepayment extends StatelessWidget {
                                       ..showSnackBar(snackBar);
                                   }
                                 },
-                                buttonText: 'تسديد',
+                                buttonText: LocaleKeys.Repayment.tr(),
                               ))
                         ],
                       );
@@ -231,13 +235,12 @@ class DebtRepayment extends StatelessWidget {
   }
 
   int _getCurrencyId(String? currencyName) {
-    switch (currencyName) {
-      case 'دولار':
-        return 1;
-      case 'ليرة':
-        return 2;
-      default:
-        return -1;
+    if (currencyName == LocaleKeys.usd.tr()) {
+      return 1;
+    } else if (currencyName == LocaleKeys.lera.tr()) {
+      return 2;
+    } else {
+      return -1;
     }
   }
 }

@@ -157,5 +157,22 @@ abstract class  LocaleKeys {
   static const invoiceDelegate = 'invoiceDelegate';
   static const DelegateName = 'DelegateName';
   static const payPartInvoice = 'payPartInvoice';
+  static const lera = 'lera';
+  static const usd = 'usd';
+  static const SuccessfulDisbursement = 'SuccessfulDisbursement';
+  static const DebtRepayment = 'DebtRepayment';
+  static const DebtAmountLira = 'DebtAmountLira';
+  static const DebtAmountDollar = 'DebtAmountDollar';
+  static const Currency = 'Currency';
+  static const NextPaymentDate = 'NextPaymentDate';
+  static const Repayment = 'Repayment';
+  static const MerchantDebts = 'MerchantDebts';
+  static const DelegateDebts = 'DelegateDebts';
+  static const LastPaymentDate = 'LastPaymentDate';
+  static const PaymentDate = 'PaymentDate';
+  static const Reason = 'Reason';
+  static const RemainingAmountLira = 'RemainingAmountLira';
+  static const RemainingAmountDollar = 'RemainingAmountDollar';
+  static const Print = 'Print';
 
 }

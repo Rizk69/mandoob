@@ -81,7 +81,8 @@ class DebtsViewBody extends StatelessWidget {
                     ),
                     SizedBox(height: AppSize.s4.h),
                     TextFormField(
-                      controller: _dateController,  // Use the controller here
+                      controller: _dateController,
+                      // Use the controller here
                       scribbleEnabled: true,
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
@@ -104,13 +105,15 @@ class DebtsViewBody extends StatelessWidget {
 
                             if (pickedDate != null) {
                               // Format the picked date
-                              final formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                              final formattedDate =
+                                  DateFormat('yyyy-MM-dd').format(pickedDate);
 
                               // Update the text field with the selected date
                               _dateController.text = formattedDate;
 
                               // Perform search with the selected date
-                              DebtsCubit.get(context).searchDebts(formattedDate);
+                              DebtsCubit.get(context)
+                                  .searchDebts(formattedDate);
                             }
                           },
                         ),
@@ -147,7 +150,7 @@ class DebtsViewBody extends StatelessWidget {
                                   tabs: [
                                     Tab(
                                       child: Text(
-                                        'ديون  التجار',
+                                        LocaleKeys.MerchantDebts.tr(),
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -158,7 +161,7 @@ class DebtsViewBody extends StatelessWidget {
                                     ),
                                     Tab(
                                       child: Text(
-                                        'ديون المندوب ',
+                                        LocaleKeys.DelegateDebts.tr(),
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -183,13 +186,11 @@ class DebtsViewBody extends StatelessWidget {
                                               return SizedBox();
                                             }
 
-                                            if (index >=
-                                                debtsCubit.length) {
+                                            if (index >= debtsCubit.length) {
                                               return SizedBox();
                                             }
 
-                                            final debts =
-                                                debtsCubit[index];
+                                            final debts = debtsCubit[index];
                                             return Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -205,45 +206,62 @@ class DebtsViewBody extends StatelessWidget {
                                                             .start,
                                                     children: [
                                                       rowCard(
-                                                          title: 'اسم التاجر',
+                                                          title: LocaleKeys
+                                                              .userName
+                                                              .tr(),
                                                           colorTitle:
-                                                          Theme.of(context).primaryColor,
-                                                          colordes: Theme.of(context).primaryColor,
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          colordes:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
                                                           des: debts.traderName,
                                                           context: context),
                                                       rowCard(
                                                           title:
-                                                              'مبلغ الدين باالدولار',
+                                                          LocaleKeys.DebtAmountDollar.tr(),
                                                           colorTitle:
-                                                          Theme.of(context).primaryColor,
-                                                          colordes: Theme.of(context).primaryColor,
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          colordes:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
                                                           des:
                                                               "${debts.debtDoler}",
                                                           context: context),
                                                       rowCard(
                                                           title:
-                                                              'مبلغ الدين بالليرة',
+                                                          LocaleKeys.DebtAmountLira.tr(),
                                                           colorTitle:
-                                                          Theme.of(context).primaryColor,
-                                                          colordes: Theme.of(context).primaryColor,
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          colordes:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
                                                           des:
                                                               "${debts.debtLera}",
                                                           context: context),
                                                       rowCard(
                                                           title:
-                                                              'تاريخ اخر دفعة',
+                                                          LocaleKeys.LastPaymentDate.tr(),
                                                           colorTitle:
-                                                          Theme.of(context).primaryColor,
-                                                          colordes: Theme.of(context).primaryColor,
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          colordes:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
                                                           des:
                                                               "${debts.lastDate}",
                                                           context: context),
                                                       rowCard(
                                                           title:
-                                                              'تاريخ الدفعة القادمة',
+                                                          LocaleKeys.NextPaymentDate.tr(),
                                                           colorTitle:
-                                                          Theme.of(context).primaryColor,
-                                                          colordes: Theme.of(context).primaryColor,
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          colordes:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
                                                           des:
                                                               "${debts.dueDate}",
                                                           context: context),
@@ -260,7 +278,7 @@ class DebtsViewBody extends StatelessWidget {
                                                           alignment: Alignment
                                                               .centerLeft,
                                                           child: Text(
-                                                            'تسديد',
+                                                            LocaleKeys.Repayment.tr(),
                                                             style: TextStyle(
                                                               color:
                                                                   ColorManager
@@ -306,8 +324,7 @@ class DebtsViewBody extends StatelessWidget {
                                               DebtsCubit.get(context)
                                                   .filterDelegateData;
                                           if (delegateDebtsCubit == null ||
-                                              delegateDebtsCubit
-                                                  .isEmpty) {
+                                              delegateDebtsCubit.isEmpty) {
                                             return SizedBox();
                                           }
 
@@ -333,7 +350,7 @@ class DebtsViewBody extends StatelessWidget {
                                                   children: [
                                                     rowCard(
                                                         title:
-                                                            'مبلغ الدين باالدولار',
+                                                        LocaleKeys.DebtAmountDollar.tr(),
                                                         colorTitle:
                                                             ColorManager.grey3,
                                                         colordes:
@@ -344,29 +361,25 @@ class DebtsViewBody extends StatelessWidget {
                                                         context: context),
                                                     rowCard(
                                                         title:
-                                                            'مبلغ الدين بالليرة',
+                                                        LocaleKeys.DebtAmountLira.tr(),
                                                         colorTitle:
                                                             ColorManager.grey3,
                                                         colordes:
                                                             ColorManager.grey3,
-                                                        des: debts
-                                                            .debtPriceLera
+                                                        des: debts.debtPriceLera
                                                             .toString(),
                                                         context: context),
                                                     rowCard(
-                                                        title:
-                                                            'تاريخ الدين',
+                                                        title: LocaleKeys.PaymentDate.tr(),
                                                         colorTitle:
                                                             ColorManager.grey3,
                                                         colordes:
                                                             ColorManager.grey3,
-                                                        des: debts
-                                                            .date
+                                                        des: debts.date
                                                             .toString(),
                                                         context: context),
                                                     rowCard(
-                                                        title:
-                                                            'السبب',
+                                                        title: LocaleKeys.Reason.tr(),
                                                         colorTitle:
                                                             ColorManager.grey3,
                                                         colordes:
@@ -377,15 +390,15 @@ class DebtsViewBody extends StatelessWidget {
                                                         context: context),
                                                     SizedBox(height: 12),
                                                     Container(
-                                                      width: MediaQuery.of(
-                                                          context)
-                                                          .size
-                                                          .width,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
                                                       decoration: BoxDecoration(
                                                           color: Colors.grey,
                                                           border: Border.all(
                                                               color:
-                                                              Colors.grey,
+                                                                  Colors.grey,
                                                               width: 1)),
                                                     )
                                                   ],
@@ -438,7 +451,7 @@ class DebtsViewBody extends StatelessWidget {
           des,
           style: getBoldSegoeStyle(
             fontSize: 18,
-            color: colordes ,
+            color: colordes,
           ),
         )
       ],

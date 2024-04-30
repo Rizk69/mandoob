@@ -173,6 +173,23 @@
   "invoiceDelegate": "فاتورة المندوب",
   "DelegateName": "اسم المندوب",
 
-  "payPartInvoice": "دفع جزء من الفاتورة"
+  "payPartInvoice": "دفع جزء من الفاتورة",
+  "lera": "ليرة",
+  "usd": "دولار",
 
+  "SuccessfulDisbursement": "تم الصرف بنجاح",
+  "DebtRepayment": "تسديد الديون",
+  "DebtAmountLira": "مبلغ الدين ليرة",
+  "DebtAmountDollar": "مبلغ الدين دولار",
+  "Currency": "العملة",
+  "NextPaymentDate": "تاريخ الدفعة القادم",
+  "Repayment": "تسديد",
+  "MerchantDebts": "ديون التجار",
+  "DelegateDebts": "ديون المندوب",
+  "LastPaymentDate": "تاريخ اخر دفعة",
+  "PaymentDate": "تاريخ الدين",
+  "Reason": "السبب",
+  "RemainingAmountLira": "المبلغ المتبقي بالليرة",
+  "RemainingAmountDollar": "المبلغ المتبقي بالدولار",
+  "Print": "طباعة"
 }

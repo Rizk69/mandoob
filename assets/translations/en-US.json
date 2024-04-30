@@ -170,6 +170,24 @@
   "elaohda": "custody",
   "invoiceDelegate": "Invoice Delegate",
   "DelegateName": "Delegate Name",
-  "payPartInvoice": "Pay part of the bill"
+  "payPartInvoice": "Pay part of the bill",
+  "lera": "Lera",
+  "usd": "USD",
 
+  "SuccessfulDisbursement": "Disbursement Successful",
+  "DebtRepayment": "Debt Repayment",
+  "DebtAmountLira": "Debt Amount in Lira",
+  "DebtAmountDollar": "Debt Amount in Dollar",
+  "Currency": "Currency",
+  "NextPaymentDate": "Next Payment Date",
+  "Repayment": "Repayment",
+  "MerchantDebts": "Merchant Debts",
+  "DelegateDebts": "Delegate Debts",
+  "LastPaymentDate": "Last Payment Date",
+  "PaymentDate": "Payment Date",
+  "Reason": "Reason",
+
+  "RemainingAmountLira": "Remaining Amount in Lira",
+  "RemainingAmountDollar": "Remaining Amount in Dollar",
+  "Print": "Print"
 }

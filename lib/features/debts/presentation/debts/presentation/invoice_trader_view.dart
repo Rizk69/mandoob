@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,6 +11,7 @@ import 'package:mandoob/core/widget/backgrond_image.dart';
 import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:mandoob/features/debts/presentation/debts/cubit/debts_cubit.dart';
 import 'package:mandoob/features/debts/presentation/debts/cubit/debts_state.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class InvoiceTrader extends StatelessWidget {
@@ -47,7 +49,7 @@ class InvoiceTrader extends StatelessWidget {
                             ),
                             Center(
                               child: Text(
-                                "فاتورة التاجر ${data?.traderName}",
+                                "${LocaleKeys.invoiceTrader.tr()} ${data?.traderName}",
                                 style: getBoldSegoeStyle(
                                   fontSize: 18,
                                   color: Theme.of(context).primaryColor,
@@ -70,56 +72,56 @@ class InvoiceTrader extends StatelessWidget {
                             ),
                             SizedBox(height: AppSize.s3.h),
                             rowCard(
-                                title: 'التاريخ',
+                                title: LocaleKeys.date.tr(),
                                 colorTitle: ColorManager.black,
                                 colordes: ColorManager.black,
                                 des: data.date,
                                 context: context),
                             SizedBox(height: AppSize.s2.h),
                             rowCard(
-                                title: 'رقم الفاتورة',
+                                title: LocaleKeys.invoiceNumber.tr(),
                                 colorTitle: ColorManager.black,
                                 colordes: ColorManager.black,
                                 des: data.invoiceNo,
                                 context: context),
                             SizedBox(height: AppSize.s2.h),
                             rowCard(
-                                title: 'مبلغ الدين بالليرة',
+                                title: LocaleKeys.DebtAmountLira.tr(),
                                 colorTitle: ColorManager.black,
                                 colordes: ColorManager.black,
                                 des: data.debtPriceLera.toString(),
                                 context: context),
                             SizedBox(height: AppSize.s2.h),
                             rowCard(
-                                title: 'مبلغ الدين بالدولار',
+                                title: LocaleKeys.DebtAmountDollar.tr(),
                                 colorTitle: ColorManager.black,
                                 colordes: ColorManager.black,
                                 des: data.debtPriceDoler.toString(),
                                 context: context),
                             SizedBox(height: AppSize.s2.h),
                             rowCard(
-                                title: 'المبلغ المدفوع بالليرة',
+                                title: LocaleKeys.AmountPaidLira.tr(),
                                 colorTitle: ColorManager.black,
                                 colordes: ColorManager.black,
                                 des: data.payPriceLera.toString(),
                                 context: context),
                             SizedBox(height: AppSize.s2.h),
                             rowCard(
-                                title: 'المبلغ المدفوع بالدولار',
+                                title: LocaleKeys.AmountPaidUSD.tr(),
                                 colorTitle: ColorManager.black,
                                 colordes: ColorManager.black,
                                 des: data.payPriceDoler.toString(),
                                 context: context),
                             SizedBox(height: AppSize.s2.h),
                             rowCard(
-                                title: 'المبلغ المتبقي بالليرة',
+                                title: LocaleKeys.RemainingAmountLira.tr(),
                                 colorTitle: ColorManager.black,
                                 colordes: ColorManager.black,
                                 des: data.restPriceLera.toString(),
                                 context: context),
                             SizedBox(height: AppSize.s2.h),
                             rowCard(
-                                title: 'المبلغ المتبقي بالدولار',
+                                title: LocaleKeys.RemainingAmountDollar.tr(),
                                 colorTitle: ColorManager.black,
                                 colordes: ColorManager.black,
                                 des: data.restPriceDoler.toString(),
@@ -134,12 +136,12 @@ class InvoiceTrader extends StatelessWidget {
                                       Routes.homeRoute,
                                     );
                                   },
-                                  buttonText: 'طباعة',
+                                  buttonText: LocaleKeys.Print.tr(),
                                 ))
                           ],
                         );
                       }
-                        return const Text('Something Error');
+                        return  Text(LocaleKeys.ERROR.tr());
 
 
                     },
