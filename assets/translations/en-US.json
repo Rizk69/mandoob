@@ -178,6 +178,7 @@
   "currentCustody": "Current Custody",
   "Customize": "Customize",
   "TodayItinerary": "Today's Itinerary",
+  "AddItinerary": "Add Itinerary",
   "ViewDetails": "View Details",
   "todayInvoice": "Today's Invoices",
   "traderInvoices": "Trader's Invoices",
@@ -194,6 +195,9 @@
   "CompleteData": "Please Complete Required Data",
   "Purchases": "Purchases",
   "sell": "sell",
-  "PurchasingEmpty": "Sorry No Purchase Found"
+  "PurchasingEmpty": "Sorry No Purchase Found",
 
+  "ConfirmRemove": "Confirm Remove",
+  "ConfirmRemoveContent": "Are you sure you want to delete this line? Or skip it",
+  "Remove": "Remove"
 }

@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/cubit/trafficlines_cubit.dart';
 import 'package:mandoob/features/trafiic_lines/presentation/traffic_lines/widget/event_card.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
@@ -63,11 +65,11 @@ class MyTimeLineTitle extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text('تأكيد الحذف'),
-                        content: const Text(' هل أنت متأكد من أنك تريد حذف هذا الخط؟,او التخطى'),
+                        title:  Text(LocaleKeys.ConfirmRemove.tr()),
+                        content:  Text(LocaleKeys.ConfirmRemoveContent.tr()),
                         actions: <Widget>[
                           TextButton(
-                            child: const Text('تخطى'),
+                            child:  Text(LocaleKeys.skip.tr()),
                             onPressed: () {
                               Navigator.of(context).pop();
                               cubit.closeTrafficLine(traderId);
@@ -75,7 +77,7 @@ class MyTimeLineTitle extends StatelessWidget {
                             },
                           ),
                           TextButton(
-                            child: const Text('حذف'),
+                            child:  Text(LocaleKeys.Remove.tr()),
                             onPressed: () {
                               Navigator.of(context).pop();
                               cubit.deleteTrafficLine(traderId);

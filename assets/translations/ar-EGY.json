@@ -178,6 +178,7 @@
   "currentCustody": "العهده الحاليه",
   "Customize": "تخصيص",
   "TodayItinerary": "خط سير اليوم",
+  "AddItinerary": "اضافة خط سير",
   "ViewDetails": "عرض التفاصيل",
   "todayInvoice": "فواتير اليوم",
   "traderInvoices": "فواتير التجار",
@@ -195,7 +196,9 @@
   "CompleteData": "برجاء اكمال البيانات المطلوبه",
   "Purchases": "المشتريات",
   "sell": "بيع",
-  "PurchasingEmpty": "عذرآ لا يوجد مشتريات"
+  "PurchasingEmpty": "عذرآ لا يوجد مشتريات",
 
-
+  "ConfirmRemove": "تأكيد الحذف",
+  "ConfirmRemoveContent": " هل أنت متأكد من أنك تريد حذف هذا الخط؟,او التخطى",
+  "Remove": "حذف"
 }

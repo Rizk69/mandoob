@@ -123,56 +123,6 @@ class TrafficLines extends StatelessWidget {
                         final data = cubit.trafficModel?.data;
                         return Column(
                           children: [
-                            // TextFormField(
-                            //   scribbleEnabled: true,
-                            //   cursorHeight: 30,
-                            //   style: TextStyle(
-                            //     color: Theme.of(context).primaryColor,
-                            //   ),
-                            //   onChanged: (value) {
-                            //     cubit.searchTraffic(value);
-                            //   },
-                            //   decoration: InputDecoration(
-                            //     prefixIcon: const Icon(Icons.search),
-                            //     suffixIcon: IconButton(
-                            //       icon: Icon(
-                            //         Icons.date_range,
-                            //         color: ColorManager.grey2,
-                            //       ),
-                            //       onPressed: () async {
-                            //         final selectedDate = await showDatePicker(
-                            //           context: context,
-                            //           initialDate: DateTime.now(),
-                            //           firstDate: DateTime(2000),
-                            //           lastDate: DateTime(2100),
-                            //           builder:
-                            //               (BuildContext context, Widget? child) {
-                            //             return Theme(
-                            //               data: ThemeData.light().copyWith(
-                            //                 primaryColor: ColorManager.babyBlue,
-                            //                 hintColor: ColorManager.babyBlue,
-                            //                 colorScheme: ColorScheme.light(
-                            //                     primary: ColorManager.babyBlue),
-                            //               ),
-                            //               child: child!,
-                            //             );
-                            //           },
-                            //         );
-                            //
-                            //         if (selectedDate != null) {
-                            //           // هنا نستدعي دالة التصفية بالتاريخ
-                            //           cubit.filterTrafficByDate(selectedDate);
-                            //         }
-                            //       },
-                            //     ),
-                            //     hintText: LocaleKeys.searchHere.tr(),
-                            //     filled: true,
-                            //     hintStyle: TextStyle(
-                            //       color: Theme.of(context).primaryColor,
-                            //     ),
-                            //     fillColor: Theme.of(context).primaryColorDark,
-                            //   ),
-                            // ),
                             SizedBox(height: AppSize.s1.h),
                             Container(
                                 padding: const EdgeInsets.symmetric(
@@ -204,7 +154,7 @@ class TrafficLines extends StatelessWidget {
                                           color: Theme.of(context).primaryColor,
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(8)),
-                                          gradient: LinearGradient(
+                                          gradient: const LinearGradient(
                                             begin: Alignment.topCenter,
                                             end: Alignment.bottomCenter,
                                             colors: [
@@ -249,7 +199,7 @@ class TrafficLines extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  "اضافة خط سير ",
+                                                  LocaleKeys.AddItinerary.tr(),
                                                   style: getBoldInterStyle(
                                                       color: Theme.of(context)
                                                           .primaryColor,

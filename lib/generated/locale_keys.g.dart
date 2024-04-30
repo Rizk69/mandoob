@@ -180,6 +180,7 @@ abstract class  LocaleKeys {
   static const currentCustody = 'currentCustody';
   static const Customize = 'Customize';
   static const TodayItinerary = 'TodayItinerary';
+  static const AddItinerary = 'AddItinerary';
   static const ViewDetails = 'ViewDetails';
   static const todayInvoice = 'todayInvoice';
   static const traderInvoices = 'traderInvoices';
@@ -197,5 +198,8 @@ abstract class  LocaleKeys {
   static const Purchases = 'Purchases';
   static const sell = 'sell';
   static const PurchasingEmpty = 'PurchasingEmpty';
+  static const ConfirmRemove = 'ConfirmRemove';
+  static const ConfirmRemoveContent = 'ConfirmRemoveContent';
+  static const Remove = 'Remove';
 
 }
