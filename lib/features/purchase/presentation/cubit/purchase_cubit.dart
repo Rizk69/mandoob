@@ -5,7 +5,9 @@ import 'package:mandoob/core/netowork_core/failure.dart';
 import 'package:mandoob/features/notification/domain/model/notification_model.dart';
 import 'package:mandoob/features/notification/domain/usecase/get_notification_usecases.dart';
 import 'package:mandoob/features/purchase/data/network/add_purchase_request.dart';
+import 'package:mandoob/features/purchase/data/network/add_salse_purchase_request.dart';
 import 'package:mandoob/features/purchase/domain/model/add_purchase_model.dart';
+import 'package:mandoob/features/purchase/domain/model/message_model.dart';
 import 'package:mandoob/features/purchase/domain/model/purchase_model.dart';
 import 'package:mandoob/features/purchase/domain/usecase/add_purchase_usecases.dart';
 import 'package:mandoob/features/purchase/domain/usecase/add_salse_purchase_usecases.dart';
@@ -26,12 +28,14 @@ class PurchaseCubit extends Cubit<PurchaseState> {
   final AddSalsePurchaseUseCase _addSalsePurchaseUseCase;
 
   PurchaseModel? purchaseModel;
-  AddPurchaseModel? addPurchaseModel;
-  String productName='';
-  String count='';
-  String unit='';
-  num currencyId=0;
-  String price='';
+  MessageModel? addPurchaseModel;
+  AddPurchaseModel? addSalePurchaseModel;
+  String productName = '';
+  String count = '';
+  String unit = '';
+  num currencyId = 0;
+  num customerId = 0;
+  String price = '';
 
   void setProductName(String newName) {
     productName = newName;
@@ -46,6 +50,11 @@ class PurchaseCubit extends Cubit<PurchaseState> {
   void setCurrencyId(num newCurrencyId) {
     currencyId = newCurrencyId;
     emit(PurchaseCurrencyChanged(currencyId));
+  }
+
+  void setCustomerId(num newCustomerId) {
+    customerId = newCustomerId;
+    emit(PurchaseCustomerIdChanged(currencyId));
   }
 
   void setUnit(String newUnit) {
@@ -80,6 +89,24 @@ class PurchaseCubit extends Cubit<PurchaseState> {
         (success) {
       addPurchaseModel = success;
       emit(AddPurchaseSuccessState());
+    });
+  }
+
+  Future<void> salePurchase({
+    required String purcheseId,
+  }) async {
+    emit(SalePurchaseLoadingState());
+    final result = await _addSalsePurchaseUseCase.execute(
+        AddSalsePurchaseRequest(
+            count: count,
+            price: price,
+            currencyId: currencyId.toString(),
+            customerId: customerId.toString(),
+            purcheseId: purcheseId));
+    result.fold((failure) => emit(SalePurchaseErrorState(failure.message)),
+        (success) {
+      addSalePurchaseModel = success;
+      emit(SalePurchaseSuccessState());
     });
   }
 }

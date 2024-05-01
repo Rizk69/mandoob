@@ -44,14 +44,37 @@ class _PurchaseServiceClient implements PurchaseServiceClient {
   }
 
   @override
-  Future<AddPurchaseResponses> addPurchase(addPurchaseRequest) async {
+  Future<InvoicePurchaseResponses> getInvoicePurchase(sell_purchase_id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<InvoicePurchaseResponses>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'api/get_invoice_purchase/${sell_purchase_id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = InvoicePurchaseResponses.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MessageResponses> addPurchase(addPurchaseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addPurchaseRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AddPurchaseResponses>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MessageResponses>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -63,7 +86,7 @@ class _PurchaseServiceClient implements PurchaseServiceClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AddPurchaseResponses.fromJson(_result.data!);
+    final value = MessageResponses.fromJson(_result.data!);
     return value;
   }
 
@@ -88,6 +111,54 @@ class _PurchaseServiceClient implements PurchaseServiceClient {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = AddPurchaseResponses.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<AddPurchaseResponses> confirmPurchase(confirmPurchaseRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(confirmPurchaseRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AddPurchaseResponses>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'api/confirm_purchase',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = AddPurchaseResponses.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MessageResponses> payPurchase(payPurchaseRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(payPurchaseRequest.toJson());
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MessageResponses>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'api/pay_purchase',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = MessageResponses.fromJson(_result.data!);
     return value;
   }
 

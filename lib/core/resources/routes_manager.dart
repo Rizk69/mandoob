@@ -11,6 +11,7 @@ import 'package:mandoob/features/custody/presentation/invoice_details.dart';
 import 'package:mandoob/features/debts/domain/model/debt_trader_model.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debt_repayment.dart';
 import 'package:mandoob/features/invoices/presentation/invoice_trader_details.dart';
+import 'package:mandoob/features/purchase/domain/model/purchase_model.dart';
 import 'package:mandoob/features/purchase/presentation/purchase_view.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/debts_view.dart';
 import 'package:mandoob/features/debts/presentation/debts/presentation/invoice_trader_view.dart';
@@ -152,7 +153,9 @@ class RouteGenerator {
       case Routes.addPayingDebts:
         return MaterialPageRoute(builder: (_) => AddPurchase());
         case Routes.salePurchase:
-        return MaterialPageRoute(builder: (_) => SalePurchase());
+          final args = settings.arguments as PurchaseProductModel;
+
+          return MaterialPageRoute(builder: (_) => SalePurchase(productModel: args,));
       case Routes.debtRepayment:
         final args = settings.arguments as DebtDetail;
 

@@ -21,11 +21,12 @@ class TradeCubit extends Cubit<TradeState> {
   String selectedTraderName = LocaleKeys.selectNewTrade.tr();
 
   TradeModel? model;
+
   void setTraderName(int id) {
     print("ID received: $id");
 
     var trade = model?.trades?.firstWhere(
-            (tradeDataModel) => tradeDataModel.id == id,
+      (tradeDataModel) => tradeDataModel.id == id,
     );
 
     if (trade != null) {
@@ -33,15 +34,29 @@ class TradeCubit extends Cubit<TradeState> {
       print("Selected Trader Name: ${trade.customerName}");
       emit(SelectTradeLoadedState());
     } else {
-
       print("No trade found with ID $id");
       selectedTraderName = "Trade not found";
       emit(SelectTradeLoadedState());
-
     }
   }
 
+  void setTraderPurchaseName(int id) {
+    print("ID received: $id");
 
+    var trade = model?.trades?.firstWhere(
+      (tradeDataModel) => tradeDataModel.id == id,
+    );
+
+    if (trade != null) {
+      selectedTraderName = trade.customerName;
+      print("Selected Trader Name: ${trade.customerName}");
+      emit(SelectTradeLoadedState());
+    } else {
+      print("No trade found with ID $id");
+      selectedTraderName = "Trade not found";
+      emit(SelectTradeLoadedState());
+    }
+  }
 
   Future<void> getTrade() async {
     emit(GetTradeLoadingState());
@@ -87,6 +102,15 @@ class TradeCubit extends Cubit<TradeState> {
   }
 
   Future<void> activeTrade(int traderId) async {
+    emit(ActiveTradeLoadingState());
+    final result = await _activeTradesUseCase.execute(traderId);
+    result.fold((failure) => emit(ActiveTradeErrorState(failure.message)),
+        (success) {
+      emit(ActiveTradeLoadedState());
+    });
+  }
+
+  Future<void> activePurchaseTrade(int traderId) async {
     emit(ActiveTradeLoadingState());
     final result = await _activeTradesUseCase.execute(traderId);
     result.fold((failure) => emit(ActiveTradeErrorState(failure.message)),

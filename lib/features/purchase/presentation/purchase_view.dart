@@ -143,10 +143,12 @@ class Purchase extends StatelessWidget {
                                                     ],
                                                   ),
                                                   InkWell(
-                                                    onTap: (){
-                                                      Navigator.pushNamed(context, Routes.salePurchase);
-
-
+                                                    onTap: () {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          arguments:
+                                                              purchase[index],
+                                                          Routes.salePurchase);
                                                     },
                                                     child: Row(
                                                       children: [

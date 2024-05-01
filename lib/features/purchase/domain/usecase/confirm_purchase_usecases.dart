@@ -1,19 +1,21 @@
 import 'package:dartz/dartz.dart';
 import 'package:mandoob/core/base_usecase.dart';
 import 'package:mandoob/core/netowork_core/failure.dart';
-import 'package:mandoob/features/purchase/data/network/add_salse_purchase_request.dart';
+
+import 'package:mandoob/features/purchase/data/network/confirm_purchase_request.dart';
 import 'package:mandoob/features/purchase/domain/model/add_purchase_model.dart';
+
 import 'package:mandoob/features/purchase/domain/repository/purchase_repository.dart';
 
-class AddSalsePurchaseUseCase
-    implements BaseUseCase<AddSalsePurchaseRequest, AddPurchaseModel> {
+class ConfirmPurchaseUseCase
+    implements BaseUseCase<ConfirmPurchaseRequest, AddPurchaseModel> {
   final PurchaseRepository _purchaseRepository;
 
-  AddSalsePurchaseUseCase(this._purchaseRepository);
+  ConfirmPurchaseUseCase(this._purchaseRepository);
 
   @override
   Future<Either<Failure, AddPurchaseModel>> execute(
-      AddSalsePurchaseRequest addSalsePurchaseRequest) async {
-    return await _purchaseRepository.addSalsePurchase(addSalsePurchaseRequest);
+      ConfirmPurchaseRequest confirmPurchaseRequest) async {
+    return await _purchaseRepository.confirmPurchase(confirmPurchaseRequest);
   }
 }

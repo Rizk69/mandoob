@@ -65,7 +65,10 @@ import 'package:mandoob/features/purchase/data/repository/repository_purchase_im
 import 'package:mandoob/features/purchase/domain/repository/purchase_repository.dart';
 import 'package:mandoob/features/purchase/domain/usecase/add_purchase_usecases.dart';
 import 'package:mandoob/features/purchase/domain/usecase/add_salse_purchase_usecases.dart';
+import 'package:mandoob/features/purchase/domain/usecase/confirm_purchase_usecases.dart';
+import 'package:mandoob/features/purchase/domain/usecase/get_invoice_purchase_usecases.dart';
 import 'package:mandoob/features/purchase/domain/usecase/get_purchase_usecases.dart';
+import 'package:mandoob/features/purchase/domain/usecase/pay_purchase_usecases.dart';
 import 'package:mandoob/features/purchase/presentation/cubit/purchase_cubit.dart';
 import 'package:mandoob/features/trader/data/data_source/remote_trade_data_source.dart';
 import 'package:mandoob/features/trader/data/network/trade_api.dart';
@@ -113,7 +116,8 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<SharedPreferences>(() => sharedPrefs);
 
   // app prefs instance
-  instance.registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
+  instance
+      .registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
 
   // network info
   instance.registerLazySingleton<NetworkInfo>(
@@ -425,6 +429,12 @@ initPurchaseModule() {
         () => AddPurchaseUseCase(instance()));
     instance.registerFactory<AddSalsePurchaseUseCase>(
         () => AddSalsePurchaseUseCase(instance()));
+    instance.registerFactory<GetInvoicePurchaseUseCase>(
+        () => GetInvoicePurchaseUseCase(instance()));
+    instance.registerFactory<ConfirmPurchaseUseCase>(
+        () => ConfirmPurchaseUseCase(instance()));
+    instance.registerFactory<PayPurchaseUseCase>(
+        () => PayPurchaseUseCase(instance()));
 
     instance.registerFactory<PurchaseCubit>(
         () => PurchaseCubit(instance(), instance(), instance()));

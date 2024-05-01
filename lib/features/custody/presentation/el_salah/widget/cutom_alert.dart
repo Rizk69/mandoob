@@ -30,63 +30,68 @@ class ConfirmInvoiceAlertDialog extends StatelessWidget {
     return BlocProvider(
       create: (context) => instance<ElSalahCubit>(),
       child: BlocConsumer<ElSalahCubit, ElSalahState>(
-          listener: (context, state) {
-            if (state is ConfirmDeptInvoiceLoadedState){
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                builder: (_) => PopScope(
-                  canPop: false,
-
-                  onPopInvoked : (didPop) async {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => HomeView()), // تعديل هنا بإضافة اسم الشاشة الرئيسية
-                          (Route<dynamic> route) => false,
-                    );
-                  },
-                  child: ConfirmInvoiceScreen(
-                    invoiceNumber: state.model.invoiceId,
-                    title: state.model.message,
-                    priceLera:state.model.priceLera ,
-                    priceDoler: state.model.priceDoler,
-                    isCash: false,
+        listener: (context, state) {
+          if (state is ConfirmDeptInvoiceLoadedState) {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => PopScope(
+                    canPop: false,
+                    onPopInvoked: (didPop) async {
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                HomeView()), // تعديل هنا بإضافة اسم الشاشة الرئيسية
+                        (Route<dynamic> route) => false,
+                      );
+                    },
+                    child: ConfirmInvoiceScreen(
+                      invoiceNumber: state.model.invoiceId,
+                      title: state.model.message,
+                      priceLera: state.model.priceLera,
+                      priceDoler: state.model.priceDoler,
+                      isCash: false,
+                    ),
                   ),
-                ),
-              ));
-            }
+                ));
+          }
 
-            if (state is ConfirmCashInvoiceLoadedState){
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                builder: (_) => PopScope(
-                  canPop: false,
-
-                  onPopInvoked : (didPop) async {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => HomeView()), // تعديل هنا بإضافة اسم الشاشة الرئيسية
-                          (Route<dynamic> route) => false,
-                    );
-                  },
-                  child: ConfirmInvoiceScreen(
-                    invoiceNumber: state.model.invoiceId,
-                    title: state.model.message,
-                    priceLera:state.model.priceLera ,
-                    priceDoler: state.model.priceDoler,
-                    isCash: true,
+          if (state is ConfirmCashInvoiceLoadedState) {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => PopScope(
+                    canPop: false,
+                    onPopInvoked: (didPop) async {
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                HomeView()), // تعديل هنا بإضافة اسم الشاشة الرئيسية
+                        (Route<dynamic> route) => false,
+                      );
+                    },
+                    child: ConfirmInvoiceScreen(
+                      invoiceNumber: state.model.invoiceId,
+                      title: state.model.message,
+                      priceLera: state.model.priceLera,
+                      priceDoler: state.model.priceDoler,
+                      isCash: true,
+                    ),
                   ),
-                ),
-              ));
-            }
+                ));
+          }
 
-
-            if (state is ConfirmInvoiceErrorState){
-              final snackBar = defaultSnakeBar(
-                title: LocaleKeys.ERROR.tr(),
-                message: state.message,
-                state: ContentType.failure,
-              );
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(snackBar);
-            }
-            },
+          if (state is ConfirmInvoiceErrorState) {
+            final snackBar = defaultSnakeBar(
+              title: LocaleKeys.ERROR.tr(),
+              message: state.message,
+              state: ContentType.failure,
+            );
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(snackBar);
+          }
+        },
         builder: (context, state) {
           return Dialog(
             shape: RoundedRectangleBorder(
@@ -140,19 +145,23 @@ class ConfirmInvoiceAlertDialog extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
           ),
-          SizedBox(height: AppSize.s2.h,),
+          SizedBox(
+            height: AppSize.s2.h,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildActionButton(
                   context,
                   LocaleKeys.cash.tr(),
-                  MaterialStatePropertyAll<Color>(ColorFunctions.loadButtonColor()),
+                  MaterialStatePropertyAll<Color>(
+                      ColorFunctions.loadButtonColor()),
                   () => ElSalahCubit.get(context).confirmInvoice(0)),
               _buildActionButton(
                   context,
                   LocaleKeys.debt.tr(),
-                  MaterialStatePropertyAll<Color>(Theme.of(context).primaryColorDark),
+                  MaterialStatePropertyAll<Color>(
+                      Theme.of(context).primaryColorDark),
                   () => ElSalahCubit.get(context).confirmInvoice(1)),
             ],
           ),
