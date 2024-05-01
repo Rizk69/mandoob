@@ -199,5 +199,7 @@
 
   "ConfirmRemove": "Confirm Remove",
   "ConfirmRemoveContent": "Are you sure you want to delete this line? Or skip it",
-  "Remove": "Remove"
+  "Remove": "Remove",
+  "language": "language"
+
 }

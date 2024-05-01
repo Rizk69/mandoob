@@ -27,3 +27,7 @@ class EditProfileColorErrorState extends ProfileState {
 
   EditProfileColorErrorState(this.message);
 }
+
+
+class ChangeLanguageLoadedState extends ProfileState {}
+

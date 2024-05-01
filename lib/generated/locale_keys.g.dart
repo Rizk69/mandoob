@@ -201,5 +201,6 @@ abstract class  LocaleKeys {
   static const ConfirmRemove = 'ConfirmRemove';
   static const ConfirmRemoveContent = 'ConfirmRemoveContent';
   static const Remove = 'Remove';
+  static const language = 'language';
 
 }

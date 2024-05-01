@@ -200,5 +200,7 @@
 
   "ConfirmRemove": "تأكيد الحذف",
   "ConfirmRemoveContent": " هل أنت متأكد من أنك تريد حذف هذا الخط؟,او التخطى",
-  "Remove": "حذف"
+  "Remove": "حذف",
+  "language": "اللغة"
+
 }

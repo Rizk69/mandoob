@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/app/di.dart';
 import 'package:mandoob/features/auth/data/network/auth_requests.dart';
@@ -53,5 +54,11 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(EditProfileColorErrorState(
           'An error occurred while fetching profile data'));
     }
+  }
+
+  void changeLanguage(context){
+    _appPreferences.changeAppLanguage();
+    Phoenix.rebirth(context);
+    emit(ChangeLanguageLoadedState());
   }
 }

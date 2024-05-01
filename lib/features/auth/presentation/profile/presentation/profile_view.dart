@@ -139,7 +139,7 @@ class ProfileView extends StatelessWidget {
                                 RichText(
                                   text: TextSpan(
                                     style: getBoldSegoeStyle(
-                                      fontSize: 25,
+                                      fontSize: AppSize.s20.sp,
                                       color: ColorManager.black,
                                     ),
                                     children: [
@@ -177,8 +177,33 @@ class ProfileView extends StatelessWidget {
                                 )
                               ],
                             ),
-                          )
-                        ],
+                          ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: appPreferences.getIsDark() ? ColorManager.graymahrok : ColorManager.transparent,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              LocaleKeys.language.tr(),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
+                            ),
+                            IconButton(
+                              icon: Icon(context.locale.languageCode == 'ar' ? Icons.language : Icons.translate),
+                              onPressed: () {
+                                ProfileCubit.get(context).changeLanguage(context);
+                                // context.setLocale(context.locale.languageCode == 'ar' ? Locale('en', 'US') : Locale('ar', 'EG'));
+                              },
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ],
+                        ),
+                      )
+                      ],
                       ),
                     ),
                   );
