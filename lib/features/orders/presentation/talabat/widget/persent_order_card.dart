@@ -96,9 +96,7 @@ class PresentOrder extends StatelessWidget {
                   child: Text(
                     LocaleKeys.edit.tr(),
                     style: TextStyle(
-                      color:
-                      ColorManager
-                          .babyBlue,
+                      color:ColorFunctions.loadButtonColor(),
                       fontSize: 18,
                       fontWeight:
                       FontWeight

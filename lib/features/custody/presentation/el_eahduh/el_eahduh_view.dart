@@ -154,7 +154,7 @@ class ElEahduh extends StatelessWidget {
                                     title: balanceData?.balance.totalDoler
                                         .toString() ?? '',
                                     colorTitle: ColorManager.greenLight,
-                                    des: "دولار",
+                                    des: LocaleKeys.usd.tr(),
                                   ),
                                   Container(
                                     height: AppSize.s98,
@@ -165,7 +165,7 @@ class ElEahduh extends StatelessWidget {
                                     title: balanceData?.balance.totalLera
                                         .toString() ?? '',
                                     colorTitle: ColorManager.orangeLight,
-                                    des: "لير",
+                                    des: LocaleKeys.lera.tr(),
                                   ),
                                 ],
                               ),
@@ -324,10 +324,7 @@ class ElEahduh extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Center(
-                                          child: data[index].image !=
-                                                      null &&
-                                                  data[index].image != ''
-                                              ? Image.network(
+                                          child:  Image.network(
                                                   data[index].image,
                                                   height: AppSize.s13.h,
                                             errorBuilder: (context, error, stackTrace) {
@@ -337,16 +334,6 @@ class ElEahduh extends StatelessWidget {
                                               );
                                             },
                                                 )
-                                              : Image.asset(
-                                                  'assets/images/product.png',
-                                                  height: AppSize.s13.h,
-                                            errorBuilder: (context, error, stackTrace) {
-                                              return Image.asset(
-                                                'assets/images/product.png',
-                                                height: AppSize.s13.h,
-                                              );
-                                            },
-                                                ),
                                         ),
                                         Container(
                                           margin: const EdgeInsets.symmetric(
@@ -438,7 +425,7 @@ class ElEahduh extends StatelessWidget {
                                           child: Container(
                                             decoration: BoxDecoration(
                                               color:
-                                                  Theme.of(context).hoverColor,
+                                              ColorFunctions.loadButtonColor(),
                                               borderRadius:
                                                   const BorderRadius.only(
                                                 bottomLeft: Radius.circular(15),
@@ -446,19 +433,19 @@ class ElEahduh extends StatelessWidget {
                                                     Radius.circular(15),
                                               ),
                                             ),
-                                            child: const Row(
+                                            child:  Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Icon(
+                                                const Icon(
                                                   Icons.shopping_cart,
                                                   color: Colors.white,
                                                   size: 30,
                                                 ),
-                                                SizedBox(width: 8),
+                                                const SizedBox(width: 8),
                                                 Text(
-                                                  'السلة',
-                                                  style: TextStyle(
+                                                  LocaleKeys.cart.tr(),
+                                                  style: const TextStyle(
                                                     fontSize: 27,
                                                     color: Colors.white,
                                                   ),

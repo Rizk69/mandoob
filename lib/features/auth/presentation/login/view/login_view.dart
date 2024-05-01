@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/assets_manager.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
@@ -139,7 +140,7 @@ class LoginView extends StatelessWidget {
                       style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll<Color>(
                             context.read<LoginCubit>().isDataValid
-                                ? Theme.of(context).hoverColor
+                                ? ColorFunctions.loadButtonColor()
                                 : ColorManager.grey2),
                         shape: MaterialStatePropertyAll<OutlinedBorder>(
                           RoundedRectangleBorder(

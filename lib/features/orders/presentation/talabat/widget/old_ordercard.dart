@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
@@ -49,7 +50,7 @@ class OldOrder extends StatelessWidget {
                       child: Text(
                         LocaleKeys.Details.tr(),
                         style: TextStyle(
-                          color: ColorManager.babyBlue,
+                          color: ColorFunctions.loadButtonColor(),
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           decoration: TextDecoration.underline,

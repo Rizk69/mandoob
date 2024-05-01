@@ -113,6 +113,7 @@ class NewOrderViewBody extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextFormField(
+                              enabled: false,
                               controller: _searchController,
                               scribbleEnabled: true,
                               cursorHeight: 30,
@@ -187,11 +188,12 @@ class NewOrderViewBody extends StatelessWidget {
                                     SvgPicture.asset(
                                       IconAssets.filterIcons,
                                       height: 23,
+                                      color: ColorFunctions.loadButtonColor(),
                                     ),
                                     Text(
                                       LocaleKeys.Customize.tr(),
                                       style: getBoldSegoeStyle(
-                                        color: ColorManager.babyBlue,
+                                        color: ColorFunctions.loadButtonColor(),
                                         fontSize: AppSize.s15.sp,
                                       ),
                                     )

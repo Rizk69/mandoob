@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mandoob/app/app_prefs.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/app_cubit/app_cubit.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
@@ -64,9 +65,9 @@ class ProfileView extends StatelessWidget {
                             padding: const EdgeInsets.all(AppPadding.p45),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
-                                color: ColorManager.baseColorLight,
+                                color: ColorFunctions.loadButtonColor(),
                                 border: Border.all(
-                                    color: ColorManager.baseColorLight,
+                                    color: ColorFunctions.loadButtonColor(),
                                     width: 5,
                                     strokeAlign: AppSize.s5)),
                             child: SvgPicture.asset(
@@ -163,11 +164,11 @@ class ProfileView extends StatelessWidget {
                                 ),
                                 Switch(
                                   thumbColor: MaterialStateProperty.all<Color>(
-                                      ColorManager.baseColorLight),
+                                      ColorFunctions.loadButtonColor()),
                                   inactiveTrackColor: Colors.grey,
                                   trackOutlineColor:
                                       MaterialStateProperty.all<Color>(
-                                          ColorManager.baseColorLight),
+                                          ColorFunctions.loadButtonColor()),
                                   value: appPreferences.getIsDark(),
                                   trackColor: MaterialStateProperty.all<Color>(
                                       Colors.white),

@@ -192,6 +192,7 @@ class TalabatRepositoryImpl extends TalabatRepository {
           ));
         }
       } catch (error) {
+        print(error);
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {

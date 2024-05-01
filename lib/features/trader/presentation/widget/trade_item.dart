@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
@@ -72,8 +73,7 @@ class TradeItem extends StatelessWidget {
                           traderName,
                           style: getMediumInterStyle(
                             fontSize: AppSize.s18.sp,
-                            color: ColorManager
-                                .baseColorLight, // تغيير اللون إلى الأسود لزيادة الوضوح
+                            color: ColorFunctions.loadButtonColor()
                           ),
                         ),
                         const Spacer(),
@@ -81,8 +81,7 @@ class TradeItem extends StatelessWidget {
                           priceAr,
                           style: getMediumInterStyle(
                             fontSize: AppSize.s18.sp,
-                            color: ColorManager
-                                .baseColorLight, // تغيير اللون إلى الأسود لزيادة الوضوح
+                            color: ColorFunctions.loadButtonColor()
                           ),
                         ),
                       ],

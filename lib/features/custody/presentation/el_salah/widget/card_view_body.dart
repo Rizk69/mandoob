@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
@@ -45,7 +46,7 @@ class CartViewBody extends StatelessWidget {
                         ),
                         Center(
                           child: Text(
-                            'السلة',
+                            LocaleKeys.cart.tr(),
                             style: getBoldSegoeStyle(
                                 fontSize: 25,
                                 color: Theme.of(context).primaryColorLight),
@@ -104,7 +105,7 @@ class CartViewBody extends StatelessWidget {
                             EdgeInsets.all(10.0),
                           ),
                           backgroundColor: MaterialStatePropertyAll<Color>(
-                              Theme.of(context).hoverColor),
+                              ColorFunctions.loadButtonColor()),
                           shape: MaterialStatePropertyAll<OutlinedBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(AppSize.s40),

@@ -7,7 +7,7 @@ import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/core/widget/backgrond_image.dart';
-import 'package:mandoob/core/widget/customButton.dart';
+import 'package:mandoob/core/widget/custom_buttoms.dart';
 import 'package:mandoob/core/widget/custom_text_form_info.dart';
 import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/core/widget/header_screen.dart';
@@ -270,9 +270,12 @@ class AddButton extends StatelessWidget {
           Navigator.pushReplacementNamed(context, Routes.homeRoute);
         }
       },
-      child: CustomButton(
-        title: LocaleKeys.add.tr(),
-        onPressed: () => context.read<ExpensesCubit>().submitExpense(),
+      child: SizedBox(
+        width: AppSize.s150.w,
+        child: CustomButton(
+          buttonText: LocaleKeys.add.tr(),
+          onPressed: () => context.read<ExpensesCubit>().submitExpense(),
+        ),
       ),
     );
   }

@@ -150,7 +150,7 @@ class CardExpandedItem extends StatelessWidget {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text('دولار'),
+                              title: Text(LocaleKeys.usd.tr()),
                               leading: Radio<int>(
                                 value: 1,
                                 groupValue: ElSalahCubit.get(context).selectedCurrency,
@@ -162,7 +162,7 @@ class CardExpandedItem extends StatelessWidget {
                           ),
                           Expanded(
                             child: ListTile(
-                              title: Text('ليرة'),
+                              title: Text(LocaleKeys.lera.tr()),
                               leading: Radio<int>(
                                 value: 2,
                                 groupValue: ElSalahCubit.get(context).selectedCurrency,
@@ -178,7 +178,7 @@ class CardExpandedItem extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            'الكمية',
+                            LocaleKeys.quantity.tr(),
                             style: getBoldSegoeStyle(
                               fontSize: 20,
                               color: Theme.of(context).primaryColor,
@@ -199,7 +199,7 @@ class CardExpandedItem extends StatelessWidget {
                                       borderSide: BorderSide(
                                           color: ColorManager.babyBlue),
                                     ),
-                                    hintText: product.quantity.toString()
+                                    hintText: "${ElSalahCubit.get(context).itemsCountPerProduct[product.id] ?? product.quantity}"
                                 ),
                               ),
                             ),
@@ -213,7 +213,7 @@ class CardExpandedItem extends StatelessWidget {
                         children: [
 
                           Text(
-                            'الوحدة',
+                            LocaleKeys.Unit.tr(),
                             style: getBoldSegoeStyle(
                               fontSize: 20,
                               color: Theme.of(context).primaryColor,
@@ -251,7 +251,7 @@ class CardExpandedItem extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            'السعر بالدولار',
+                            LocaleKeys.PriceInUsd.tr(),
                             style: getBoldSegoeStyle(
                               fontSize: 20,
                               color: Theme.of(context).primaryColor,
@@ -272,7 +272,7 @@ class CardExpandedItem extends StatelessWidget {
                                         color: ColorManager.babyBlue),
                                   ),
                                   hintText:
-                                  '${(product.priceUnitDoler) * (product.quantity)}',
+                                  "${num.parse(product.priceUnitDoler) * (ElSalahCubit.get(context).itemsCountPerProduct[product.id] ?? product.quantity)}",
                                 ),
                               ),
                             ),
@@ -285,7 +285,7 @@ class CardExpandedItem extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            'السعر بالليرة',
+                            LocaleKeys.priceInLera.tr(),
                             style: getBoldSegoeStyle(
                               fontSize: 20,
                               color: Theme.of(context).primaryColor,
@@ -306,7 +306,7 @@ class CardExpandedItem extends StatelessWidget {
                                         color: ColorManager.babyBlue),
                                   ),
                                   hintText:
-                                  '${product.priceUnitLera * (product.quantity)}',
+                                  "${num.parse(product.priceUnitLera) * (ElSalahCubit.get(context).itemsCountPerProduct[product.id] ?? product.quantity)}",
                                 ),
                               ),
                             ),
@@ -324,7 +324,7 @@ class CardExpandedItem extends StatelessWidget {
                             ),
                             backgroundColor:
                             MaterialStatePropertyAll<Color>(
-                                Theme.of(context).hoverColor),
+                                ColorFunctions.loadButtonColor()),
                             shape:
                             MaterialStatePropertyAll<OutlinedBorder>(
                               RoundedRectangleBorder(

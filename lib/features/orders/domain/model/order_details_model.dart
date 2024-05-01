@@ -18,8 +18,8 @@ class Order {
   String status_ar;
   String status_en;
   String date;
-  num priceDoler;
-  num priceLera;
+  String priceDoler;
+  String priceLera;
 
   Order({
     required this.id,

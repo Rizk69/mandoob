@@ -1,8 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
+import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SupplierInvoice extends StatelessWidget {
   final SupplierInvoiceModel? supplierInvoiceModel;
@@ -20,26 +25,26 @@ class SupplierInvoice extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'السعر بالليرة : ${supplierInvoiceModel?.data?.totalLera}',
+                '${LocaleKeys.priceInLera.tr()} : ${supplierInvoiceModel?.data?.totalLera}',
                 style: getBoldSegoeStyle(
                   fontSize: 18,
                   color: ColorManager.grey3,
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: AppSize.s1.h),
               Text(
-                'السعر بالدولار : ${supplierInvoiceModel?.data?.totalDoler}',
+                '${LocaleKeys.PriceInUsd.tr()} : ${supplierInvoiceModel?.data?.totalDoler}',
                 style: getBoldSegoeStyle(
                   fontSize: 18,
                   color: ColorManager.grey3,
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: AppSize.s1.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'التاريخ  : ${supplierInvoiceModel?.data?.date}',
+                    '${LocaleKeys.date.tr()} : ${supplierInvoiceModel?.data?.date}',
                     style: getBoldSegoeStyle(
                       fontSize: 18,
                       color: ColorManager.grey3,
@@ -56,9 +61,9 @@ class SupplierInvoice extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: Text(
-                        "التفاصيل",
+                        LocaleKeys.Details.tr(),
                         style: TextStyle(
-                          color: ColorManager.babyBlue,
+                          color: ColorFunctions.loadButtonColor(),
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           decoration: TextDecoration.underline,

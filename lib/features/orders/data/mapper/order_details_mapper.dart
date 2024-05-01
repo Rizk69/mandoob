@@ -27,8 +27,8 @@ extension OrderDataMapper on OrderDetailsDataResponse? {
       status_ar: this?.status_ar.orEmpty() ?? Constants.empty,
       status_en: this?.status_en.orEmpty() ?? Constants.empty,
       date: this?.date.orEmpty() ?? Constants.empty,
-      priceDoler: this?.price_Doler.orZero() ?? Constants.zero,
-      priceLera: this?.price_Lera.orZero() ?? Constants.zero,
+      priceDoler: this?.price_Doler.orEmpty() ?? Constants.empty,
+      priceLera: this?.price_Lera.orEmpty() ?? Constants.empty,
     );
   }
 }

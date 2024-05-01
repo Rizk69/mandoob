@@ -201,6 +201,17 @@
   "ConfirmRemove": "تأكيد الحذف",
   "ConfirmRemoveContent": " هل أنت متأكد من أنك تريد حذف هذا الخط؟,او التخطى",
   "Remove": "حذف",
-  "language": "اللغة"
+  "language": "اللغة",
+
+  "cash": "كاش",
+  "debt": "اجل",
+
+  "sellDialog1": "سيتم دفع مبلغ",
+  "sellDialog2": " ليره أو ما يعادلها",
+  "sellDialog3": " دولار بشكل كاش أم أجل",
+
+  "paymentMethod": "طريقة الدفع"
+
+
 
 }

@@ -42,7 +42,7 @@ class CardNewOrder extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(
-                    color: Colors.blue,
+                    color: ColorFunctions.loadButtonColor(),
                     width: 2,
                   ),
                 ),
@@ -89,9 +89,9 @@ class CardNewOrder extends StatelessWidget {
                         onPressed: () => context
                             .read<NewTalabatCubit>()
                             .increment(product.id),
-                        icon: const Icon(
+                        icon:  Icon(
                           Icons.add,
-                          color: Colors.blue,
+                          color: ColorFunctions.loadButtonColor(),
                         ),
                       ),
                       Text(
@@ -100,19 +100,19 @@ class CardNewOrder extends StatelessWidget {
                                 .productCounts[product.id]
                                 ?.toString() ??
                             '0',
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: ColorFunctions.loadButtonColor(),
                         ),
                       ),
                       IconButton(
                         onPressed: () => context
                             .read<NewTalabatCubit>()
                             .decrement(product.id),
-                        icon: const Icon(
+                        icon:  Icon(
                           Icons.remove,
-                          color: Colors.blue,
+                          color: ColorFunctions.loadButtonColor(),
                         ),
                       ),
                       DropdownButton<UnitModel>(

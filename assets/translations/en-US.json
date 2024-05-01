@@ -200,6 +200,14 @@
   "ConfirmRemove": "Confirm Remove",
   "ConfirmRemoveContent": "Are you sure you want to delete this line? Or skip it",
   "Remove": "Remove",
-  "language": "language"
+  "language": "language",
+
+  "cash": "cash",
+  "debt": "debt",
+
+  "sellDialog1": "The amount of",
+  "sellDialog2": "Lira or its equivalent of",
+  "sellDialog3": "dollars will be paid in cash or on credit.",
+  "paymentMethod": "Payment Method"
 
 }

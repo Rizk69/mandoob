@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/assets_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
@@ -124,12 +125,12 @@ class HomeView extends StatelessWidget {
                                   children: [
                                     Icon(
                                       Icons.filter_alt_outlined,
-                                      color: Theme.of(context).hoverColor,
+                                      color: ColorFunctions.loadButtonColor(),
                                     ),
                                     Text(
                                       LocaleKeys.Customize.tr(),
                                       style: getSemiBoldInterStyle(
-                                        color: Theme.of(context).hoverColor,
+                                        color: ColorFunctions.loadButtonColor(),
                                         fontSize: AppSize.s13,
                                       ),
                                     ),

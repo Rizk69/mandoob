@@ -1,9 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/color_manager.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/resources/styles_manager.dart';
+import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/core/resources/values_manager.dart';
+import 'package:mandoob/core/resources/values_manager.dart';
 import 'package:mandoob/features/invoices/domain/model/supplier_invoice_model.dart';
 import 'package:mandoob/features/invoices/domain/model/trader_invoice_model.dart';
+import 'package:mandoob/generated/locale_keys.g.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class TraderInvoice extends StatelessWidget {
   final List<TraderInvoiceDataModel>? traderInvoiceModel;
@@ -22,42 +30,42 @@ class TraderInvoice extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'رقم الفاتورة: ${traderInvoiceModel![index].invoiceNo} ',
+                '${LocaleKeys.invoiceNumber.tr()} : ${traderInvoiceModel![index].invoiceNo} ',
                 style: getBoldSegoeStyle(
                   fontSize: 18,
                   color: ColorManager.grey3,
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: AppSize.s1.h),
               Text(
-                'السعر بالليرة : ${traderInvoiceModel![index].priceLera ?? 0} ',
+                '${LocaleKeys.priceInLera.tr()} : ${traderInvoiceModel![index].priceLera ?? 0} ',
                 style: getBoldSegoeStyle(
                   fontSize: 18,
                   color: ColorManager.grey3,
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: AppSize.s1.h),
               Text(
-                'السعر بالدولار : ${traderInvoiceModel![index].priceDoler ?? 0} ',
+                '${LocaleKeys.PriceInUsd.tr()} : ${traderInvoiceModel![index].priceDoler ?? 0} ',
                 style: getBoldSegoeStyle(
                   fontSize: 18,
                   color: ColorManager.grey3,
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: AppSize.s1.h),
               Text(
-                'التاجر: ${traderInvoiceModel![index].customerName}',
+                '${LocaleKeys.Trader.tr()} : ${traderInvoiceModel![index].customerName}',
                 style: getBoldSegoeStyle(
                   fontSize: 18,
                   color: ColorManager.grey3,
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: AppSize.s1.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'التاريخ : ${traderInvoiceModel![index].date}',
+                    '${LocaleKeys.date.tr()} : ${traderInvoiceModel![index].date}',
                     style: getBoldSegoeStyle(
                       fontSize: 18,
                       color: ColorManager.grey3,
@@ -78,9 +86,9 @@ class TraderInvoice extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: Text(
-                        "التفاصيل",
+                        LocaleKeys.Details.tr(),
                         style: TextStyle(
-                          color: ColorManager.babyBlue,
+                          color: ColorFunctions.loadButtonColor(),
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           decoration: TextDecoration.underline,

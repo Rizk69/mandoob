@@ -202,5 +202,11 @@ abstract class  LocaleKeys {
   static const ConfirmRemoveContent = 'ConfirmRemoveContent';
   static const Remove = 'Remove';
   static const language = 'language';
+  static const cash = 'cash';
+  static const debt = 'debt';
+  static const sellDialog1 = 'sellDialog1';
+  static const sellDialog2 = 'sellDialog2';
+  static const sellDialog3 = 'sellDialog3';
+  static const paymentMethod = 'paymentMethod';
 
 }

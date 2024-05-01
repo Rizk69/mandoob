@@ -80,10 +80,10 @@ class OrderDetailsDataResponse {
   String? date;
 
   @JsonKey(name: "price_Doler")
-  num? price_Doler;
+  String? price_Doler;
 
   @JsonKey(name: "price_Lera")
-  num? price_Lera;
+  String? price_Lera;
 
   OrderDetailsDataResponse(
       {this.id,

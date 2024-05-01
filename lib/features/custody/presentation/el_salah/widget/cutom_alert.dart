@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mandoob/app/di.dart';
+import 'package:mandoob/app/functions.dart';
 import 'package:mandoob/core/resources/routes_manager.dart';
 import 'package:mandoob/core/widget/default_snake_bar.dart';
 import 'package:mandoob/features/custody/presentation/cubit/el_salah/el_salah_cubit.dart';
@@ -121,7 +122,7 @@ class ConfirmInvoiceAlertDialog extends StatelessWidget {
         // Use MainAxisSize.min for the content to wrap its height
         children: [
           Text(
-            'طريقة الدفع',
+            LocaleKeys.paymentMethod.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18.0,
@@ -131,7 +132,7 @@ class ConfirmInvoiceAlertDialog extends StatelessWidget {
           ),
           SizedBox(height: 2.5.h),
           Text(
-            'هي سيتم دفع مبلغ ${priceTL.toString()} ليره أو ما يعادلها ${priceUSD.toString()} دولار بشكل كاش أم أجل',
+            ' ${LocaleKeys.sellDialog1.tr()} ${priceTL.toString()} ${LocaleKeys.sellDialog2.tr()} ${priceUSD.toString()} ${LocaleKeys.sellDialog3.tr()}',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18.0,
@@ -145,12 +146,12 @@ class ConfirmInvoiceAlertDialog extends StatelessWidget {
             children: [
               _buildActionButton(
                   context,
-                  'كاش',
-                  MaterialStatePropertyAll<Color>(Theme.of(context).hoverColor),
+                  LocaleKeys.cash.tr(),
+                  MaterialStatePropertyAll<Color>(ColorFunctions.loadButtonColor()),
                   () => ElSalahCubit.get(context).confirmInvoice(0)),
               _buildActionButton(
                   context,
-                  'أجل',
+                  LocaleKeys.debt.tr(),
                   MaterialStatePropertyAll<Color>(Theme.of(context).primaryColorDark),
                   () => ElSalahCubit.get(context).confirmInvoice(1)),
             ],

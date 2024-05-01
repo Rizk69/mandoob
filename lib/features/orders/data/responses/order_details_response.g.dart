@@ -60,8 +60,8 @@ OrderDetailsDataResponse _$OrderDetailsDataResponseFromJson(
       status_ar: json['status_ar'] as String?,
       status_en: json['status_en'] as String?,
       date: json['date'] as String?,
-      price_Doler: json['price_Doler'] as num?,
-      price_Lera: json['price_Lera'] as num?,
+      price_Doler: json['price_Doler'] as String?,
+      price_Lera: json['price_Lera'] as String?,
     );
 
 Map<String, dynamic> _$OrderDetailsDataResponseToJson(

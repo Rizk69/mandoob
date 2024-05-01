@@ -154,12 +154,12 @@ class TrafficLines extends StatelessWidget {
                                           color: Theme.of(context).primaryColor,
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(8)),
-                                          gradient: const LinearGradient(
+                                          gradient:  LinearGradient(
                                             begin: Alignment.topCenter,
                                             end: Alignment.bottomCenter,
                                             colors: [
                                               Color(0xffD9D9D9),
-                                              Color(0xff05138B),
+                                              ColorFunctions.loadButtonColor(),
                                             ],
                                           ),
                                         ),
