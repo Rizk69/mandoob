@@ -105,6 +105,7 @@ abstract class  LocaleKeys {
   static const confirm = 'confirm';
   static const deleteAll = 'deleteAll';
   static const addPurchases = 'addPurchases';
+  static const salePurchases = 'salePurchases';
   static const trafficLine = 'trafficLine';
   static const expenses = 'expenses';
   static const quantity = 'quantity';

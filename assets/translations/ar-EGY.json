@@ -103,6 +103,7 @@
   "confirm": "تاكيد",
   "deleteAll": "حذف الكل",
   "addPurchases": "إضافة مشتريات",
+  "salePurchases": "بيع مشتريات",
   "trafficLine": "خطوط السير",
   "expenses": "المصروفات",
   "quantity": "الكمية",
@@ -196,6 +197,7 @@
   "CompleteData": "برجاء اكمال البيانات المطلوبه",
   "Purchases": "المشتريات",
   "sell": "بيع",
+  "sale": "البيع",
   "PurchasingEmpty": "عذرآ لا يوجد مشتريات",
 
   "ConfirmRemove": "تأكيد الحذف",
