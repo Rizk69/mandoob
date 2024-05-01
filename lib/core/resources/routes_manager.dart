@@ -20,6 +20,7 @@ import 'package:mandoob/features/invoices/presentation/invoice_delegate_details.
 import 'package:mandoob/features/notification/presentation/notification.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/new_order_view.dart';
 import 'package:mandoob/features/orders/presentation/talabat/presentation/old_order_details.dart';
+import 'package:mandoob/features/purchase/presentation/sale_purchase.dart';
 import 'package:mandoob/features/splash_screen/Splash_View.dart';
 import 'package:mandoob/features/trader/presentation/new_trader.dart';
 import 'package:mandoob/features/trader/presentation/trader_view.dart';
@@ -47,6 +48,7 @@ class Routes {
   static const String expenses = "/expenses";
   static const String debts = "/debts";
   static const String purchase = "/purchase";
+  static const String salePurchase = "/salePurchase";
   static const String addPayingDebts = "/addPayingDebts";
   static const String debtRepayment = "/debtRepayment";
   static const String notification = "/notification";
@@ -150,6 +152,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Purchase());
       case Routes.addPayingDebts:
         return MaterialPageRoute(builder: (_) => AddPurchase());
+        case Routes.salePurchase:
+        return MaterialPageRoute(builder: (_) => SalePurchase());
       case Routes.debtRepayment:
         final args = settings.arguments as DebtDetail;
 

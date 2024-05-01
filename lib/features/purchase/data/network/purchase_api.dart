@@ -15,10 +15,18 @@ abstract class PurchaseServiceClient {
 
   @GET("api/get_purchase")
   Future<PurchaseResponses> getPurchase();
+  // @GET("api/get_invoice_purchase/{sell_purchase_id}")
+  // Future<PurchaseResponses> getInvoicePurchase();
   @POST("api/add_purchase")
   Future<AddPurchaseResponses> addPurchase(
       @Body() AddPurchaseRequest addPurchaseRequest);
   @POST("api/add_selse_purchase")
   Future<AddPurchaseResponses> addSalsePurchase(
       @Body() AddSalsePurchaseRequest addSalsePurchaseRequest);
+  // @POST("api/confirm_purchase")
+  // Future<AddPurchaseResponses> confirmPurchase(
+  //     @Body() AddSalsePurchaseRequest addSalsePurchaseRequest);
+  // @POST("api/pay_purchase")
+  // Future<AddPurchaseResponses> payPurchase(
+  //     @Body() AddSalsePurchaseRequest addSalsePurchaseRequest);
 }

@@ -122,7 +122,8 @@ class Purchase extends StatelessWidget {
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        LocaleKeys.ProductName.tr(),
+                                                        LocaleKeys.ProductName
+                                                            .tr(),
                                                         style: TextStyle(
                                                             color: Theme.of(
                                                                     context)
@@ -141,22 +142,29 @@ class Purchase extends StatelessWidget {
                                                       ),
                                                     ],
                                                   ),
-                                                  Row(
-                                                    children: [
-                                                      Image.asset(
-                                                          'assets/images/send.png',
-                                                          height: 18),
-                                                      const SizedBox(
-                                                        width: 8,
-                                                      ),
-                                                      Text(
-                                                        LocaleKeys.sell.tr(),
-                                                        style: TextStyle(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColorLight),
-                                                      ),
-                                                    ],
+                                                  InkWell(
+                                                    onTap: (){
+                                                      Navigator.pushNamed(context, Routes.salePurchase);
+
+
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Image.asset(
+                                                            'assets/images/send.png',
+                                                            height: 18),
+                                                        const SizedBox(
+                                                          width: 8,
+                                                        ),
+                                                        Text(
+                                                          LocaleKeys.sell.tr(),
+                                                          style: TextStyle(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColorLight),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -211,7 +219,6 @@ class Purchase extends StatelessWidget {
                                     ),
                                   )
                                 : EmptyScreen(
-
                                     title: LocaleKeys.PurchasingEmpty.tr(),
                                     textbutton: '',
                                     viewButtom: false,
