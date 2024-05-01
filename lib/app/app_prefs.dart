@@ -38,7 +38,7 @@ class AppPreferences {
     await _sharedPreferences.setString("Primary_Color", color);
   }
 
-  Future<String> getPrimaryColor() async {
+  String getPrimaryColor()  {
     return _sharedPreferences.getString("Primary_Color") ?? '';
   }
 

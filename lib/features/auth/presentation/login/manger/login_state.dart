@@ -34,3 +34,5 @@ class CheckValueState extends LoginState {
 }
 
 class ChangeVisibilityPasswordSate extends LoginState {}
+
+class ChangeColorSate extends LoginState {}

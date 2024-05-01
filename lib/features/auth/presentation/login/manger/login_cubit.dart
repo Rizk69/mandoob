@@ -19,6 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
   String _password = '';
   bool isDataValid = false;
 
+
   void toggleCheckbox(bool checkValue) {
     emit(CheckValueState(checkValue));
   }

@@ -2,6 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
+import 'package:mandoob/app/app_prefs.dart';
+import 'package:mandoob/app/di.dart';
+
 
 getTextDirection(BuildContext context) {
   return isCurrentLanguageEn(context)
@@ -59,4 +62,20 @@ String? nullTranslateString ({String? arString , String? enString }){
 int getColorFromHex(String hexColor) {
   hexColor = hexColor.replaceAll('#', '');
   return int.parse('FF$hexColor', radix: 16);
+}
+
+class ColorFunctions {
+  static Color loadButtonColor()  {
+    AppPreferences _appPreferences = instance<AppPreferences>();
+    String colorValue =  _appPreferences.getPrimaryColor();
+    if (colorValue.startsWith('#')) {
+      colorValue = '0xff' + colorValue.substring(1);
+    }
+    try {
+      return Color(int.parse(colorValue));
+    } catch (e) {
+      print('Error parsing color: $e');
+      return Colors.grey; // Return default color on failure
+    }
+  }
 }
